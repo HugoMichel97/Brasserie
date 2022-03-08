@@ -13,10 +13,10 @@ import javax.persistence.OneToMany;
 public class Biere extends Produits {
 	
 	@OneToMany
-	private transient List<Double> notes;
+	private transient List<Note> notes;
 	
 	@OneToMany
-	private transient List<String> commentaires;
+	private transient List<Commentaire> commentaires;
 	
 	@ManyToMany
 	private transient List<Snack> suggestions;
@@ -27,7 +27,7 @@ public class Biere extends Produits {
 	public Biere() {}
 	
 	public Biere(String nom, double prix, String description, int stock, int pts_produit,
-			List<Double> notes, List<String> commentaires, List<Snack> suggestions,
+			List<Note> notes, List<Commentaire> commentaires, List<Snack> suggestions,
 			List<Ingredients> recette) {
 		super(nom, description, prix, stock, pts_produit);
 		this.notes = notes;
@@ -37,23 +37,23 @@ public class Biere extends Produits {
 	}
 	
 	//Constructeur test
-	public Biere(String nom, double prix, List<Double> notes) {
+	public Biere(String nom, double prix) {
 		super(nom, prix);
-		this.notes = notes;
+		
 	}
 	
 	// getters-setters
-	public List<Double> getNotes() {
+	public List<Note> getNotes() {
 		return notes;
 	}
-	public void setNotes(List<Double> notes) {
+	public void setNotes(List<Note> notes) {
 		this.notes = notes;
 	}
 
-	public List<String> getCommentaires() {
+	public List<Commentaire> getCommentaires() {
 		return commentaires;
 	}
-	public void setCommentaires(List<String> commentaires) {
+	public void setCommentaires(List<Commentaire> commentaires) {
 		this.commentaires = commentaires;
 	}
 
