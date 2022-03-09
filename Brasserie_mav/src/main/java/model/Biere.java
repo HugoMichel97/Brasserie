@@ -8,17 +8,18 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
+import javax.persistence.PrimaryKeyJoinColumn;
 
 @Entity
 @DiscriminatorValue("biere")
 
 public class Biere extends Produits {
 	
-	@OneToMany
-	private transient List<Note> notes;
+	@OneToMany(mappedBy = "biere")
+	private List<Note> notes;
 	
-	@OneToMany
-	private transient List<Commentaire> commentaires;
+	@OneToMany(mappedBy = "biere")
+	private List<Commentaire> commentaires;
 	
 	@ManyToMany
 	@JoinTable(name = "suggestions", joinColumns = @JoinColumn(name="id_biere"), inverseJoinColumns = @JoinColumn(name="id_snack"))
