@@ -42,6 +42,11 @@ public class Biere extends Produits {
 		
 	}
 	
+	public Biere(String nom, String description, double prix,  int stock, Integer pts_produit)
+	{
+		super(nom, description, prix, stock, pts_produit);
+	}
+	
 	// getters-setters
 	public List<Note> getNotes() {
 		return notes;
