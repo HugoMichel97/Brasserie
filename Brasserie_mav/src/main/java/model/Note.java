@@ -13,6 +13,7 @@ public class Note {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id_note;
+	
 	@ManyToOne
 	@JoinColumn(name= "id_biere")
 	private Biere biere;

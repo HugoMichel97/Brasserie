@@ -4,6 +4,8 @@ import java.util.List;
 
 import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 
@@ -19,16 +21,18 @@ public class Biere extends Produits {
 	private transient List<Commentaire> commentaires;
 	
 	@ManyToMany
-	private transient List<Snack> suggestions;
+	@JoinTable(name = "suggestions", joinColumns = @JoinColumn(name="id_biere"), inverseJoinColumns = @JoinColumn(name="id_snack"))
+	private List<Snack> suggestions;
 	
 	@ManyToMany
-	private transient List<Ingredients> recette;
+	@JoinTable(name = "recettes", joinColumns = @JoinColumn(name="id_biere"), inverseJoinColumns = @JoinColumn(name="id_ingredient"))
+	private List<Ingredient> recette;
 	
 	public Biere() {}
 	
 	public Biere(String nom, double prix, String description, int stock, int pts_produit,
 			List<Note> notes, List<Commentaire> commentaires, List<Snack> suggestions,
-			List<Ingredients> recette) {
+			List<Ingredient> recette) {
 		super(nom, description, prix, stock, pts_produit);
 		this.notes = notes;
 		this.commentaires = commentaires;
@@ -69,10 +73,10 @@ public class Biere extends Produits {
 		this.suggestions = suggestions;
 	}
 
-	public List<Ingredients> getRecette() {
+	public List<Ingredient> getRecette() {
 		return recette;
 	}
-	public void setRecette(List<Ingredients> recette) {
+	public void setRecette(List<Ingredient> recette) {
 		this.recette = recette;
 	}
 
