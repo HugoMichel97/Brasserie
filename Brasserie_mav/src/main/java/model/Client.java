@@ -2,16 +2,28 @@ package model;
 
 import java.util.List;
 
+import javax.persistence.Entity;
+import javax.persistence.ManyToMany;
+
+@Entity
 public class Client extends Compte {
 	
 	private String nom;
 	private String prenom;
 	private String tel;
 	private int fidelite;
-	private List<Reglement> reglements;
-	private List<Reservation> reservations;
+	
+	/*@OneToMany //? => embedable
+	private List<Reglement> reglements;*/
+	private transient List<Reglement> reglements;
+	
+	/*@ManyToMany //?
+	private List<Reservation> reservations;*/
+	private transient List<Reservation> reservations;
 	
 	// constructors
+	public Client() {}
+	
 	public Client(Integer id, String mail, String password, 
 			List<Produits> catalogue, String nom, String prenom, String tel, int fidelite,
 			List<Reglement> reglements, List<Reservation> reservations) {
