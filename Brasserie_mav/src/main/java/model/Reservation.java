@@ -1,11 +1,26 @@
 package model;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.OneToOne;
+
+@Entity
 public class Reservation {
-	
-	private Client client;
-	private Evenement evt;
+	@Id
+	@GeneratedValue(strategy = GenerationType.TABLE)
+	private Integer id;
+	//@OneToOne
+	private transient Client client;
+	// @OneToOne
+	private transient Evenement evt;
 	
 	// constructors
+	public Reservation()
+	{
+		
+	}
 	public Reservation(Client client, Evenement evt) {
 		this.client = client;
 		this.evt = evt;
