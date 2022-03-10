@@ -5,10 +5,12 @@ import javax.persistence.Persistence;
 
 import dao.DAOBiere;
 import dao.DAOCommentaire;
+import dao.DAOIngredient;
 import dao.DAONote;
 import dao.DAOSnack;
 import dao.IDAOBiere;
 import dao.IDAOCommentaire;
+import dao.IDAOIngredient;
 import dao.IDAONote;
 import dao.IDAOSnack;
 
@@ -23,8 +25,7 @@ private IDAOBiere daoBiere= new DAOBiere();
 private IDAOCommentaire daoCommentaire= new DAOCommentaire();
 private IDAONote daoNote= new DAONote();
 private IDAOSnack daoSnack= new DAOSnack();
-
-
+private IDAOIngredient daoIngredient = new DAOIngredient();
 
 
 private Context() {}
