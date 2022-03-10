@@ -1,5 +1,6 @@
 package test;
 
+import javax.persistence.EntityManager;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -29,7 +30,7 @@ public class TestJPA {
 		
 		b1.setNotes(notes);
 		
-		// Test gestion ingrédients
+		// Test gestion ingrï¿½dients
 		Ingredient i1 = new Ingredient("Houblon", 50);
 		Ingredient i2 = new Ingredient("Levure", 3);
 		
@@ -46,7 +47,7 @@ public class TestJPA {
 		b1.setSuggestions(sugg1);
 		
 		// Test commentaires 
-		Commentaire c1 = new Commentaire(b1, "Superbe bière");
+		Commentaire c1 = new Commentaire(b1, "Superbe biï¿½re");
 		Commentaire c2 = new Commentaire(b1, "Atroce" );
 		
 		List<Commentaire> coms = new ArrayList();

@@ -1,0 +1,14 @@
+Comment choisir le type d'héritage ? 
+
+Il faut se poser 2 questions :
+
+- Doit on pouvoir faire du polymorphisme ? Si oui, Single Table ou Joined, sinon Table Per Class
+- Doit on empecher les valeurs nulls ? Si oui, Joined ou Table Per Class, sinon Single Table
+
+
+
+Poly \ not Null			Oui								Non
+
+Oui				Joined								Single Table  > Joined
+
+Non				Table Per class > Joined					Table Per class  > Joined = Single Table
