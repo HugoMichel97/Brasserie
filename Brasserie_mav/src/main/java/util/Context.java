@@ -21,6 +21,9 @@ import dao.IDAOInfoReglement;
 import dao.IDAOIngredient;
 import dao.IDAONote;
 import dao.IDAOSnack;
+import dao.DAOEvenements;
+import dao.IDAOEvenements;
+
 
 
 
@@ -38,6 +41,7 @@ public class Context {
 	private IDAOBrasseur daoBrasseur = new DAOBrasseur();
 	private IDAOClient daoClient = new DAOClient();
 	private IDAOInfoReglement daoReglement = new DAOInfoReglement();
+	private IDAOEvenements daoEvenements = new DAOEvenements();
 
 	private Context() {}
 
@@ -108,12 +112,8 @@ public class Context {
 	public IDAOInfoReglement getDaoReglement() {
 		return daoReglement;
 	}
+	
+	public IDAOEvenements getDaoEvenements() {
+		return daoEvenements;
+	}
 }
-
-
-
-
-
-
-
-
