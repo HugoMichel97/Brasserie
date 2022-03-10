@@ -10,4 +10,14 @@
       <include-prelude></include-prelude>
     </jsp-property-group>
   </jsp-config>
+  <servlet>
+    <description></description>
+    <display-name>ProduitsController</display-name>
+    <servlet-name>ProduitsController</servlet-name>
+    <servlet-class>controllers.ProduitsController</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ProduitsController</servlet-name>
+    <url-pattern>/ProduitsController</url-pattern>
+  </servlet-mapping>
 </web-app>
