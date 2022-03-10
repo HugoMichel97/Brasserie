@@ -1,10 +1,11 @@
-package dao;
+package dao.jpa;
 
 import java.util.List;
 
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
 
+import dao.IDAOAchat;
 import model.Biere;
 import model.Client;
 import model.Achat;

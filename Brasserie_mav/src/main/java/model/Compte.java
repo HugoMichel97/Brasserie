@@ -1,6 +1,5 @@
 package model;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.Column;
@@ -11,13 +10,16 @@ import javax.persistence.Id;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
 import javax.persistence.OneToMany;
+import javax.persistence.SequenceGenerator;
+import javax.persistence.Version;
 
 @Entity
 @Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
+@SequenceGenerator(name = "seqCompteJPA",sequenceName = "seqCompte")
 public abstract class Compte {
 	
 	@Id
-	@GeneratedValue(strategy = GenerationType.TABLE)
+	@GeneratedValue(strategy = GenerationType.SEQUENCE,generator = "seqCompteJPA")
 	protected Integer id;
 	
 	@Column(unique=true)
@@ -25,18 +27,20 @@ public abstract class Compte {
 	
 	protected String password;
 	
-	/*@OneToMany(mappedBy = "pannier") //?
-	protected List<Produits> catalogue = new ArrayList<Produits>();*/
-	protected transient List<Produits> catalogue = new ArrayList<Produits>();
+	@OneToMany(mappedBy = "id_client")
+	private List<Achat> achats;
+	
+	@Version
+	private int version;
 	
 	// constructors
 	public Compte() {}
 	
-	public Compte(Integer id, String mail, String password, List<Produits> catalogue) {
+	public Compte(Integer id, String mail, String password, List<Achat> achats) {
 		this.id = id;
 		this.mail = mail;
 		this.password = password;
-		this.catalogue = catalogue;
+		this.achats = achats;
 	}
 
 	public Compte(String mail, String password) {
@@ -55,7 +59,7 @@ public abstract class Compte {
 	public String getMail() {
 		return mail;
 	}
-	public void setLogin(String mail) {
+	public void setMail(String mail) {
 		this.mail = mail;
 	}
 
@@ -66,18 +70,20 @@ public abstract class Compte {
 		this.password = password;
 	}
 
-	public List<Produits> getCatalogue() {
-		return catalogue;
+	public List<Achat> getAchats() {
+		return achats;
 	}
-	public void setCatalogue(List<Produits> catalogue) {
-		this.catalogue = catalogue;
+
+	public void setAchats(List<Achat> achats) {
+		this.achats = achats;
 	}
-	
-	// toString
-	@Override
-	public String toString() {
-		return "Compte [id=" + id + ", mail=" + mail + ", password=" + password 
-				+ ", catalogue=" + catalogue + "]";
+
+	public int getVersion() {
+		return version;
+	}
+
+	public void setVersion(int version) {
+		this.version = version;
 	}
 	
 	// methods

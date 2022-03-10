@@ -3,6 +3,9 @@ package model;
 import java.util.List;
 
 import javax.persistence.Entity;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 
 @Entity
@@ -16,17 +19,16 @@ public class Client extends Compte {
 	@OneToMany(mappedBy = "client")
 	private List<InfoReglement> reglements;
 	
-	/*@ManyToMany //?
-	private List<Reservation> reservations;*/
-	private transient List<Reservation> reservations;
+	@OneToMany(mappedBy = "client")
+	private List<Reservation> reservations;
 	
 	// constructors
 	public Client() {}
 	
 	public Client(Integer id, String mail, String password, 
-			List<Produits> catalogue, String nom, String prenom, String tel, int fidelite,
+			List<Achat> achats, String nom, String prenom, String tel, int fidelite,
 			List<InfoReglement> reglements, List<Reservation> reservations) {
-		super(id, mail, password, catalogue);
+		super(id, mail, password, achats);
 		this.nom = nom;
 		this.prenom = prenom;
 		this.tel = tel;

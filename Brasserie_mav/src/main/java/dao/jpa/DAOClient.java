@@ -1,10 +1,11 @@
-package dao;
+package dao.jpa;
 
 import java.util.List;
 
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
 
+import dao.IDAOClient;
 import model.Client;
 import util.Context;
 
@@ -21,31 +22,24 @@ public class DAOClient implements IDAOClient {
 	@Override
 	public List<Client> findAll() {
 		EntityManager em  = Context.getSingleton().getEmf().createEntityManager();
-		List<Client> dresseurs = em.createQuery("SELECT c from Client c").getResultList();
+		List<Client> clients = em.createQuery("SELECT c from Client c").getResultList();
 		em.close();
-		return dresseurs;
+		return clients;
 	}
 
-	@Override
-	public Client insert(Client c) {
+	public Client save(Client c) {
 		EntityManager em  = Context.getSingleton().getEmf().createEntityManager();
-		em.getTransaction().begin();
-		em.persist(c);
-		em.getTransaction().commit();
-		em.close();
-		return null;
-	}
-
-	@Override
-	public Client update(Client c) {
-		EntityManager em  = Context.getSingleton().getEmf().createEntityManager();
-
-		try {
+		
+		try 
+		{
 			em.getTransaction().begin();
-
 			c = em.merge(c);
 			em.getTransaction().commit();
-		}catch(Exception e) {e.printStackTrace();}
+		}
+		catch(Exception e) 
+		{
+			e.printStackTrace();
+		}
 		em.close();
 		return c;
 	}

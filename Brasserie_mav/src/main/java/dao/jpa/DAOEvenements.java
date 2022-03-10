@@ -1,9 +1,10 @@
-package dao;
+package dao.jpa;
 
 import java.util.List;
 
 import javax.persistence.EntityManager;
 
+import dao.IDAOEvenements;
 import model.Evenement;
 import util.Context;
 	

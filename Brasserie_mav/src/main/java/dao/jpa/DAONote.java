@@ -1,35 +1,36 @@
-package dao;
+package dao.jpa;
 
 import java.util.List;
 
 import javax.persistence.EntityManager;
 
-import model.Biere;
+import dao.IDAONote;
+import model.Commentaire;
+import model.Note;
 import util.Context;
 
-public class DAOBiere implements IDAOBiere {
+public class DAONote implements IDAONote {
 
-	public Biere findById(Integer id) {
+	public Note findById(Integer id) {
 		EntityManager em  = Context.getSingleton().getEmf().createEntityManager();
-		Biere b = em.find(Biere.class, id);
+		Note n = em.find(Note.class, id);
 		em.close();
-		return b;
+		return n;
 	}
 
-	public List<Biere> findAll() {
+	public List<Note> findAll() {
 		EntityManager em  = Context.getSingleton().getEmf().createEntityManager();
-		List<Biere> bieres = em.createQuery("SELECT b from Biere b").getResultList();
+		List<Note> notes = em.createQuery("SELECT n FROM Note n").getResultList();
 		em.close();
-		return bieres;
+		return notes;
 	}
 
-	public Biere save(Biere b) {
+	public Note save(Note n) {
 		EntityManager em  = Context.getSingleton().getEmf().createEntityManager();
-		
 		try 
 		{
 			em.getTransaction().begin();
-			b = em.merge(b);
+			n = em.merge(n);
 			em.getTransaction().commit();
 		}
 		catch(Exception e) 
@@ -37,14 +38,14 @@ public class DAOBiere implements IDAOBiere {
 			e.printStackTrace();
 		}
 		em.close();
-		return b;
+		return n;
 	}
 
 	public void delete(Integer id) {
 		EntityManager em  = Context.getSingleton().getEmf().createEntityManager();
 		em.getTransaction().begin();
-		Biere b = em.find(Biere.class, id);
-		em.remove(b);
+		Note n = em.find(Note.class, id);
+		em.remove(n);
 		em.getTransaction().commit();
 		em.close();
 		

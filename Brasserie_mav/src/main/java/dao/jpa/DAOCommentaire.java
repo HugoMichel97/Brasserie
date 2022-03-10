@@ -1,35 +1,36 @@
-package dao;
+package dao.jpa;
 
 import java.util.List;
 
 import javax.persistence.EntityManager;
 
+import dao.IDAOCommentaire;
+import model.Biere;
 import model.Commentaire;
-import model.Note;
 import util.Context;
 
-public class DAONote implements IDAONote {
+public class DAOCommentaire implements IDAOCommentaire {
 
-	public Note findById(Integer id) {
+	public Commentaire findById(Integer id) {
 		EntityManager em  = Context.getSingleton().getEmf().createEntityManager();
-		Note n = em.find(Note.class, id);
+		Commentaire c = em.find(Commentaire.class, id);
 		em.close();
-		return n;
+		return c;
 	}
 
-	public List<Note> findAll() {
+	public List<Commentaire> findAll() {
 		EntityManager em  = Context.getSingleton().getEmf().createEntityManager();
-		List<Note> notes = em.createQuery("SELECT n FROM Note n").getResultList();
+		List<Commentaire> commentaires = em.createQuery("SELECT c FROM Commentaire c").getResultList();
 		em.close();
-		return notes;
+		return commentaires;
 	}
 
-	public Note save(Note n) {
+	public Commentaire save(Commentaire c) {
 		EntityManager em  = Context.getSingleton().getEmf().createEntityManager();
 		try 
 		{
 			em.getTransaction().begin();
-			n = em.merge(n);
+			c = em.merge(c);
 			em.getTransaction().commit();
 		}
 		catch(Exception e) 
@@ -37,17 +38,16 @@ public class DAONote implements IDAONote {
 			e.printStackTrace();
 		}
 		em.close();
-		return n;
+		return c;
 	}
 
 	public void delete(Integer id) {
 		EntityManager em  = Context.getSingleton().getEmf().createEntityManager();
 		em.getTransaction().begin();
-		Note n = em.find(Note.class, id);
-		em.remove(n);
+		Commentaire c = em.find(Commentaire.class, id);
+		em.remove(c);
 		em.getTransaction().commit();
 		em.close();
-		
 	}
 
 }

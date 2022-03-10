@@ -12,6 +12,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.Version;
 @Entity
 public class Evenement {
 	
@@ -26,12 +27,15 @@ public class Evenement {
 	private int ptsRequis = 0;
 	private String description;
 	
-	//@ManyToOne
+	@ManyToOne // vraiment besoin de l'info ou transient ?
 	@JoinColumn(name="brasseur_fk")
 	private Brasseur brasseur;
 	
-	//@OneToMany(mappedBy = "evt")
-	private transient List<Reservation>reservations;
+	@OneToMany(mappedBy = "evt")
+	private List<Reservation> reservations;
+	
+	@Version
+	private int version;
 
 	public Evenement() {
 		
@@ -123,6 +127,14 @@ public class Evenement {
 
 	public void setReservations(List<Reservation> reservations) {
 		this.reservations = reservations;
+	}
+	
+	public int getVersion() {
+		return version;
+	}
+
+	public void setVersion(int version) {
+		this.version = version;
 	}
 
 	@Override

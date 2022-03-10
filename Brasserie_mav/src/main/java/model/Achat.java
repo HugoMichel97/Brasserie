@@ -4,6 +4,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.Version;
@@ -15,7 +16,8 @@ public class Achat {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id_achat;
 	
-	//@OneToOne
+	@ManyToOne
+	@JoinColumn(name="client_fk")
 	private Client id_client;
 	
 	@ManyToOne

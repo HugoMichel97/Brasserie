@@ -1,10 +1,11 @@
-package dao;
+package dao.jpa;
 
 import java.util.List;
 
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
 
+import dao.IDAOBrasseur;
 import model.Brasseur;
 import model.Brasseur;
 import util.Context;
@@ -22,31 +23,24 @@ public class DAOBrasseur implements IDAOBrasseur {
 	@Override
 	public List<Brasseur> findAll() {
 		EntityManager em  = Context.getSingleton().getEmf().createEntityManager();
-		List<Brasseur> dresseurs = em.createQuery("SELECT b from Brasseur b").getResultList();
+		List<Brasseur> brasseurs = em.createQuery("SELECT b from Brasseur b").getResultList();
 		em.close();
-		return dresseurs;
+		return brasseurs;
 	}
 
-	@Override
-	public Brasseur insert(Brasseur b) {
+	public Brasseur save(Brasseur b) {
 		EntityManager em  = Context.getSingleton().getEmf().createEntityManager();
-		em.getTransaction().begin();
-		em.persist(b);
-		em.getTransaction().commit();
-		em.close();
-		return null;
-	}
-
-	@Override
-	public Brasseur update(Brasseur b) {
-		EntityManager em  = Context.getSingleton().getEmf().createEntityManager();
-
-		try {
+		
+		try 
+		{
 			em.getTransaction().begin();
-
 			b = em.merge(b);
 			em.getTransaction().commit();
-		}catch(Exception e) {e.printStackTrace();}
+		}
+		catch(Exception e) 
+		{
+			e.printStackTrace();
+		}
 		em.close();
 		return b;
 	}

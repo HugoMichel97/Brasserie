@@ -10,6 +10,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.persistence.Version;
 
 @Entity
 @Table(name="info_reglement")
@@ -26,9 +27,13 @@ public class InfoReglement {
 	@Enumerated(EnumType.STRING)
 	@Column(columnDefinition = "ENUM('CB', 'PayPal')")
 	private Reglement mode;
+	
 	private String num;
 	private String nom;
 	private String dateValid;
+	
+	@Version
+	private int version;
 	
 	public InfoReglement() {}
 
@@ -86,6 +91,14 @@ public class InfoReglement {
 
 	public void setDateValid(String dateValid) {
 		this.dateValid = dateValid;
+	}
+
+	public int getVersion() {
+		return version;
+	}
+
+	public void setVersion(int version) {
+		this.version = version;
 	}
 
 	@Override

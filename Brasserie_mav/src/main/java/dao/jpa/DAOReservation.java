@@ -1,9 +1,10 @@
-package dao;
+package dao.jpa;
 
 import java.util.List;
 
 import javax.persistence.EntityManager;
 
+import dao.IDAOReservation;
 import model.Reservation;
 import util.Context;
 
@@ -26,25 +27,19 @@ public class DAOReservation implements IDAOReservation{
 	}
 
 	@Override
-	public Reservation insert(Reservation r) {
-		EntityManager em  = Context.getSingleton().getEmf().createEntityManager();
-		em.getTransaction().begin();
-		em.persist(r);
-		em.getTransaction().commit();
-		em.close();
-		return null;
-	}
-
-	@Override
-	public Reservation update(Reservation r) {
+	public Reservation save(Reservation r) {
 		EntityManager em  = Context.getSingleton().getEmf().createEntityManager();
 
-		try {
+		try 
+		{
 			em.getTransaction().begin();
-
 			r = em.merge(r);
 			em.getTransaction().commit();
-		}catch(Exception e) {e.printStackTrace();}
+		}
+		catch(Exception e) 
+		{
+			e.printStackTrace();
+		}
 		em.close();
 		return r;
 	}
@@ -57,20 +52,19 @@ public class DAOReservation implements IDAOReservation{
 		em.remove(r);
 		em.getTransaction().commit();
 		em.close();
-		
+
 	}
 
 	@Override
 	public void confirmerResa() {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
 	public void annulerResa() {
 		// TODO Auto-generated method stub
-		
+
 	}
-	
 
 }

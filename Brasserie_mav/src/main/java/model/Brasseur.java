@@ -11,26 +11,17 @@ public class Brasseur extends Compte{
 	private double recettes;
 	private double depenses;
 	private double tresorerie;
-	
-	/*@OneToMany //?
-	private List<Client> clients;*/
 	private transient List<Client> clients;
-	
-	/*@OneToMany(mappedBy = "evenements") //?
-	private List<Evenement> evenements;*/
 	private transient List<Evenement> evenements;
-	
-	/*@OneToMany(mappedBy = "ingredients") //?
-	private List<Ingredients> stock;*/
-	private transient List<Ingredients> stock;
+	private transient List<Ingredient> stock;
 	
 	// constructors
 	public Brasseur() {}
 	
-	public Brasseur(Integer id, String mail, String password, List<Produits> catalogue, double recettes,
+	public Brasseur(Integer id, String mail, String password, double recettes,
 			double depenses, double tresorerie, List<Client> clients, List<Evenement> evenements,
 			List<Ingredient> stock) {
-		super(id, mail, password, catalogue);
+		super(id, mail, password, null);
 		this.recettes = recettes;
 		this.depenses = depenses;
 		this.tresorerie = tresorerie;

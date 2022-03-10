@@ -3,15 +3,6 @@ package util;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 
-import dao.DAOAchat;
-import dao.DAOBiere;
-import dao.DAOBrasseur;
-import dao.DAOClient;
-import dao.DAOCommentaire;
-import dao.DAOInfoReglement;
-import dao.DAOIngredient;
-import dao.DAONote;
-import dao.DAOSnack;
 import dao.IDAOAchat;
 import dao.IDAOBiere;
 import dao.IDAOBrasseur;
@@ -21,7 +12,16 @@ import dao.IDAOInfoReglement;
 import dao.IDAOIngredient;
 import dao.IDAONote;
 import dao.IDAOSnack;
-import dao.DAOEvenements;
+import dao.jpa.DAOAchat;
+import dao.jpa.DAOBiere;
+import dao.jpa.DAOBrasseur;
+import dao.jpa.DAOClient;
+import dao.jpa.DAOCommentaire;
+import dao.jpa.DAOEvenements;
+import dao.jpa.DAOInfoReglement;
+import dao.jpa.DAOIngredient;
+import dao.jpa.DAONote;
+import dao.jpa.DAOSnack;
 import dao.IDAOEvenements;
 
 

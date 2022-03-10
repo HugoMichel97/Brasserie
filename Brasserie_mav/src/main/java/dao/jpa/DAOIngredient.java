@@ -1,9 +1,10 @@
-package dao;
+package dao.jpa;
 
 import java.util.List;
 
 import javax.persistence.EntityManager;
 
+import dao.IDAOIngredient;
 import model.Biere;
 import model.Ingredient;
 import util.Context;

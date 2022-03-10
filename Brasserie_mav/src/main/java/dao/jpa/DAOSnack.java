@@ -1,9 +1,10 @@
-package dao;
+package dao.jpa;
 
 import java.util.List;
 
 import javax.persistence.EntityManager;
 
+import dao.IDAOSnack;
 import model.Note;
 import model.Snack;
 import util.Context;
