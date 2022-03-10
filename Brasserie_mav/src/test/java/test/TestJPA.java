@@ -9,6 +9,7 @@ import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 
 import model.Biere;
+import model.Commentaire;
 import model.Ingredient;
 import model.Note;
 import model.Snack;
@@ -43,6 +44,14 @@ public class TestJPA {
 		List<Snack> sugg1 = new ArrayList();
 		Collections.addAll(sugg1, s1, s2);
 		b1.setSuggestions(sugg1);
+		
+		// Test commentaires 
+		Commentaire c1 = new Commentaire(b1, "Superbe bière");
+		Commentaire c2 = new Commentaire(b1, "Atroce" );
+		
+		List<Commentaire> coms = new ArrayList();
+		Collections.addAll(coms, c1, c2);
+		b1.setCommentaires(coms);
  		
 		
 		EntityManagerFactory emf  = Persistence.createEntityManagerFactory("brasserie");
@@ -58,6 +67,9 @@ public class TestJPA {
 		
 		em.persist(s1);
 		em.persist(s2);
+		
+		em.persist(c1);
+		em.persist(c2);
 		
 		em.persist(b1);
 		

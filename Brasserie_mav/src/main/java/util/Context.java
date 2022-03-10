@@ -3,11 +3,13 @@ package util;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 
+import dao.DAOAchat;
 import dao.DAOBiere;
 import dao.DAOCommentaire;
 import dao.DAOIngredient;
 import dao.DAONote;
 import dao.DAOSnack;
+import dao.IDAOAchat;
 import dao.IDAOBiere;
 import dao.IDAOCommentaire;
 import dao.IDAOIngredient;
@@ -26,6 +28,7 @@ private IDAOCommentaire daoCommentaire= new DAOCommentaire();
 private IDAONote daoNote= new DAONote();
 private IDAOSnack daoSnack= new DAOSnack();
 private IDAOIngredient daoIngredient = new DAOIngredient();
+private IDAOAchat daoAchat = new DAOAchat();
 
 
 private Context() {}
@@ -74,6 +77,16 @@ public IDAONote getDaoNote() {
 
 public IDAOSnack getDaoSnack() {
 	return daoSnack;
+}
+
+
+public IDAOIngredient getDaoIngredient() {
+	return daoIngredient;
+}
+
+
+public IDAOAchat getDaoAchat() {
+	return daoAchat;
 }
 
 
