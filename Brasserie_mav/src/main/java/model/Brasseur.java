@@ -2,19 +2,34 @@ package model;
 
 import java.util.List;
 
+import javax.persistence.Entity;
+import javax.persistence.OneToMany;
+
+@Entity
 public class Brasseur extends Compte{
 
 	private double recettes;
 	private double depenses;
 	private double tresorerie;
-	private List<Client> clients;
-	private List<Evenement> evenements;
-	private List<Ingredients> stock;
+	
+	/*@OneToMany //?
+	private List<Client> clients;*/
+	private transient List<Client> clients;
+	
+	/*@OneToMany(mappedBy = "evenements") //?
+	private List<Evenement> evenements;*/
+	private transient List<Evenement> evenements;
+	
+	/*@OneToMany(mappedBy = "ingredients") //?
+	private List<Ingredients> stock;*/
+	private transient List<Ingredients> stock;
 	
 	// constructors
+	public Brasseur() {}
+	
 	public Brasseur(Integer id, String mail, String password, List<Produits> catalogue, double recettes,
 			double depenses, double tresorerie, List<Client> clients, List<Evenement> evenements,
-			List<Ingredients> stock) {
+			List<Ingredient> stock) {
 		super(id, mail, password, catalogue);
 		this.recettes = recettes;
 		this.depenses = depenses;
@@ -64,10 +79,10 @@ public class Brasseur extends Compte{
 		this.evenements = evenements;
 	}
 
-	public List<Ingredients> getStock() {
+	public List<Ingredient> getStock() {
 		return stock;
 	}
-	public void setStock(List<Ingredients> stock) {
+	public void setStock(List<Ingredient> stock) {
 		this.stock = stock;
 	}
 
