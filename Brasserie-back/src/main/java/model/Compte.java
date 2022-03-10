@@ -15,11 +15,10 @@ import javax.persistence.Version;
 
 @Entity
 @Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
-@SequenceGenerator(name = "seqCompteJPA",sequenceName = "seqCompte")
 public abstract class Compte {
 	
 	@Id
-	@GeneratedValue(strategy = GenerationType.SEQUENCE,generator = "seqCompteJPA")
+	@GeneratedValue(strategy = GenerationType.TABLE)
 	protected Integer id;
 	
 	@Column(unique=true)

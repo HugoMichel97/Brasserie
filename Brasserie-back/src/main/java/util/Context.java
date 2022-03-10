@@ -31,7 +31,7 @@ public class Context {
 
 
 	private static Context _singleton=null;	
-	private EntityManagerFactory emf  = Persistence.createEntityManagerFactory("demoJPA");
+	private EntityManagerFactory emf  = Persistence.createEntityManagerFactory("brasserie");
 	private IDAOBiere daoBiere= new DAOBiere();
 	private IDAOCommentaire daoCommentaire= new DAOCommentaire();
 	private IDAONote daoNote= new DAONote();

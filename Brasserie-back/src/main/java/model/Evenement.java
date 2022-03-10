@@ -26,10 +26,7 @@ public class Evenement {
 	private double prix;
 	private int ptsRequis = 0;
 	private String description;
-	
-	@ManyToOne // vraiment besoin de l'info ou transient ?
-	@JoinColumn(name="brasseur_fk")
-	private Brasseur brasseur;
+	private transient Brasseur brasseur;
 	
 	@OneToMany(mappedBy = "evt")
 	private List<Reservation> reservations;
@@ -43,7 +40,6 @@ public class Evenement {
 	
 	public Evenement(LocalDate date, LocalTime heure, String libelle, double prix, int ptsRequis, String description,
 			Brasseur brasseur, List<Reservation> reservations) {
-		super();
 		this.date = date;
 		this.heure = heure;
 		this.libelle = libelle;

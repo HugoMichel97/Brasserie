@@ -21,7 +21,9 @@ public class Achat {
 	private Client id_client;
 	
 	@ManyToOne
+	@JoinColumn(name="produit_fk")
 	private Produits id_produit;
+	
 	private int quantite;
 	
 	@Version
