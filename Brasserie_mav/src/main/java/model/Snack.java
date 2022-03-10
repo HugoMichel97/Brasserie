@@ -1,19 +1,49 @@
 package model;
 
 import java.util.List;
+import javax.persistence.DiscriminatorValue;
+import javax.persistence.Entity;
+import javax.persistence.ManyToMany;
+import javax.persistence.PrimaryKeyJoinColumn;
+import javax.persistence.Version;
+
+@Entity
+@DiscriminatorValue("snack")
 
 public class Snack extends Produits{
 
-	// constructors
-	public Snack(String nom, double prix, String description, int stock) {
-		super(nom, prix, description, stock);
+	@ManyToMany(mappedBy= "suggestions")
+	private List<Biere> bieres;
+	
+	@Version
+	protected int version;
+	
+	public Snack() {}
+	
+	public Snack(String nom, String description, double prix,  int stock) {
+		super(nom, description, prix, stock);
 	}
 	
+	public Snack(String nom, String description, double prix,  int stock, List<Biere> bieres) {
+		super(nom, description, prix, stock);
+		this.bieres = bieres;
+	}
+	
+	
+	//Constructeur test
 	public Snack(String nom, double prix) {
 		super(nom, prix);
 	}
 	
-	// methods
+
+	public List<Biere> getBieres() {
+		return bieres;
+	}
+
+	public void setBieres(List<Biere> bieres) {
+		this.bieres = bieres;
+	}
+
 	@Override
 	public List<Produits> filtrer() {
 		return null;

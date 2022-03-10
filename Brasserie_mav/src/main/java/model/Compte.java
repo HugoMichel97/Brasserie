@@ -3,14 +3,35 @@ package model;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Inheritance;
+import javax.persistence.InheritanceType;
+import javax.persistence.OneToMany;
+
+@Entity
+@Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
 public abstract class Compte {
 	
+	@Id
+	@GeneratedValue(strategy = GenerationType.TABLE)
 	protected Integer id;
+	
+	@Column(unique=true)
 	protected String mail;
+	
 	protected String password;
-	protected List<Produits> catalogue = new ArrayList<Produits>();
+	
+	/*@OneToMany(mappedBy = "pannier") //?
+	protected List<Produits> catalogue = new ArrayList<Produits>();*/
+	protected transient List<Produits> catalogue = new ArrayList<Produits>();
 	
 	// constructors
+	public Compte() {}
+	
 	public Compte(Integer id, String mail, String password, List<Produits> catalogue) {
 		this.id = id;
 		this.mail = mail;
