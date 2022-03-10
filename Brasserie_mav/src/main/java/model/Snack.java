@@ -5,6 +5,7 @@ import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
 import javax.persistence.ManyToMany;
 import javax.persistence.PrimaryKeyJoinColumn;
+import javax.persistence.Version;
 
 @Entity
 @DiscriminatorValue("snack")
@@ -13,6 +14,9 @@ public class Snack extends Produits{
 
 	@ManyToMany(mappedBy= "suggestions")
 	private List<Biere> bieres;
+	
+	@Version
+	protected int version;
 	
 	public Snack() {}
 	

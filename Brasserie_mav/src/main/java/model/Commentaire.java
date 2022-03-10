@@ -6,6 +6,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.Version;
 
 @Entity
 
@@ -18,6 +19,9 @@ public class Commentaire {
 	@JoinColumn(name= "id_biere")
 	private Biere biere;
 	private String commentaire;
+	
+	@Version
+	protected int version;
 	
 	public Commentaire() {}
 	

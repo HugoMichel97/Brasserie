@@ -26,9 +26,16 @@ public class DAOCommentaire implements IDAOCommentaire {
 
 	public Commentaire save(Commentaire c) {
 		EntityManager em  = Context.getSingleton().getEmf().createEntityManager();
-		em.getTransaction().begin();
-		c = em.merge(c);
-		em.getTransaction().commit();
+		try 
+		{
+			em.getTransaction().begin();
+			c = em.merge(c);
+			em.getTransaction().commit();
+		}
+		catch(Exception e) 
+		{
+			e.printStackTrace();
+		}
 		em.close();
 		return c;
 	}

@@ -29,9 +29,16 @@ public class DAOIngredient implements IDAOIngredient {
 	@Override
 	public Ingredient save(Ingredient i) {
 		EntityManager em  = Context.getSingleton().getEmf().createEntityManager();
-		em.getTransaction().begin();
-		i = em.merge(i);
-		em.getTransaction().commit();
+		try 
+		{
+			em.getTransaction().begin();
+			i = em.merge(i);
+			em.getTransaction().commit();
+		}
+		catch(Exception e) 
+		{
+			e.printStackTrace();
+		}
 		em.close();
 		return i;
 	}

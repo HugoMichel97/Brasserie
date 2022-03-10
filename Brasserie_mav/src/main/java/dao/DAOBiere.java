@@ -25,9 +25,17 @@ public class DAOBiere implements IDAOBiere {
 
 	public Biere save(Biere b) {
 		EntityManager em  = Context.getSingleton().getEmf().createEntityManager();
-		em.getTransaction().begin();
-		b = em.merge(b);
-		em.getTransaction().commit();
+		
+		try 
+		{
+			em.getTransaction().begin();
+			b = em.merge(b);
+			em.getTransaction().commit();
+		}
+		catch(Exception e) 
+		{
+			e.printStackTrace();
+		}
 		em.close();
 		return b;
 	}

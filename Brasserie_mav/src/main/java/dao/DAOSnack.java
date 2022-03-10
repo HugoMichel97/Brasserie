@@ -26,12 +26,20 @@ public class DAOSnack implements IDAOSnack {
 
 	public Snack save(Snack s) {
 		EntityManager em  = Context.getSingleton().getEmf().createEntityManager();
-		em.getTransaction().begin();
-		s = em.merge(s);
-		em.getTransaction().commit();
+		try 
+		{
+			em.getTransaction().begin();
+			s = em.merge(s);
+			em.getTransaction().commit();
+		}
+		catch(Exception e) 
+		{
+			e.printStackTrace();
+		}
 		em.close();
 		return s;
 	}
+	
 
 	public void delete(Integer id) {
 		EntityManager em  = Context.getSingleton().getEmf().createEntityManager();

@@ -7,6 +7,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
+import javax.persistence.Version;
 
 @Entity
 public class Ingredient {
@@ -19,6 +20,9 @@ public class Ingredient {
 	
 	@ManyToMany(mappedBy= "recette")
 	private List<Biere> bieres;
+	
+	@Version
+	protected int version;
 	
 	// contructors
 	public Ingredient() {}

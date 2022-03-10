@@ -10,6 +10,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
+import javax.persistence.Version;
 
 @Entity
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
@@ -24,6 +25,9 @@ public abstract class Produits {
 	protected double prix;
 	protected int stock;
 	protected Integer pts_produit=null;
+	
+	@Version
+	protected int version;
 	
 	public Produits() {}
 	
@@ -90,15 +94,19 @@ public abstract class Produits {
 	public void setId(Integer id) {
 		this.id = id;
 	}
-
-	public int getPts_produit() {
-		return pts_produit;
+	
+	public int getVersion() {
+		return version;
 	}
 
-	public void setPts_produit(int pts_produit) {
+	public void setVersion(int version) {
+		this.version = version;
+	}
+
+	public void setPts_produit(Integer pts_produit) {
 		this.pts_produit = pts_produit;
 	}
-	
+
 	@Override
 	public String toString() {
 		return "Produits [id=" + id + ", nom=" + nom + ", description=" + description + ", prix=" + prix + ", stock="

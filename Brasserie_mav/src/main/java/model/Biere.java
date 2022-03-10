@@ -9,6 +9,7 @@ import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.PrimaryKeyJoinColumn;
+import javax.persistence.Version;
 
 @Entity
 @DiscriminatorValue("biere")
@@ -28,6 +29,7 @@ public class Biere extends Produits {
 	@ManyToMany
 	@JoinTable(name = "recettes", joinColumns = @JoinColumn(name="id_biere"), inverseJoinColumns = @JoinColumn(name="id_ingredient"))
 	private List<Ingredient> recette;
+	
 	
 	public Biere() {}
 	

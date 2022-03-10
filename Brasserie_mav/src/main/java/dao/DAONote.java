@@ -26,9 +26,16 @@ public class DAONote implements IDAONote {
 
 	public Note save(Note n) {
 		EntityManager em  = Context.getSingleton().getEmf().createEntityManager();
-		em.getTransaction().begin();
-		n = em.merge(n);
-		em.getTransaction().commit();
+		try 
+		{
+			em.getTransaction().begin();
+			n = em.merge(n);
+			em.getTransaction().commit();
+		}
+		catch(Exception e) 
+		{
+			e.printStackTrace();
+		}
 		em.close();
 		return n;
 	}
