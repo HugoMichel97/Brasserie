@@ -54,6 +54,16 @@ public class Commentaire {
 	public void setCommentaire(String commentaire) {
 		this.commentaire = commentaire;
 	}
+	
+	
+
+	public int getVersion() {
+		return version;
+	}
+
+	public void setVersion(int version) {
+		this.version = version;
+	}
 
 	@Override
 	public String toString() {

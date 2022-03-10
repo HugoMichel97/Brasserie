@@ -76,6 +76,15 @@ public class Ingredient {
 		this.bieres = bieres;
 	}
 
+	public int getVersion() {
+		return version;
+	}
+
+	public void setVersion(int version) {
+		this.version = version;
+	}
+
+	
 	
 	
 	// methods
