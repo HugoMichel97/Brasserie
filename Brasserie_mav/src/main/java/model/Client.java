@@ -3,7 +3,7 @@ package model;
 import java.util.List;
 
 import javax.persistence.Entity;
-import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 
 @Entity
 public class Client extends Compte {
@@ -13,9 +13,8 @@ public class Client extends Compte {
 	private String tel;
 	private int fidelite;
 	
-	/*@OneToMany //? => embedable
-	private List<Reglement> reglements;*/
-	private transient List<Reglement> reglements;
+	@OneToMany(mappedBy = "client")
+	private List<InfoReglement> reglements;
 	
 	/*@ManyToMany //?
 	private List<Reservation> reservations;*/
@@ -26,7 +25,7 @@ public class Client extends Compte {
 	
 	public Client(Integer id, String mail, String password, 
 			List<Produits> catalogue, String nom, String prenom, String tel, int fidelite,
-			List<Reglement> reglements, List<Reservation> reservations) {
+			List<InfoReglement> reglements, List<Reservation> reservations) {
 		super(id, mail, password, catalogue);
 		this.nom = nom;
 		this.prenom = prenom;
@@ -69,10 +68,10 @@ public class Client extends Compte {
 		this.fidelite = fidelite;
 	}
 
-	public List<Reglement> getReglements() {
+	public List<InfoReglement> getReglements() {
 		return reglements;
 	}
-	public void setReglements(List<Reglement> reglements) {
+	public void setReglements(List<InfoReglement> reglements) {
 		this.reglements = reglements;
 	}
 

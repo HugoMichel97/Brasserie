@@ -5,8 +5,10 @@ import javax.persistence.Persistence;
 
 import dao.DAOBrasseur;
 import dao.DAOClient;
+import dao.DAOInfoReglement;
 import dao.IDAOBrasseur;
 import dao.IDAOClient;
+import dao.IDAOInfoReglement;
 
 
 public class Context {
@@ -14,7 +16,7 @@ public class Context {
 	private EntityManagerFactory emf  = Persistence.createEntityManagerFactory("demoJPA");
 	private IDAOBrasseur daoBrasseur= new DAOBrasseur();
 	private IDAOClient daoClient = new DAOClient();
-	
+	private IDAOInfoReglement daoReglement = new DAOInfoReglement();
 
 
 
@@ -44,11 +46,13 @@ public class Context {
 		return daoClient;
 	}
 
+	public IDAOInfoReglement getDaoReglement() {
+		return daoReglement;
+	}
 
 	public void setEmf(EntityManagerFactory emf) {
 		this.emf = emf;
 	}
-
 
 	public void close() {
 		emf.close();
