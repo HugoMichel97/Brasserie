@@ -45,7 +45,7 @@
 							</div>
 						</div>
 					</div>
-					<div class="hero__item set-bg" data-setbg="img/hero/banniere2.png">
+					<div class="hero__item set-bg" style="background-image:url('img/hero/banniere2.png');background-size:100% 100%;">
 						<div class="hero__text">
 							<span>BIERES ARTISANALES</span>
 							<h2>
@@ -103,7 +103,7 @@
 				<div class="col-lg-4 col-md-4 col-sm-6">
 					<div class="blog__item">
 						<div class="blog__item__pic">
-							<img src="img/blog/beerster2.jpg" alt="">
+							<img src="img/blog/beerster2.JPG" alt="">
 						</div>
 						<div class="blog__item__text">
 
