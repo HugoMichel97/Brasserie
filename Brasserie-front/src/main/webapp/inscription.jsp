@@ -4,9 +4,8 @@
 <main align="center">
   <h1> Inscription client </h1>
 
-  <form action="compte" method="post">
+  <form action="clients" method="post">
 			<input type="hidden" name="tache" value="insert">
-			<input type="hidden" name="typeCompte" value="client">
 			<div>
 				Mail : <input required type="text" name="mail" placeholder="Saisissez un mail">
 			</div>
@@ -15,13 +14,9 @@
 					placeholder="Saisissez un password" name="password">
 			</div>
 			
-			
-				<div>Tel : <input  type="text" name="tel" placeholder="Saisissez le tel"> </div>
-				<div>Numero : <input  type="text" name="numero" placeholder="Saisissez le numero"> </div>
-				<div>Voie : <input  type="text" name="voie" placeholder="Saisissez la voie"> </div>
-				<div>CP : <input  type="text" name="cp" placeholder="Saisissez le CP"> </div>
-				<div>Ville : <input  type="text" name="ville" placeholder="Saisissez la ville"> </div>
-			
+			<div>Nom : <input  type="text" name="nom" placeholder="Saisissez votre nom"> </div>
+			<div>Prenom : <input  type="text" name="prenom" placeholder="Saisissez votre prenom"> </div>
+			<div>Tel : <input  type="text" name="tel" placeholder="Saisissez le tel"> </div>
 	
 
 			<input type="submit" class="btn btn-success mb-2"

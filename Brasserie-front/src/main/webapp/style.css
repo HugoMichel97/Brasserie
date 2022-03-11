@@ -14,3 +14,8 @@ header img
 }
 
 #errorConnect{color:red;}
+
+#addFormProduits
+{
+	display:none;
+}

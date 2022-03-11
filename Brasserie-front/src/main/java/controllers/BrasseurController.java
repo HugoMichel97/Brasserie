@@ -27,7 +27,7 @@ public class BrasseurController extends HttpServlet {
 		{
 			List<Brasseur> brasseurs = Context.getSingleton().getDaoBrasseur().findAll();
 			request.setAttribute("listeBrasseur", brasseurs);
-			getServletContext().getRequestDispatcher("/WEB-INF/comptes.jsp").forward(request, response);
+			getServletContext().getRequestDispatcher("/WEB-INF/brasseur.jsp").forward(request, response);
 		}
 		// findById
 		else 

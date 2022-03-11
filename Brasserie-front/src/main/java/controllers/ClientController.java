@@ -13,7 +13,7 @@ import model.Client;
 import model.Compte;
 import util.Context;
 
-@WebServlet("/client")
+@WebServlet("/clients")
 public class ClientController extends HttpServlet {
 
 	// FindById + FindAll()
@@ -52,9 +52,11 @@ public class ClientController extends HttpServlet {
 
 			Client c = new Client(request.getParameter("mail"), request.getParameter("password"));
 			Context.getSingleton().getDaoClient().save(c);
+			//à enlever quand on aura fait la gestion des clients
+			response.sendRedirect("home");
 
 			// sinon c'est le Client qui fait un nouveau compte
-			if (request.getSession().getAttribute("connected") != null)
+			/*if (request.getSession().getAttribute("connected") != null)
 			{
 				response.sendRedirect("compte");
 			}
@@ -63,18 +65,18 @@ public class ClientController extends HttpServlet {
 			else 
 			{
 				response.sendRedirect("home");
-			}
+			}*/
 
 		}
 
-		else if (request.getParameter("tache").equals("update")) 
+		/*else if (request.getParameter("tache").equals("update")) 
 		{
 			int id = Integer.parseInt(request.getParameter("id"));
 			int version = Integer.parseInt(request.getParameter("version"));
 			Client c = new Client(request.getParameter("mail"), request.getParameter("password"));
 			c.setVersion(version);
 			Context.getSingleton().getDaoClient().save(c);
-			response.sendRedirect("compte");
+			response.sendRedirect("brasseur");
 
 		}
 
@@ -83,9 +85,9 @@ public class ClientController extends HttpServlet {
 		{
 			int id = Integer.parseInt(request.getParameter("id"));
 			Context.getSingleton().getDaoClient().delete(id);
-			response.sendRedirect("compte");
+			response.sendRedirect("");
+		}*/
+
 		}
 
 	}
-
-}

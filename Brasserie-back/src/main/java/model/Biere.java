@@ -12,7 +12,7 @@ import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.Version;
 
 @Entity
-@DiscriminatorValue("biere")
+@DiscriminatorValue("Biere")
 
 public class Biere extends Produits {
 	

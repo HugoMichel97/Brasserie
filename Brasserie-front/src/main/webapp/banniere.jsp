@@ -31,5 +31,5 @@
 
 <header>
 	<img src="img/banniere.png" alt="bannière">
-	<a href="index.html"><div id="logo"></div></a>
+	<a href="index.jsp"><div id="logo"></div></a>
 </header>

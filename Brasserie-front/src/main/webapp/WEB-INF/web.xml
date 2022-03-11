@@ -7,10 +7,10 @@
   <jsp-config>
     <jsp-property-group>
       <url-pattern>*.jsp</url-pattern>
-      <include-prelude>banniere.jsp</include-prelude>
+      <include-prelude>/banniere.jsp</include-prelude>
     </jsp-property-group>
   </jsp-config>
-  <servlet>
+  <!-- <servlet>
     <description></description>
     <display-name>ProduitsController</display-name>
     <servlet-name>ProduitsController</servlet-name>
@@ -19,5 +19,8 @@
   <servlet-mapping>
     <servlet-name>ProduitsController</servlet-name>
     <url-pattern>/ProduitsController</url-pattern>
-  </servlet-mapping>
+  </servlet-mapping> -->
+  <listener>
+    <listener-class>listener.StartProject</listener-class>
+  </listener>
 </web-app>
