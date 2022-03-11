@@ -7,8 +7,6 @@
 
 	<h2 align="center">Produits de la brasserie</h2>
 
-	<input type="button" value="Ajouter" id="btnShowAddForm"
-		class="btn btn-success">
 
 	<table style="width: 100%" border align="center" id="produits">
 		<thead>
@@ -25,40 +23,40 @@
 		</thead>
 
 		<tbody>
-			<c:forEach items="${produits}" var="p">
+			<c:forEach items="${listeProduits}" var="p">
 				<c:choose>
 					<c:when test="${p.getClass().getSimpleName()=='Biere'}">
 						<tr>
-							<td>${p.id_produit}</td>
-							<td>${p.getClass().getSimpleName()}</td>
-							<td>${p.nom}</td>
-							<td>${p.description}</td>
-							<td>${p.prix}</td>
-							<td>${a.stock}</td>
-							<td>${a.pts_produit}</td>
-							<td><a href='produits?id=${p.id_produit}'><input
-									type='button' class='btn btn-warning' value='Modifier'></a>
-								<form action='produits' method='post'>
-									<input type='hidden' name='tache' value='delete'> <input
-										name='id' type='hidden' value='${p.id_produit}'> <input
-										type='submit' class='btn btn-danger' value='Supprimer'>
-								</form></td>
-						</tr>
-					</c:when>
-					<c:when test="${p.getClass().getSimpleName()=='Snack'}">
-						<tr>
-							<td>${p.id_produit}</td>
+							<td>${p.id}</td>
 							<td>${p.getClass().getSimpleName()}</td>
 							<td>${p.nom}</td>
 							<td>${p.description}</td>
 							<td>${p.prix}</td>
 							<td>${p.stock}</td>
 							<td>null</td>
-							<td><a href='produits?id=${p.id_produit}'><input
+							<td><a href='produits?id=${p.id}'><input
 									type='button' class='btn btn-warning' value='Modifier'></a>
 								<form action='produits' method='post'>
 									<input type='hidden' name='tache' value='delete'> <input
-										name='id' type='hidden' value='${p.id_produit}'> <input
+										name='id' type='hidden' value='${p.id}'> <input
+										type='submit' class='btn btn-danger' value='Supprimer'>
+								</form></td>
+						</tr>
+					</c:when>
+					<c:when test="${p.getClass().getSimpleName()=='Snack'}">
+						<tr>
+							<td>${p.id}</td>
+							<td>${p.getClass().getSimpleName()}</td>
+							<td>${p.nom}</td>
+							<td>${p.description}</td>
+							<td>${p.prix}</td>
+							<td>${p.stock}</td>
+							<td>null</td>
+							<td><a href='produits?id=${p.id}'><input
+									type='button' class='btn btn-warning' value='Modifier'></a>
+								<form action='produits' method='post'>
+									<input type='hidden' name='tache' value='delete'> <input
+										name='id' type='hidden' value='${p.id}'> <input
 										type='submit' class='btn btn-danger' value='Supprimer'>
 								</form></td>
 						</tr>
@@ -71,6 +69,8 @@
 	</table>
 
 	<hr>
+	<input type="button" align="center" value="Ajouter un produit ?" id="btnShowAddForm"
+		class="btn btn-success">
 	<br>
 	<form action="produits" method="post" id="addFormProduits">
 		<input type="hidden" name="tache" value="insert">
@@ -89,22 +89,16 @@
 			</div>
 			<div>
 				Prix : <input required type="number" name="prix"
-					placeholder="Saisissez un prix">
+					placeholder="Saisissez un prix" step=0.1>
 			</div>
 			<div>
 				Stock : <input required type="number"
 					placeholder="Saisissez le stock" name="stock">
 			</div>
-			<div id="addBiere">
-				<div>
-					Points de fidélité : <input type="number" name="pts_fidelite"
-						placeholder="Saisissez le nombre de points">
-				</div>
-			</div>
-
+			
 			</table>
 			<br> <input type="submit" class="btn btn-success"
-				value="Ajouter un produit">
+				value="Valider l'ajout">
 	</form>
 </main>
 

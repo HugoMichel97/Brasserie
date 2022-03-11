@@ -15,8 +15,6 @@ public class Snack extends Produits{
 	@ManyToMany(mappedBy= "suggestions")
 	private List<Biere> bieres;
 	
-	@Version
-	protected int version;
 	
 	public Snack() {}
 	

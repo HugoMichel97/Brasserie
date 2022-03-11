@@ -59,6 +59,16 @@ public class Biere extends Produits {
 		super(id, nom, description, prix, stock, pts_produit);
 	}
 	
+	public Biere(Integer id, String nom, String description, double prix,  int stock)
+	{
+		super(id, nom, description, prix, stock);
+	}
+	
+	public Biere(String nom, String description, double prix,  int stock)
+	{
+		super(nom, description, prix, stock);
+	}
+	
 	// getters-setters
 	public List<Note> getNotes() {
 		return notes;
