@@ -8,7 +8,7 @@
 
 <main align="center">
 
-	<h1>Welcome ${connected.mail}</h1>
+	<h3>Welcome ${connected.mail}</h3>
 	<div id="banniere">
 		<div>
 			<a href="produits"><i>"Gestion des produits"</i></a>
