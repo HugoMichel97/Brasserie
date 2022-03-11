@@ -11,6 +11,7 @@ import dao.IDAOCommentaire;
 import dao.IDAOInfoReglement;
 import dao.IDAOIngredient;
 import dao.IDAONote;
+import dao.IDAOProduits;
 import dao.IDAOSnack;
 import dao.jpa.DAOAchat;
 import dao.jpa.DAOBiere;
@@ -21,6 +22,7 @@ import dao.jpa.DAOEvenements;
 import dao.jpa.DAOInfoReglement;
 import dao.jpa.DAOIngredient;
 import dao.jpa.DAONote;
+import dao.jpa.DAOProduits;
 import dao.jpa.DAOSnack;
 import dao.IDAOEvenements;
 
@@ -42,6 +44,7 @@ public class Context {
 	private IDAOClient daoClient = new DAOClient();
 	private IDAOInfoReglement daoReglement = new DAOInfoReglement();
 	private IDAOEvenements daoEvenements = new DAOEvenements();
+	private IDAOProduits daoProduits = new DAOProduits();
 
 	private Context() {}
 
@@ -116,4 +119,12 @@ public class Context {
 	public IDAOEvenements getDaoEvenements() {
 		return daoEvenements;
 	}
+
+
+	public IDAOProduits getDaoProduits() {
+		return daoProduits;
+	}
+	
+	
+	
 }

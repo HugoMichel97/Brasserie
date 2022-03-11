@@ -12,7 +12,7 @@ import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.Version;
 
 @Entity
-@DiscriminatorValue("biere")
+@DiscriminatorValue("Biere")
 
 public class Biere extends Produits {
 	
@@ -43,6 +43,10 @@ public class Biere extends Produits {
 		this.recette = recette;
 	}
 	
+	public Biere(String nom, String description, double prix, int stock) {
+		super(nom, description, prix, stock);
+	}
+
 	//Constructeur test
 	public Biere(String nom, double prix) {
 		super(nom, prix);
@@ -52,6 +56,16 @@ public class Biere extends Produits {
 	public Biere(String nom, String description, double prix,  int stock, Integer pts_produit)
 	{
 		super(nom, description, prix, stock, pts_produit);
+	}
+	
+	public Biere(Integer id, String nom, String description, double prix,  int stock, Integer pts_produit)
+	{
+		super(id, nom, description, prix, stock, pts_produit);
+	}
+	
+	public Biere(Integer id, String nom, String description, double prix,  int stock)
+	{
+		super(id, nom, description, prix, stock);
 	}
 	
 	// getters-setters

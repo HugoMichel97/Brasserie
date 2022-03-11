@@ -8,21 +8,24 @@ import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.Version;
 
 @Entity
-@DiscriminatorValue("snack")
+@DiscriminatorValue("Snack")
 
 public class Snack extends Produits{
 
 	@ManyToMany(mappedBy= "suggestions")
 	private List<Biere> bieres;
 	
-	@Version
-	protected int version;
 	
 	public Snack() {}
 	
 	public Snack(String nom, String description, double prix,  int stock) {
 		super(nom, description, prix, stock);
 	}
+	
+	public Snack(Integer id, String nom, String description, double prix,  int stock) {
+		super(id, nom, description, prix, stock);
+	}
+	
 	
 	public Snack(String nom, String description, double prix,  int stock, List<Biere> bieres) {
 		super(nom, description, prix, stock);

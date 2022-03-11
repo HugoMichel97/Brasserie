@@ -24,7 +24,7 @@ public abstract class Produits {
 	protected String description;
 	protected double prix;
 	protected int stock;
-	protected Integer pts_produit=null;
+	protected Integer pts_produit;
 	
 	@Version
 	protected int version;
@@ -39,6 +39,28 @@ public abstract class Produits {
 		this.pts_produit = pts_produit;
 
 	}
+	
+	public Produits(Integer id, String nom, String description, double prix, int stock, Integer pts_produit) {
+		this.id = id;
+		this.nom = nom;
+		this.prix = prix;
+		this.description = description;
+		this.stock = stock;
+		this.pts_produit = pts_produit;
+
+	}
+	
+	public Produits(Integer id, String nom, String description, double prix, int stock) {
+		this.id = id;
+		this.nom = nom;
+		this.prix = prix;
+		this.description = description;
+		this.stock = stock;
+
+	}
+	
+	
+	
 	
 	//Constructeur snack (sans fidélité)
 	public Produits(String nom, String description, double prix, int stock) {
@@ -110,7 +132,7 @@ public abstract class Produits {
 	@Override
 	public String toString() {
 		return "Produits [id=" + id + ", nom=" + nom + ", description=" + description + ", prix=" + prix + ", stock="
-				+ stock + ", pts_produit=" + pts_produit + "]";
+				+ stock + "]";
 	}
 	
 	// methods
