@@ -24,7 +24,7 @@ public abstract class Produits {
 	protected String description;
 	protected double prix;
 	protected int stock;
-	protected Integer pts_produit=null;
+	protected Integer pts_produit;
 	
 	@Version
 	protected int version;
@@ -132,7 +132,7 @@ public abstract class Produits {
 	@Override
 	public String toString() {
 		return "Produits [id=" + id + ", nom=" + nom + ", description=" + description + ", prix=" + prix + ", stock="
-				+ stock + ", pts_produit=" + pts_produit + "]";
+				+ stock + "]";
 	}
 	
 	// methods

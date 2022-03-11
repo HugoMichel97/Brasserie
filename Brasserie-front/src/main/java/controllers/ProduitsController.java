@@ -29,6 +29,7 @@ public class ProduitsController extends HttpServlet {
 		//findAll()
 		if(request.getParameter("id")==null) 
 		{
+			
 			List<Produits> produits =Context.getSingleton().getDaoProduits().findAll();
 			request.setAttribute("listeProduits", produits);
 			getServletContext().getRequestDispatcher("/WEB-INF/produits.jsp").forward(request, response);
@@ -52,15 +53,15 @@ public class ProduitsController extends HttpServlet {
 		if(request.getParameter("tache").equals("insert")) 
 		{
 
-			if(request.getParameter("typeProduits").equals("Biere")) 
+			if(request.getParameter("typeProduits").equals("biere")) 
 			{
 
-				Biere b = new Biere(request.getParameter("nom"),request.getParameter("description"), Double.parseDouble(request.getParameter("prix")), Integer.parseInt(request.getParameter("stock")), Integer.parseInt(request.getParameter("pts_fidelite")) );
+				Biere b = new Biere(request.getParameter("nom"),request.getParameter("description"), Double.parseDouble(request.getParameter("prix")), Integer.parseInt(request.getParameter("stock")));
 				Context.getSingleton().getDaoBiere().save(b);
 
 
 			}
-			else if(request.getParameter("typeProduits").equals("Snack"))
+			else if(request.getParameter("typeProduits").equals("snack"))
 			{
 				Snack s = new Snack(request.getParameter("nom"),request.getParameter("description"), Double.parseDouble(request.getParameter("prix")), Integer.parseInt(request.getParameter("stock")));
 				Context.getSingleton().getDaoSnack().save(s);
@@ -77,7 +78,7 @@ public class ProduitsController extends HttpServlet {
 			{
 				int id = Integer.parseInt(request.getParameter("id"));
 				int version = Integer.parseInt(request.getParameter("version"));
-				Biere b = new Biere(id, request.getParameter("nom"),request.getParameter("description"), Double.parseDouble(request.getParameter("prix")), Integer.parseInt(request.getParameter("stock")), Integer.parseInt(request.getParameter("pts_fidelite")) );
+				Biere b = new Biere(id, request.getParameter("nom"),request.getParameter("description"), Double.parseDouble(request.getParameter("prix")), Integer.parseInt(request.getParameter("stock")));
 				b.setVersion(version);
 				Context.getSingleton().getDaoBiere().save(b);
 
