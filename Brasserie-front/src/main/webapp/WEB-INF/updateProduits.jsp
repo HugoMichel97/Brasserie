@@ -50,12 +50,14 @@
 					</td>
 				</tr>
 				
+				<c:if test="${produits.getClass().getSimpleName()=='Biere'}">
 				<tr>
 					<td>Points de fidélité :</td>
 					<td><input name="pts_fidelite" type="number" placeholder="Saisissez le nombre de points"
 						value="${produits.pts_fidelite}" min=0 max=999 step=1>
 					</td>
 				</tr>
+				</c:if>
 
 			</table>
 			<br>

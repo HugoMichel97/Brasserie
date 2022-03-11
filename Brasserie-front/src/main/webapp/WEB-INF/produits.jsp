@@ -1,11 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-	pageEncoding="ISO-8859-1"%>
+	pageEncoding="utf-8"%>
 
 <title>Gestion des produits</title>
 
 <main>
 
-	<h2 align="center">Produits Brasserie</h2>
+	<h2 align="center">Produits de la brasserie</h2>
 
 	<input type="button" value="Ajouter" id="btnShowAddForm"
 		class="btn btn-success">
@@ -19,7 +19,7 @@
 				<th>Description</th>
 				<th>Prix</th>
 				<th>Stock</th>
-				<th>Points de fidélité</th>
+				<th>Points de fidÃ©litÃ©</th>
 			</tr>
 		</thead>
 
@@ -52,40 +52,27 @@
 	<br>
 	<form action="produits" method="post" id="addFormProduits">
 		<input type="hidden" name="tache" value="insert">
-		<table>
-			<tr>
-				<td>Type produit :</td>
-				<td><select name="typeProduit">
-						<option value="Biere">Biere</option>
-						<option value="Snack">Snack</option>
-
-				</select></td>
-			</tr>
-			<tr>
-				<td>Nom :</td>
-				<td><input required type="text" name="nom"
-					placeholder="Saisissez un modele"></td>
-			</tr>
-			<tr>
-				<td>Description :</td>
-				<td><input required type="text" name="description"
-					placeholder="Saisissez une description"></td>
-			</tr>
-			<tr>
-				<td>Prix :</td>
-				<td><input required type="number" name="prix"
-					placeholder="Saisissez un prix"></td>
-			</tr>
-			<tr>
-				<td>Stock :</td>
-				<td><input required type="number" name="stock"
-					placeholder="Saisissez le stock"></td>
-			</tr>
-			<tr>
-				<td>Points de fidélité :</td>
-				<td><input required type="number" name="pts_fidelite"
-					placeholder="Saisissez le nombre de points"></td>
-			</tr>
+		<div>
+				Type produits : <input id="typeProduitsBiere" checked type="radio" name="typeProduits" value="biere">
+				Biere <input id="typeProduitsSnack" type="radio" name="typeProduits" value="snack">
+				Snack
+		<div>
+				Nom : <input required type="text" name="nom" placeholder="Saisissez un nom">
+			</div>
+			<div>
+				Description : <input required type="text"
+					placeholder="Saisissez une description" name="description">
+			</div>
+			<div>
+				Prix : <input required type="number" name="prix" placeholder="Saisissez un prix">
+			</div>
+			<div>
+				Stock : <input required type="number"
+					placeholder="Saisissez le stock" name="stock">
+			</div>
+			<div id="addBiere">
+				<div>Points de fidÃ©litÃ© : <input  type="number" name="pts_fidelite" placeholder="Saisissez le nombre de points"> </div>
+			</div>
 			
 		</table>
 		<br> 
@@ -95,9 +82,22 @@
 </main>
 
 <script>
+typeProduitsBiere.onchange=showFormBiere;
+typeProduitsSnack.onchange=showFormSnack;
 
 btnShowAddForm.onclick = function() {
 	$("#addFormProduits").show();
 }
+
+function showFormBiere()
+{
+	$("#addBiere").show();
+}
+
+function showFormSnack()
+{
+	$("#addBiere").hide();
+}
+
 
 </script>

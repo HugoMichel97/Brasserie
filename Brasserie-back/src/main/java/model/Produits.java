@@ -40,6 +40,28 @@ public abstract class Produits {
 
 	}
 	
+	public Produits(Integer id, String nom, String description, double prix, int stock, Integer pts_produit) {
+		this.id = id;
+		this.nom = nom;
+		this.prix = prix;
+		this.description = description;
+		this.stock = stock;
+		this.pts_produit = pts_produit;
+
+	}
+	
+	public Produits(Integer id, String nom, String description, double prix, int stock) {
+		this.id = id;
+		this.nom = nom;
+		this.prix = prix;
+		this.description = description;
+		this.stock = stock;
+
+	}
+	
+	
+	
+	
 	//Constructeur snack (sans fidélité)
 	public Produits(String nom, String description, double prix, int stock) {
 		this.nom = nom;
