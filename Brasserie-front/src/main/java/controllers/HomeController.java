@@ -17,7 +17,7 @@ public class HomeController extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-		getServletContext().getRequestDispatcher("/index.jsp").forward(request, response);
+		getServletContext().getRequestDispatcher("/connexion.jsp").forward(request, response);
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -33,7 +33,7 @@ public class HomeController extends HttpServlet {
 				response.sendRedirect("brasseur.jsp");
 			} else {
 				request.setAttribute("error", "Identifiants invalides");
-				getServletContext().getRequestDispatcher("/index.jsp").forward(request, response);
+				getServletContext().getRequestDispatcher("/connexion.jsp").forward(request, response);
 			}
 
 		} else if(request.getParameter("typeCompte").equals("client")) {
@@ -43,7 +43,7 @@ public class HomeController extends HttpServlet {
 				response.sendRedirect("client.jsp");
 			} else {
 				request.setAttribute("error", "Identifiants invalides");
-				getServletContext().getRequestDispatcher("/index.jsp").forward(request, response);
+				getServletContext().getRequestDispatcher("/connexion.jsp").forward(request, response);
 			}
 		}
 	}

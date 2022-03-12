@@ -24,29 +24,29 @@ public abstract class Produits {
 	protected String description;
 	protected double prix;
 	protected int stock;
-	protected Integer pts_produit;
+	protected Integer points;
 	
 	@Version
 	protected int version;
 	
 	public Produits() {}
 	
-	public Produits(String nom, String description, double prix, int stock, Integer pts_produit) {
+	public Produits(String nom, String description, double prix, int stock, Integer points) {
 		this.nom = nom;
 		this.prix = prix;
 		this.description = description;
 		this.stock = stock;
-		this.pts_produit = pts_produit;
+		this.points = points;
 
 	}
 	
-	public Produits(Integer id, String nom, String description, double prix, int stock, Integer pts_produit) {
+	public Produits(Integer id, String nom, String description, double prix, int stock, Integer points) {
 		this.id = id;
 		this.nom = nom;
 		this.prix = prix;
 		this.description = description;
 		this.stock = stock;
-		this.pts_produit = pts_produit;
+		this.points = points;
 
 	}
 	
@@ -58,8 +58,6 @@ public abstract class Produits {
 		this.stock = stock;
 
 	}
-	
-	
 	
 	
 	//Constructeur snack (sans fidélité)
@@ -124,9 +122,14 @@ public abstract class Produits {
 	public void setVersion(int version) {
 		this.version = version;
 	}
+	
 
-	public void setPts_produit(Integer pts_produit) {
-		this.pts_produit = pts_produit;
+	public Integer getPoints() {
+		return points;
+	}
+
+	public void setPoints(Integer points) {
+		this.points = points;
 	}
 
 	@Override
