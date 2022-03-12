@@ -7,7 +7,7 @@
 	<form action="produits" method="post" id="updateProduits">
 		<input type="hidden" name="tache" value="update"> <input
 			type="hidden" name="id" value="${produits.id}">
-		<!-- id ou id_produit ? -->
+		
 		<input type="hidden" name="version" value="${produits.version}">
 
 		<fieldset>
@@ -45,11 +45,19 @@
 				
 				<tr>
 					<td>Stock :</td>
-					<td><input name="stock" type="number" placeholder="Saisissez le stock"
+					<td><input name="stock" type="number" placeholder="Stock"
 						value="${produits.stock}" min=0 max=999 step=1>
 					</td>
 				</tr>
 				
+				<c:if test="${produits.getClass().getSimpleName()=='Biere'}">
+					<tr>
+					<td>Points fidélité  :</td>
+					<td><input name="points" type="number" placeholder="Points"
+						value="${produits.points}" min=0 max=999 step=1>
+					</td>
+				</tr>
+				</c:if>
 
 			</table>
 			<br>

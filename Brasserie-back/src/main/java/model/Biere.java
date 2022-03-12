@@ -33,10 +33,10 @@ public class Biere extends Produits {
 	
 	public Biere() {}
 	
-	public Biere(String nom, double prix, String description, int stock, int pts_produit,
+	public Biere(String nom, double prix, String description, int stock, Integer points,
 			List<Note> notes, List<Commentaire> commentaires, List<Snack> suggestions,
 			List<Ingredient> recette) {
-		super(nom, description, prix, stock, pts_produit);
+		super(nom, description, prix, stock, points);
 		this.notes = notes;
 		this.commentaires = commentaires;
 		this.suggestions = suggestions;
@@ -53,14 +53,14 @@ public class Biere extends Produits {
 		
 	}
 	
-	public Biere(String nom, String description, double prix,  int stock, Integer pts_produit)
+	public Biere(String nom, String description, double prix,  int stock, Integer points)
 	{
-		super(nom, description, prix, stock, pts_produit);
+		super(nom, description, prix, stock, points);
 	}
 	
-	public Biere(Integer id, String nom, String description, double prix,  int stock, Integer pts_produit)
+	public Biere(Integer id, String nom, String description, double prix,  int stock, Integer points)
 	{
-		super(id, nom, description, prix, stock, pts_produit);
+		super(id, nom, description, prix, stock, points);
 	}
 	
 	public Biere(Integer id, String nom, String description, double prix,  int stock)
