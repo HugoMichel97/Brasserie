@@ -1,6 +1,7 @@
 package brasserie.model;
 
 import java.util.List;
+import java.util.Objects;
 
 import javax.persistence.Entity;
 import javax.persistence.OneToMany;
@@ -85,6 +86,23 @@ public class Brasseur extends Compte{
 	}
 	
 	// methods
+	@Override
+	public int hashCode() {
+		return Objects.hash(id);
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Brasseur other = (Brasseur) obj;
+		return Objects.equals(id, other.id);
+	}
+	
 	public List<Biere> recommandation(Client c){
 		return null;
 	}
