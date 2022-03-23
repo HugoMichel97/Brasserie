@@ -88,7 +88,7 @@ public class ProduitsController extends HttpServlet {
 			{
 				int id = Integer.parseInt(request.getParameter("id"));
 				int version = Integer.parseInt(request.getParameter("version"));
-				Snack s = new Snack(id, request.getParameter("nom"),request.getParameter("description"), Double.parseDouble(request.getParameter("prix")), Integer.parseInt(request.getParameter("stock")), Integer.parseInt(request.getParameter("points")));
+				Snack s = new Snack(id, request.getParameter("nom"),request.getParameter("description"), Double.parseDouble(request.getParameter("prix")), Integer.parseInt(request.getParameter("stock")));
 				s.setVersion(version);
 				Context.getSingleton().getDaoSnack().save(s);
 
