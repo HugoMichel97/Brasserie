@@ -56,14 +56,14 @@ public class ProduitsController extends HttpServlet {
 			if(request.getParameter("typeProduits").equals("biere")) 
 			{
 
-				Biere b = new Biere(request.getParameter("nom"),request.getParameter("description"), Double.parseDouble(request.getParameter("prix")), Integer.parseInt(request.getParameter("stock")));
+				Biere b = new Biere(request.getParameter("nom"),request.getParameter("description"), Double.parseDouble(request.getParameter("prix")), Integer.parseInt(request.getParameter("stock")), Integer.parseInt(request.getParameter("points")));
 				Context.getSingleton().getDaoBiere().save(b);
 
 
 			}
 			else if(request.getParameter("typeProduits").equals("snack"))
 			{
-				Snack s = new Snack(request.getParameter("nom"),request.getParameter("description"), Double.parseDouble(request.getParameter("prix")), Integer.parseInt(request.getParameter("stock")));
+				Snack s = new Snack(request.getParameter("nom"),request.getParameter("description"), Double.parseDouble(request.getParameter("prix")), Integer.parseInt(request.getParameter("stock")), Integer.parseInt(request.getParameter("points")));
 				Context.getSingleton().getDaoSnack().save(s);
 
 			}
@@ -78,7 +78,7 @@ public class ProduitsController extends HttpServlet {
 			{
 				int id = Integer.parseInt(request.getParameter("id"));
 				int version = Integer.parseInt(request.getParameter("version"));
-				Biere b = new Biere(id, request.getParameter("nom"),request.getParameter("description"), Double.parseDouble(request.getParameter("prix")), Integer.parseInt(request.getParameter("stock")));
+				Biere b = new Biere(id, request.getParameter("nom"),request.getParameter("description"), Double.parseDouble(request.getParameter("prix")), Integer.parseInt(request.getParameter("stock")), Integer.parseInt(request.getParameter("points")));
 				b.setVersion(version);
 				Context.getSingleton().getDaoBiere().save(b);
 

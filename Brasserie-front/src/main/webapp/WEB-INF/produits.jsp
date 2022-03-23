@@ -33,7 +33,7 @@
 							<td>${p.description}</td>
 							<td>${p.prix}</td>
 							<td>${p.stock}</td>
-							<td>null</td>
+							<td>${p.points}</td>
 							<td><a href='produits?id=${p.id}'><input
 									type='button' class='btn btn-warning' value='Modifier'></a>
 								<form action='produits' method='post'>
@@ -51,7 +51,7 @@
 							<td>${p.description}</td>
 							<td>${p.prix}</td>
 							<td>${p.stock}</td>
-							<td>null</td>
+							<td>${p.points}</td>
 							<td><a href='produits?id=${p.id}'><input
 									type='button' class='btn btn-warning' value='Modifier'></a>
 								<form action='produits' method='post'>
@@ -75,7 +75,7 @@
 	<form action="produits" method="post" id="addFormProduits">
 		<input type="hidden" name="tache" value="insert">
 		<div>
-			Type produits : <input id="typeProduitsBiere" checked type="radio"
+			Type de produit : <input id="typeProduitsBiere"  type="radio"
 				name="typeProduits" value="biere"> Biere <input
 				id="typeProduitsSnack" type="radio" name="typeProduits"
 				value="snack"> Snack
@@ -89,13 +89,20 @@
 			</div>
 			<div>
 				Prix : <input required type="number" name="prix"
-					placeholder="Saisissez un prix" step=0.1>
+					placeholder="Saisissez un prix" min=0 step=0.1>
 			</div>
 			<div>
 				Stock : <input required type="number"
-					placeholder="Saisissez le stock" name="stock">
+					placeholder="Saisissez le stock" name="stock" min=0>
 			</div>
 			
+			<div id="addBiere">
+                <div>
+                    Points de fidélité : <input type="number" id="fid" name="points"
+                        placeholder="Saisissez les points" min=0 step=1>
+                </div>
+            </div>
+           
 			</table>
 			<br> <input type="submit" class="btn btn-success"
 				value="Valider l'ajout">
@@ -112,9 +119,12 @@
 
 	function showFormBiere() {
 		$("#addBiere").show();
+		//$("#addSnack").hide();
 	}
 
 	function showFormSnack() {
 		$("#addBiere").hide();
+		//$("#addSnack").show();
+		$("#fid").val("0")
 	}
 </script>
