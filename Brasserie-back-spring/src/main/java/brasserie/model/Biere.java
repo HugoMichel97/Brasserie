@@ -19,9 +19,6 @@ public class Biere extends Produit {
 	@OneToMany(mappedBy = "biere")
 	private List<Note> notes;
 	
-	@OneToMany(mappedBy = "biere")
-	private List<Commentaire> commentaires;
-	
 	@ManyToMany
 	@JoinTable(name = "suggestions", joinColumns = @JoinColumn(name="id_biere"), inverseJoinColumns = @JoinColumn(name="id_snack"))
 	private List<Snack> suggestions;
@@ -34,11 +31,10 @@ public class Biere extends Produit {
 	public Biere() {}
 	
 	public Biere(String nom, double prix, String description, int stock, Integer points,
-			List<Note> notes, List<Commentaire> commentaires, List<Snack> suggestions,
+			List<Note> notes, List<Snack> suggestions,
 			List<Ingredient> recette) {
 		super(nom, description, prix, stock, points);
 		this.notes = notes;
-		this.commentaires = commentaires;
 		this.suggestions = suggestions;
 		this.recette = recette;
 	}
@@ -76,13 +72,6 @@ public class Biere extends Produit {
 		this.notes = notes;
 	}
 
-	public List<Commentaire> getCommentaires() {
-		return commentaires;
-	}
-	public void setCommentaires(List<Commentaire> commentaires) {
-		this.commentaires = commentaires;
-	}
-
 	public List<Snack> getSuggestions() {
 		return suggestions;
 	}
@@ -100,7 +89,7 @@ public class Biere extends Produit {
 	// toString
 	@Override
 	public String toString() {
-		return "Biere [notes=" + notes + ", commentaires=" + commentaires + ", suggestions=" + suggestions + "]";
+		return "Biere [notes=" + notes + ", suggestions=" + suggestions + "]";
 	}
 
 

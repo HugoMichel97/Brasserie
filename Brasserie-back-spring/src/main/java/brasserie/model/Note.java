@@ -21,6 +21,7 @@ public class Note {
 	@JoinColumn(name= "id_biere")
 	private Biere biere;
 	private double note;
+	private String commentaire;
 	
 	@Version
 	protected int version;
@@ -31,6 +32,13 @@ public class Note {
 	{
 		this.biere= biere;
 		this.note=note;
+	}
+	
+	public Note(Biere biere, double note, String commentaire) 
+	{
+		this.biere= biere;
+		this.note=note;
+		this.commentaire = commentaire;
 	}
 
 	public Integer getId_note() {
@@ -57,7 +65,13 @@ public class Note {
 		this.note = note;
 	}
 	
-	
+	public String getCommentaire() {
+		return commentaire;
+	}
+
+	public void setCommentaire(String commentaire) {
+		this.commentaire = commentaire;
+	}
 
 	public int getVersion() {
 		return version;
@@ -66,9 +80,6 @@ public class Note {
 	public void setVersion(int version) {
 		this.version = version;
 	}
-	
-	
-	
 
 	@Override
 	public int hashCode() {
@@ -89,8 +100,10 @@ public class Note {
 
 	@Override
 	public String toString() {
-		return "Note [id_note=" + id_note + ", biere=" + biere + ", note=" + note + "]";
+		return "Note [id_note=" + id_note + ", biere=" + biere + ", note=" + note + ", commentaire=" + commentaire
+				+ "]";
 	}
+
 	
 	
 }
