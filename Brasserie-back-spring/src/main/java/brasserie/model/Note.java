@@ -1,5 +1,7 @@
 package brasserie.model;
 
+import java.util.Objects;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -63,6 +65,26 @@ public class Note {
 
 	public void setVersion(int version) {
 		this.version = version;
+	}
+	
+	
+	
+
+	@Override
+	public int hashCode() {
+		return Objects.hash(id_note);
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Note other = (Note) obj;
+		return Objects.equals(id_note, other.id_note);
 	}
 
 	@Override

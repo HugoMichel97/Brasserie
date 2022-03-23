@@ -1,6 +1,7 @@
 package brasserie.model;
 
 import java.util.List;
+import java.util.Objects;
 
 import javax.persistence.Column;
 import javax.persistence.DiscriminatorColumn;
@@ -15,7 +16,7 @@ import javax.persistence.Version;
 @Entity
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 @DiscriminatorColumn(name="type_produit", columnDefinition = "enum('Biere', 'Snack')")
-public abstract class Produits {
+public abstract class Produit {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name="id_produit")
@@ -29,9 +30,9 @@ public abstract class Produits {
 	@Version
 	protected int version;
 	
-	public Produits() {}
+	public Produit() {}
 	
-	public Produits(String nom, String description, double prix, int stock, Integer points) {
+	public Produit(String nom, String description, double prix, int stock, Integer points) {
 		this.nom = nom;
 		this.prix = prix;
 		this.description = description;
@@ -40,7 +41,7 @@ public abstract class Produits {
 
 	}
 	
-	public Produits(Integer id, String nom, String description, double prix, int stock, Integer points) {
+	public Produit(Integer id, String nom, String description, double prix, int stock, Integer points) {
 		this.id = id;
 		this.nom = nom;
 		this.prix = prix;
@@ -50,7 +51,7 @@ public abstract class Produits {
 
 	}
 	
-	public Produits(Integer id, String nom, String description, double prix, int stock) {
+	public Produit(Integer id, String nom, String description, double prix, int stock) {
 		this.id = id;
 		this.nom = nom;
 		this.prix = prix;
@@ -61,7 +62,7 @@ public abstract class Produits {
 	
 	
 	//Constructeur snack (sans fidélité)
-	public Produits(String nom, String description, double prix, int stock) {
+	public Produit(String nom, String description, double prix, int stock) {
 		this.nom = nom;
 		this.prix = prix;
 		this.description = description;
@@ -70,7 +71,7 @@ public abstract class Produits {
 	}
 	
 	// Constructeur test
-	public Produits(String nom, double prix) {
+	public Produit(String nom, double prix) {
 		this.nom = nom;
 		this.prix = prix;
 		this.description = "";
@@ -132,12 +133,29 @@ public abstract class Produits {
 		this.points = points;
 	}
 
+	
+	@Override
+	public int hashCode() {
+		return Objects.hash(id);
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Produit other = (Produit) obj;
+		return Objects.equals(id, other.id);
+	}
+
 	@Override
 	public String toString() {
 		return "Produits [id=" + id + ", nom=" + nom + ", description=" + description + ", prix=" + prix + ", stock="
 				+ stock + "]";
 	}
 	
-	// methods
-	abstract public List<Produits> filtrer();
+	
 }

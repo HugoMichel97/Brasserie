@@ -10,7 +10,7 @@ import javax.persistence.Version;
 @Entity
 @DiscriminatorValue("Snack")
 
-public class Snack extends Produits{
+public class Snack extends Produit{
 
 	@ManyToMany(mappedBy= "suggestions")
 	private List<Biere> bieres;
@@ -55,11 +55,7 @@ public class Snack extends Produits{
 		this.bieres = bieres;
 	}
 
-	@Override
-	public List<Produits> filtrer() {
-		return null;
-	}
-	
+		
 	public List<Snack> suggestion(Biere biere){
 		return null;
 	}

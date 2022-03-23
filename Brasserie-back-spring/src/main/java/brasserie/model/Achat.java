@@ -22,7 +22,7 @@ public class Achat {
 	
 	@ManyToOne
 	@JoinColumn(name="produit_fk")
-	private Produits id_produit;
+	private Produit id_produit;
 	
 	private int quantite;
 	
@@ -31,7 +31,7 @@ public class Achat {
 	
 	public Achat() {}
 
-	public Achat(Client id_client, Produits id_produit, int quantite) {
+	public Achat(Client id_client, Produit id_produit, int quantite) {
 		this.id_client = id_client;
 		this.id_produit = id_produit;
 		this.quantite = quantite;
@@ -55,11 +55,11 @@ public class Achat {
 		this.id_client = id_client;
 	}
 
-	public Produits getId_produit() {
+	public Produit getId_produit() {
 		return id_produit;
 	}
 
-	public void setId_produit(Produits id_produit) {
+	public void setId_produit(Produit id_produit) {
 		this.id_produit = id_produit;
 	}
 

@@ -14,7 +14,7 @@ import javax.persistence.Version;
 @Entity
 @DiscriminatorValue("Biere")
 
-public class Biere extends Produits {
+public class Biere extends Produit {
 	
 	@OneToMany(mappedBy = "biere")
 	private List<Note> notes;
@@ -103,9 +103,5 @@ public class Biere extends Produits {
 		return "Biere [notes=" + notes + ", commentaires=" + commentaires + ", suggestions=" + suggestions + "]";
 	}
 
-	// methods
-	@Override
-	public List<Produits> filtrer() {
-		return null;
-	}
+
 }
