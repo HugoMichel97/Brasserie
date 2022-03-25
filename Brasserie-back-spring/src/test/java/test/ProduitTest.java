@@ -31,7 +31,7 @@ class ProduitTest {
 	@Test //Test fonctionnel !
 	@Disabled 
 	void creationProduitTest() {
-		produitService.create(new Snack("Snack Spring", 12));
+		produitService.create(new Snack("Spring Snack", "Hmmm", 3, 14));
 	}
 	
 	@Test //Test fonctionnel !
@@ -48,7 +48,15 @@ class ProduitTest {
 		produitService.getAll().stream().forEach(a -> {System.out.println(a.getNom());});
 	}
 	
+	@Test 
+	@Disabled
+	void getAllBeersTest() {
+		produitService.getAllBeers().stream().forEach(a -> {System.out.println(a.getNom());});
+	}
+	
+	
 	@Test //Test fonctionnel ! 
+	@Disabled
 	void deleteByNumeroTest() {
 		produitService.deleteById(5);
 	}
