@@ -11,6 +11,9 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.persistence.Version;
+import javax.validation.constraints.NotNull;
+
+import com.fasterxml.jackson.annotation.JsonView;
 
 @Entity
 @Table(name="info_reglement")
@@ -18,24 +21,37 @@ public class InfoReglement {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@JsonView(JsonViews.Reservation.class)
 	private Integer id;
 	
 	@ManyToOne
 	@JoinColumn(name="client_fk")
+	@NotNull
+	@JsonView(JsonViews.Reservation.class)
 	private Client client;
 	
 	@Enumerated(EnumType.STRING)
 	@Column(columnDefinition = "ENUM('CB', 'PayPal')")
+	@NotNull
+	@JsonView(JsonViews.Reservation.class)
 	private Reglement mode;
 	
+	@NotNull
+	@JsonView(JsonViews.Reservation.class)
 	private String num;
+	@NotNull
+	@JsonView(JsonViews.Reservation.class)
 	private String nom;
+	@NotNull
+	@JsonView(JsonViews.Reservation.class)
 	private String dateValid;
 	
 	@Version
 	private int version;
 	
-	public InfoReglement() {}
+	public InfoReglement() {
+		
+	}
 
 	public InfoReglement(Client client, String num, String nom, String dateValid) {
 		this.client = client;
