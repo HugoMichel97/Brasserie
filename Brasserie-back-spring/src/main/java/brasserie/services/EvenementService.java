@@ -32,6 +32,9 @@ public class EvenementService {
 		public List<Evenement> getAll() {
 			return evenementRepository.findAll();
 		}
+		
+		//getByDate
+		//getByFidelite
 
 		
 

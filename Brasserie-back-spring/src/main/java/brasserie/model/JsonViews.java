@@ -10,7 +10,7 @@ public class JsonViews {
     	
     }
     
-    public static class Evenement {}
+    public static class Evenement extends Common{}
     
-    public static class Ingredient {}
+    public static class Ingredient extends Common {}
 }

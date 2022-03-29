@@ -34,7 +34,7 @@ public class EvenementRestController {
 	@Autowired 
 	EvenementService evenementService;
 	
-	@JsonView(JsonViews.Reservation.class)
+	@JsonView(JsonViews.Evenement.class)
 	@GetMapping("")
 	public List<Evenement> getAll() {
 		return evenementService.getAll();
