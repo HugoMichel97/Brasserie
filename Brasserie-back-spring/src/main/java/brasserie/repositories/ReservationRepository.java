@@ -9,6 +9,7 @@ import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
+import brasserie.model.Reservation;
 import brasserie.model.Client;
 import brasserie.model.Reservation;
 public interface ReservationRepository extends JpaRepository<Reservation, Integer>{
