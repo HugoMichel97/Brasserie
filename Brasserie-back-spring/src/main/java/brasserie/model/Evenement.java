@@ -65,6 +65,17 @@ public class Evenement {
 		this.brasseur = brasseur;
 		this.reservations = reservations;
 	}
+	
+	public Evenement(LocalDate date, LocalTime heure, String libelle, double prix, int ptsRequis, String description,
+			Brasseur brasseur) {
+		this.date = date;
+		this.heure = heure;
+		this.libelle = libelle;
+		this.prix = prix;
+		this.ptsRequis = ptsRequis;
+		this.description = description;
+		this.brasseur = brasseur;
+	}
 
 	
 	
