@@ -57,6 +57,9 @@ public class ReservationRestController {
 	@PostMapping("")
 	@JsonView(JsonViews.Reservation.class)
 	public Reservation create(@Valid @RequestBody Reservation reservation, BindingResult br) {
+		if (br.hasErrors()) {
+			throw new ReservationException();
+		}
 		return save(reservation, br);
 	}
 

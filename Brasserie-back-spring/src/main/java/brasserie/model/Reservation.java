@@ -8,6 +8,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.Version;
+import javax.validation.constraints.NotNull;
 
 import com.fasterxml.jackson.annotation.JsonView;
 
@@ -20,11 +21,13 @@ public class Reservation {
 
 	@ManyToOne
 	@JoinColumn(name="client_fk")
+	@NotNull
 	@JsonView(JsonViews.Reservation.class)
 	private Client client;
 
 	@ManyToOne
 	@JoinColumn(name="evt_fk")
+	@NotNull
 	@JsonView(JsonViews.Reservation.class)
 	private Evenement evt;
 
