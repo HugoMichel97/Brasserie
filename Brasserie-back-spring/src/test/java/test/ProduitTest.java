@@ -48,6 +48,11 @@ class ProduitTest {
 		produitService.getAll().stream().forEach(a -> {System.out.println(a.getNom());});
 	}
 	
+	@Test
+	void getBeersTest() {
+		produitService.getAllBeers().stream().forEach(a -> {System.out.println(a.getNom());});
+	}
+	
 //	@Test 
 //	@Disabled
 //	void getAllBeersTest() {

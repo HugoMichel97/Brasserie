@@ -10,6 +10,7 @@ import brasserie.exception.ProduitException;
 import brasserie.model.Achat;
 import brasserie.model.Note;
 import brasserie.model.Produit;
+import brasserie.model.Reservation;
 import brasserie.repositories.AchatRepository;
 
 @Service
@@ -39,4 +40,13 @@ public class AchatService {
 		achatRepository.deleteById(id);
 
 	}
+	
+	public Achat save(Achat achat) {
+        if (achat.getId_achat() != null) {
+            Achat achatEnBase = getById(achat.getId_achat());
+            achat.setVersion(achatEnBase.getVersion());
+        }
+        return achatRepository.save(achat);
+    }
+
 }

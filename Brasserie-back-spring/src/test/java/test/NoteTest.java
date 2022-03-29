@@ -47,7 +47,7 @@ class NoteTest {
 	@Test //Test fonctionnel ! 
 	@Disabled
 	void deleteNoteTest() {
-		noteService.deleteByNumero(3);
+		noteService.deleteById(3);
 	}
 
 }

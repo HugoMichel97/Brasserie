@@ -13,6 +13,8 @@ import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
 import javax.persistence.Version;
 
+import com.fasterxml.jackson.annotation.JsonView;
+
 @Entity
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 @DiscriminatorColumn(name="type_produit", columnDefinition = "enum('Biere', 'Snack')")
@@ -20,11 +22,22 @@ public abstract class Produit {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name="id_produit")
+	@JsonView(JsonViews.Common.class)
 	protected Integer id;
+	
+	@JsonView(JsonViews.Common.class)
 	protected String nom;
+	
+	@JsonView(JsonViews.Common.class)
 	protected String description;
+	
+	@JsonView(JsonViews.Common.class)
 	protected double prix;
+	
+	@JsonView(JsonViews.Common.class)
 	protected int stock;
+	
+	@JsonView(JsonViews.Common.class)
 	protected Integer points;
 	
 	@Version

@@ -10,17 +10,25 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Version;
 
+import com.fasterxml.jackson.annotation.JsonView;
+
 @Entity
 public class Note {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@JsonView(JsonViews.Common.class)
 	private Integer id_note;
 	
 	@ManyToOne
 	@JoinColumn(name= "id_biere")
+	@JsonView(JsonViews.Note.class)
 	private Biere biere;
+	
+	@JsonView(JsonViews.Common.class)
 	private double note;
+	
+	@JsonView(JsonViews.Common.class)
 	private String commentaire;
 	
 	@Version

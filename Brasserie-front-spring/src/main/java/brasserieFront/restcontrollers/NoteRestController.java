@@ -19,56 +19,59 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.fasterxml.jackson.annotation.JsonView;
 
-import brasserie.exception.ProduitException;
+import brasserie.exception.NoteException;
+import brasserie.exception.ReservationException;
 import brasserie.model.JsonViews;
-import brasserie.model.Produit;
-import brasserie.services.ProduitService;
-
-
+import brasserie.model.Note;
+import brasserie.model.Reservation;
+import brasserie.services.NoteService;
 
 @RestController
-@RequestMapping("/api/produit")
-public class ProduitRestController {
+@RequestMapping("/api/note")
+public class NoteRestController {
 
-	@Autowired
-	ProduitService produitService;
+	@Autowired 
+	NoteService noteService;
 	
-	@JsonView(JsonViews.Produit.class)
+	@JsonView(JsonViews.Note.class)
 	@GetMapping("")
-	public List<Produit> getAll() {
-		return produitService.getAll();
+	public List<Note> getAll() {
+		return noteService.getAll();
 	}
 	
-	@JsonView(JsonViews.Produit.class)
+	@JsonView(JsonViews.Note.class)
 	@GetMapping("/{id}")
-	public Produit getById(@PathVariable Integer id) {
-		return produitService.getById(id);
+	public Note getById(@PathVariable Integer id) {
+		return noteService.getById(id);
 	}
-
+	
 	@ResponseStatus(code = HttpStatus.NO_CONTENT)
 	@DeleteMapping("/{id}")
 	public void delete(@PathVariable Integer id) {
-		produitService.deleteById(id);
+		noteService.deleteById(id);
 	}
 	
 	@ResponseStatus(code = HttpStatus.CREATED)
 	@PostMapping("")
-	@JsonView(JsonViews.Produit.class)
-	public Produit create(@Valid @RequestBody Produit produit, BindingResult br) {
-		return save(produit, br);
+	@JsonView(JsonViews.Note.class)
+	public Note create(@Valid @RequestBody Note note, BindingResult br) {
+		if (br.hasErrors()) {
+			throw new NoteException();
+		}
+		return save(note, br);
 	}
 	
 	@PutMapping("/{id}")
-	@JsonView(JsonViews.Produit.class)
-	public Produit update(@PathVariable Integer id, @Valid @RequestBody Produit produit, BindingResult br) {
-		produit.setId(id);
-		return save(produit, br);
+	@JsonView(JsonViews.Note.class)
+	public Note update(@PathVariable Integer id, @Valid @RequestBody Note note, BindingResult br) {
+		note.setId_note(id);
+		return save(note, br);
 	}
 	
-	private Produit save(Produit produit, BindingResult br) {
+	private Note save(Note note, BindingResult br) {
 		if (br.hasErrors()) {
-			throw new ProduitException();
+			throw new ReservationException();
 		}
-		return produitService.save(produit);
+		return noteService.save(note);
 	}
 }
