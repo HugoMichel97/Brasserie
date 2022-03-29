@@ -73,6 +73,7 @@ public class ClientTest {
 	}
 	
 	@Test
+	@Disabled
 	void findByFideliteTest() {
 		Client cFid = clientRepository.findByFidelite(20).orElseThrow();
 		Client c = clientRepository.findById(3).orElseThrow();

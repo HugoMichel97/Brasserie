@@ -53,5 +53,12 @@ public class ReservationService {
 		reservationRepository.delete(reservation);
 	}
 	
+	public Reservation save(Reservation reservation) {
+        if (reservation.getId() != null) {
+            Reservation resaEnBase = getById(reservation.getId());
+            reservation.setVersion(resaEnBase.getVersion());
+        }
+        return reservationRepository.save(reservation);
+    }
 
 }

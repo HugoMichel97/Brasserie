@@ -13,19 +13,35 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Version;
+
+import com.fasterxml.jackson.annotation.JsonView;
 @Entity
 public class Evenement {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name="id_evenement")
+	@JsonView(JsonViews.Common.class)
 	private Integer id;
+	
+	@JsonView(JsonViews.Common.class)
 	private LocalDate date;
+	
+	@JsonView(JsonViews.Common.class)
 	private LocalTime heure;
+	
+	@JsonView(JsonViews.Common.class)
 	private String libelle;
+	
+	@JsonView(JsonViews.Common.class)
 	private double prix;
+	
+	@JsonView(JsonViews.Common.class)
 	private int ptsRequis = 0;
+	
+	@JsonView(JsonViews.Common.class)
 	private String description;
+	
 	private transient Brasseur brasseur;
 	
 	@OneToMany(mappedBy = "evt")

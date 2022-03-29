@@ -13,15 +13,19 @@ import javax.persistence.InheritanceType;
 import javax.persistence.OneToMany;
 import javax.persistence.Version;
 
+import com.fasterxml.jackson.annotation.JsonView;
+
 @Entity
 @Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
 public abstract class Compte {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.TABLE)
+	@JsonView(JsonViews.Common.class)
 	protected Integer id;
 	
 	@Column(unique=true)
+	@JsonView(JsonViews.Common.class)
 	protected String mail;
 	
 	protected String password;

@@ -15,7 +15,7 @@ import brasserie.config.SpringConfig;
 @Configuration
 @EnableWebMvc
 @Import(SpringConfig.class)
-@ComponentScan(basePackages= {"brasserie.controllers", "brasserie.restcontrollers"})
+@ComponentScan(basePackages= {"brasserieFront.restcontrollers"})
 public class WebConfig {
 
 	@Bean

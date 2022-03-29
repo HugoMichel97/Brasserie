@@ -9,12 +9,18 @@ import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 
+import com.fasterxml.jackson.annotation.JsonView;
+
 @Entity
 public class Client extends Compte {
 	
+	@JsonView(JsonViews.Common.class)
 	private String nom;
+	@JsonView(JsonViews.Common.class)
 	private String prenom;
+	@JsonView(JsonViews.Common.class)
 	private String tel;
+	@JsonView(JsonViews.Common.class)
 	private int fidelite;
 	
 	@OneToMany(mappedBy = "client")

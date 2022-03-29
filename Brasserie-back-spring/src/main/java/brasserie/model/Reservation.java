@@ -9,18 +9,23 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.Version;
 
+import com.fasterxml.jackson.annotation.JsonView;
+
 @Entity
 public class Reservation {
 	@Id
 	@GeneratedValue(strategy = GenerationType.TABLE)
+	@JsonView(JsonViews.Common.class)
 	private Integer id;
 
 	@ManyToOne
 	@JoinColumn(name="client_fk")
+	@JsonView(JsonViews.Reservation.class)
 	private Client client;
 
 	@ManyToOne
 	@JoinColumn(name="evt_fk")
+	@JsonView(JsonViews.Reservation.class)
 	private Evenement evt;
 
 	@Version

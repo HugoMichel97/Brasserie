@@ -46,9 +46,9 @@ public class ProduitService {
 		return produitRepository.findAll();
 	}
 	
-	public List<Produit> getAllBeers(){
-		return produitRepository.findAllBeers();
-	}
+//	public List<Produit> getAllBeers(){
+//		return produitRepository.findAllBeers();
+//	}
 	
 	public Produit getById(Integer id) {
 		return produitRepository.findById(id).orElseThrow(()-> {throw new ProduitException("Numero inconnu");});
