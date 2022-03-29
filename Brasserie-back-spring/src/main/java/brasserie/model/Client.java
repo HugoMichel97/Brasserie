@@ -114,7 +114,7 @@ public class Client extends Compte {
 		return null;
 	}
 	
-	public List<Produits> validerPanier(){
+	public List<Produit> validerPanier(){
 		return null;
 	}
 	

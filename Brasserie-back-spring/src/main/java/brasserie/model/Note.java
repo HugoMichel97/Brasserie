@@ -1,5 +1,7 @@
 package brasserie.model;
 
+import java.util.Objects;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -19,6 +21,7 @@ public class Note {
 	@JoinColumn(name= "id_biere")
 	private Biere biere;
 	private double note;
+	private String commentaire;
 	
 	@Version
 	protected int version;
@@ -29,6 +32,13 @@ public class Note {
 	{
 		this.biere= biere;
 		this.note=note;
+	}
+	
+	public Note(Biere biere, double note, String commentaire) 
+	{
+		this.biere= biere;
+		this.note=note;
+		this.commentaire = commentaire;
 	}
 
 	public Integer getId_note() {
@@ -55,7 +65,13 @@ public class Note {
 		this.note = note;
 	}
 	
-	
+	public String getCommentaire() {
+		return commentaire;
+	}
+
+	public void setCommentaire(String commentaire) {
+		this.commentaire = commentaire;
+	}
 
 	public int getVersion() {
 		return version;
@@ -66,9 +82,28 @@ public class Note {
 	}
 
 	@Override
-	public String toString() {
-		return "Note [id_note=" + id_note + ", biere=" + biere + ", note=" + note + "]";
+	public int hashCode() {
+		return Objects.hash(id_note);
 	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Note other = (Note) obj;
+		return Objects.equals(id_note, other.id_note);
+	}
+
+	@Override
+	public String toString() {
+		return "Note [id_note=" + id_note + ", biere=" + biere + ", note=" + note + ", commentaire=" + commentaire
+				+ "]";
+	}
+
 	
 	
 }
