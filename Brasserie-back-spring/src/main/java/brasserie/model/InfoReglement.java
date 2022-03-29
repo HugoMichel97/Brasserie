@@ -21,29 +21,29 @@ public class InfoReglement {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@JsonView(JsonViews.Reservation.class)
+	@JsonView(JsonViews.InfoReglement.class)
 	private Integer id;
 	
 	@ManyToOne
 	@JoinColumn(name="client_fk")
 	@NotNull
-	@JsonView(JsonViews.Reservation.class)
+	@JsonView(JsonViews.InfoReglement.class)
 	private Client client;
 	
 	@Enumerated(EnumType.STRING)
 	@Column(columnDefinition = "ENUM('CB', 'PayPal')")
 	@NotNull
-	@JsonView(JsonViews.Reservation.class)
+	@JsonView(JsonViews.InfoReglement.class)
 	private Reglement mode;
 	
 	@NotNull
-	@JsonView(JsonViews.Reservation.class)
+	@JsonView(JsonViews.InfoReglement.class)
 	private String num;
 	@NotNull
-	@JsonView(JsonViews.Reservation.class)
+	@JsonView(JsonViews.InfoReglement.class)
 	private String nom;
 	@NotNull
-	@JsonView(JsonViews.Reservation.class)
+	@JsonView(JsonViews.InfoReglement.class)
 	private String dateValid;
 	
 	@Version

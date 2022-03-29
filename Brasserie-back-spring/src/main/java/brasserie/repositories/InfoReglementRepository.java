@@ -19,6 +19,6 @@ public interface InfoReglementRepository extends JpaRepository<InfoReglement, In
 	@Query("delete from InfoReglement i where i.client=:client")
 	void deleteByClient(@Param("client") Client client);
 	
-	@Query("select i from InfoReglement i left join fetch i.clients where c.id=:id")
+	@Query("select i from InfoReglement i left join fetch i.client where i.id=:id")
 	Optional<InfoReglement> findByIdWithClients(@Param("id") Integer id);
 }
