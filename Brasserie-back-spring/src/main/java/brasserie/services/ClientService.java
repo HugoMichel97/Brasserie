@@ -8,7 +8,6 @@ import org.springframework.stereotype.Service;
 import brasserie.exception.ClientException;
 import brasserie.model.Client;
 import brasserie.repositories.ClientRepository;
-import brasserie.repositories.ReservationRepository;
 
 @Service
 public class ClientService {
@@ -84,4 +83,11 @@ public class ClientService {
 		delete(client);
 	}
 
+	public Client save(Client client) {
+		if(client.getId() != null) {
+			Client clientEnBase = getById(client.getId());
+			client.setVersion(clientEnBase.getVersion());
+		}
+		return clientRepository.save(client);
+	}
 }

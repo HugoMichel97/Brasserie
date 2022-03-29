@@ -26,6 +26,7 @@ public class Client extends Compte {
 	@OneToMany(mappedBy = "client")
 	private List<InfoReglement> reglements;
 	
+	@JsonView(JsonViews.ClientWithReservation.class)
 	@OneToMany(mappedBy = "client")
 	private List<Reservation> reservations;
 	

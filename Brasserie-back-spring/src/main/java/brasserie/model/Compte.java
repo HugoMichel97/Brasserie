@@ -31,6 +31,7 @@ public abstract class Compte {
 	protected String password;
 	
 	@OneToMany(mappedBy = "id_client")
+	@JsonView(JsonViews.ClientWithAchat.class)
 	private List<Achat> achats;
 	
 	@Version
