@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import brasserie.exception.EvenementException;
 import brasserie.model.Evenement;
+import brasserie.model.Reservation;
 import brasserie.repositories.EvenementRepository;
 
 @Service
@@ -48,5 +49,14 @@ public class EvenementService {
 		public Evenement getById(Integer id) {
 	        return evenementRepository.findById(id).orElseThrow(()-> {throw new EvenementException("Numero inconnu");});
 	    }
+		
+		public Evenement save(Evenement evenement) {
+	        if (evenement.getId() != null) {
+	            Evenement evtEnBase = getById(evenement.getId());
+	            evenement.setVersion(evtEnBase.getVersion());
+	        }
+	        return evenementRepository.save(evenement);
+	    }
+		
 	}
 

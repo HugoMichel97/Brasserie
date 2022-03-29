@@ -3,13 +3,15 @@ package brasserie.services;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import brasserie.exception.EvenementException;
 
 import brasserie.model.Ingredient;
-
+import brasserie.model.Reservation;
 import brasserie.repositories.IngredientRepository;
 
+@Service
 public class IngredientService {
 
 	
@@ -46,6 +48,15 @@ public class IngredientService {
 	
 	public void deleteById(Integer id) {
         ingredientRepository.deleteById(id);
+    }
+
+	
+	public Ingredient save(Ingredient ingredient) {
+        if (ingredient.getId_ingredient() != null) {
+            Ingredient ingrEnBase = getById(ingredient.getId_ingredient());
+            ingredient.setVersion(ingrEnBase.getVersion());
+        }
+        return ingredientRepository.save(ingredient);
     }
 	
 }
