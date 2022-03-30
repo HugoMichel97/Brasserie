@@ -9,16 +9,24 @@ import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.persistence.Version;
 
+import com.fasterxml.jackson.annotation.JsonView;
+
 @Entity
 public class Ingredient {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@JsonView(JsonViews.Common.class)
 	private Integer id_ingredient;
+	
+	@JsonView(JsonViews.Common.class)
 	private String nom;
+	
+	@JsonView(JsonViews.Common.class)
 	private int stock = 0;
 	
 	@ManyToMany(mappedBy= "recette")
+//	@JsonView(JsonViews.Ingredient.class)
 	private List<Biere> bieres;
 	
 	@Version
