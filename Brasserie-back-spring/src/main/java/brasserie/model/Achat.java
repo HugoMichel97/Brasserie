@@ -6,25 +6,34 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToOne;
 import javax.persistence.Version;
+import javax.validation.constraints.NotNull;
+
+import com.fasterxml.jackson.annotation.JsonView;
 
 @Entity
 public class Achat {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@JsonView(JsonViews.Common.class)
 	private Integer id_achat;
 	
 	@ManyToOne
 	@JoinColumn(name="client_fk")
+	@JsonView(JsonViews.Achat.class)
+	@NotNull
 	private Client id_client;
 	
 	@ManyToOne
 	@JoinColumn(name="produit_fk")
+	@JsonView(JsonViews.Achat.class)
+	@NotNull
 	private Produit id_produit;
 	
-	private int quantite;
+	@JsonView(JsonViews.Common.class)
+	@NotNull
+	private Integer quantite;
 	
 	@Version
 	private int version;

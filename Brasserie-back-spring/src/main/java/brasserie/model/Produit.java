@@ -1,6 +1,5 @@
 package brasserie.model;
 
-import java.util.List;
 import java.util.Objects;
 
 import javax.persistence.Column;
@@ -12,20 +11,47 @@ import javax.persistence.Id;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
 import javax.persistence.Version;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
+
+import com.fasterxml.jackson.annotation.JsonSubTypes;
+import com.fasterxml.jackson.annotation.JsonSubTypes.Type;
+import com.fasterxml.jackson.annotation.JsonTypeInfo;
+import com.fasterxml.jackson.annotation.JsonView;
+
 
 @Entity
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 @DiscriminatorColumn(name="type_produit", columnDefinition = "enum('Biere', 'Snack')")
+@JsonTypeInfo(use= JsonTypeInfo.Id.NAME, include= JsonTypeInfo.As.PROPERTY, property="type")
+@JsonSubTypes({
+	@Type(value=Biere.class, name="biere"),
+	@Type(value=Snack.class, name="snack") 
+})
 public abstract class Produit {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name="id_produit")
+	@JsonView(JsonViews.Common.class)
 	protected Integer id;
+	
+	@NotEmpty
+	@JsonView(JsonViews.Common.class)
 	protected String nom;
+	
+	@JsonView(JsonViews.Common.class)
 	protected String description;
-	protected double prix;
-	protected int stock;
-	protected Integer points;
+	
+	@NotNull
+	@JsonView(JsonViews.Common.class)
+	protected Double prix;
+	
+	@NotNull
+	@JsonView(JsonViews.Common.class)
+	protected Integer stock;
+	
+	@JsonView(JsonViews.Common.class)
+	protected int points;
 	
 	@Version
 	protected int version;

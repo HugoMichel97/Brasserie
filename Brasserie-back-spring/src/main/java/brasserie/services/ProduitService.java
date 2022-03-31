@@ -6,11 +6,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import brasserie.exception.ProduitException;
+import brasserie.model.Biere;
 import brasserie.model.Produit;
+import brasserie.model.Snack;
 import brasserie.repositories.AchatRepository;
+import brasserie.repositories.BiereRepository;
 import brasserie.repositories.ProduitRepository;
-
-
+import brasserie.repositories.SnackRepository;
 
 @Service
 public class ProduitService {
@@ -20,6 +22,12 @@ public class ProduitService {
 	
 	@Autowired 
 	AchatRepository achatRepository;
+	
+	@Autowired
+	BiereRepository biereRepository;
+	
+	@Autowired
+	SnackRepository snackRepository;
 
 	public void create(Produit p) {
 		if(p.getId() != null) {
@@ -46,9 +54,13 @@ public class ProduitService {
 		return produitRepository.findAll();
 	}
 	
-//	public List<Produit> getAllBeers(){
-//		return produitRepository.findAllBeers();
-//	}
+	public List<Biere> getAllBeers(){
+		return biereRepository.findAll();
+	}
+	
+	public List<Snack> getAllSnacks(){
+		return snackRepository.findAll();
+	}
 	
 	public Produit getById(Integer id) {
 		return produitRepository.findById(id).orElseThrow(()-> {throw new ProduitException("Numero inconnu");});
@@ -63,5 +75,13 @@ public class ProduitService {
 	
 	public void deleteById(Integer id) {
 		produitRepository.deleteById(id);
+	}
+	
+	public Produit save(Produit produit) {
+		if (produit.getId() != null) {
+			Produit produitEnBase = getById(produit.getId());
+			produit.setVersion(produitEnBase.getVersion());
+		}
+		return produitRepository.save(produit);
 	}
 }
