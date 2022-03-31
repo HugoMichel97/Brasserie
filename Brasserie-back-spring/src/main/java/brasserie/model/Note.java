@@ -9,6 +9,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Version;
+import javax.validation.constraints.NotNull;
 
 import com.fasterxml.jackson.annotation.JsonView;
 
@@ -23,10 +24,12 @@ public class Note {
 	@ManyToOne
 	@JoinColumn(name= "id_biere")
 	@JsonView(JsonViews.Note.class)
+	@NotNull
 	private Biere biere;
 	
 	@JsonView(JsonViews.Common.class)
-	private double note;
+	@NotNull
+	private Double note;
 	
 	@JsonView(JsonViews.Common.class)
 	private String commentaire;
