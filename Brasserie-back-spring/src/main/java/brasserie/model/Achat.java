@@ -31,9 +31,8 @@ public class Achat {
 	@NotNull
 	private Produit id_produit;
 	
-	@JsonView(JsonViews.Common.class)
 	@NotNull
-	private Integer quantite;
+	@JsonView(JsonViews.Common.class)
 	
 	@Version
 	private int version;

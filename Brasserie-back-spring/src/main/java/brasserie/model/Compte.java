@@ -1,7 +1,6 @@
 package brasserie.model;
 
 import java.util.List;
-import java.util.Objects;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -12,6 +11,7 @@ import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
 import javax.persistence.OneToMany;
 import javax.persistence.Version;
+import javax.validation.constraints.NotEmpty;
 
 import com.fasterxml.jackson.annotation.JsonView;
 
@@ -24,13 +24,16 @@ public abstract class Compte {
 	@JsonView(JsonViews.Common.class)
 	protected Integer id;
 	
+	@NotEmpty
 	@Column(unique=true)
 	@JsonView(JsonViews.Common.class)
 	protected String mail;
 	
+	@NotEmpty
 	protected String password;
 	
 	@OneToMany(mappedBy = "id_client")
+	@JsonView(JsonViews.ClientWithAchat.class)
 	private List<Achat> achats;
 	
 	@Version
