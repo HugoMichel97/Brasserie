@@ -28,7 +28,7 @@ public class Reservation {
 	@ManyToOne
 	@JoinColumn(name="evt_fk")
 	@NotNull
-	@JsonView(JsonViews.Reservation.class)
+	@JsonView(JsonViews.Common.class)
 	private Evenement evt;
 
 	@Version

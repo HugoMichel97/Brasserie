@@ -34,7 +34,7 @@ public class ClientRestController {
 	@Autowired 
 	ReservationService reservationService;
 	
-	@JsonView(JsonViews.Client.class)
+	@JsonView(JsonViews.Common.class)
 	@GetMapping("")
 	public List<Client> getAll() {
 		return clientService.getAll();
@@ -43,19 +43,31 @@ public class ClientRestController {
 	@JsonView(JsonViews.ClientWithReservation.class)
 	@GetMapping("/getResa")
 	public List<Client> getAllWithResa(){
-		return clientService.getAll();
+		return clientService.getAllWithResa();
 	}
 	
 	@JsonView(JsonViews.ClientWithAchat.class)
 	@GetMapping("/getAchat")
 	public List<Client> getAllWithAchat(){
-		return clientService.getAll();
+		return clientService.getAllWithAchat();
 	}
 
-	@JsonView(JsonViews.Client.class)
+	@JsonView(JsonViews.Common.class)
 	@GetMapping("/{id}")
 	public Client getById(@PathVariable Integer id) {
 		return clientService.getById(id);
+	}
+	
+	@JsonView(JsonViews.ClientWithReservation.class)
+	@GetMapping("/getResa/{id}")
+	public Client getByIdWithResa(@PathVariable Integer id) {
+		return clientService.getByIdWithReservation(id);
+	}
+	
+	@JsonView(JsonViews.ClientWithAchat.class)
+	@GetMapping("/getAchat/{id}")
+	public Client getByIdWithAchat(@PathVariable Integer id) {
+		return clientService.getByIdWithAchat(id);
 	}
 
 	@ResponseStatus(code = HttpStatus.NO_CONTENT)
@@ -66,7 +78,7 @@ public class ClientRestController {
 
 	@ResponseStatus(code = HttpStatus.CREATED)
 	@PostMapping("")
-	@JsonView(JsonViews.Client.class)
+	@JsonView(JsonViews.Common.class)
 	public Client create(@Valid @RequestBody Client client, BindingResult br) {
 		if (br.hasErrors()) {
 			throw new ClientException();
@@ -75,7 +87,7 @@ public class ClientRestController {
 	}
 
 	@PutMapping("/{id}")
-	@JsonView(JsonViews.Client.class)
+	@JsonView(JsonViews.Common.class)
 	public Client update(@PathVariable Integer id, @Valid @RequestBody Client client, BindingResult br) {
 		client.setId(id);
 		return save(client, br);
