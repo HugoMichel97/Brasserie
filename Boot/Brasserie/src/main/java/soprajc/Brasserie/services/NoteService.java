@@ -29,11 +29,21 @@ public class NoteService {
 	}
 	
 	public Note getById(Integer id) {
-		return noteRepository.findById(id).orElseThrow(()-> {throw new NoteException("Numero inconnu");});
+		return noteRepository.findById(id).orElseThrow(()-> {throw new NoteException("Id inconnu");});
 	}
 
-	public void deleteByNumero(Integer numero) { 
+	public void deleteById(Integer numero) { 
 		noteRepository.deleteById(numero);
 
 	}
+	
+	public Note save(Note note) {
+        if (note.getId_note() != null) {
+            Note noteEnBase = getById(note.getId_note());
+            note.setVersion(noteEnBase.getVersion());
+        }
+        return noteRepository.save(note);
+    }
+	
+	
 }

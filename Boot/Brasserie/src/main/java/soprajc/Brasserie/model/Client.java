@@ -21,11 +21,12 @@ public class Client extends Compte {
 	@JsonView(JsonViews.Common.class)
 	private String tel;
 	@JsonView(JsonViews.Common.class)
-	private int fidelite;
+	private int fidelite = 0;
 	
 	@OneToMany(mappedBy = "client")
 	private List<InfoReglement> reglements;
 	
+	@JsonView(JsonViews.ClientWithReservation.class)
 	@OneToMany(mappedBy = "client")
 	private List<Reservation> reservations;
 	
@@ -89,13 +90,6 @@ public class Client extends Compte {
 	}
 	public void setReservations(List<Reservation> reservations) {
 		this.reservations = reservations;
-	}
-	
-	// toString
-	@Override
-	public String toString() {
-		return "Client [nom=" + nom + ", prenom=" + prenom + ", tel=" + tel + ", fidelite=" + fidelite
-				+ ", reglements=" + reglements + ", reservations=" + reservations + "]";
 	}
 
 	// methods

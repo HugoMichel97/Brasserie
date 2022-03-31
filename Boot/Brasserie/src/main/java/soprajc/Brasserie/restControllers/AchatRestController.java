@@ -19,56 +19,60 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.fasterxml.jackson.annotation.JsonView;
 
-import soprajc.Brasserie.exception.ProduitException;
+import soprajc.Brasserie.exception.AchatException;
+import soprajc.Brasserie.exception.ReservationException;
+import soprajc.Brasserie.model.Achat;
 import soprajc.Brasserie.model.JsonViews;
-import soprajc.Brasserie.model.Produit;
-import soprajc.Brasserie.services.ProduitService;
-
-
+import soprajc.Brasserie.services.AchatService;
 
 @RestController
-@RequestMapping("/api/produit")
-public class ProduitRestController {
+@RequestMapping("/api/achat")
+public class AchatRestController {
 
 	@Autowired
-	ProduitService produitService;
+	AchatService achatService;
 	
-	@JsonView(JsonViews.Produit.class)
+	@JsonView(JsonViews.Achat.class)
 	@GetMapping("")
-	public List<Produit> getAll() {
-		return produitService.getAll();
+	public List<Achat> getAll() {
+		return achatService.getAll();
 	}
 	
-	@JsonView(JsonViews.Produit.class)
+	@JsonView(JsonViews.Achat.class)
 	@GetMapping("/{id}")
-	public Produit getById(@PathVariable Integer id) {
-		return produitService.getById(id);
+	public Achat getById(@PathVariable Integer id) {
+		return achatService.getById(id);
 	}
-
+	
 	@ResponseStatus(code = HttpStatus.NO_CONTENT)
 	@DeleteMapping("/{id}")
 	public void delete(@PathVariable Integer id) {
-		produitService.deleteById(id);
+		achatService.deleteById(id);
 	}
 	
 	@ResponseStatus(code = HttpStatus.CREATED)
 	@PostMapping("")
-	@JsonView(JsonViews.Produit.class)
-	public Produit create(@Valid @RequestBody Produit produit, BindingResult br) {
-		return save(produit, br);
+	@JsonView(JsonViews.Achat.class)
+	public Achat create(@Valid @RequestBody Achat achat, BindingResult br) {
+		if (br.hasErrors()) {
+			throw new AchatException();
+		}
+		return save(achat, br);
 	}
 	
 	@PutMapping("/{id}")
-	@JsonView(JsonViews.Produit.class)
-	public Produit update(@PathVariable Integer id, @Valid @RequestBody Produit produit, BindingResult br) {
-		produit.setId(id);
-		return save(produit, br);
+	@JsonView(JsonViews.Achat.class)
+	public Achat update(@PathVariable Integer id, @Valid @RequestBody Achat achat, BindingResult br) {
+		achat.setId_achat(id);
+		return save(achat, br);
 	}
 	
-	private Produit save(Produit produit, BindingResult br) {
+	private Achat save(Achat achat, BindingResult br) {
 		if (br.hasErrors()) {
-			throw new ProduitException();
+			throw new ReservationException();
 		}
-		return produitService.save(produit);
+		return achatService.save(achat);
 	}
+
+
 }

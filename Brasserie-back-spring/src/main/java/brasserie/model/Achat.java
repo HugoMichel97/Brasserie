@@ -33,13 +33,14 @@ public class Achat {
 	
 	@NotNull
 	@JsonView(JsonViews.Common.class)
+	private Integer quantite;
 	
 	@Version
 	private int version;
 	
 	public Achat() {}
 
-	public Achat(Client id_client, Produit id_produit, int quantite) {
+	public Achat(Client id_client, Produit id_produit, Integer quantite) {
 		this.id_client = id_client;
 		this.id_produit = id_produit;
 		this.quantite = quantite;
@@ -71,11 +72,11 @@ public class Achat {
 		this.id_produit = id_produit;
 	}
 
-	public int getQuantite() {
+	public Integer getQuantite() {
 		return quantite;
 	}
 
-	public void setQuantite(int quantite) {
+	public void setQuantite(Integer quantite) {
 		this.quantite = quantite;
 	}
 

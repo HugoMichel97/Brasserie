@@ -39,13 +39,13 @@ public class Note {
 	
 	public Note() {}
 	
-	public Note(Biere biere, double note) 
+	public Note(Biere biere, Double note) 
 	{
 		this.biere= biere;
 		this.note=note;
 	}
 	
-	public Note(Biere biere, double note, String commentaire) 
+	public Note(Biere biere, Double note, String commentaire) 
 	{
 		this.biere= biere;
 		this.note=note;
@@ -68,11 +68,11 @@ public class Note {
 		this.biere = biere;
 	}
 
-	public double getNote() {
+	public Double getNote() {
 		return note;
 	}
 
-	public void setNote(double note) {
+	public void setNote(Double note) {
 		this.note = note;
 	}
 	

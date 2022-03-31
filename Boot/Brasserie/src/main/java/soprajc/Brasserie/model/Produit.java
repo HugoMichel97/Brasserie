@@ -1,6 +1,5 @@
 package soprajc.Brasserie.model;
 
-import java.util.List;
 import java.util.Objects;
 
 import javax.persistence.Column;
@@ -12,27 +11,54 @@ import javax.persistence.Id;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
 import javax.persistence.Version;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
+
+import com.fasterxml.jackson.annotation.JsonSubTypes;
+import com.fasterxml.jackson.annotation.JsonSubTypes.Type;
+import com.fasterxml.jackson.annotation.JsonTypeInfo;
+import com.fasterxml.jackson.annotation.JsonView;
+
 
 @Entity
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 @DiscriminatorColumn(name="type_produit", columnDefinition = "enum('Biere', 'Snack')")
+@JsonTypeInfo(use= JsonTypeInfo.Id.NAME, include= JsonTypeInfo.As.PROPERTY, property="type")
+@JsonSubTypes({
+	@Type(value=Biere.class, name="biere"),
+	@Type(value=Snack.class, name="snack") 
+})
 public abstract class Produit {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name="id_produit")
+	@JsonView(JsonViews.Common.class)
 	protected Integer id;
+	
+	@NotEmpty
+	@JsonView(JsonViews.Common.class)
 	protected String nom;
+	
+	@JsonView(JsonViews.Common.class)
 	protected String description;
-	protected double prix;
-	protected int stock;
-	protected Integer points;
+	
+	@NotNull
+	@JsonView(JsonViews.Common.class)
+	protected Double prix;
+	
+	@NotNull
+	@JsonView(JsonViews.Common.class)
+	protected Integer stock;
+	
+	@JsonView(JsonViews.Common.class)
+	protected int points;
 	
 	@Version
 	protected int version;
 	
 	public Produit() {}
 	
-	public Produit(String nom, String description, double prix, int stock, Integer points) {
+	public Produit(String nom, String description, Double prix, Integer stock, Integer points) {
 		this.nom = nom;
 		this.prix = prix;
 		this.description = description;
@@ -41,7 +67,7 @@ public abstract class Produit {
 
 	}
 	
-	public Produit(Integer id, String nom, String description, double prix, int stock, Integer points) {
+	public Produit(Integer id, String nom, String description, Double prix, Integer stock, Integer points) {
 		this.id = id;
 		this.nom = nom;
 		this.prix = prix;
@@ -51,7 +77,7 @@ public abstract class Produit {
 
 	}
 	
-	public Produit(Integer id, String nom, String description, double prix, int stock) {
+	public Produit(Integer id, String nom, String description, Double prix, Integer stock) {
 		this.id = id;
 		this.nom = nom;
 		this.prix = prix;
@@ -62,7 +88,7 @@ public abstract class Produit {
 	
 	
 	//Constructeur snack (sans fid�lit�)
-	public Produit(String nom, String description, double prix, int stock) {
+	public Produit(String nom, String description, Double prix, Integer stock) {
 		this.nom = nom;
 		this.prix = prix;
 		this.description = description;
@@ -71,7 +97,7 @@ public abstract class Produit {
 	}
 	
 	// Constructeur test
-	public Produit(String nom, double prix) {
+	public Produit(String nom, Double prix) {
 		this.nom = nom;
 		this.prix = prix;
 		this.description = "";
@@ -86,10 +112,10 @@ public abstract class Produit {
 		this.nom = nom;
 	}
 
-	public double getPrix() {
+	public Double getPrix() {
 		return prix;
 	}
-	public void setPrix(double prix) {
+	public void setPrix(Double prix) {
 		this.prix = prix;
 	}
 
@@ -103,7 +129,7 @@ public abstract class Produit {
 	public int getStock() {
 		return stock;
 	}
-	public void setStock(int stock) {
+	public void setStock(Integer stock) {
 		this.stock = stock;
 	}
 	

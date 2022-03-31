@@ -9,8 +9,6 @@ import soprajc.Brasserie.exception.AchatException;
 import soprajc.Brasserie.model.Achat;
 import soprajc.Brasserie.repositories.AchatRepository;
 
-
-
 @Service
 public class AchatService {
 
@@ -38,4 +36,13 @@ public class AchatService {
 		achatRepository.deleteById(id);
 
 	}
+	
+	public Achat save(Achat achat) {
+        if (achat.getId_achat() != null) {
+            Achat achatEnBase = getById(achat.getId_achat());
+            achat.setVersion(achatEnBase.getVersion());
+        }
+        return achatRepository.save(achat);
+    }
+
 }

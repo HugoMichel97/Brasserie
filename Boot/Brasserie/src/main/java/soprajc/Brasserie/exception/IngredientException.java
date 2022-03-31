@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 package soprajc.Brasserie.exception;
 
 public class IngredientException extends RuntimeException {
@@ -11,21 +10,3 @@ public class IngredientException extends RuntimeException {
 		super(message);
 	} 
 }
-
-
-=======
-package soprajc.Brasserie.exception;
-
-public class IngredientException extends RuntimeException {
-
-	public IngredientException() {
-
-	}
-
-	public IngredientException(String message) {
-		super(message);
-	} 
-}
-
-
->>>>>>> Mohamed

@@ -58,7 +58,7 @@ public abstract class Produit {
 	
 	public Produit() {}
 	
-	public Produit(String nom, String description, double prix, int stock, Integer points) {
+	public Produit(String nom, String description, Double prix, Integer stock, Integer points) {
 		this.nom = nom;
 		this.prix = prix;
 		this.description = description;
@@ -67,7 +67,7 @@ public abstract class Produit {
 
 	}
 	
-	public Produit(Integer id, String nom, String description, double prix, int stock, Integer points) {
+	public Produit(Integer id, String nom, String description, Double prix, Integer stock, Integer points) {
 		this.id = id;
 		this.nom = nom;
 		this.prix = prix;
@@ -77,7 +77,7 @@ public abstract class Produit {
 
 	}
 	
-	public Produit(Integer id, String nom, String description, double prix, int stock) {
+	public Produit(Integer id, String nom, String description, Double prix, Integer stock) {
 		this.id = id;
 		this.nom = nom;
 		this.prix = prix;
@@ -88,7 +88,7 @@ public abstract class Produit {
 	
 	
 	//Constructeur snack (sans fidélité)
-	public Produit(String nom, String description, double prix, int stock) {
+	public Produit(String nom, String description, Double prix, Integer stock) {
 		this.nom = nom;
 		this.prix = prix;
 		this.description = description;
@@ -97,7 +97,7 @@ public abstract class Produit {
 	}
 	
 	// Constructeur test
-	public Produit(String nom, double prix) {
+	public Produit(String nom, Double prix) {
 		this.nom = nom;
 		this.prix = prix;
 		this.description = "";
@@ -112,10 +112,10 @@ public abstract class Produit {
 		this.nom = nom;
 	}
 
-	public double getPrix() {
+	public Double getPrix() {
 		return prix;
 	}
-	public void setPrix(double prix) {
+	public void setPrix(Double prix) {
 		this.prix = prix;
 	}
 
@@ -129,7 +129,7 @@ public abstract class Produit {
 	public int getStock() {
 		return stock;
 	}
-	public void setStock(int stock) {
+	public void setStock(Integer stock) {
 		this.stock = stock;
 	}
 	

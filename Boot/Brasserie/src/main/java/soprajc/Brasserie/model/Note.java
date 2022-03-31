@@ -9,18 +9,29 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Version;
+import javax.validation.constraints.NotNull;
+
+import com.fasterxml.jackson.annotation.JsonView;
 
 @Entity
 public class Note {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@JsonView(JsonViews.Common.class)
 	private Integer id_note;
 	
 	@ManyToOne
 	@JoinColumn(name= "id_biere")
+	@JsonView(JsonViews.Note.class)
+	@NotNull
 	private Biere biere;
-	private double note;
+	
+	@JsonView(JsonViews.Common.class)
+	@NotNull
+	private Double note;
+	
+	@JsonView(JsonViews.Common.class)
 	private String commentaire;
 	
 	@Version
@@ -28,13 +39,13 @@ public class Note {
 	
 	public Note() {}
 	
-	public Note(Biere biere, double note) 
+	public Note(Biere biere, Double note) 
 	{
 		this.biere= biere;
 		this.note=note;
 	}
 	
-	public Note(Biere biere, double note, String commentaire) 
+	public Note(Biere biere, Double note, String commentaire) 
 	{
 		this.biere= biere;
 		this.note=note;
@@ -57,11 +68,11 @@ public class Note {
 		this.biere = biere;
 	}
 
-	public double getNote() {
+	public Double getNote() {
 		return note;
 	}
 
-	public void setNote(double note) {
+	public void setNote(Double note) {
 		this.note = note;
 	}
 	

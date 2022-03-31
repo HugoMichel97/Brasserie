@@ -40,6 +40,14 @@ public class ClientService {
 	public List<Client> getAll() {
 		return clientRepository.findAll();
 	}
+	
+	public List<Client> getAllWithResa() {
+		return clientRepository.findAllWithReservation();
+	}
+	
+	public List<Client> getAllWithAchat() {
+		return clientRepository.findAllWithAchat();
+	}
 
 	public Client getById(Integer id) {
 		return clientRepository.findById(id).orElseThrow(() -> {
@@ -49,6 +57,12 @@ public class ClientService {
 
 	public Client getByIdWithReservation(Integer id) {
 		return clientRepository.findByIdWithReservations(id).orElseThrow(() -> {
+			throw new ClientException("Id inconnu.");
+		});
+	}
+	
+	public Client getByIdWithAchat(Integer id) {
+		return clientRepository.findByIdWithAchats(id).orElseThrow(() -> {
 			throw new ClientException("Id inconnu.");
 		});
 	}
@@ -83,4 +97,11 @@ public class ClientService {
 		delete(client);
 	}
 
+	public Client save(Client client) {
+		if(client.getId() != null) {
+			Client clientEnBase = getById(client.getId());
+			client.setVersion(clientEnBase.getVersion());
+		}
+		return clientRepository.save(client);
+	}
 }

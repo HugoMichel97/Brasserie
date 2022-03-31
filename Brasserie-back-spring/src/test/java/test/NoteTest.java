@@ -27,7 +27,7 @@ class NoteTest {
 	@Disabled
 	void creationNoteTest() {
 		Biere b = (Biere) produitService.getById(12);
-		noteService.create(new Note(b, 5));
+		noteService.create(new Note(b, 5.0));
 	}
 	
 	@Test //Test fonctionnel !
