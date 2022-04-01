@@ -20,8 +20,10 @@ import org.springframework.web.bind.annotation.RestController;
 import com.fasterxml.jackson.annotation.JsonView;
 
 import soprajc.Brasserie.exception.ProduitException;
+import soprajc.Brasserie.model.Biere;
 import soprajc.Brasserie.model.JsonViews;
 import soprajc.Brasserie.model.Produit;
+import soprajc.Brasserie.model.Snack;
 import soprajc.Brasserie.services.ProduitService;
 
 
@@ -38,6 +40,19 @@ public class ProduitRestController {
 	public List<Produit> getAll() {
 		return produitService.getAll();
 	}
+	
+	@JsonView(JsonViews.Produit.class)
+	@GetMapping("/biere")
+	public List<Biere> getAllBeers() {
+		return produitService.getAllBeers();
+	}
+	
+	@JsonView(JsonViews.Produit.class)
+	@GetMapping("/snack")
+	public List<Snack> getAllSnacks() {
+		return produitService.getAllSnacks();
+	}
+	
 	
 	@JsonView(JsonViews.Produit.class)
 	@GetMapping("/{id}")
