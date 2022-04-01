@@ -105,7 +105,7 @@ public abstract class Compte implements UserDetails {
 		GrantedAuthority authority = null;
 		if (getClass().getSimpleName().equals("Client")) {
 			authority = new SimpleGrantedAuthority("ROLE_CLIENT");
-		} else if (getClass().getSimpleName().equals("BRASSEUR")) {
+		} else if (getClass().getSimpleName().equals("Brasseur")) {
 			authority = new SimpleGrantedAuthority("ROLE_BRASSEUR");
 		}
 		return Arrays.asList(authority);
