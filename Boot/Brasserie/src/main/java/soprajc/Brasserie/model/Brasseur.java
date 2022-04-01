@@ -6,12 +6,20 @@ import java.util.Objects;
 import javax.persistence.Entity;
 import javax.persistence.OneToMany;
 
+import com.fasterxml.jackson.annotation.JsonView;
+
 @Entity
 public class Brasseur extends Compte{
 
+	@JsonView(JsonViews.Common.class)
 	private double recettes;
+	
+	@JsonView(JsonViews.Common.class)
 	private double depenses;
+	
+	@JsonView(JsonViews.Common.class)
 	private double tresorerie;
+	
 	private transient List<Client> clients;
 	private transient List<Evenement> evenements;
 	private transient List<Ingredient> stock;

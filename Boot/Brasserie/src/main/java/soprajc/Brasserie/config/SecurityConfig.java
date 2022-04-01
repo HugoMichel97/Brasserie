@@ -45,6 +45,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 					.antMatchers(HttpMethod.PUT, "/api/client/**").hasRole("CLIENT")
 					.antMatchers(HttpMethod.POST, "/api/client").permitAll()
 					
+					// Brasseur :
+					.antMatchers("/api/brasseur/**").hasRole("BRASSEUR")
+					
 					// Evenement :
 					.antMatchers(HttpMethod.GET, "/api/evenement/**").permitAll()
 					.antMatchers(HttpMethod.POST, "/api/evenement").hasRole("BRASSEUR")
