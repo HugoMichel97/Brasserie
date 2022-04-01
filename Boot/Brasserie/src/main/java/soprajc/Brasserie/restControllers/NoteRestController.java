@@ -44,6 +44,8 @@ public class NoteRestController {
 		return noteService.getById(id);
 	}
 	
+	// getMoyenne (mettre le total de votes)
+	
 	@ResponseStatus(code = HttpStatus.NO_CONTENT)
 	@DeleteMapping("/{id}")
 	public void delete(@PathVariable Integer id) {

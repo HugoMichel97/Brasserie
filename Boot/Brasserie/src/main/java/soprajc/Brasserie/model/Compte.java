@@ -1,5 +1,7 @@
 package soprajc.Brasserie.model;
 
+import java.util.Arrays;
+import java.util.Collection;
 import java.util.List;
 
 import javax.persistence.Column;
@@ -13,11 +15,15 @@ import javax.persistence.OneToMany;
 import javax.persistence.Version;
 import javax.validation.constraints.NotEmpty;
 
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
+
 import com.fasterxml.jackson.annotation.JsonView;
 
 @Entity
 @Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
-public abstract class Compte {
+public abstract class Compte implements UserDetails {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.TABLE)
@@ -93,5 +99,40 @@ public abstract class Compte {
 	}
 	
 	// methods
-	
+	@Override
+	public Collection<? extends GrantedAuthority> getAuthorities() {
+
+		GrantedAuthority authority = null;
+		if (getClass().getSimpleName().equals("Client")) {
+			authority = new SimpleGrantedAuthority("ROLE_CLIENT");
+		} else if (getClass().getSimpleName().equals("BRASSEUR")) {
+			authority = new SimpleGrantedAuthority("ROLE_BRASSEUR");
+		}
+		return Arrays.asList(authority);
+	}
+
+	@Override
+	public String getUsername() {
+		return mail;
+	}
+
+	@Override
+	public boolean isAccountNonExpired() {
+		return true;
+	}
+
+	@Override
+	public boolean isAccountNonLocked() {
+		return true;
+	}
+
+	@Override
+	public boolean isCredentialsNonExpired() {
+		return true;
+	}
+
+	@Override
+	public boolean isEnabled() {
+		return true;
+	}
 }

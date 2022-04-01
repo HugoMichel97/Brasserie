@@ -40,6 +40,8 @@ public class ReservationRestController {
 	public List<Reservation> getAll() {
 		return reservationService.getAll();
 	}
+	
+	// getAllByIdEvt ?
 
 	@JsonView(JsonViews.Reservation.class)
 	@GetMapping("/{id}")

@@ -31,11 +31,12 @@ public class InfoReglementRestController {
 	@Autowired 
 	InfoReglementService infoReglementService;
 
-	@JsonView(JsonViews.InfoReglement.class)
-	@GetMapping("")
-	public List<InfoReglement> getAll() {
-		return infoReglementService.getAll();
-	}
+//	@JsonView(JsonViews.InfoReglement.class)
+//	@GetMapping("")
+//	public List<InfoReglement> getAll() {
+//		return infoReglementService.getAll();
+//	}
+	// A voir pour enlever
 
 	@JsonView(JsonViews.InfoReglement.class)
 	@GetMapping("/{id}")

@@ -7,6 +7,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
+import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.config.http.SessionCreationPolicy;
@@ -15,6 +16,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
 @Configuration
+@EnableGlobalMethodSecurity(prePostEnabled = true)
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
 	@Override
@@ -28,20 +30,54 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 				.csrf().ignoringAntMatchers("/api/**")
 				.and()
 				.authorizeHttpRequests()
-					.antMatchers("/api/vehicule/**").permitAll()
-					.antMatchers(HttpMethod.GET , "/api/**").authenticated()
-					.antMatchers("/api/**").hasRole("CLIENT")
+					// Achat :
+					.antMatchers(HttpMethod.GET , "/api/achat/**").authenticated()
+					.antMatchers(HttpMethod.GET , "/api/achat").hasRole("BRASSEUR")
+					.antMatchers(HttpMethod.POST , "/api/achat").authenticated()
+					.antMatchers(HttpMethod.PUT , "/api/achat/**").authenticated()
+					.antMatchers(HttpMethod.DELETE , "/api/achat/**").authenticated()
+					
+					// Client :
+					.antMatchers(HttpMethod.GET, "/api/client").hasRole("BRASSEUR")
+					.antMatchers(HttpMethod.GET, "/api/client/getResa").hasRole("BRASSEUR")
+					.antMatchers(HttpMethod.GET, "/api/client/getAchat").hasRole("BRASSEUR")
+					.antMatchers(HttpMethod.GET, "/api/client/**").authenticated()
+					.antMatchers(HttpMethod.DELETE, "/api/client/**").hasRole("CLIENT")
+					.antMatchers(HttpMethod.PUT, "/api/client/**").hasRole("CLIENT")
+					.antMatchers(HttpMethod.POST, "/api/client").permitAll()
+					
+					// Evenement :
+					.antMatchers(HttpMethod.GET, "/api/evenement/**").permitAll()
+					.antMatchers(HttpMethod.POST, "/api/evenement").hasRole("BRASSEUR")
+					.antMatchers(HttpMethod.PUT, "/api/evenement/**").hasRole("BRASSEUR")
+					.antMatchers(HttpMethod.DELETE, "/api/evenement/**").hasRole("BRASSEUR")
+					
+					// InfoReglement :
+					.antMatchers("/api/InfoReglement/**").authenticated()
+					
+					// Ingredient :
+					.antMatchers("/api/ingredient/**").hasRole("BRASSEUR")
+					
+					// Note :
+					.antMatchers(HttpMethod.GET, "/api/note/**").permitAll()
+					.antMatchers(HttpMethod.POST, "/api/note").hasRole("CLIENT")
+					.antMatchers(HttpMethod.PUT, "/api/note/**").hasRole("CLIENT")
+					.antMatchers(HttpMethod.DELETE, "/api/note/**").authenticated()
+					
+					// Produit :
+					.antMatchers(HttpMethod.GET, "/api/produit/**").permitAll()
+					.antMatchers(HttpMethod.POST, "/api/produit").hasRole("BRASSEUR")
+					.antMatchers(HttpMethod.PUT, "/api/produit/**").hasRole("BRASSEUR")
+					.antMatchers(HttpMethod.DELETE, "/api/produit/**").hasRole("BRASSEUR")
+					
+					// Reservation :
+					.antMatchers(HttpMethod.GET, "/api/reservation/**").hasRole("BRASSEUR")
+					.antMatchers(HttpMethod.POST, "/api/reservation").hasRole("CLIENT")
+					.antMatchers(HttpMethod.PUT, "/api/reservation/**").hasRole("CLIENT")
+					.antMatchers(HttpMethod.DELETE, "/api/reservation/**").hasRole("CLIENT")
+					
 				.and()
 				.httpBasic();
-					
-		
-//		http.antMatcher("/**")
-//				.authorizeHttpRequests()
-//					.antMatchers("/vehicule/**").permitAll()
-//					.antMatchers("/activite/**").hasRole("CLIENT")
-//					.anyRequest().authenticated()
-//				.and()
-//				.formLogin();
 		// @formatter:on
 
 	}
@@ -51,27 +87,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	
 	@Override
 	protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-		// configuration methode d'authentification
-		//@formatter:off
-//		user en memoire		
-//		auth.inMemoryAuthentication()
-//				.withUser("user").password("{noop}user").roles("user")
-//				.and()
-//				.withUser("admin").password("{noop}admin").roles("admin");
-		
-		//requete sql
-//		auth.jdbcAuthentication()
-//				.dataSource(dataSource)
-//					.usersByUsernameQuery("select mail,password,true from  compte where mail=?")
-//					.authoritiesByUsernameQuery("select mail,'ROLE_'||type_compte from compte  where mail=?");
-//		
-		
-		
 		//service spring
 		auth.userDetailsService(userDetailsService);
-		
-		// @formatter:on
-
 	}
 	
 	@Bean
