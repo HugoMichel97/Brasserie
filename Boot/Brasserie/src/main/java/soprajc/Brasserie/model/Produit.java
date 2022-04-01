@@ -126,7 +126,7 @@ public abstract class Produit {
 		this.description = description;
 	}
 
-	public int getStock() {
+	public Integer getStock() {
 		return stock;
 	}
 	public void setStock(Integer stock) {
