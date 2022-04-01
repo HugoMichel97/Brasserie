@@ -30,8 +30,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 				.and()
 				.authorizeHttpRequests()
 					// Achat :
-					.antMatchers(HttpMethod.GET , "/api/achat/**").authenticated()
-					.antMatchers(HttpMethod.GET , "/api/achat").hasRole("BRASSEUR")
+					.antMatchers(HttpMethod.GET , "/api/achat/**").hasRole("BRASSEUR")
 					.antMatchers(HttpMethod.POST , "/api/achat").authenticated()
 					.antMatchers(HttpMethod.PUT , "/api/achat/**").authenticated()
 					.antMatchers(HttpMethod.DELETE , "/api/achat/**").authenticated()
@@ -55,7 +54,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 					.antMatchers(HttpMethod.DELETE, "/api/evenement/**").hasRole("BRASSEUR")
 					
 					// InfoReglement :
-					.antMatchers("/api/InfoReglement/**").authenticated()
+					.antMatchers("/api/infoReglement/**").authenticated()
 					
 					// Ingredient :
 					.antMatchers("/api/ingredient/**").hasRole("BRASSEUR")

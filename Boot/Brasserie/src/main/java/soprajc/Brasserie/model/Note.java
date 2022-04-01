@@ -34,6 +34,8 @@ public class Note {
 	@JsonView(JsonViews.Common.class)
 	private String commentaire;
 	
+	//Client
+	
 	@Version
 	protected int version;
 	

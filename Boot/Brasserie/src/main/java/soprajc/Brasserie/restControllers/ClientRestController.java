@@ -1,14 +1,18 @@
 package soprajc.Brasserie.restControllers;
 
+import java.lang.reflect.Field;
 import java.util.List;
+import java.util.Map;
 
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.util.ReflectionUtils;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
@@ -20,6 +24,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.fasterxml.jackson.annotation.JsonView;
 
 import soprajc.Brasserie.exception.ClientException;
+import soprajc.Brasserie.model.Client;
 import soprajc.Brasserie.model.Client;
 import soprajc.Brasserie.model.JsonViews;
 import soprajc.Brasserie.services.ClientService;
@@ -99,5 +104,29 @@ public class ClientRestController {
 		}
 		return clientService.save(client);
 	}
+	
+	@PatchMapping("/{id}")
+	@JsonView(JsonViews.Common.class)
+	public Client partialUpdate(@RequestBody Map<String, Object> fields, @PathVariable Integer id) {
+		Client client = clientService.getById(id);
+		fields.forEach((key, value) -> {
+				Field field = ReflectionUtils.findField(Client.class, key);
+				ReflectionUtils.makeAccessible(field);
+				ReflectionUtils.setField(field, client, value);
+		});
+		return clientService.save(client);
+	}
+	
+//	@PatchMapping("/updateResa/{id}")
+//	@JsonView(JsonViews.Common.class)
+//	public Client updateResa(@RequestBody Map<String, Object> fields, @PathVariable Integer id) {
+//		Client client = clientService.getById(id);
+//		fields.forEach((key, value) -> {
+//				Field field = ReflectionUtils.findField(Client.class, key);
+//				ReflectionUtils.makeAccessible(field);
+//				ReflectionUtils.setField(field, client, value);
+//		});
+//		return clientService.save(client);
+//	}
 
 }

@@ -32,14 +32,6 @@ public class Snack extends Produit{
 		this.bieres = bieres;
 	}
 	
-	public Snack(String nom, String description, double prix,  int stock, Integer points) {
-		super(nom, description, prix, stock, points);
-	}
-	
-	public Snack(Integer id, String nom, String description, double prix,  int stock, Integer points) {
-		super(id, nom, description, prix, points);
-	}
-	
 	
 	//Constructeur test
 	public Snack(String nom, double prix) {
