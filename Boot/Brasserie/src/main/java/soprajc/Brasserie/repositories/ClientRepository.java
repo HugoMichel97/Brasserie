@@ -31,4 +31,6 @@ public interface ClientRepository extends JpaRepository<Client, Integer>{
 
 	@Query("select c from Client c where c.fidelite<=:fidelite")
 	Optional<Client> findByFideliteInf(@Param("fidelite") int fidelite);
+	
+	Optional<Client> findByMail(@Param("mail") String mail);
 }
