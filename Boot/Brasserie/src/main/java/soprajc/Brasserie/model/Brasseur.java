@@ -87,13 +87,6 @@ public class Brasseur extends Compte{
 	public void setStock(List<Ingredient> stock) {
 		this.stock = stock;
 	}
-
-	// toString
-	@Override
-	public String toString() {
-		return "Brasseur [recettes=" + recettes + ", depenses=" + depenses + ", tresorerie=" + tresorerie + ", clients="
-				+ clients + ", evenements=" + evenements + ", stock=" + stock + "]";
-	}
 	
 	// methods
 	@Override

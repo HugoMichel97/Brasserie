@@ -1,5 +1,7 @@
 package soprajc.Brasserie.model;
 
+import java.util.Objects;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.ForeignKey;
@@ -91,7 +93,22 @@ public class Achat {
 	public void setVersion(int version) {
 		this.version = version;
 	}
-	
-	
-	
+
+	// method
+	@Override
+	public int hashCode() {
+		return Objects.hash(id_achat);
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Achat other = (Achat) obj;
+		return Objects.equals(id_achat, other.id_achat);
+	}
 }
