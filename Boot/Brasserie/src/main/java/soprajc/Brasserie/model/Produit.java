@@ -36,32 +36,32 @@ public abstract class Produit {
 	@Column(name="id_produit")
 	@JsonView(JsonViews.Common.class)
 	protected Integer id;
-	
+
 	@NotEmpty
 	@Column(length=25)
 	@JsonView(JsonViews.Common.class)
 	protected String nom;
-	
+
 	@Column(length=300)
 	@JsonView(JsonViews.Common.class)
 	protected String description;
-	
+
 	@NotNull
 	@JsonView(JsonViews.Common.class)
 	protected Double prix;
-	
+
 	@NotNull
 	@JsonView(JsonViews.Common.class)
 	protected Integer stock;
-	
+
 	@JsonView(JsonViews.Common.class)
 	protected int points;
-	
+
 	@Version
 	protected int version;
-	
+
 	public Produit() {}
-	
+
 	public Produit(String nom, String description, Double prix, Integer stock, Integer points) {
 		this.nom = nom;
 		this.prix = prix;
@@ -70,7 +70,7 @@ public abstract class Produit {
 		this.points = points;
 
 	}
-	
+
 	public Produit(Integer id, String nom, String description, Double prix, Integer stock, Integer points) {
 		this.id = id;
 		this.nom = nom;
@@ -80,7 +80,7 @@ public abstract class Produit {
 		this.points = points;
 
 	}
-	
+
 	public Produit(Integer id, String nom, String description, Double prix, Integer stock) {
 		this.id = id;
 		this.nom = nom;
@@ -89,17 +89,17 @@ public abstract class Produit {
 		this.stock = stock;
 
 	}
-	
-	
+
+
 	//Constructeur snack (sans fid�lit�)
 	public Produit(String nom, String description, Double prix, Integer stock) {
 		this.nom = nom;
 		this.prix = prix;
 		this.description = description;
 		this.stock = stock;
-		
+
 	}
-	
+
 	// Constructeur test
 	public Produit(String nom, Double prix) {
 		this.nom = nom;
@@ -136,7 +136,7 @@ public abstract class Produit {
 	public void setStock(Integer stock) {
 		this.stock = stock;
 	}
-	
+
 
 	public Integer getId() {
 		return id;
@@ -145,7 +145,7 @@ public abstract class Produit {
 	public void setId(Integer id) {
 		this.id = id;
 	}
-	
+
 	public int getVersion() {
 		return version;
 	}
@@ -153,7 +153,7 @@ public abstract class Produit {
 	public void setVersion(int version) {
 		this.version = version;
 	}
-	
+
 
 	public Integer getPoints() {
 		return points;
@@ -163,7 +163,7 @@ public abstract class Produit {
 		this.points = points;
 	}
 
-	
+
 	@Override
 	public int hashCode() {
 		return Objects.hash(id);
@@ -180,12 +180,4 @@ public abstract class Produit {
 		Produit other = (Produit) obj;
 		return Objects.equals(id, other.id);
 	}
-
-	@Override
-	public String toString() {
-		return "Produits [id=" + id + ", nom=" + nom + ", description=" + description + ", prix=" + prix + ", stock="
-				+ stock + "]";
-	}
-	
-	
 }

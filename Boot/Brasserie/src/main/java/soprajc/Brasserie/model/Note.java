@@ -114,13 +114,4 @@ public class Note {
 		Note other = (Note) obj;
 		return Objects.equals(id_note, other.id_note);
 	}
-
-	@Override
-	public String toString() {
-		return "Note [id_note=" + id_note + ", biere=" + biere + ", note=" + note + ", commentaire=" + commentaire
-				+ "]";
-	}
-
-	
-	
 }

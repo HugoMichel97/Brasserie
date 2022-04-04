@@ -91,12 +91,4 @@ public class Biere extends Produit {
 	public void setRecette(List<Ingredient> recette) {
 		this.recette = recette;
 	}
-
-	// toString
-	@Override
-	public String toString() {
-		return "Biere [notes=" + notes + ", suggestions=" + suggestions + "]";
-	}
-
-
 }

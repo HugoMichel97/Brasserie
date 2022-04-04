@@ -3,14 +3,13 @@ package soprajc.Brasserie.model;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.List;
+import java.util.Objects;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Version;
@@ -19,45 +18,45 @@ import com.fasterxml.jackson.annotation.JsonView;
 @Entity
 @Table(name="evenement")
 public class Evenement {
-	
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name="id_evenement")
 	@JsonView(JsonViews.Common.class)
 	private Integer id;
-	
+
 	@JsonView(JsonViews.Common.class)
 	private LocalDate date;
-	
+
 	@JsonView(JsonViews.Common.class)
 	private LocalTime heure;
-	
+
 	@JsonView(JsonViews.Common.class)
 	@Column(length=25)
 	private String libelle;
-	
+
 	@JsonView(JsonViews.Common.class)
 	private double prix;
-	
+
 	@JsonView(JsonViews.Common.class)
 	private int ptsRequis = 0;
-	
+
 	@JsonView(JsonViews.Common.class)
 	@Column(length=300)
 	private String description;
-	
+
 	private transient Brasseur brasseur;
-	
+
 	@OneToMany(mappedBy = "evt")
 	private List<Reservation> reservations;
-	
+
 	@Version
 	private int version;
 
 	public Evenement() {
-		
+
 	}
-	
+
 	public Evenement(LocalDate date, LocalTime heure, String libelle, double prix, int ptsRequis, String description,
 			Brasseur brasseur, List<Reservation> reservations) {
 		this.date = date;
@@ -69,7 +68,7 @@ public class Evenement {
 		this.brasseur = brasseur;
 		this.reservations = reservations;
 	}
-	
+
 	public Evenement(LocalDate date, LocalTime heure, String libelle, double prix, int ptsRequis, String description,
 			Brasseur brasseur) {
 		this.date = date;
@@ -81,17 +80,17 @@ public class Evenement {
 		this.brasseur = brasseur;
 	}
 
-	
-	
-	 public Integer getId() {
-	        return id;
-	    }
 
 
-	    public void setId(Integer id) {
-	        this.id = id;
-	    }
-	    
+	public Integer getId() {
+		return id;
+	}
+
+
+	public void setId(Integer id) {
+		this.id = id;
+	}
+
 	public LocalDate getDate() {
 		return date;
 	}
@@ -155,7 +154,7 @@ public class Evenement {
 	public void setReservations(List<Reservation> reservations) {
 		this.reservations = reservations;
 	}
-	
+
 	public int getVersion() {
 		return version;
 	}
@@ -164,18 +163,21 @@ public class Evenement {
 		this.version = version;
 	}
 
+	// method
 	@Override
-	public String toString() {
-		return "Evenement [id=" + id + ", date=" + date + ", heure=" + heure + ", libelle=" + libelle + ", prix=" + prix
-				+ ", ptsRequis=" + ptsRequis + ", description=" + description + ", brasseur=" + brasseur
-				+ ", reservations=" + reservations + "]";
+	public int hashCode() {
+		return Objects.hash(id);
 	}
 
-	
-	
-	
-	
-	
-	
-	
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Evenement other = (Evenement) obj;
+		return Objects.equals(id, other.id);
+	}
 }

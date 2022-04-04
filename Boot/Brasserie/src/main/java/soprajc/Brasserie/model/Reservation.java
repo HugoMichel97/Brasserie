@@ -1,5 +1,7 @@
 package soprajc.Brasserie.model;
 
+import java.util.Objects;
+
 import javax.persistence.Entity;
 import javax.persistence.ForeignKey;
 import javax.persistence.GeneratedValue;
@@ -73,13 +75,24 @@ public class Reservation {
 		this.version = version;
 	}
 
-	// toString
+	// method
 	@Override
-	public String toString() {
-		return "Reservation [client=" + client + ", evt=" + evt + "]";
+	public int hashCode() {
+		return Objects.hash(id);
 	}
 
-	// methods
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Reservation other = (Reservation) obj;
+		return Objects.equals(id, other.id);
+	}
+
 	public void confirmerResa() {
 
 	}
