@@ -12,6 +12,7 @@ import javax.persistence.Id;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
 import javax.persistence.OneToMany;
+import javax.persistence.SequenceGenerator;
 import javax.persistence.Version;
 import javax.validation.constraints.NotEmpty;
 
@@ -23,19 +24,21 @@ import com.fasterxml.jackson.annotation.JsonView;
 
 @Entity
 @Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
+@SequenceGenerator(name="seqComptes", sequenceName = "seq_comptes", initialValue = 1, allocationSize = 1)
 public abstract class Compte implements UserDetails {
 	
 	@Id
-	@GeneratedValue(strategy = GenerationType.TABLE)
+	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator="seqComptes")
 	@JsonView(JsonViews.Common.class)
 	protected Integer id;
 	
 	@NotEmpty
-	@Column(unique=true)
+	@Column(unique=true, nullable=false, length=100)
 	@JsonView(JsonViews.Common.class)
 	protected String mail;
 	
 	@NotEmpty
+	@Column(nullable=false, length=225)
 	protected String password;
 	
 	@OneToMany(mappedBy = "id_client")

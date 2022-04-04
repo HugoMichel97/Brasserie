@@ -1,27 +1,43 @@
 package soprajc.Brasserie.model;
 
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Objects;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
-import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
+import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
+
+import org.springframework.format.annotation.DateTimeFormat;
 
 import com.fasterxml.jackson.annotation.JsonView;
 
 @Entity
+@Table(name="client")
 public class Client extends Compte {
 	
 	@JsonView(JsonViews.Common.class)
+	@Column(length=25)
 	private String nom;
+	
 	@JsonView(JsonViews.Common.class)
+	@Column(length=25)
 	private String prenom;
+	
 	@JsonView(JsonViews.Common.class)
+	@Column(length=12)
 	private String tel;
+	
 	@JsonView(JsonViews.Common.class)
 	private int fidelite = 0;
+	
+	@JsonView(JsonViews.Common.class)
+	@NotNull
+	@Column(name="date_naissance", nullable=false)
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
+	private LocalDate naissance;
 	
 	@OneToMany(mappedBy = "client")
 	private List<InfoReglement> reglements;
@@ -33,20 +49,24 @@ public class Client extends Compte {
 	// constructors
 	public Client() {}
 	
-	public Client(Integer id, String mail, String password, 
-			List<Achat> achats, String nom, String prenom, String tel, int fidelite,
-			List<InfoReglement> reglements, List<Reservation> reservations) {
+	public Client(Integer id, String mail, String password, List<Achat> achats, String nom, String prenom, String tel,
+			int fidelite, LocalDate naissance, List<InfoReglement> reglements, List<Reservation> reservations) {
 		super(id, mail, password, achats);
 		this.nom = nom;
 		this.prenom = prenom;
 		this.tel = tel;
 		this.fidelite = fidelite;
+		this.naissance = naissance;
 		this.reglements = reglements;
 		this.reservations = reservations;
 	}
-	
-	public Client(String mail, String password) {
+
+	public Client(String mail, String password, String nom, String prenom, String tel, LocalDate naissance) {
 		super(mail, password);
+		this.nom = nom;
+		this.prenom = prenom;
+		this.tel = tel;
+		this.naissance = naissance;
 	}
 
 	// getters-setters
@@ -76,6 +96,13 @@ public class Client extends Compte {
 	}
 	public void setFidelite(int fidelite) {
 		this.fidelite = fidelite;
+	}
+
+	public LocalDate getNaissance() {
+		return naissance;
+	}
+	public void setNaissance(LocalDate naissance) {
+		this.naissance = naissance;
 	}
 
 	public List<InfoReglement> getReglements() {

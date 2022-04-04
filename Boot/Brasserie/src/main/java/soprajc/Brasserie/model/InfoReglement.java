@@ -4,6 +4,7 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
+import javax.persistence.ForeignKey;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -25,7 +26,7 @@ public class InfoReglement {
 	private Integer id;
 	
 	@ManyToOne
-	@JoinColumn(name="client_fk")
+	@JoinColumn(name="client_fk", foreignKey = @ForeignKey(name="reglement_client_fk"))
 	@NotNull
 	@JsonView(JsonViews.InfoReglement.class)
 	private Client client;
@@ -38,20 +39,28 @@ public class InfoReglement {
 	
 	@NotNull
 	@JsonView(JsonViews.InfoReglement.class)
+	@Column(length=16)
 	private String num;
+	
 	@NotNull
 	@JsonView(JsonViews.InfoReglement.class)
+	@Column(length=50)
 	private String nom;
+	
 	@NotNull
 	@JsonView(JsonViews.InfoReglement.class)
+	@Column(length=5)
 	private String dateValid;
+	
+	@NotNull
+	@JsonView(JsonViews.InfoReglement.class)
+	@Column(length=100)
+	private String identifiant_paypal;
 	
 	@Version
 	private int version;
 	
-	public InfoReglement() {
-		
-	}
+	public InfoReglement() {}
 
 	public InfoReglement(Client client, String num, String nom, String dateValid) {
 		this.client = client;
@@ -59,6 +68,16 @@ public class InfoReglement {
 		this.num = num;
 		this.nom = nom;
 		this.dateValid = dateValid;
+		this.identifiant_paypal = "";
+	}
+	
+	public InfoReglement(Client client, String identifiant_paypal) {
+		this.client = client;
+		this.mode = Reglement.PayPal;
+		this.num = "";
+		this.nom = "";
+		this.dateValid = "";
+		this.identifiant_paypal = identifiant_paypal;
 	}
 
 	public Integer getId() {
@@ -109,6 +128,14 @@ public class InfoReglement {
 		this.dateValid = dateValid;
 	}
 
+	public String getIdentifiant_paypal() {
+		return identifiant_paypal;
+	}
+	
+	public void setIdentifiant_paypal(String identifiant_paypal) {
+		this.identifiant_paypal = identifiant_paypal;
+	}
+
 	public int getVersion() {
 		return version;
 	}
@@ -116,10 +143,4 @@ public class InfoReglement {
 	public void setVersion(int version) {
 		this.version = version;
 	}
-
-	@Override
-	public String toString() {
-		return "InfoReglement [id=" + id + ", client=" + client + ", mode=" + mode + ", num=" + num + ", nom=" + nom
-				+ ", dateValid=" + dateValid + "]";
-	}	
 }

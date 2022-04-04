@@ -9,7 +9,6 @@ import javax.persistence.Version;
 
 @Entity
 @DiscriminatorValue("Snack")
-
 public class Snack extends Produit{
 
 	@ManyToMany(mappedBy= "suggestions")

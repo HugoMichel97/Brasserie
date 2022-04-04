@@ -2,18 +2,21 @@ package soprajc.Brasserie.model;
 
 import java.util.Objects;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.Table;
 import javax.persistence.Version;
 import javax.validation.constraints.NotNull;
 
 import com.fasterxml.jackson.annotation.JsonView;
 
 @Entity
+@Table(name="note")
 public class Note {
 	
 	@Id
@@ -32,6 +35,7 @@ public class Note {
 	private Double note;
 	
 	@JsonView(JsonViews.Common.class)
+	@Column(length=300)
 	private String commentaire;
 	
 	//Client

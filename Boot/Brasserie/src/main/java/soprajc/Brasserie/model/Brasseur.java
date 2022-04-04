@@ -5,10 +5,12 @@ import java.util.Objects;
 
 import javax.persistence.Entity;
 import javax.persistence.OneToMany;
+import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonView;
 
 @Entity
+@Table(name="brasseur")
 public class Brasseur extends Compte{
 
 	@JsonView(JsonViews.Common.class)

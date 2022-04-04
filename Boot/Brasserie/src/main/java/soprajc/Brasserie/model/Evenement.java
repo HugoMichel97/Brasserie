@@ -12,10 +12,12 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.Table;
 import javax.persistence.Version;
 
 import com.fasterxml.jackson.annotation.JsonView;
 @Entity
+@Table(name="evenement")
 public class Evenement {
 	
 	@Id
@@ -31,6 +33,7 @@ public class Evenement {
 	private LocalTime heure;
 	
 	@JsonView(JsonViews.Common.class)
+	@Column(length=25)
 	private String libelle;
 	
 	@JsonView(JsonViews.Common.class)
@@ -40,6 +43,7 @@ public class Evenement {
 	private int ptsRequis = 0;
 	
 	@JsonView(JsonViews.Common.class)
+	@Column(length=300)
 	private String description;
 	
 	private transient Brasseur brasseur;

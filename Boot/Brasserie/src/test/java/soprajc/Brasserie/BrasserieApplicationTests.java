@@ -113,9 +113,8 @@ class BrasserieApplicationTests {
 		ingredientService.update(i3);
 		
 		// Clients
-		Client c1 = new Client("hugo@michel", passwordEncoder.encode("hugo"));
-		c1.setNom("Michel");
-		c1.setPrenom("Hugo");
+		Client c1 = new Client("hugo@michel", passwordEncoder.encode("hugo"), "Michel", "Hugo", null,
+				LocalDate.of(1997, 1, 1));
 		c1.setFidelite(10);
 		Reservation r2 = new Reservation(c1, evt2);
 		List<Reservation> rListc1 = new ArrayList<Reservation>();
@@ -131,10 +130,8 @@ class BrasserieApplicationTests {
 		resaService.create(r2);
 		achatService.create(a5);
 		
-		Client c2 = new Client("amine@berrada", passwordEncoder.encode("amine"));
-		c2.setNom("Berrada");
-		c2.setPrenom("Amine");
-		c2.setTel("0643675489");
+		Client c2 = new Client("amine@berrada", passwordEncoder.encode("amine"), "Berrada", "Amine", "0643675489",
+				LocalDate.of(1997, 1, 1));
 		c2.setFidelite(5000);
 		Reservation r1 = new Reservation(c2, evt1);
 		Reservation r6 = new Reservation(c2, evt2);
@@ -154,10 +151,8 @@ class BrasserieApplicationTests {
 		achatService.create(a2);
 		achatService.create(a3);
 		
-		Client c3 = new Client("mohamed@khamassi", passwordEncoder.encode("mohamed"));
-		c3.setNom("Khamassi");
-		c3.setPrenom("Mohamed");
-		c3.setTel("0642424242");
+		Client c3 = new Client("mohamed@khamassi", passwordEncoder.encode("mohamed"), "Khamassi", "Mohamed", "0642424242",
+				LocalDate.of(1997, 1, 1));
 		c3.setFidelite(50);
 		InfoReglement ir1 = new InfoReglement(c3, "4242424242424242", "Khamassi", "03/23");
 		List<InfoReglement> irList = new ArrayList<InfoReglement>();
@@ -176,11 +171,13 @@ class BrasserieApplicationTests {
 		infoRegService.create(ir1);
 		achatService.create(a1);
 		
-		Client c4 = new Client("anais@lharidon", passwordEncoder.encode("anais"));
-		c4.setNom("L'Haridon");
-		c4.setPrenom("Anaïs");
-		c4.setTel("0687945632");
+		Client c4 = new Client("anais@lharidon", passwordEncoder.encode("anais"), "L'Haridon", "Anaïs", "0687945632",
+				LocalDate.of(1997, 5, 1));
 		c4.setFidelite(10);
+		InfoReglement ir2 = new InfoReglement(c4, "anais@lharidon");
+		List<InfoReglement> irListc4 = new ArrayList<InfoReglement>();
+		irListc4.add(ir2);
+		c4.setReglements(irListc4);
 		Reservation r4 = new Reservation(c4, evt2);
 		Reservation r5 = new Reservation(c4, evt1);
 		List<Reservation> rListc4 = new ArrayList<Reservation>();
@@ -195,6 +192,7 @@ class BrasserieApplicationTests {
 		noteService.create(n3);
 		resaService.create(r4);
 		resaService.create(r5);
+		infoRegService.create(ir2);
 		achatService.create(a4);
 		
 		List<Reservation> rListevt1 = new ArrayList<Reservation>();

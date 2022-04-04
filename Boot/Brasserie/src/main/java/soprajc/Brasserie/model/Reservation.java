@@ -1,18 +1,20 @@
 package soprajc.Brasserie.model;
 
 import javax.persistence.Entity;
+import javax.persistence.ForeignKey;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToOne;
+import javax.persistence.Table;
 import javax.persistence.Version;
 import javax.validation.constraints.NotNull;
 
 import com.fasterxml.jackson.annotation.JsonView;
 
 @Entity
+@Table(name="reservation")
 public class Reservation {
 	@Id
 	@GeneratedValue(strategy = GenerationType.TABLE)
@@ -20,13 +22,13 @@ public class Reservation {
 	private Integer id;
 
 	@ManyToOne
-	@JoinColumn(name="client_fk")
+	@JoinColumn(name="client_fk", foreignKey = @ForeignKey(name="reservation_client_fk"))
 	@NotNull
 	@JsonView(JsonViews.Reservation.class)
 	private Client client;
 
 	@ManyToOne
-	@JoinColumn(name="evt_fk")
+	@JoinColumn(name="evt_fk", foreignKey = @ForeignKey(name="reservation_evt_fk"))
 	@NotNull
 	@JsonView(JsonViews.Common.class)
 	private Evenement evt;

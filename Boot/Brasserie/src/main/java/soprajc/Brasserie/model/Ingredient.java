@@ -2,16 +2,19 @@ package soprajc.Brasserie.model;
 
 import java.util.List;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
+import javax.persistence.Table;
 import javax.persistence.Version;
 
 import com.fasterxml.jackson.annotation.JsonView;
 
 @Entity
+@Table(name="ingredient")
 public class Ingredient {
 	
 	@Id
@@ -20,6 +23,7 @@ public class Ingredient {
 	private Integer id_ingredient;
 	
 	@JsonView(JsonViews.Common.class)
+	@Column(length=100)
 	private String nom;
 	
 	@JsonView(JsonViews.Common.class)
