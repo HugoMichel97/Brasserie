@@ -1,17 +1,21 @@
 package soprajc.Brasserie.model;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.ForeignKey;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.Table;
 import javax.persistence.Version;
 import javax.validation.constraints.NotNull;
 
 import com.fasterxml.jackson.annotation.JsonView;
 
 @Entity
+@Table(name="achat")
 public class Achat {
 	
 	@Id
@@ -20,13 +24,13 @@ public class Achat {
 	private Integer id_achat;
 	
 	@ManyToOne
-	@JoinColumn(name="client_fk")
+	@JoinColumn(name="client_fk", foreignKey = @ForeignKey(name="achat_client_fk"))
 	@JsonView(JsonViews.Achat.class)
 	@NotNull
 	private Client id_client;
 	
 	@ManyToOne
-	@JoinColumn(name="produit_fk")
+	@JoinColumn(name="produit_fk", foreignKey = @ForeignKey(name="achat_produit_fk"))
 	@JsonView(JsonViews.Achat.class)
 	@NotNull
 	private Produit id_produit;

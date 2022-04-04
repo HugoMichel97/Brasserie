@@ -10,6 +10,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
+import javax.persistence.Table;
 import javax.persistence.Version;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
@@ -21,6 +22,7 @@ import com.fasterxml.jackson.annotation.JsonView;
 
 
 @Entity
+@Table(name="produit")
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 @DiscriminatorColumn(name="type_produit", columnDefinition = "enum('Biere', 'Snack')")
 @JsonTypeInfo(use= JsonTypeInfo.Id.NAME, include= JsonTypeInfo.As.PROPERTY, property="type")
@@ -36,9 +38,11 @@ public abstract class Produit {
 	protected Integer id;
 	
 	@NotEmpty
+	@Column(length=25)
 	@JsonView(JsonViews.Common.class)
 	protected String nom;
 	
+	@Column(length=300)
 	@JsonView(JsonViews.Common.class)
 	protected String description;
 	
