@@ -31,18 +31,20 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 				.authorizeHttpRequests()
 					// Achat :
 					.antMatchers(HttpMethod.GET , "/api/achat/**").hasRole("BRASSEUR")
-					.antMatchers(HttpMethod.POST , "/api/achat").authenticated()
-					.antMatchers(HttpMethod.PUT , "/api/achat/**").authenticated()
-					.antMatchers(HttpMethod.DELETE , "/api/achat/**").authenticated()
+					.antMatchers(HttpMethod.POST , "/api/achat").hasRole("CLIENT")
+					.antMatchers(HttpMethod.PUT , "/api/achat/**").hasRole("CLIENT")
+					.antMatchers(HttpMethod.DELETE , "/api/achat/**").hasRole("CLIENT")
+					.antMatchers(HttpMethod.PATCH).hasRole("CLIENT")
 					
 					// Client :
 					.antMatchers(HttpMethod.GET, "/api/client").hasRole("BRASSEUR")
 					.antMatchers(HttpMethod.GET, "/api/client/getResa").hasRole("BRASSEUR")
 					.antMatchers(HttpMethod.GET, "/api/client/getAchat").hasRole("BRASSEUR")
-					.antMatchers(HttpMethod.GET, "/api/client/**").authenticated()
+					.antMatchers(HttpMethod.GET, "/api/client/{id}/**").authenticated()
 					.antMatchers(HttpMethod.DELETE, "/api/client/**").hasRole("CLIENT")
 					.antMatchers(HttpMethod.PUT, "/api/client/**").hasRole("CLIENT")
 					.antMatchers(HttpMethod.POST, "/api/client").permitAll()
+					.antMatchers(HttpMethod.PATCH).authenticated()
 					
 					// Brasseur :
 					.antMatchers("/api/brasseur/**").hasRole("BRASSEUR")
@@ -52,9 +54,10 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 					.antMatchers(HttpMethod.POST, "/api/evenement").hasRole("BRASSEUR")
 					.antMatchers(HttpMethod.PUT, "/api/evenement/**").hasRole("BRASSEUR")
 					.antMatchers(HttpMethod.DELETE, "/api/evenement/**").hasRole("BRASSEUR")
+					.antMatchers(HttpMethod.PATCH).hasRole("BRASSEUR")
 					
 					// InfoReglement :
-					.antMatchers("/api/infoReglement/**").authenticated()
+					.antMatchers("/api/infoReglement/**").hasRole("CLIENT")
 					
 					// Ingredient :
 					.antMatchers("/api/ingredient/**").hasRole("BRASSEUR")
@@ -76,6 +79,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 					.antMatchers(HttpMethod.POST, "/api/reservation").hasRole("CLIENT")
 					.antMatchers(HttpMethod.PUT, "/api/reservation/**").hasRole("CLIENT")
 					.antMatchers(HttpMethod.DELETE, "/api/reservation/**").hasRole("CLIENT")
+					.antMatchers(HttpMethod.PATCH).hasRole("CLIENT")
 					
 				.and()
 				.httpBasic();
