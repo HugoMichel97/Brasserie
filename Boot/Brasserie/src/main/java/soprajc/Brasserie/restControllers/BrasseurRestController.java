@@ -9,6 +9,7 @@ import java.util.Map;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.util.ReflectionUtils;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.PatchMapping;
@@ -32,6 +33,9 @@ public class BrasseurRestController {
 	@Autowired
 	private BrasseurService brasseurService;
 	
+	@Autowired
+	private PasswordEncoder passwordEncoder;
+	
 	@PutMapping("/{id}")
 	@JsonView(JsonViews.Common.class)
 	public Brasseur update(@PathVariable Integer id, @Valid @RequestBody Brasseur brasseur, BindingResult br) {
@@ -51,9 +55,13 @@ public class BrasseurRestController {
 	public Brasseur partialUpdate(@RequestBody Map<String, Object> fields, @PathVariable Integer id) {
 		Brasseur brasseur = brasseurService.getById(id);
 		fields.forEach((key, value) -> {
+			if(key.equals("password")) {
+				brasseur.setPassword(passwordEncoder.encode((String) value));
+			} else {
 				Field field = ReflectionUtils.findField(Brasseur.class, key);
 				ReflectionUtils.makeAccessible(field);
 				ReflectionUtils.setField(field, brasseur, value);
+			}
 		});
 		return brasseurService.save(brasseur);
 	}
