@@ -43,7 +43,7 @@ public class Client extends Compte {
 	
 	@Enumerated(EnumType.STRING)
 	@Column(columnDefinition = "ENUM('vide', 'en_attente', 'validee', 'prete', 'recuperee')")
-	@JsonView(JsonViews.Reservation.class)
+	@JsonView(JsonViews.Common.class)
 	private StatutCommande statut = StatutCommande.vide;
 	
 	@OneToMany(mappedBy = "client")

@@ -14,8 +14,12 @@ public class ClientService {
 	
 	@Autowired
 	private ClientRepository clientRepository;
-	//@Autowired
-	//private ReservationRepository reservationRepository;
+	@Autowired
+	private ReservationService resaService;
+	@Autowired
+	private InfoReglementService infoRegService;
+	@Autowired
+	private AchatService achatService;
 	
 	public void create(Client c) {
 		if (c.getId() != null) {
@@ -48,6 +52,17 @@ public class ClientService {
 	public List<Client> getAllWithAchat() {
 		return clientRepository.findAllWithAchat();
 	}
+	
+	public List<Client> getByFidelite(int fidelite) {
+		return clientRepository.findByFidelite(fidelite);
+	}
+	public List<Client> getByFideliteSup(int fidelite) {
+		return clientRepository.findByFideliteSup(fidelite);
+	}
+	
+	public List<Client> getByFideliteInf(int fidelite) {
+		return clientRepository.findByFideliteSup(fidelite);
+	}
 
 	public Client getById(Integer id) {
 		return clientRepository.findById(id).orElseThrow(() -> {
@@ -66,28 +81,12 @@ public class ClientService {
 			throw new ClientException("Id inconnu.");
 		});
 	}
-	
-	public Client getByFidelite(int fidelite) {
-		return clientRepository.findByFidelite(fidelite).orElseThrow(() -> {
-			throw new ClientException("Pas de client avec "+fidelite+" points de fid�lit�.");
-		});
-	}
-	
-	public Client getByFideliteSup(int fidelite) {
-		return clientRepository.findByFideliteSup(fidelite).orElseThrow(() -> {
-			throw new ClientException("Pas de client avec plus de "+fidelite+" points de fid�lit�.");
-		});
-	}
-	
-	public Client getByFideliteInf(int fidelite) {
-		return clientRepository.findByFideliteSup(fidelite).orElseThrow(() -> {
-				throw new ClientException("Pas de client avec moins de "+fidelite+" points de fid�lit�.");
-			});
-	}
 
 	public void delete(Client c) {
 		Client clientEnBase = getById(c.getId());
-		//reservationRepository.deleteByClient(clientEnBase);
+		resaService.deleteByClient(clientEnBase);
+		infoRegService.deleteByClient(clientEnBase);
+		achatService.deleteByClient(clientEnBase);
 		clientRepository.delete(clientEnBase);
 	}
 

@@ -24,13 +24,13 @@ public interface ClientRepository extends JpaRepository<Client, Integer>{
 	Optional<Client> findByIdWithAchats(@Param("id") Integer id);
 	
 	@Query("select c from Client c where c.fidelite=:fidelite")
-	Optional<Client> findByFidelite(@Param("fidelite") int fidelite);
+	List<Client> findByFidelite(@Param("fidelite") int fidelite);
 	
 	@Query("select c from Client c where c.fidelite>=:fidelite")
-	Optional<Client> findByFideliteSup(@Param("fidelite") int fidelite);
+	List<Client> findByFideliteSup(@Param("fidelite") int fidelite);
 
 	@Query("select c from Client c where c.fidelite<=:fidelite")
-	Optional<Client> findByFideliteInf(@Param("fidelite") int fidelite);
+	List<Client> findByFideliteInf(@Param("fidelite") int fidelite);
 	
 	Optional<Client> findByMail(@Param("mail") String mail);
 }
