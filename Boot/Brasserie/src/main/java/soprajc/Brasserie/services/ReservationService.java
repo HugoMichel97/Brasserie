@@ -6,6 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import soprajc.Brasserie.exception.ReservationException;
+import soprajc.Brasserie.model.Client;
+import soprajc.Brasserie.model.Evenement;
 import soprajc.Brasserie.model.Reservation;
 import soprajc.Brasserie.repositories.ReservationRepository;
 @Service
@@ -43,7 +45,6 @@ public class ReservationService {
 	}
 	public void delete(Reservation r) {
 		Reservation reservationEnBase = getById(r.getId());
-//		clientRepository.deleteByClient(reservationEnBase);
 		reservationRepository.delete(reservationEnBase);
 	}
 	
@@ -51,6 +52,14 @@ public class ReservationService {
 		Reservation reservation = new Reservation();
 		reservation.setId(id);
 		reservationRepository.delete(reservation);
+	}
+	
+	public void deleteByClient(Client c) {
+		reservationRepository.deleteByClient(c);
+	}
+	
+	public void deleteByEvt(Evenement evt) {
+		reservationRepository.deleteByEvt(evt);
 	}
 	
 	public Reservation save(Reservation reservation) {
