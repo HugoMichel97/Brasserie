@@ -51,8 +51,7 @@ public abstract class Compte implements UserDetails {
 	// constructors
 	public Compte() {}
 	
-	public Compte(Integer id, String mail, String password, List<Achat> achats) {
-		this.id = id;
+	public Compte(String mail, String password, List<Achat> achats) {
 		this.mail = mail;
 		this.password = password;
 		this.achats = achats;

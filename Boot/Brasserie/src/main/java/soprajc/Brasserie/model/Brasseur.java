@@ -29,10 +29,10 @@ public class Brasseur extends Compte{
 	// constructors
 	public Brasseur() {}
 	
-	public Brasseur(Integer id, String mail, String password, double recettes,
+	public Brasseur(String mail, String password, double recettes,
 			double depenses, double tresorerie, List<Client> clients, List<Evenement> evenements,
 			List<Ingredient> stock) {
-		super(id, mail, password, null);
+		super(mail, password, null);
 		this.recettes = recettes;
 		this.depenses = depenses;
 		this.tresorerie = tresorerie;

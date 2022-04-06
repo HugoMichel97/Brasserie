@@ -6,6 +6,8 @@ import java.util.Objects;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
@@ -39,6 +41,11 @@ public class Client extends Compte {
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private LocalDate naissance;
 	
+	@Enumerated(EnumType.STRING)
+	@Column(columnDefinition = "ENUM('vide', 'en_attente', 'validee', 'prete', 'recuperee')")
+	@JsonView(JsonViews.Reservation.class)
+	private StatutCommande statut = StatutCommande.vide;
+	
 	@OneToMany(mappedBy = "client")
 	private List<InfoReglement> reglements;
 	
@@ -49,9 +56,9 @@ public class Client extends Compte {
 	// constructors
 	public Client() {}
 	
-	public Client(Integer id, String mail, String password, List<Achat> achats, String nom, String prenom, String tel,
+	public Client(String mail, String password, List<Achat> achats, String nom, String prenom, String tel,
 			int fidelite, LocalDate naissance, List<InfoReglement> reglements, List<Reservation> reservations) {
-		super(id, mail, password, achats);
+		super(mail, password, achats);
 		this.nom = nom;
 		this.prenom = prenom;
 		this.tel = tel;
@@ -59,6 +66,9 @@ public class Client extends Compte {
 		this.naissance = naissance;
 		this.reglements = reglements;
 		this.reservations = reservations;
+		if(!achats.isEmpty()) {
+			this.statut = StatutCommande.en_attente;
+		}
 	}
 
 	public Client(String mail, String password, String nom, String prenom, String tel, LocalDate naissance) {
@@ -103,6 +113,13 @@ public class Client extends Compte {
 	}
 	public void setNaissance(LocalDate naissance) {
 		this.naissance = naissance;
+	}
+
+	public StatutCommande getStatut() {
+		return statut;
+	}
+	public void setStatut(StatutCommande statut) {
+		this.statut = statut;
 	}
 
 	public List<InfoReglement> getReglements() {

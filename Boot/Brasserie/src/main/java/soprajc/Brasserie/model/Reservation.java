@@ -2,7 +2,10 @@ package soprajc.Brasserie.model;
 
 import java.util.Objects;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.ForeignKey;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -34,6 +37,11 @@ public class Reservation {
 	@NotNull
 	@JsonView(JsonViews.Common.class)
 	private Evenement evt;
+	
+	@Enumerated(EnumType.STRING)
+	@Column(columnDefinition = "ENUM('en_attente', 'validee')")
+	@JsonView(JsonViews.Reservation.class)
+	private StatutResa statut = StatutResa.en_attente;
 
 	@Version
 	private int version;
@@ -67,6 +75,12 @@ public class Reservation {
 	}
 	public void setEvt(Evenement evt) {
 		this.evt = evt;
+	}
+	public StatutResa getStatut() {
+		return statut;
+	}
+	public void setStatut(StatutResa statut) {
+		this.statut = statut;
 	}
 	public int getVersion() {
 		return version;
