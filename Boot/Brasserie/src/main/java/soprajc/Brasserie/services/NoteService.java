@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import soprajc.Brasserie.exception.NoteException;
+import soprajc.Brasserie.model.Client;
 import soprajc.Brasserie.model.Note;
 import soprajc.Brasserie.repositories.NoteRepository;
 
@@ -28,13 +29,16 @@ public class NoteService {
 		return noteRepository.findAll();
 	}
 	
+	public List<Note> getByClient(Client c){
+		return noteRepository.findByClient(c);
+	}
+	
 	public Note getById(Integer id) {
 		return noteRepository.findById(id).orElseThrow(()-> {throw new NoteException("Id inconnu");});
 	}
 
 	public void deleteById(Integer numero) { 
 		noteRepository.deleteById(numero);
-
 	}
 	
 	public Note save(Note note) {

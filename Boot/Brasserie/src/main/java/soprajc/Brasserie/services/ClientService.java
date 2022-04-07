@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import soprajc.Brasserie.exception.ClientException;
 import soprajc.Brasserie.model.Client;
+import soprajc.Brasserie.model.Note;
 import soprajc.Brasserie.repositories.ClientRepository;
 
 @Service
@@ -20,6 +21,8 @@ public class ClientService {
 	private InfoReglementService infoRegService;
 	@Autowired
 	private AchatService achatService;
+	@Autowired
+	private NoteService noteService;
 	
 	public void create(Client c) {
 		if (c.getId() != null) {
@@ -87,6 +90,11 @@ public class ClientService {
 		resaService.deleteByClient(clientEnBase);
 		infoRegService.deleteByClient(clientEnBase);
 		achatService.deleteByClient(clientEnBase);
+		List<Note> notes = noteService.getByClient(clientEnBase);
+		for(Note n : notes) {
+			n.setClient(null);
+			noteService.save(n);
+		}
 		clientRepository.delete(clientEnBase);
 	}
 

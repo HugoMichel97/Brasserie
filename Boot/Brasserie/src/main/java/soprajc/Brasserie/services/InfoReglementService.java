@@ -19,8 +19,6 @@ public class InfoReglementService {
 		if (ir.getId() != null) {
 			throw new InfoReglementException("L'id ne doit pas être defini.");
 		}
-		
-		
 		infoReglementRepository.save(ir);
 	}
 

@@ -54,7 +54,6 @@ public class AchatService {
 
 	public void deleteById(Integer id) { 
 		achatRepository.deleteById(id);
-
 	}
 
 	public void deleteByClient(Client c) {

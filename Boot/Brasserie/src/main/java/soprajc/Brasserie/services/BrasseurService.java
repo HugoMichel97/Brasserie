@@ -12,12 +12,6 @@ public class BrasseurService {
 	
 	@Autowired
 	private BrasseurRepository brasseurRepository;
-	@Autowired
-	private ClientService clientService;
-	@Autowired
-	private EvenementService evtService;
-	@Autowired
-	private IngredientService ingredientService;
 	
 	public Brasseur getById(Integer id) {
 		Brasseur brasseur = brasseurRepository.findById(id).orElseThrow(BrasseurException::new);

@@ -4,11 +4,13 @@ import java.util.Objects;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.ForeignKey;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.Version;
 import javax.validation.constraints.NotNull;
@@ -24,8 +26,13 @@ public class Note {
 	@JsonView(JsonViews.Common.class)
 	private Integer id_note;
 	
+	@OneToOne
+	@JoinColumn(name="id_client", foreignKey = @ForeignKey(name="note_client_fk"), nullable = true)
+	@JsonView(JsonViews.Note.class)
+	private Client client;
+	
 	@ManyToOne
-	@JoinColumn(name= "id_biere")
+	@JoinColumn(name= "id_biere", foreignKey = @ForeignKey(name="note_biere_fk"))
 	@JsonView(JsonViews.Note.class)
 	@NotNull
 	private Biere biere;
@@ -38,21 +45,21 @@ public class Note {
 	@Column(length=300)
 	private String commentaire;
 	
-	//Client
-	
 	@Version
 	protected int version;
 	
 	public Note() {}
 	
-	public Note(Biere biere, Double note) 
+	public Note(Client client, Biere biere, Double note) 
 	{
+		this.client = client;
 		this.biere= biere;
 		this.note=note;
 	}
 	
-	public Note(Biere biere, Double note, String commentaire) 
+	public Note(Client client, Biere biere, Double note, String commentaire) 
 	{
+		this.client = client;
 		this.biere= biere;
 		this.note=note;
 		this.commentaire = commentaire;
@@ -64,6 +71,14 @@ public class Note {
 
 	public void setId_note(Integer id_note) {
 		this.id_note = id_note;
+	}
+	
+	public Client getClient() {
+		return client;
+	}
+
+	public void setClient(Client client) {
+		this.client = client;
 	}
 
 	public Biere getBiere() {

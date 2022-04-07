@@ -124,7 +124,7 @@ class BrasserieApplicationTests {
 		List<Achat> aListc1 = new ArrayList<Achat>();
 		aListc1.add(a5);
 		c1.setAchats(aListc1);
-		Note n1 = new Note(biere, 3.0);
+		Note n1 = new Note(c1, biere, 3.0);
 		clientService.create(c1);
 		noteService.create(n1);
 		resaService.create(r2);
@@ -143,7 +143,7 @@ class BrasserieApplicationTests {
 		List<Achat> aListc2 = new ArrayList<Achat>();
 		Collections.addAll(aListc2, a2, a3);
 		c2.setAchats(aListc2);
-		Note n2 = new Note(biere, 5.0, "Très bonne bière");
+		Note n2 = new Note(c2, biere, 5.0, "Très bonne bière");
 		clientService.create(c2);
 		noteService.create(n2);
 		resaService.create(r1);
@@ -187,7 +187,7 @@ class BrasserieApplicationTests {
 		List<Achat> aListc4 = new ArrayList<Achat>();
 		aListc4.add(a4);
 		c4.setAchats(aListc4);
-		Note n3 = new Note(biere, 3.5, "Pas mal pour une bière aux fruits rouge");
+		Note n3 = new Note(c3, biere, 3.5, "Pas mal pour une bière aux fruits rouge");
 		clientService.create(c4);
 		noteService.create(n3);
 		resaService.create(r4);

@@ -30,10 +30,10 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 				.and()
 				.authorizeHttpRequests()
 					// Achat :
-					.antMatchers(HttpMethod.GET , "/api/achat/**").hasRole("BRASSEUR")
-					.antMatchers(HttpMethod.POST , "/api/achat").hasRole("CLIENT")
-					.antMatchers(HttpMethod.PUT , "/api/achat/**").hasRole("CLIENT")
-					.antMatchers(HttpMethod.DELETE , "/api/achat/**").hasRole("CLIENT")
+					.antMatchers(HttpMethod.GET ).hasRole("BRASSEUR")
+					.antMatchers(HttpMethod.POST).hasRole("CLIENT")
+					.antMatchers(HttpMethod.PUT).hasRole("CLIENT")
+					.antMatchers(HttpMethod.DELETE).hasRole("CLIENT")
 					.antMatchers(HttpMethod.PATCH).hasRole("CLIENT")
 					
 					// Client :
@@ -41,19 +41,19 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 					.antMatchers(HttpMethod.GET, "/api/client/getResa").hasRole("BRASSEUR")
 					.antMatchers(HttpMethod.GET, "/api/client/getAchat").hasRole("BRASSEUR")
 					.antMatchers(HttpMethod.GET, "/api/client/{id}/**").authenticated()
-					.antMatchers(HttpMethod.DELETE, "/api/client/**").hasRole("CLIENT")
-					.antMatchers(HttpMethod.PUT, "/api/client/**").hasRole("CLIENT")
-					.antMatchers(HttpMethod.POST, "/api/client").permitAll()
+					.antMatchers(HttpMethod.DELETE).hasRole("CLIENT")
+					.antMatchers(HttpMethod.PUT).hasRole("CLIENT")
+					.antMatchers(HttpMethod.POST).permitAll()
 					.antMatchers(HttpMethod.PATCH).authenticated()
 					
 					// Brasseur :
 					.antMatchers("/api/brasseur/**").hasRole("BRASSEUR")
 					
 					// Evenement :
-					.antMatchers(HttpMethod.GET, "/api/evenement/**").permitAll()
-					.antMatchers(HttpMethod.POST, "/api/evenement").hasRole("BRASSEUR")
-					.antMatchers(HttpMethod.PUT, "/api/evenement/**").hasRole("BRASSEUR")
-					.antMatchers(HttpMethod.DELETE, "/api/evenement/**").hasRole("BRASSEUR")
+					.antMatchers(HttpMethod.GET).permitAll()
+					.antMatchers(HttpMethod.POST).hasRole("BRASSEUR")
+					.antMatchers(HttpMethod.PUT).hasRole("BRASSEUR")
+					.antMatchers(HttpMethod.DELETE).hasRole("BRASSEUR")
 					.antMatchers(HttpMethod.PATCH).hasRole("BRASSEUR")
 					
 					// InfoReglement :
@@ -63,28 +63,29 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 					.antMatchers("/api/ingredient/**").hasRole("BRASSEUR")
 					
 					// Note :
-					.antMatchers(HttpMethod.GET, "/api/note/**").permitAll()
-					.antMatchers(HttpMethod.POST, "/api/note").hasRole("CLIENT")
-					.antMatchers(HttpMethod.PUT, "/api/note/**").hasRole("CLIENT")
-					.antMatchers(HttpMethod.DELETE, "/api/note/**").authenticated()
+					.antMatchers(HttpMethod.GET).permitAll()
+					.antMatchers(HttpMethod.POST).hasRole("CLIENT")
+					.antMatchers(HttpMethod.PUT).hasRole("CLIENT")
+					.antMatchers(HttpMethod.DELETE).authenticated()
+					.antMatchers(HttpMethod.PATCH).hasRole("CLIENT")
 					
 					// Produit :
-					.antMatchers(HttpMethod.GET, "/api/produit/**").permitAll()
-					.antMatchers(HttpMethod.POST, "/api/produit").hasRole("BRASSEUR")
-					.antMatchers(HttpMethod.PUT, "/api/produit/**").hasRole("BRASSEUR")
-					.antMatchers(HttpMethod.DELETE, "/api/produit/**").hasRole("BRASSEUR")
+					.antMatchers(HttpMethod.GET).permitAll()
+					.antMatchers(HttpMethod.POST).hasRole("BRASSEUR")
+					.antMatchers(HttpMethod.PUT).hasRole("BRASSEUR")
+					.antMatchers(HttpMethod.DELETE).hasRole("BRASSEUR")
+					.antMatchers(HttpMethod.PATCH).hasRole("BRASSEUR")
 					
 					// Reservation :
-					.antMatchers(HttpMethod.GET, "/api/reservation/**").hasRole("BRASSEUR")
-					.antMatchers(HttpMethod.POST, "/api/reservation").hasRole("CLIENT")
-					.antMatchers(HttpMethod.PUT, "/api/reservation/**").hasRole("CLIENT")
-					.antMatchers(HttpMethod.DELETE, "/api/reservation/**").hasRole("CLIENT")
+					.antMatchers(HttpMethod.GET).hasRole("BRASSEUR")
+					.antMatchers(HttpMethod.POST).hasRole("CLIENT")
+					.antMatchers(HttpMethod.PUT).hasRole("CLIENT")
+					.antMatchers(HttpMethod.DELETE).hasRole("CLIENT")
 					.antMatchers(HttpMethod.PATCH).hasRole("CLIENT")
 					
 				.and()
 				.httpBasic();
 		// @formatter:on
-
 	}
 	
 	@Autowired

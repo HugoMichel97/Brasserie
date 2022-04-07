@@ -49,9 +49,7 @@ public class ReservationService {
 	}
 	
 	public void deleteById(Integer id) {
-		Reservation reservation = new Reservation();
-		reservation.setId(id);
-		reservationRepository.delete(reservation);
+		reservationRepository.deleteById(id);
 	}
 	
 	public void deleteByClient(Client c) {
