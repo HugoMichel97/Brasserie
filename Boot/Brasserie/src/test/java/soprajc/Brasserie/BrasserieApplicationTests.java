@@ -75,9 +75,9 @@ class BrasserieApplicationTests {
 		
 		// Evt
 		Evenement evt1 = new Evenement(LocalDate.now(), LocalTime.now(), "Inauguration", 2.0, 0,
-				"Inauguration de la merveilleuse brasserie Aminagomo", b);
+				"Inauguration de la merveilleuse brasserie Aminagomo");
 		Evenement evt2 = new Evenement(LocalDate.of(2022, 5, 1), LocalTime.of(18, 0), "Degustation", 30.0, 10,
-				"Degustation de bières de la brasserie acompagnées de fromages locaux", b);
+				"Degustation de bières de la brasserie acompagnées de fromages locaux");
 		evtService.create(evt1);
 		evtService.create(evt2);
 		

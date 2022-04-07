@@ -45,8 +45,6 @@ public class Evenement {
 	@Column(length=300)
 	private String description;
 
-	private transient Brasseur brasseur;
-
 	@OneToMany(mappedBy = "evt")
 	private List<Reservation> reservations;
 
@@ -58,26 +56,23 @@ public class Evenement {
 	}
 
 	public Evenement(LocalDate date, LocalTime heure, String libelle, double prix, int ptsRequis, String description,
-			Brasseur brasseur, List<Reservation> reservations) {
+			List<Reservation> reservations) {
 		this.date = date;
 		this.heure = heure;
 		this.libelle = libelle;
 		this.prix = prix;
 		this.ptsRequis = ptsRequis;
 		this.description = description;
-		this.brasseur = brasseur;
 		this.reservations = reservations;
 	}
 
-	public Evenement(LocalDate date, LocalTime heure, String libelle, double prix, int ptsRequis, String description,
-			Brasseur brasseur) {
+	public Evenement(LocalDate date, LocalTime heure, String libelle, double prix, int ptsRequis, String description) {
 		this.date = date;
 		this.heure = heure;
 		this.libelle = libelle;
 		this.prix = prix;
 		this.ptsRequis = ptsRequis;
 		this.description = description;
-		this.brasseur = brasseur;
 	}
 
 
@@ -137,14 +132,6 @@ public class Evenement {
 
 	public void setDescription(String description) {
 		this.description = description;
-	}
-
-	public Brasseur getBrasseur() {
-		return brasseur;
-	}
-
-	public void setBrasseur(Brasseur brasseur) {
-		this.brasseur = brasseur;
 	}
 
 	public List<Reservation> getReservations() {

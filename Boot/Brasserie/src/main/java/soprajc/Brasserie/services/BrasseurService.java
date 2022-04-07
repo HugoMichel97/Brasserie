@@ -21,9 +21,6 @@ public class BrasseurService {
 	
 	public Brasseur getById(Integer id) {
 		Brasseur brasseur = brasseurRepository.findById(id).orElseThrow(BrasseurException::new);
-		brasseur.setClients(clientService.getAll());
-		brasseur.setEvenements(evtService.getAll());
-		brasseur.setStock(ingredientService.getAll());
 		return brasseur;
 	}
 	
