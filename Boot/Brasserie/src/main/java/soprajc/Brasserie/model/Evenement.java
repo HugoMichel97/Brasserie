@@ -50,6 +50,10 @@ public class Evenement {
 	@JsonView(JsonViews.Common.class)
 	@Column(length=300)
 	private String description;
+	
+	@JsonView(JsonViews.Common.class)
+	@Column(name="places")
+	private int nbPlaces = 25;
 
 	@OneToMany(mappedBy = "evt")
 	private List<Reservation> reservations;
@@ -142,6 +146,14 @@ public class Evenement {
 
 	public List<Reservation> getReservations() {
 		return reservations;
+	}
+	
+	public int getNbPlaces() {
+		return nbPlaces;
+	}
+
+	public void setNbPlaces(int nbPlaces) {
+		this.nbPlaces = nbPlaces;
 	}
 
 	public void setReservations(List<Reservation> reservations) {
