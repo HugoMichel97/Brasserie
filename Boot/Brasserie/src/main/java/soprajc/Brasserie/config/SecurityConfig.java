@@ -30,8 +30,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 				.and()
 				.authorizeHttpRequests()
 					// Achat :
-					.antMatchers(HttpMethod.GET, "/api/achat/**").hasRole("BRASSEUR")
-					.antMatchers(HttpMethod.GET, "/api/achat/client/{id_client}").authenticated()
+					.antMatchers(HttpMethod.GET, "/api/achat/**").authenticated()
 					.antMatchers(HttpMethod.POST, "api/achat").hasRole("CLIENT")
 					.antMatchers(HttpMethod.PUT, "api/achat/**").hasRole("CLIENT")
 					.antMatchers(HttpMethod.PATCH, "api/achat/**").hasRole("CLIENT")
@@ -39,9 +38,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 					
 					// Client :
 					.antMatchers(HttpMethod.GET, "/api/client").hasRole("BRASSEUR")
-//					.antMatchers(HttpMethod.GET, "/api/client/getResa").hasRole("BRASSEUR")
-//					.antMatchers(HttpMethod.GET, "/api/client/getAchat").hasRole("BRASSEUR")
 					.antMatchers(HttpMethod.GET, "/api/client/{id}/**").authenticated()
+					.antMatchers(HttpMethod.GET, "/api/client/{id}/getInfoReg").hasRole("CLIENT")
 					.antMatchers(HttpMethod.DELETE, "api/client/**").hasRole("CLIENT")
 					.antMatchers(HttpMethod.PUT, "api/client/**").hasRole("CLIENT")
 					.antMatchers(HttpMethod.POST, "api/client").permitAll()
@@ -52,6 +50,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 					
 					// Evenement :
 					.antMatchers(HttpMethod.GET, "api/evenement/**").permitAll()
+					.antMatchers(HttpMethod.GET, "api/evenement/{id}/getResa").hasRole("BRASSEUR")
 					.antMatchers(HttpMethod.POST, "api/evenement").hasRole("BRASSEUR")
 					.antMatchers(HttpMethod.PUT, "api/evenement/**").hasRole("BRASSEUR")
 					.antMatchers(HttpMethod.DELETE, "api/evenement/**").hasRole("BRASSEUR")

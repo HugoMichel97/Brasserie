@@ -38,14 +38,14 @@ public class BrasseurRestController {
 	@Autowired
 	private PasswordEncoder passwordEncoder;
 	
-	@JsonView(JsonViews.Common.class)
+	@JsonView(JsonViews.Compte.class)
 	@GetMapping("")
 	public Brasseur getById(Integer id) {
 		return brasseurService.getById(id);
 	}
 	
 	@PutMapping("/{id}")
-	@JsonView(JsonViews.Common.class)
+	@JsonView(JsonViews.Compte.class)
 	public Brasseur update(@PathVariable Integer id, @Valid @RequestBody Brasseur brasseur, BindingResult br) {
 		brasseur.setId(id);
 		return save(brasseur, br);
@@ -59,7 +59,7 @@ public class BrasseurRestController {
 	}
 	
 	@PatchMapping("/{id}")
-	@JsonView(JsonViews.Common.class)
+	@JsonView(JsonViews.Compte.class)
 	public Brasseur partialUpdate(@RequestBody Map<String, Object> fields, @PathVariable Integer id) {
 		Brasseur brasseur = brasseurService.getById(id);
 		fields.forEach((key, value) -> {

@@ -11,6 +11,7 @@ import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 import javax.persistence.Version;
+import javax.validation.constraints.NotEmpty;
 
 import com.fasterxml.jackson.annotation.JsonView;
 
@@ -23,6 +24,7 @@ public class Ingredient {
 	@JsonView(JsonViews.Common.class)
 	private Integer id_ingredient;
 
+	@NotEmpty
 	@JsonView(JsonViews.Common.class)
 	@Column(length=100)
 	private String nom;
