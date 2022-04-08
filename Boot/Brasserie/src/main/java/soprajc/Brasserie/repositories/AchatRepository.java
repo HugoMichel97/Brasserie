@@ -15,7 +15,7 @@ import soprajc.Brasserie.model.Produit;
 
 public interface AchatRepository extends JpaRepository<Achat, Integer>{
 
-	@Query("select a from Achat a where a.client=:client")
+	@Query("select a from Achat a where a.id_client=:client")
 	List<Achat> findByClient(@Param("client") Client client);
 	
 	@Modifying

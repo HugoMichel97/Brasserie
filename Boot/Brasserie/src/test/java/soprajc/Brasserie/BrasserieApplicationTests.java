@@ -8,6 +8,7 @@ import java.util.List;
 
 import javax.transaction.Transactional;
 
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -23,6 +24,8 @@ import soprajc.Brasserie.model.Ingredient;
 import soprajc.Brasserie.model.Note;
 import soprajc.Brasserie.model.Reservation;
 import soprajc.Brasserie.model.Snack;
+import soprajc.Brasserie.model.StatutCommande;
+import soprajc.Brasserie.model.StatutResa;
 import soprajc.Brasserie.repositories.BrasseurRepository;
 import soprajc.Brasserie.services.AchatService;
 import soprajc.Brasserie.services.ClientService;
@@ -63,6 +66,7 @@ class BrasserieApplicationTests {
 	private ReservationService resaService;
 	
 	@Test
+	@Disabled
 	@Transactional
 	@Commit
 	void createBDD() {
@@ -76,8 +80,10 @@ class BrasserieApplicationTests {
 		// Evt
 		Evenement evt1 = new Evenement(LocalDate.now(), LocalTime.now(), "Inauguration", 2.0, 0,
 				"Inauguration de la merveilleuse brasserie Aminagomo");
+		evt1.setNbPlaces(3);
 		Evenement evt2 = new Evenement(LocalDate.of(2022, 5, 1), LocalTime.of(18, 0), "Degustation", 30.0, 10,
 				"Degustation de bières de la brasserie acompagnées de fromages locaux");
+		evt2.setNbPlaces(4);
 		evtService.create(evt1);
 		evtService.create(evt2);
 		
@@ -117,6 +123,7 @@ class BrasserieApplicationTests {
 				LocalDate.of(1997, 1, 1));
 		c1.setFidelite(10);
 		Reservation r2 = new Reservation(c1, evt2);
+		r2.setStatut(StatutResa.validee);
 		List<Reservation> rListc1 = new ArrayList<Reservation>();
 		rListc1.add(r2);
 		c1.setReservations(rListc1);
@@ -135,6 +142,7 @@ class BrasserieApplicationTests {
 		c2.setFidelite(5000);
 		Reservation r1 = new Reservation(c2, evt1);
 		Reservation r6 = new Reservation(c2, evt2);
+		r6.setStatut(StatutResa.validee);
 		List<Reservation> rListc2 = new ArrayList<Reservation>();
 		Collections.addAll(rListc2, r1, r6);
 		c2.setReservations(rListc2);
@@ -159,6 +167,7 @@ class BrasserieApplicationTests {
 		irList.add(ir1);
 		c3.setReglements(irList);
 		Reservation r3 = new Reservation(c3, evt2);
+		r3.setStatut(StatutResa.validee);
 		List<Reservation> rListc3 = new ArrayList<Reservation>();
 		rListc3.add(r3);
 		c3.setReservations(rListc3);
@@ -166,6 +175,7 @@ class BrasserieApplicationTests {
 		List<Achat> aListc3 = new ArrayList<Achat>();
 		aListc3.add(a1);
 		c3.setAchats(aListc3);
+		c3.setStatut(StatutCommande.en_attente);
 		clientService.create(c3);
 		resaService.create(r3);
 		infoRegService.create(ir1);
@@ -179,7 +189,8 @@ class BrasserieApplicationTests {
 		irListc4.add(ir2);
 		c4.setReglements(irListc4);
 		Reservation r4 = new Reservation(c4, evt2);
-		Reservation r5 = new Reservation(c4, evt1);
+		Reservation r5 = new Reservation(c4, evt1, 2);
+		r4.setStatut(StatutResa.validee);
 		List<Reservation> rListc4 = new ArrayList<Reservation>();
 		Collections.addAll(rListc4, r4, r5);
 		c4.setReservations(rListc4);
@@ -187,9 +198,8 @@ class BrasserieApplicationTests {
 		List<Achat> aListc4 = new ArrayList<Achat>();
 		aListc4.add(a4);
 		c4.setAchats(aListc4);
-		Note n3 = new Note(c3, biere, 3.5, "Pas mal pour une bière aux fruits rouge");
+		c4.setStatut(StatutCommande.prete);
 		clientService.create(c4);
-		noteService.create(n3);
 		resaService.create(r4);
 		resaService.create(r5);
 		infoRegService.create(ir2);
@@ -205,7 +215,7 @@ class BrasserieApplicationTests {
 		evtService.update(evt2);
 		
 		List<Note> nList = new ArrayList<Note>();
-		Collections.addAll(nList, n1, n2, n3);
+		Collections.addAll(nList, n1, n2);
 		biere.setNotes(nList);
 		produitService.update(biere);
 	}

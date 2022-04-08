@@ -9,6 +9,7 @@ import soprajc.Brasserie.exception.ReservationException;
 import soprajc.Brasserie.model.Client;
 import soprajc.Brasserie.model.Evenement;
 import soprajc.Brasserie.model.Reservation;
+import soprajc.Brasserie.model.StatutResa;
 import soprajc.Brasserie.repositories.ReservationRepository;
 @Service
 public class ReservationService {
@@ -25,6 +26,11 @@ public class ReservationService {
 	public void update(Reservation r) {
 		if (r.getId() == null) {
 			throw new ReservationException("le numero doit etre defini");
+		}
+		//modification du nb de places dans evt concerné en fonction du nb de participants et du statut = validé
+		if(r.getStatut().equals(StatutResa.validee)) {
+			Evenement evt = r.getEvt();
+			evt.setNbPlaces(evt.getNbPlaces() - r.getNbParticipants());
 		}
 		reservationRepository.save(r);
 	}

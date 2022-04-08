@@ -53,7 +53,7 @@ public class Evenement {
 	
 	@JsonView(JsonViews.Common.class)
 	@Column(name="places")
-	private int nbPlaces = 25;
+	private int nbPlaces = 1;
 
 	@OneToMany(mappedBy = "evt")
 	private List<Reservation> reservations;

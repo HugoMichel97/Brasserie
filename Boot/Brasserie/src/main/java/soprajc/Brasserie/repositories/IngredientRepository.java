@@ -10,6 +10,6 @@ import soprajc.Brasserie.model.Ingredient;
 
 public interface IngredientRepository extends JpaRepository<Ingredient, Integer> {
 
-	@Query("select i from Ingredient left join fetch i.bieres where i.id=:id")
+	@Query("select i from Ingredient i left join fetch i.bieres where i.id_ingredient=:id")
 	Optional<Ingredient> findByIdWithBiere(@Param("id") Integer id);
 }
