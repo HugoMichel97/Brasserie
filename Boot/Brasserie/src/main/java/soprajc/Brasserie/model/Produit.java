@@ -91,7 +91,7 @@ public abstract class Produit {
 	}
 
 
-	//Constructeur snack (sans fid�lit�)
+	//Constructeur snack (sans fidélité)
 	public Produit(String nom, String description, Double prix, Integer stock) {
 		this.nom = nom;
 		this.prix = prix;

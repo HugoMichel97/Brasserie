@@ -24,7 +24,7 @@ public class InfoReglement {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@JsonView(JsonViews.InfoReglement.class)
+	@JsonView(JsonViews.Common.class)
 	private Integer id;
 
 	@ManyToOne
@@ -36,26 +36,26 @@ public class InfoReglement {
 	@Enumerated(EnumType.STRING)
 	@Column(columnDefinition = "ENUM('CB', 'PayPal')")
 	@NotNull
-	@JsonView(JsonViews.InfoReglement.class)
+	@JsonView(JsonViews.Common.class)
 	private Reglement mode;
 
 	@NotNull
-	@JsonView(JsonViews.InfoReglement.class)
+	@JsonView(JsonViews.Common.class)
 	@Column(length=16)
 	private String num;
 
 	@NotNull
-	@JsonView(JsonViews.InfoReglement.class)
+	@JsonView(JsonViews.Common.class)
 	@Column(length=50)
 	private String nom;
 
 	@NotNull
-	@JsonView(JsonViews.InfoReglement.class)
+	@JsonView(JsonViews.Common.class)
 	@Column(length=5)
 	private String dateValid;
 
 	@NotNull
-	@JsonView(JsonViews.InfoReglement.class)
+	@JsonView(JsonViews.Common.class)
 	@Column(length=100)
 	private String identifiant_paypal;
 

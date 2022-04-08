@@ -13,6 +13,8 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Version;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 
 import com.fasterxml.jackson.annotation.JsonView;
 @Entity
@@ -25,18 +27,22 @@ public class Evenement {
 	@JsonView(JsonViews.Common.class)
 	private Integer id;
 
+	@NotNull
 	@JsonView(JsonViews.Common.class)
 	private LocalDate date;
 
+	@NotNull
 	@JsonView(JsonViews.Common.class)
 	private LocalTime heure;
 
+	@NotEmpty
 	@JsonView(JsonViews.Common.class)
 	@Column(length=25)
 	private String libelle;
 
+	@NotNull
 	@JsonView(JsonViews.Common.class)
-	private double prix;
+	private Double prix;
 
 	@JsonView(JsonViews.Common.class)
 	private int ptsRequis = 0;
@@ -44,8 +50,10 @@ public class Evenement {
 	@JsonView(JsonViews.Common.class)
 	@Column(length=300)
 	private String description;
-
-	private transient Brasseur brasseur;
+	
+	@JsonView(JsonViews.Common.class)
+	@Column(name="places")
+	private int nbPlaces = 1;
 
 	@OneToMany(mappedBy = "evt")
 	private List<Reservation> reservations;
@@ -57,27 +65,24 @@ public class Evenement {
 
 	}
 
-	public Evenement(LocalDate date, LocalTime heure, String libelle, double prix, int ptsRequis, String description,
-			Brasseur brasseur, List<Reservation> reservations) {
+	public Evenement(LocalDate date, LocalTime heure, String libelle, Double prix, int ptsRequis, String description,
+			List<Reservation> reservations) {
 		this.date = date;
 		this.heure = heure;
 		this.libelle = libelle;
 		this.prix = prix;
 		this.ptsRequis = ptsRequis;
 		this.description = description;
-		this.brasseur = brasseur;
 		this.reservations = reservations;
 	}
 
-	public Evenement(LocalDate date, LocalTime heure, String libelle, double prix, int ptsRequis, String description,
-			Brasseur brasseur) {
+	public Evenement(LocalDate date, LocalTime heure, String libelle, Double prix, int ptsRequis, String description) {
 		this.date = date;
 		this.heure = heure;
 		this.libelle = libelle;
 		this.prix = prix;
 		this.ptsRequis = ptsRequis;
 		this.description = description;
-		this.brasseur = brasseur;
 	}
 
 
@@ -115,11 +120,11 @@ public class Evenement {
 		this.libelle = libelle;
 	}
 
-	public double getPrix() {
+	public Double getPrix() {
 		return prix;
 	}
 
-	public void setPrix(double prix) {
+	public void setPrix(Double prix) {
 		this.prix = prix;
 	}
 
@@ -139,16 +144,16 @@ public class Evenement {
 		this.description = description;
 	}
 
-	public Brasseur getBrasseur() {
-		return brasseur;
-	}
-
-	public void setBrasseur(Brasseur brasseur) {
-		this.brasseur = brasseur;
-	}
-
 	public List<Reservation> getReservations() {
 		return reservations;
+	}
+	
+	public int getNbPlaces() {
+		return nbPlaces;
+	}
+
+	public void setNbPlaces(int nbPlaces) {
+		this.nbPlaces = nbPlaces;
 	}
 
 	public void setReservations(List<Reservation> reservations) {

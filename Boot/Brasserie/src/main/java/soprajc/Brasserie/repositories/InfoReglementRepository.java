@@ -1,6 +1,6 @@
 package soprajc.Brasserie.repositories;
 
-import java.util.Optional;
+import java.util.List;
 
 import javax.transaction.Transactional;
 
@@ -18,6 +18,6 @@ public interface InfoReglementRepository extends JpaRepository<InfoReglement, In
 	@Query("delete from InfoReglement i where i.client=:client")
 	void deleteByClient(@Param("client") Client client);
 	
-	@Query("select i from InfoReglement i left join fetch i.client where i.id=:id")
-	Optional<InfoReglement> findByIdWithClients(@Param("id") Integer id);
+	@Query("select i from InfoReglement i where i.client=:client")
+	List<InfoReglement> findByClient(@Param("client") Client client);
 }

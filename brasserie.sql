@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1:3306
--- Généré le : lun. 04 avr. 2022 à 09:08
+-- Généré le : ven. 08 avr. 2022 à 14:34
 -- Version du serveur : 5.7.36
 -- Version de PHP : 7.4.26
 
@@ -76,7 +76,7 @@ CREATE TABLE IF NOT EXISTS `brasseur` (
 --
 
 INSERT INTO `brasseur` (`id`, `mail`, `password`, `version`, `depenses`, `recettes`, `tresorerie`) VALUES
-(1, 'arthur@aminagomo.fr', '$2a$10$b2idnWdTfmhU3/LU10UNkeKuBH0HlFCyfEQ/DdYqnAc9Q6EvKHzVK', 0, 150, 200, 1000);
+(1, 'arthur@aminagomo.fr', '$2a$10$I0Ot4FVXePHEJZniWaSF8u3ewQINORevONPSlyEahjkIrBI/Ye4/2', 0, 150, 200, 1000);
 
 -- --------------------------------------------------------
 
@@ -94,6 +94,7 @@ CREATE TABLE IF NOT EXISTS `client` (
   `date_naissance` date NOT NULL,
   `nom` varchar(25) DEFAULT NULL,
   `prenom` varchar(25) DEFAULT NULL,
+  `statut` enum('vide','en_attente','validee','prete','recuperee') DEFAULT NULL,
   `tel` varchar(12) DEFAULT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `UK_sl0fhqdec6m4pbqb5qaqk43qk` (`mail`)
@@ -103,11 +104,11 @@ CREATE TABLE IF NOT EXISTS `client` (
 -- Déchargement des données de la table `client`
 --
 
-INSERT INTO `client` (`id`, `mail`, `password`, `version`, `fidelite`, `date_naissance`, `nom`, `prenom`, `tel`) VALUES
-(2, 'hugo@michel', '$2a$10$ZWRJvJsl6RJm0AS2AN7oA.9vSu2Ra22/WdSq3Nj/CXYfRXtr8C94i', 0, 10, '1997-01-01', 'Michel', 'Hugo', NULL),
-(3, 'amine@berrada', '$2a$10$fhxxP6KZECKZpteWUt747.nVoXKNQrhKy7kJKTzW8G/8n4dREPAu.', 0, 5000, '1997-01-01', 'Berrada', 'Amine', '0643675489'),
-(4, 'mohamed@khamassi', '$2a$10$.GTdrxH1xAxQb9Rx8iCjr.0VxUORBocCBUt4HaIaa36IOSuXS4ZTy', 0, 50, '1997-01-01', 'Khamassi', 'Mohamed', '0642424242'),
-(5, 'anais@lharidon', '$2a$10$Xvjsf3MiBMHof/hsgfVmheMKxGNH5qymA.N9FdYzlb6YZrvZ1TdsG', 0, 10, '1997-05-01', 'L\'Haridon', 'Anaïs', '0687945632');
+INSERT INTO `client` (`id`, `mail`, `password`, `version`, `fidelite`, `date_naissance`, `nom`, `prenom`, `statut`, `tel`) VALUES
+(2, 'hugo@michel', '$2a$10$9t1wxFi8H0XPk0Kqr4/sZuNO.ZAC9Vxd49G0tG8UO86yUiegrLH7C', 0, 10, '1997-01-01', 'Michel', 'Hugo', 'vide', NULL),
+(3, 'amine@berrada', '$2a$10$94jocmbASnKUXPRuGkorMOg2OPhbHgSDhN.kVeQMFwMvyq4DJMNzW', 0, 5000, '1997-01-01', 'Berrada', 'Amine', 'vide', '0643675489'),
+(4, 'mohamed@khamassi', '$2a$10$ltgCo6fuDzRzlVOFL8oVROgKhp9P.zHc7ch6ASaMIZH2v7GvO8Lj2', 0, 50, '1997-01-01', 'Khamassi', 'Mohamed', 'en_attente', '0642424242'),
+(5, 'anais@lharidon', '$2a$10$SgHQ927Uv5ffaZQGja/c2Obw0XAaVfuC4se4gjXmpBjeiz.p8dR.u', 0, 10, '1997-05-01', 'L\'Haridon', 'Anaïs', 'prete', '0687945632');
 
 -- --------------------------------------------------------
 
@@ -118,10 +119,11 @@ INSERT INTO `client` (`id`, `mail`, `password`, `version`, `fidelite`, `date_nai
 DROP TABLE IF EXISTS `evenement`;
 CREATE TABLE IF NOT EXISTS `evenement` (
   `id_evenement` int(11) NOT NULL AUTO_INCREMENT,
-  `date` date DEFAULT NULL,
+  `date` date NOT NULL,
   `description` varchar(300) DEFAULT NULL,
-  `heure` time DEFAULT NULL,
+  `heure` time NOT NULL,
   `libelle` varchar(25) DEFAULT NULL,
+  `places` int(11) DEFAULT NULL,
   `prix` double NOT NULL,
   `pts_requis` int(11) NOT NULL,
   `version` int(11) NOT NULL,
@@ -132,9 +134,9 @@ CREATE TABLE IF NOT EXISTS `evenement` (
 -- Déchargement des données de la table `evenement`
 --
 
-INSERT INTO `evenement` (`id_evenement`, `date`, `description`, `heure`, `libelle`, `prix`, `pts_requis`, `version`) VALUES
-(1, '2022-04-04', 'Inauguration de la merveilleuse brasserie Aminagomo', '11:07:22', 'Inauguration', 2, 0, 0),
-(2, '2022-05-01', 'Degustation de bières de la brasserie acompagnées de fromages locaux', '18:00:00', 'Degustation', 30, 10, 0);
+INSERT INTO `evenement` (`id_evenement`, `date`, `description`, `heure`, `libelle`, `places`, `prix`, `pts_requis`, `version`) VALUES
+(1, '2022-04-08', 'Inauguration de la merveilleuse brasserie Aminagomo', '16:29:12', 'Inauguration', 3, 2, 0, 0),
+(2, '2022-05-01', 'Degustation de bières de la brasserie acompagnées de fromages locaux', '18:00:00', 'Degustation', 4, 30, 10, 0);
 
 -- --------------------------------------------------------
 
@@ -221,18 +223,19 @@ CREATE TABLE IF NOT EXISTS `note` (
   `note` double NOT NULL,
   `version` int(11) NOT NULL,
   `id_biere` int(11) NOT NULL,
+  `id_client` int(11) DEFAULT NULL,
   PRIMARY KEY (`id_note`),
-  KEY `FKt7as37mk0v03yv6dm9sumtdtv` (`id_biere`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
+  KEY `note_biere_fk` (`id_biere`),
+  KEY `note_client_fk` (`id_client`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
 
 --
 -- Déchargement des données de la table `note`
 --
 
-INSERT INTO `note` (`id_note`, `commentaire`, `note`, `version`, `id_biere`) VALUES
-(1, NULL, 3, 0, 2),
-(2, 'Très bonne bière', 5, 0, 2),
-(3, 'Pas mal pour une bière aux fruits rouge', 3.5, 0, 2);
+INSERT INTO `note` (`id_note`, `commentaire`, `note`, `version`, `id_biere`, `id_client`) VALUES
+(1, NULL, 3, 0, 2, 2),
+(2, 'Très bonne bière', 5, 0, 2, 3);
 
 -- --------------------------------------------------------
 
@@ -293,6 +296,8 @@ INSERT INTO `recettes` (`id_biere`, `id_ingredient`) VALUES
 DROP TABLE IF EXISTS `reservation`;
 CREATE TABLE IF NOT EXISTS `reservation` (
   `id` int(11) NOT NULL,
+  `participants` int(11) DEFAULT NULL,
+  `statut` enum('en_attente','validee') DEFAULT NULL,
   `version` int(11) NOT NULL,
   `client_fk` int(11) NOT NULL,
   `evt_fk` int(11) NOT NULL,
@@ -305,13 +310,13 @@ CREATE TABLE IF NOT EXISTS `reservation` (
 -- Déchargement des données de la table `reservation`
 --
 
-INSERT INTO `reservation` (`id`, `version`, `client_fk`, `evt_fk`) VALUES
-(1, 0, 2, 2),
-(2, 0, 3, 1),
-(3, 0, 3, 2),
-(4, 0, 4, 2),
-(5, 0, 5, 2),
-(6, 0, 5, 1);
+INSERT INTO `reservation` (`id`, `participants`, `statut`, `version`, `client_fk`, `evt_fk`) VALUES
+(1, 1, 'validee', 0, 2, 2),
+(2, 1, 'en_attente', 0, 3, 1),
+(3, 1, 'validee', 0, 3, 2),
+(4, 1, 'validee', 0, 4, 2),
+(5, 1, 'validee', 0, 5, 2),
+(6, 2, 'en_attente', 0, 5, 1);
 
 -- --------------------------------------------------------
 
@@ -373,7 +378,8 @@ ALTER TABLE `info_reglement`
 -- Contraintes pour la table `note`
 --
 ALTER TABLE `note`
-  ADD CONSTRAINT `FKt7as37mk0v03yv6dm9sumtdtv` FOREIGN KEY (`id_biere`) REFERENCES `produit` (`id_produit`);
+  ADD CONSTRAINT `note_biere_fk` FOREIGN KEY (`id_biere`) REFERENCES `produit` (`id_produit`),
+  ADD CONSTRAINT `note_client_fk` FOREIGN KEY (`id_client`) REFERENCES `client` (`id`);
 
 --
 -- Contraintes pour la table `recettes`

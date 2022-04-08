@@ -34,7 +34,7 @@ public abstract class Compte implements UserDetails {
 	
 	@NotEmpty
 	@Column(unique=true, nullable=false, length=100)
-	@JsonView(JsonViews.Common.class)
+	@JsonView(JsonViews.Compte.class)
 	protected String mail;
 	
 	@NotEmpty
@@ -42,7 +42,6 @@ public abstract class Compte implements UserDetails {
 	protected String password;
 	
 	@OneToMany(mappedBy = "id_client")
-	@JsonView(JsonViews.ClientWithAchat.class)
 	private List<Achat> achats;
 	
 	@Version
@@ -51,8 +50,7 @@ public abstract class Compte implements UserDetails {
 	// constructors
 	public Compte() {}
 	
-	public Compte(Integer id, String mail, String password, List<Achat> achats) {
-		this.id = id;
+	public Compte(String mail, String password, List<Achat> achats) {
 		this.mail = mail;
 		this.password = password;
 		this.achats = achats;

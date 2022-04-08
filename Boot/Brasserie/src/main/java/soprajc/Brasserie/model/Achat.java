@@ -33,7 +33,7 @@ public class Achat {
 	
 	@ManyToOne
 	@JoinColumn(name="produit_fk", foreignKey = @ForeignKey(name="achat_produit_fk"))
-	@JsonView(JsonViews.Achat.class)
+	@JsonView(JsonViews.Common.class)
 	@NotNull
 	private Produit id_produit;
 	

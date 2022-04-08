@@ -12,6 +12,8 @@ import javax.persistence.OneToMany;
 import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.Version;
 
+import com.fasterxml.jackson.annotation.JsonView;
+
 @Entity
 @DiscriminatorValue("Biere")
 public class Biere extends Produit {
@@ -19,6 +21,7 @@ public class Biere extends Produit {
 	@OneToMany(mappedBy = "biere")
 	private List<Note> notes;
 
+	@JsonView(JsonViews.Produit.class) // à tester !!
 	@ManyToMany
 	@JoinTable(
 			name = "suggestions",
@@ -26,6 +29,7 @@ public class Biere extends Produit {
 			inverseJoinColumns = @JoinColumn(name="id_snack", foreignKey = @ForeignKey(name="suggestions_snack_fk")))
 	private List<Snack> suggestions;
 
+	@JsonView(JsonViews.Produit.class) // à tester !!
 	@ManyToMany
 	@JoinTable(
 			name = "recettes",

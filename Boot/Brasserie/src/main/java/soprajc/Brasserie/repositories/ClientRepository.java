@@ -11,26 +11,14 @@ import soprajc.Brasserie.model.Client;
 
 public interface ClientRepository extends JpaRepository<Client, Integer>{
 	
-	@Query("select c from Client c left join fetch c.reservations")
-	List<Client> findAllWithReservation();
-
-	@Query("select c from Client c left join fetch c.achats")
-	List<Client> findAllWithAchat();
-	
-	@Query("select c from Client c left join fetch c.reservations where c.id=:id")
-	Optional<Client> findByIdWithReservations(@Param("id") Integer id);
-
-	@Query("select c from Client c left join fetch c.achats where c.id=:id")
-	Optional<Client> findByIdWithAchats(@Param("id") Integer id);
-	
 	@Query("select c from Client c where c.fidelite=:fidelite")
-	Optional<Client> findByFidelite(@Param("fidelite") int fidelite);
+	List<Client> findByFidelite(@Param("fidelite") int fidelite);
 	
 	@Query("select c from Client c where c.fidelite>=:fidelite")
-	Optional<Client> findByFideliteSup(@Param("fidelite") int fidelite);
+	List<Client> findByFideliteSup(@Param("fidelite") int fidelite);
 
 	@Query("select c from Client c where c.fidelite<=:fidelite")
-	Optional<Client> findByFideliteInf(@Param("fidelite") int fidelite);
+	List<Client> findByFideliteInf(@Param("fidelite") int fidelite);
 	
 	Optional<Client> findByMail(@Param("mail") String mail);
 }

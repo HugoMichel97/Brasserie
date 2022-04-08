@@ -2,7 +2,10 @@ package soprajc.Brasserie.model;
 
 import java.util.Objects;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.ForeignKey;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -32,20 +35,32 @@ public class Reservation {
 	@ManyToOne
 	@JoinColumn(name="evt_fk", foreignKey = @ForeignKey(name="reservation_evt_fk"))
 	@NotNull
-	@JsonView(JsonViews.Common.class)
+	@JsonView(JsonViews.ReservationEvt.class)
 	private Evenement evt;
+	
+	@Enumerated(EnumType.STRING)
+	@Column(columnDefinition = "ENUM('en_attente', 'validee')")
+	@JsonView(JsonViews.Common.class)
+	private StatutResa statut = StatutResa.en_attente;
 
+	@Column(name="participants")
+	@JsonView(JsonViews.Common.class)
+	private int nbParticipants = 1;
+	
 	@Version
 	private int version;
 
 	// constructors
-	public Reservation()
-	{
-
-	}
+	public Reservation() {}
+	
 	public Reservation(Client client, Evenement evt) {
 		this.client = client;
 		this.evt = evt;
+	}
+	public Reservation(Client client, Evenement evt, int nbParticipants) {
+		this.client = client;
+		this.evt = evt;
+		this.nbParticipants = nbParticipants;
 	}
 
 	// getters-setters
@@ -67,6 +82,18 @@ public class Reservation {
 	}
 	public void setEvt(Evenement evt) {
 		this.evt = evt;
+	}
+	public StatutResa getStatut() {
+		return statut;
+	}
+	public void setStatut(StatutResa statut) {
+		this.statut = statut;
+	}
+	public int getNbParticipants() {
+		return nbParticipants;
+	}
+	public void setNbParticipants(int nbParticipants) {
+		this.nbParticipants = nbParticipants;
 	}
 	public int getVersion() {
 		return version;

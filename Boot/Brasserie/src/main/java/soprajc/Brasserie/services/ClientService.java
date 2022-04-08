@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import soprajc.Brasserie.exception.ClientException;
 import soprajc.Brasserie.model.Client;
+import soprajc.Brasserie.model.Note;
 import soprajc.Brasserie.repositories.ClientRepository;
 
 @Service
@@ -14,8 +15,14 @@ public class ClientService {
 	
 	@Autowired
 	private ClientRepository clientRepository;
-	//@Autowired
-	//private ReservationRepository reservationRepository;
+	@Autowired
+	private ReservationService resaService;
+	@Autowired
+	private InfoReglementService infoRegService;
+	@Autowired
+	private AchatService achatService;
+	@Autowired
+	private NoteService noteService;
 	
 	public void create(Client c) {
 		if (c.getId() != null) {
@@ -41,12 +48,15 @@ public class ClientService {
 		return clientRepository.findAll();
 	}
 	
-	public List<Client> getAllWithResa() {
-		return clientRepository.findAllWithReservation();
+	public List<Client> getByFidelite(int fidelite) {
+		return clientRepository.findByFidelite(fidelite);
+	}
+	public List<Client> getByFideliteSup(int fidelite) {
+		return clientRepository.findByFideliteSup(fidelite);
 	}
 	
-	public List<Client> getAllWithAchat() {
-		return clientRepository.findAllWithAchat();
+	public List<Client> getByFideliteInf(int fidelite) {
+		return clientRepository.findByFideliteSup(fidelite);
 	}
 
 	public Client getById(Integer id) {
@@ -55,39 +65,16 @@ public class ClientService {
 		});
 	}
 
-	public Client getByIdWithReservation(Integer id) {
-		return clientRepository.findByIdWithReservations(id).orElseThrow(() -> {
-			throw new ClientException("Id inconnu.");
-		});
-	}
-	
-	public Client getByIdWithAchat(Integer id) {
-		return clientRepository.findByIdWithAchats(id).orElseThrow(() -> {
-			throw new ClientException("Id inconnu.");
-		});
-	}
-	
-	public Client getByFidelite(int fidelite) {
-		return clientRepository.findByFidelite(fidelite).orElseThrow(() -> {
-			throw new ClientException("Pas de client avec "+fidelite+" points de fid�lit�.");
-		});
-	}
-	
-	public Client getByFideliteSup(int fidelite) {
-		return clientRepository.findByFideliteSup(fidelite).orElseThrow(() -> {
-			throw new ClientException("Pas de client avec plus de "+fidelite+" points de fid�lit�.");
-		});
-	}
-	
-	public Client getByFideliteInf(int fidelite) {
-		return clientRepository.findByFideliteSup(fidelite).orElseThrow(() -> {
-				throw new ClientException("Pas de client avec moins de "+fidelite+" points de fid�lit�.");
-			});
-	}
-
 	public void delete(Client c) {
 		Client clientEnBase = getById(c.getId());
-		//reservationRepository.deleteByClient(clientEnBase);
+		resaService.deleteByClient(clientEnBase);
+		infoRegService.deleteByClient(clientEnBase);
+		achatService.deleteByClient(clientEnBase);
+		List<Note> notes = noteService.getByClient(clientEnBase);
+		for(Note n : notes) {
+			n.setClient(null);
+			noteService.save(n);
+		}
 		clientRepository.delete(clientEnBase);
 	}
 

@@ -14,15 +14,11 @@ import soprajc.Brasserie.repositories.InfoReglementRepository;
 public class InfoReglementService {
 	@Autowired
 	private  InfoReglementRepository infoReglementRepository ;
-	//@Autowired
-	//private ReservationRepository reservationRepository;
 	
 	public void create(InfoReglement ir) {
 		if (ir.getId() != null) {
-			throw new InfoReglementException("L'id ne doit pas �tre defini.");
+			throw new InfoReglementException("L'id ne doit pas être defini.");
 		}
-		
-		
 		infoReglementRepository.save(ir);
 	}
 
@@ -36,6 +32,10 @@ public class InfoReglementService {
 	public List<InfoReglement> getAll() {
 		return infoReglementRepository.findAll();
 	}
+	
+	public List<InfoReglement> getByClient(Client c){
+		return infoReglementRepository.findByClient(c);
+	}
 
 	public InfoReglement getById(Integer id) {
 		return infoReglementRepository.findById(id).orElseThrow(() -> {
@@ -43,26 +43,21 @@ public class InfoReglementService {
 		});
 	}
 
-	public InfoReglement getByIdWithClient(Integer id) {
-		return infoReglementRepository.findByIdWithClients(id).orElseThrow(() -> {
-			throw new InfoReglementException("Id inconnu.");
-		});
-	}
-
 	public void delete(InfoReglement ir) {
 		InfoReglement infoReglementEnBase = getById(ir.getId());
-		//reservationRepository.deleteByClient(clientEnBase);
 		infoReglementRepository.delete(infoReglementEnBase);
 	}
 
 	public void deleteByClient(Client c) {
 		infoReglementRepository.deleteByClient(c);
 	}
+	
 	public void deleteById(Integer id) {
 		InfoReglement infoReglement = new InfoReglement();
 		infoReglement.setId(id);
 		delete(infoReglement);
 	}
+	
 	public InfoReglement save(InfoReglement infoReglement) {
         if (infoReglement.getId() != null) {
         	InfoReglement infoReglementEnBase = getById(infoReglement.getId());

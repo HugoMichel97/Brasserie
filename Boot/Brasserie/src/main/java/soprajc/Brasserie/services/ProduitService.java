@@ -11,6 +11,7 @@ import soprajc.Brasserie.model.Produit;
 import soprajc.Brasserie.model.Snack;
 import soprajc.Brasserie.repositories.AchatRepository;
 import soprajc.Brasserie.repositories.BiereRepository;
+import soprajc.Brasserie.repositories.NoteRepository;
 import soprajc.Brasserie.repositories.ProduitRepository;
 import soprajc.Brasserie.repositories.SnackRepository;
 
@@ -20,14 +21,17 @@ public class ProduitService {
 	@Autowired
 	ProduitRepository produitRepository;
 	
-	@Autowired 
-	AchatRepository achatRepository;
-	
 	@Autowired
 	BiereRepository biereRepository;
 	
 	@Autowired
 	SnackRepository snackRepository;
+	
+	@Autowired 
+	AchatRepository achatRepository;
+	
+	@Autowired
+	NoteRepository noteRepository;
 
 	public void create(Produit p) {
 		if(p.getId() != null) {
@@ -66,15 +70,18 @@ public class ProduitService {
 		return produitRepository.findById(id).orElseThrow(()-> {throw new ProduitException("Numero inconnu");});
 	}
 	
-	//Il faudra aussi supprimer en cascade les notes mais prb (cf NoteRepository)
 	public void delete(Produit p) {
 		Produit pBase = getById(p.getId());
 		achatRepository.deleteByProduit(pBase);
+		if(pBase instanceof Biere) {
+			noteRepository.deleteByProduit((Biere) pBase);
+		}
 		produitRepository.delete(pBase);
 	}
 	
 	public void deleteById(Integer id) {
-		produitRepository.deleteById(id);
+		Produit p = getById(id);
+		delete(p);
 	}
 	
 	public Produit save(Produit produit) {

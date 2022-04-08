@@ -1,14 +1,18 @@
 package soprajc.Brasserie.restControllers;
 
+import java.lang.reflect.Field;
 import java.util.List;
+import java.util.Map;
 
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.util.ReflectionUtils;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
@@ -24,6 +28,7 @@ import soprajc.Brasserie.model.Biere;
 import soprajc.Brasserie.model.JsonViews;
 import soprajc.Brasserie.model.Produit;
 import soprajc.Brasserie.model.Snack;
+import soprajc.Brasserie.services.IngredientService;
 import soprajc.Brasserie.services.ProduitService;
 
 
@@ -34,6 +39,8 @@ public class ProduitRestController {
 
 	@Autowired
 	ProduitService produitService;
+	@Autowired
+	IngredientService ingredientService;
 	
 	@JsonView(JsonViews.Produit.class)
 	@GetMapping("")
@@ -84,6 +91,30 @@ public class ProduitRestController {
 		if (br.hasErrors()) {
 			throw new ProduitException();
 		}
+		return produitService.save(produit);
+	}
+	
+	@PatchMapping("/{id}")
+	@JsonView(JsonViews.Produit.class)
+	public Produit partialUpdate(@RequestBody Map<String, Object> fields, @PathVariable Integer id) {
+		Produit produit = produitService.getById(id);
+		fields.forEach((key, value) -> {
+			if(key.equals("points")) {
+				if(produit instanceof Biere) {
+					produit.setPoints((Integer) value);
+				} else {
+					throw new ProduitException("Les snacks ne donnent pas de points de fidélité.");
+				}
+			} else if (key.equals("suggestions")) {
+				if (produit instanceof Biere) {
+					((Biere) produit).setSuggestions((List<Snack>) value); // à tester !!
+				}
+			} else {
+				Field field = ReflectionUtils.findField(Produit.class, key);
+				ReflectionUtils.makeAccessible(field);
+				ReflectionUtils.setField(field, produit, value);
+			}
+		});
 		return produitService.save(produit);
 	}
 }

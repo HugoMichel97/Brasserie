@@ -6,7 +6,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import soprajc.Brasserie.exception.ReservationException;
+import soprajc.Brasserie.model.Client;
+import soprajc.Brasserie.model.Evenement;
 import soprajc.Brasserie.model.Reservation;
+import soprajc.Brasserie.model.StatutResa;
 import soprajc.Brasserie.repositories.ReservationRepository;
 @Service
 public class ReservationService {
@@ -24,10 +27,23 @@ public class ReservationService {
 		if (r.getId() == null) {
 			throw new ReservationException("le numero doit etre defini");
 		}
+		//modification du nb de places dans evt concerné en fonction du nb de participants et du statut = validé
+		if(r.getStatut().equals(StatutResa.validee)) {
+			Evenement evt = r.getEvt();
+			evt.setNbPlaces(evt.getNbPlaces() - r.getNbParticipants());
+		}
 		reservationRepository.save(r);
 	}
 	public List<Reservation> getAll() {
 		return reservationRepository.findAll();
+	}
+	
+	public List<Reservation> getByClient(Client c){
+		return reservationRepository.findByClient(c);
+	}
+	
+	public List<Reservation> getByEvt(Evenement evt){
+		return reservationRepository.findByEvt(evt);
 	}
 
 	public Reservation getById(Integer id) {
@@ -43,14 +59,19 @@ public class ReservationService {
 	}
 	public void delete(Reservation r) {
 		Reservation reservationEnBase = getById(r.getId());
-//		clientRepository.deleteByClient(reservationEnBase);
 		reservationRepository.delete(reservationEnBase);
 	}
 	
 	public void deleteById(Integer id) {
-		Reservation reservation = new Reservation();
-		reservation.setId(id);
-		reservationRepository.delete(reservation);
+		reservationRepository.deleteById(id);
+	}
+	
+	public void deleteByClient(Client c) {
+		reservationRepository.deleteByClient(c);
+	}
+	
+	public void deleteByEvt(Evenement evt) {
+		reservationRepository.deleteByEvt(evt);
 	}
 	
 	public Reservation save(Reservation reservation) {
