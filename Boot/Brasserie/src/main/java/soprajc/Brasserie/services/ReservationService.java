@@ -31,6 +31,14 @@ public class ReservationService {
 	public List<Reservation> getAll() {
 		return reservationRepository.findAll();
 	}
+	
+	public List<Reservation> getByClient(Client c){
+		return reservationRepository.findByClient(c);
+	}
+	
+	public List<Reservation> getByEvt(Evenement evt){
+		return reservationRepository.findByEvt(evt);
+	}
 
 	public Reservation getById(Integer id) {
 		return reservationRepository.findById(id).orElseThrow(() -> {

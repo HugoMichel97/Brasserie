@@ -74,7 +74,7 @@ public class InfoReglementRestController {
 	}
 
 	@PatchMapping("/{id}")
-	@JsonView(JsonViews.Common.class)
+	@JsonView(JsonViews.InfoReglement.class)
 	public InfoReglement partialUpdate(@RequestBody Map<String, Object> fields, @PathVariable Integer id) {
 		InfoReglement infoReg = infoReglementService.getById(id);
 		fields.forEach((key, value) -> {

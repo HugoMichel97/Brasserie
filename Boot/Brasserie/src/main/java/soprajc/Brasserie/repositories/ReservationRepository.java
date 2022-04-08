@@ -1,5 +1,6 @@
 package soprajc.Brasserie.repositories;
 
+import java.util.List;
 import java.util.Optional;
 
 import javax.transaction.Transactional;
@@ -25,4 +26,10 @@ public interface ReservationRepository extends JpaRepository<Reservation, Intege
 	
 	@Query("select r from Reservation r left join fetch r.client where r.id=:id")
 	Optional<Reservation> findByIdWithClient(@Param("id") Integer id);
+	
+	@Query("select r from Reservation r where r.client=:client")
+	List<Reservation> findByClient(@Param("client") Client client);
+	
+	@Query("select r from Reservation r where r.evt=:evt")
+	List<Reservation> findByEvt(@Param("evt") Evenement evt);
 }

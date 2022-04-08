@@ -21,17 +21,17 @@ public class ProduitService {
 	@Autowired
 	ProduitRepository produitRepository;
 	
-	@Autowired 
-	AchatRepository achatRepository;
-	
-	@Autowired
-	NoteRepository noteRepository;
-	
 	@Autowired
 	BiereRepository biereRepository;
 	
 	@Autowired
 	SnackRepository snackRepository;
+	
+	@Autowired 
+	AchatRepository achatRepository;
+	
+	@Autowired
+	NoteRepository noteRepository;
 
 	public void create(Produit p) {
 		if(p.getId() != null) {

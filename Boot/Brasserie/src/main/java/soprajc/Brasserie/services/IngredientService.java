@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import soprajc.Brasserie.exception.EvenementException;
+import soprajc.Brasserie.exception.IngredientException;
 import soprajc.Brasserie.model.Ingredient;
 import soprajc.Brasserie.repositories.IngredientRepository;
 
@@ -29,6 +30,12 @@ public class IngredientService {
 	public Ingredient getById(Integer id) {
         return ingredientRepository.findById(id).orElseThrow(()-> {throw new EvenementException("Numero inconnu");});
     }
+	
+	public Ingredient getByIdWithBiere(Integer id) {
+		return ingredientRepository.findByIdWithBiere(id).orElseThrow(() -> {
+			throw new IngredientException("Id inconnu.");
+		});
+	}
 	
 	public void delete(Ingredient i) {
 		ingredientRepository.delete(i);

@@ -29,7 +29,9 @@ import soprajc.Brasserie.exception.EvenementException;
 import soprajc.Brasserie.model.Client;
 import soprajc.Brasserie.model.Evenement;
 import soprajc.Brasserie.model.JsonViews;
+import soprajc.Brasserie.model.Reservation;
 import soprajc.Brasserie.services.EvenementService;
+import soprajc.Brasserie.services.ReservationService;
 
 @RestController
 @RequestMapping("/api/evenement")
@@ -37,17 +39,13 @@ public class EvenementRestController {
 	
 	@Autowired 
 	EvenementService evenementService;
+	@Autowired
+	ReservationService reservationService;
 	
 	@JsonView(JsonViews.Evenement.class)
 	@GetMapping("")
 	public List<Evenement> getAll() {
 		return evenementService.getAll();
-	}
-
-	//@JsonView(JsonViews.EvenementWithResa.class)
-	@GetMapping("/getResa")
-	public List<Evenement> getAllWithResa() {
-		return evenementService.getAllWithResa();
 	}
 	
 	@JsonView(JsonViews.Evenement.class)
@@ -66,6 +64,12 @@ public class EvenementRestController {
 	@GetMapping("/{id}")
 	public Evenement getById(@PathVariable Integer id) {
 		return evenementService.getById(id);
+	}
+	
+	@JsonView(JsonViews.Reservation.class)
+	@GetMapping("/{id}/getResa")
+	public List<Reservation> getResa(@PathVariable Integer id_evt){
+		return reservationService.getByEvt(evenementService.getById(id_evt));
 	}
 
 	@ResponseStatus(code = HttpStatus.NO_CONTENT)
@@ -99,7 +103,7 @@ public class EvenementRestController {
 	}
 	
 	@PatchMapping("/{id}")
-	@JsonView(JsonViews.Common.class)
+	@JsonView(JsonViews.Evenement.class)
 	public Evenement partialUpdate(@RequestBody Map<String, Object> fields, @PathVariable Integer id) {
 		Evenement evt = evenementService.getById(id);
 		fields.forEach((key, value) -> {

@@ -32,15 +32,13 @@ public class InfoReglementService {
 	public List<InfoReglement> getAll() {
 		return infoReglementRepository.findAll();
 	}
+	
+	public List<InfoReglement> getByClient(Client c){
+		return infoReglementRepository.findByClient(c);
+	}
 
 	public InfoReglement getById(Integer id) {
 		return infoReglementRepository.findById(id).orElseThrow(() -> {
-			throw new InfoReglementException("Id inconnu.");
-		});
-	}
-
-	public InfoReglement getByIdWithClient(Integer id) {
-		return infoReglementRepository.findByIdWithClients(id).orElseThrow(() -> {
 			throw new InfoReglementException("Id inconnu.");
 		});
 	}

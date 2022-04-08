@@ -48,6 +48,10 @@ public class AchatService {
 		return achatRepository.findAll();
 	}
 
+	public List<Achat> getByClient(Client c){
+		return achatRepository.findByClient(c);
+	}
+	
 	public Achat getById(Integer id) {
 		return achatRepository.findById(id).orElseThrow(()-> {throw new AchatException("Numero inconnu");});
 	}

@@ -26,8 +26,11 @@ import org.springframework.web.bind.annotation.RestController;
 import com.fasterxml.jackson.annotation.JsonView;
 
 import soprajc.Brasserie.exception.ClientException;
+import soprajc.Brasserie.model.Achat;
 import soprajc.Brasserie.model.Client;
+import soprajc.Brasserie.model.InfoReglement;
 import soprajc.Brasserie.model.JsonViews;
+import soprajc.Brasserie.model.Reservation;
 import soprajc.Brasserie.services.AchatService;
 import soprajc.Brasserie.services.ClientService;
 import soprajc.Brasserie.services.InfoReglementService;
@@ -40,42 +43,42 @@ public class ClientRestController {
 	@Autowired 
 	ClientService clientService;
 	@Autowired
+	ReservationService reservationService;
+	@Autowired
+	AchatService achatService;
+	@Autowired
+	InfoReglementService infoRegService;
+	@Autowired
 	PasswordEncoder passwordEncoder;
 
-	@JsonView(JsonViews.Common.class)
+	@JsonView(JsonViews.Client.class)
 	@GetMapping("")
 	public List<Client> getAll() {
 		return clientService.getAll();
 	}
 
-	@JsonView(JsonViews.ClientWithReservation.class)
-	@GetMapping("/getResa")
-	public List<Client> getAllWithResa(){
-		return clientService.getAllWithResa();
-	}
-
-	@JsonView(JsonViews.ClientWithAchat.class)
-	@GetMapping("/getAchat")
-	public List<Client> getAllWithAchat(){
-		return clientService.getAllWithAchat();
-	}
-
-	@JsonView(JsonViews.Common.class)
+	@JsonView(JsonViews.Client.class)
 	@GetMapping("/{id}")
 	public Client getById(@PathVariable Integer id) {
 		return clientService.getById(id);
 	}
-
-	@JsonView(JsonViews.ClientWithReservation.class)
-	@GetMapping("/{id}/getResa")
-	public Client getByIdWithResa(@PathVariable Integer id) {
-		return clientService.getByIdWithReservation(id);
+	
+	@JsonView(JsonViews.Common.class)
+	@GetMapping("/{id}/getInfoReg")
+	public List<InfoReglement> getInfoReg(@PathVariable Integer id_client){
+		return infoRegService.getByClient(clientService.getById(id_client));
 	}
 
-	@JsonView(JsonViews.ClientWithAchat.class)
+	@JsonView(JsonViews.Common.class)
 	@GetMapping("/{id}/getAchat")
-	public Client getByIdWithAchat(@PathVariable Integer id) {
-		return clientService.getByIdWithAchat(id);
+	public List<Achat> getAchats(@PathVariable Integer id_client){
+		return achatService.getByClient(clientService.getById(id_client));
+	}
+	
+	@JsonView(JsonViews.ReservationEvt.class)
+	@GetMapping("/{id}/getResa")
+	public List<Reservation> getResa(@PathVariable Integer id_client){
+		return reservationService.getByClient(clientService.getById(id_client));
 	}
 
 	@ResponseStatus(code = HttpStatus.NO_CONTENT)
@@ -86,7 +89,7 @@ public class ClientRestController {
 
 	@ResponseStatus(code = HttpStatus.CREATED)
 	@PostMapping("")
-	@JsonView(JsonViews.Common.class)
+	@JsonView(JsonViews.Client.class)
 	public Client create(@Valid @RequestBody Client client, BindingResult br) {
 		if (br.hasErrors()) {
 			throw new ClientException();
@@ -95,7 +98,7 @@ public class ClientRestController {
 	}
 
 	@PutMapping("/{id}")
-	@JsonView(JsonViews.Common.class)
+	@JsonView(JsonViews.Client.class)
 	public Client update(@PathVariable Integer id, @Valid @RequestBody Client client, BindingResult br) {
 		client.setId(id);
 		return save(client, br);
@@ -109,7 +112,7 @@ public class ClientRestController {
 	}
 
 	@PatchMapping("/{id}")
-	@JsonView(JsonViews.Common.class)
+	@JsonView(JsonViews.Client.class)
 	public Client partialUpdate(@RequestBody Map<String, Object> fields, @PathVariable Integer id) {
 		Client client = clientService.getById(id);
 		fields.forEach((key, value) -> {

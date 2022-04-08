@@ -32,11 +32,7 @@ public class EvenementService {
 	public List<Evenement> getAll() {
 		return evenementRepository.findAll();
 	}
-
-	public List<Evenement> getAllWithResa() {
-		return evenementRepository.findAllWithReservation();
-	}
-
+	
 	public List<Evenement> getAllByFidelite(int fidelite) {
 		return evenementRepository.findAllByFidelite(fidelite);
 	}

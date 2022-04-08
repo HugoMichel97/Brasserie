@@ -30,8 +30,8 @@ public class Ingredient {
 	@JsonView(JsonViews.Common.class)
 	private int stock = 0;
 
+	@JsonView(JsonViews.Ingredient.class)
 	@ManyToMany(mappedBy= "recette")
-	//	@JsonView(JsonViews.Ingredient.class)
 	private List<Biere> bieres;
 
 	@Version

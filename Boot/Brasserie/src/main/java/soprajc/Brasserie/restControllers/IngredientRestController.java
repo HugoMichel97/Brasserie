@@ -37,13 +37,19 @@ public class IngredientRestController {
 	@Autowired 
 	IngredientService ingredientService;
 
-	@JsonView(JsonViews.Ingredient.class)
+	@JsonView(JsonViews.Common.class)
 	@GetMapping("")
 	public List<Ingredient> getAll() {
 		return ingredientService.getAll();
 	}
 
 	@JsonView(JsonViews.Ingredient.class)
+	@GetMapping("/{id}/getBieres")
+	public Ingredient getByIdWithBieres(@PathVariable Integer id) {
+		return ingredientService.getByIdWithBiere(id);
+	}
+	
+	@JsonView(JsonViews.Common.class)
 	@GetMapping("/{id}")
 	public Ingredient getById(@PathVariable Integer id) {
 		return ingredientService.getById(id);
@@ -57,7 +63,7 @@ public class IngredientRestController {
 
 	@ResponseStatus(code = HttpStatus.CREATED)
 	@PostMapping("")
-	@JsonView(JsonViews.Ingredient.class)
+	@JsonView(JsonViews.Common.class)
 	public Ingredient create(@Valid @RequestBody Ingredient ingredient, BindingResult br) {
 		if (br.hasErrors()) {
 			throw new IngredientException();
@@ -66,7 +72,7 @@ public class IngredientRestController {
 	}
 
 	@PutMapping("/{id}")
-	@JsonView(JsonViews.Ingredient.class)
+	@JsonView(JsonViews.Common.class)
 	public Ingredient update(@PathVariable Integer id, @Valid @RequestBody Ingredient ingredient, BindingResult br) {
 		ingredient.setId_ingredient(id);
 		return save(ingredient, br);

@@ -1,7 +1,6 @@
 package soprajc.Brasserie.restControllers;
 
 import java.lang.reflect.Field;
-import java.time.LocalDate;
 import java.util.List;
 import java.util.Map;
 
@@ -26,11 +25,10 @@ import com.fasterxml.jackson.annotation.JsonView;
 
 import soprajc.Brasserie.exception.ProduitException;
 import soprajc.Brasserie.model.Biere;
-import soprajc.Brasserie.model.Ingredient;
-import soprajc.Brasserie.model.Produit;
 import soprajc.Brasserie.model.JsonViews;
 import soprajc.Brasserie.model.Produit;
 import soprajc.Brasserie.model.Snack;
+import soprajc.Brasserie.services.IngredientService;
 import soprajc.Brasserie.services.ProduitService;
 
 
@@ -41,6 +39,8 @@ public class ProduitRestController {
 
 	@Autowired
 	ProduitService produitService;
+	@Autowired
+	IngredientService ingredientService;
 	
 	@JsonView(JsonViews.Produit.class)
 	@GetMapping("")
@@ -95,7 +95,7 @@ public class ProduitRestController {
 	}
 	
 	@PatchMapping("/{id}")
-	@JsonView(JsonViews.Common.class)
+	@JsonView(JsonViews.Produit.class)
 	public Produit partialUpdate(@RequestBody Map<String, Object> fields, @PathVariable Integer id) {
 		Produit produit = produitService.getById(id);
 		fields.forEach((key, value) -> {

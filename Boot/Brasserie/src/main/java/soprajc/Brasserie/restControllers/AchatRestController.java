@@ -1,8 +1,6 @@
 package soprajc.Brasserie.restControllers;
 
 import java.lang.reflect.Field;
-import java.time.LocalDate;
-import java.time.LocalTime;
 import java.util.List;
 import java.util.Map;
 
@@ -30,6 +28,7 @@ import soprajc.Brasserie.exception.ReservationException;
 import soprajc.Brasserie.model.Achat;
 import soprajc.Brasserie.model.JsonViews;
 import soprajc.Brasserie.services.AchatService;
+import soprajc.Brasserie.services.ClientService;
 
 @RestController
 @RequestMapping("/api/achat")
@@ -37,6 +36,8 @@ public class AchatRestController {
 
 	@Autowired
 	AchatService achatService;
+	@Autowired
+	ClientService clientService;
 
 	@JsonView(JsonViews.Achat.class)
 	@GetMapping("")
@@ -58,7 +59,7 @@ public class AchatRestController {
 
 	@ResponseStatus(code = HttpStatus.CREATED)
 	@PostMapping("")
-	@JsonView(JsonViews.Achat.class)
+	@JsonView(JsonViews.Produit.class)
 	public Achat create(@Valid @RequestBody Achat achat, BindingResult br) {
 		if (br.hasErrors()) {
 			throw new AchatException();

@@ -48,14 +48,6 @@ public class ClientService {
 		return clientRepository.findAll();
 	}
 	
-	public List<Client> getAllWithResa() {
-		return clientRepository.findAllWithReservation();
-	}
-	
-	public List<Client> getAllWithAchat() {
-		return clientRepository.findAllWithAchat();
-	}
-	
 	public List<Client> getByFidelite(int fidelite) {
 		return clientRepository.findByFidelite(fidelite);
 	}
@@ -69,18 +61,6 @@ public class ClientService {
 
 	public Client getById(Integer id) {
 		return clientRepository.findById(id).orElseThrow(() -> {
-			throw new ClientException("Id inconnu.");
-		});
-	}
-
-	public Client getByIdWithReservation(Integer id) {
-		return clientRepository.findByIdWithReservations(id).orElseThrow(() -> {
-			throw new ClientException("Id inconnu.");
-		});
-	}
-	
-	public Client getByIdWithAchat(Integer id) {
-		return clientRepository.findByIdWithAchats(id).orElseThrow(() -> {
 			throw new ClientException("Id inconnu.");
 		});
 	}

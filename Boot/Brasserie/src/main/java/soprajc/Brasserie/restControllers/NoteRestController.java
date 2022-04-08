@@ -1,12 +1,12 @@
 package soprajc.Brasserie.restControllers;
 
 import java.lang.reflect.Field;
-import java.time.LocalDate;
 import java.util.List;
 import java.util.Map;
 
 import javax.validation.Valid;
 
+import org.hibernate.validator.constraints.Length;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.util.ReflectionUtils;
@@ -26,10 +26,12 @@ import com.fasterxml.jackson.annotation.JsonView;
 
 import soprajc.Brasserie.exception.NoteException;
 import soprajc.Brasserie.exception.ReservationException;
-import soprajc.Brasserie.model.Client;
+import soprajc.Brasserie.model.Biere;
 import soprajc.Brasserie.model.JsonViews;
 import soprajc.Brasserie.model.Note;
+import soprajc.Brasserie.model.Produit;
 import soprajc.Brasserie.services.NoteService;
+import soprajc.Brasserie.services.ProduitService;
 
 @RestController
 @RequestMapping("/api/note")
@@ -37,11 +39,41 @@ public class NoteRestController {
 
 	@Autowired 
 	NoteService noteService;
+	@Autowired
+	ProduitService produitService;
 
 	@JsonView(JsonViews.Note.class)
 	@GetMapping("")
 	public List<Note> getAll() {
 		return noteService.getAll();
+	}
+	
+	@JsonView(JsonViews.Note.class)
+	@GetMapping("/{id_biere}")
+	public List<Note> getByBiere(@PathVariable Integer id_biere){
+		Produit p = produitService.getById(id_biere);
+		if (p instanceof Biere) {
+			return noteService.getByBiere((Biere) p);
+		} else {
+			throw new NoteException("Pas d'évaluation pour les snacks");
+		}
+	}
+
+	@JsonView(JsonViews.Common.class)
+	@GetMapping("/{id_biere}/moyenne")
+	public double[] getMoyenneByBiere(@PathVariable Integer id_biere){
+		Produit p = produitService.getById(id_biere);
+		if (p instanceof Biere) {
+			List<Note> notes = noteService.getByBiere((Biere) p);
+			double[] mean = {0, notes.size()};
+			for(Note n : notes) {
+				mean[0] += n.getNote();
+			}
+			mean[0] = mean[0]/mean[1];
+			return mean;
+		} else {
+			throw new NoteException("Pas d'évaluation pour les snacks");
+		}
 	}
 
 	@JsonView(JsonViews.Note.class)
@@ -49,8 +81,6 @@ public class NoteRestController {
 	public Note getById(@PathVariable Integer id) {
 		return noteService.getById(id);
 	}
-
-	// getMoyenne (mettre le total de votes)
 
 	@ResponseStatus(code = HttpStatus.NO_CONTENT)
 	@DeleteMapping("/{id}")
@@ -83,7 +113,7 @@ public class NoteRestController {
 	}
 
 	@PatchMapping("/{id}")
-	@JsonView(JsonViews.Common.class)
+	@JsonView(JsonViews.Note.class)
 	public Note partialUpdate(@RequestBody Map<String, Object> fields, @PathVariable Integer id) {
 		Note note = noteService.getById(id);
 		fields.forEach((key, value) -> {

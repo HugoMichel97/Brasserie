@@ -12,6 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.util.ReflectionUtils;
 import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PutMapping;
@@ -22,6 +23,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.fasterxml.jackson.annotation.JsonView;
 
 import soprajc.Brasserie.exception.BrasseurException;
+import soprajc.Brasserie.model.Achat;
 import soprajc.Brasserie.model.Brasseur;
 import soprajc.Brasserie.model.JsonViews;
 import soprajc.Brasserie.services.BrasseurService;
@@ -35,6 +37,12 @@ public class BrasseurRestController {
 	
 	@Autowired
 	private PasswordEncoder passwordEncoder;
+	
+	@JsonView(JsonViews.Common.class)
+	@GetMapping("")
+	public Brasseur getById(Integer id) {
+		return brasseurService.getById(id);
+	}
 	
 	@PutMapping("/{id}")
 	@JsonView(JsonViews.Common.class)

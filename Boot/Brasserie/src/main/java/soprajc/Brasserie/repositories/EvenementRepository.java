@@ -11,8 +11,6 @@ import org.springframework.data.repository.query.Param;
 import soprajc.Brasserie.model.Evenement;
 
 public interface EvenementRepository  extends JpaRepository<Evenement, Integer>{
-	@Query("select e from Evenement e left join fetch e.reservations")
-	List<Evenement> findAllWithReservation();
 	
 	@Query("select e from Evenement e left join fetch e.reservations where e.id=:id")
 	Optional<Evenement> findByIdWithReservations(@Param("id") Integer id);

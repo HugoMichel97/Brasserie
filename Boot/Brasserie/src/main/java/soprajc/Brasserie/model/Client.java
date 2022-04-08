@@ -28,14 +28,14 @@ public class Client extends Compte {
 	@Column(length=25)
 	private String prenom;
 	
-	@JsonView(JsonViews.Common.class)
+	@JsonView(JsonViews.Compte.class)
 	@Column(length=12)
 	private String tel;
 	
 	@JsonView(JsonViews.Common.class)
 	private int fidelite = 0;
 	
-	@JsonView(JsonViews.Common.class)
+	@JsonView(JsonViews.Client.class)
 	@NotNull
 	@Column(name="date_naissance", nullable=false)
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
@@ -43,13 +43,12 @@ public class Client extends Compte {
 	
 	@Enumerated(EnumType.STRING)
 	@Column(columnDefinition = "ENUM('vide', 'en_attente', 'validee', 'prete', 'recuperee')")
-	@JsonView(JsonViews.Common.class)
+	@JsonView(JsonViews.Client.class)
 	private StatutCommande statut = StatutCommande.vide;
 	
 	@OneToMany(mappedBy = "client")
 	private List<InfoReglement> reglements;
 	
-	@JsonView(JsonViews.ClientWithReservation.class)
 	@OneToMany(mappedBy = "client")
 	private List<Reservation> reservations;
 	

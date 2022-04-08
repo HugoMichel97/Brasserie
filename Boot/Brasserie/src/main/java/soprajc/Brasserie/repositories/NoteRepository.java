@@ -22,4 +22,7 @@ public interface NoteRepository extends JpaRepository<Note, Integer>{
 	
 	@Query("select n from Note n where n.client=:client")
 	List<Note> findByClient(@Param("client") Client client);
+	
+	@Query("select n from Note n where n.biere=:biere")
+	List<Note> findByBiere(@Param("biere") Biere biere);
 }
