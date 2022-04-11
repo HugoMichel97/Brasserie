@@ -1,0 +1,35 @@
+<p>Construction d'un achat !</p>
+
+<div>
+  <div class="form-group">
+    <label>Identifiant :</label>
+    <input
+      [(ngModel)]="achat.id_achat"
+      readonly
+      class="form-control"
+      placeholder="Auto-génération"
+    />
+  </div>
+
+  <div class="form-group">
+    <label>Client concerné :</label>
+    <input type="text" [(ngModel)]="achat.id_client" class="form-control" />
+  </div>
+
+  <div class="form-group">
+    <label>Produit concerné :</label>
+    <input type="text" [(ngModel)]="achat.id_produit" class="form-control" />
+  </div>
+
+  <div class="form-group">
+    <label>Quantité achetée :</label>
+    <input type="number" [(ngModel)]="achat.quantite" class="form-control" />
+  </div>
+
+  <div>
+    <button (click)="save()" class="btn btn-outline-success">
+      Enregistrer
+    </button>
+    <a routerLink="/achat" class="btn btn-outline-warning">Annuler</a>
+  </div>
+</div>
