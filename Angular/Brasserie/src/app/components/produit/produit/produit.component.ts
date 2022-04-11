@@ -42,7 +42,6 @@ export class ProduitComponent implements OnInit {
     }
   }
 
-  //delete by id ou by produit ?
   delete(id: number) {
     this.produitService.delete(id).subscribe((done) => {
       this.list();
