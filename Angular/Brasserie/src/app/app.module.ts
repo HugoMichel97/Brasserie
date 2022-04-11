@@ -1,3 +1,4 @@
+import { HttpClientModule } from '@angular/common/http';
 import { EditAchatComponent } from './components/achat/edit-achat/edit-achat.component';
 import { AchatComponent } from './components/achat/achat/achat.component';
 import { EditNoteComponent } from './components/note/edit-note/edit-note.component';
@@ -27,7 +28,12 @@ import { ReservationEditComponent } from './components/reservation/reservation-e
     AchatComponent,
     EditAchatComponent,
   ],
-  imports: [BrowserModule, FormsModule, RouterModule.forRoot(routes)],
+  imports: [
+    BrowserModule,
+    FormsModule,
+    RouterModule.forRoot(routes),
+    HttpClientModule,
+  ],
   providers: [],
   bootstrap: [AppComponent],
 })

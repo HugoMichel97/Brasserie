@@ -7,7 +7,7 @@ import { Note } from '../model/note';
   providedIn: 'root',
 })
 export class NoteService {
-  private static url: string = 'http://localhost8080/brasserie/api/note';
+  private static url: string = 'http://localhost:8080/brasserie/api/note';
   constructor(private http: HttpClient) {}
 
   public getAll(): Observable<any[]> {

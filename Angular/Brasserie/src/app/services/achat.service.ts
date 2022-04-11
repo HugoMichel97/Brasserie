@@ -7,7 +7,7 @@ import { Observable } from 'rxjs';
   providedIn: 'root',
 })
 export class AchatService {
-  private static url: string = 'http://localhost8080/brasserie/api/achat';
+  private static url: string = 'http://localhost:8080/brasserie/api/achat';
 
   constructor(private http: HttpClient) {}
 

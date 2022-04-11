@@ -1,7 +1,6 @@
 import { Note } from './../../../model/note';
 import { NoteService } from './../../../services/note.service';
 import { Component, OnInit } from '@angular/core';
-import { runInThisContext } from 'vm';
 
 @Component({
   selector: 'app-note',

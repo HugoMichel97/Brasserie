@@ -8,7 +8,7 @@ import { Observable } from 'rxjs';
   providedIn: 'root',
 })
 export class ProduitService {
-  private static url: string = 'http://localhost8080/brasserie/api/produit';
+  private static url: string = 'http://localhost:8080/brasserie/api/produit';
   constructor(private http: HttpClient) {}
 
   public getAll(): Observable<any[]> {
