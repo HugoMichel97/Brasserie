@@ -8,11 +8,13 @@ import { RouterModule } from '@angular/router';
 import { AppComponent } from './app.component';
 import { ReservationListComponent } from './components/reservation/reservation-list/reservation-list.component';
 import { ReservationEditComponent } from './components/reservation/reservation-edit/reservation-edit.component';
-import { ProduitListComponent } from './components/produit/produit-list/produit-list.component';
-import { ProduitEditComponent } from './components/produit/produit-edit/produit-edit.component';
 
 @NgModule({
-  declarations: [AppComponent, ReservationListComponent, ReservationEditComponent, ProduitListComponent, ProduitEditComponent],
+  declarations: [
+    AppComponent,
+    ReservationListComponent,
+    ReservationEditComponent,
+  ],
   imports: [BrowserModule, FormsModule, RouterModule.forRoot(routes)],
   providers: [],
   bootstrap: [AppComponent],
