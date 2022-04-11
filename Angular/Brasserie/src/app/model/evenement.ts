@@ -6,10 +6,10 @@ export class Evenement {
     private _id?: number | undefined,
     private _date?: Date | undefined,
     private _heure?: Time | undefined,
-    private _libelle?: String | undefined,
+    private _libelle?: string | undefined,
     private _prix?: number | undefined,
     private _ptsRequis: number = 0,
-    private _description?: String | undefined,
+    private _description?: string | undefined,
     private _nbPlaces: number = 1,
     private _reservations?: Reservation[] | undefined
   ) {}
@@ -38,11 +38,11 @@ export class Evenement {
     this._heure = value;
   }
 
-  public get libelle(): String | undefined {
+  public get libelle(): string | undefined {
     return this._libelle;
   }
 
-  public set libelle(value: String | undefined) {
+  public set libelle(value: string | undefined) {
     this._libelle = value;
   }
 
@@ -62,11 +62,11 @@ export class Evenement {
     this._ptsRequis = value;
   }
 
-  public get description(): String | undefined {
+  public get description(): string | undefined {
     return this._description;
   }
 
-  public set description(value: String | undefined) {
+  public set description(value: string | undefined) {
     this._description = value;
   }
 

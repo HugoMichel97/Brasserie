@@ -22,6 +22,8 @@ public class JsonViews {
 	
 	public static class Note extends Common {}
 	
+	public static class ReservationEvtClient extends Reservation{}
+	
 	public static class InfoReglement extends Common{}
 
 }
