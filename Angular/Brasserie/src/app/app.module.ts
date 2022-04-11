@@ -10,10 +10,13 @@ import { ReservationListComponent } from './components/reservation/reservation-l
 import { ReservationEditComponent } from './components/reservation/reservation-edit/reservation-edit.component';
 import { ProduitListComponent } from './components/produit/produit-list/produit-list.component';
 import { ProduitEditComponent } from './components/produit/produit-edit/produit-edit.component';
+import { HttpClientModule } from '@angular/common/http';
+import { ReglementComponent } from './components/reglement/reglement.component';
 
 @NgModule({
-  declarations: [AppComponent, ReservationListComponent, ReservationEditComponent, ProduitListComponent, ProduitEditComponent],
-  imports: [BrowserModule, FormsModule, RouterModule.forRoot(routes)],
+  declarations: [AppComponent, ReservationListComponent, ReservationEditComponent, ProduitListComponent, ProduitEditComponent, ReglementComponent],
+  imports: [BrowserModule, FormsModule, RouterModule.forRoot(routes), HttpClientModule,],
+
   providers: [],
   bootstrap: [AppComponent],
 })

@@ -35,7 +35,7 @@ public class Reservation {
 	@ManyToOne
 	@JoinColumn(name="evt_fk", foreignKey = @ForeignKey(name="reservation_evt_fk"))
 	@NotNull
-	@JsonView(JsonViews.ReservationEvt.class)
+	@JsonView({JsonViews.ReservationEvt.class, JsonViews.ReservationEvtClient.class})
 	private Evenement evt;
 	
 	@Enumerated(EnumType.STRING)

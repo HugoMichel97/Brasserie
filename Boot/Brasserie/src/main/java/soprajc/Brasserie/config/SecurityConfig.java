@@ -30,31 +30,31 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 				.and()
 				.authorizeHttpRequests()
 					// Achat :
-					.antMatchers(HttpMethod.GET, "/api/achat/**").authenticated()
-					.antMatchers(HttpMethod.POST, "/api/achat").hasRole("CLIENT")
+					.antMatchers(HttpMethod.GET, "/api/achat/**").permitAll()//authenticated()
+					.antMatchers(HttpMethod.POST, "/api/achat").permitAll()//hasRole("CLIENT")
 					.antMatchers(HttpMethod.PUT, "/api/achat/**").hasRole("CLIENT")
 					.antMatchers(HttpMethod.PATCH, "/api/achat/**").hasRole("CLIENT")
 					.antMatchers(HttpMethod.DELETE, "/api/achat/**").hasRole("CLIENT")
 					
 					// Client :
-					.antMatchers(HttpMethod.GET, "/api/client").hasRole("BRASSEUR")
-					.antMatchers(HttpMethod.GET, "/api/client/getInfoReg/{id}").hasRole("CLIENT")
-					.antMatchers(HttpMethod.GET, "/api/client/{id}/**").authenticated()
-					.antMatchers(HttpMethod.DELETE, "/api/client/**").hasRole("CLIENT")
-					.antMatchers(HttpMethod.PUT, "/api/client/**").hasRole("CLIENT")
+					.antMatchers(HttpMethod.GET, "/api/client").permitAll()//hasRole("BRASSEUR")
+					.antMatchers(HttpMethod.GET, "/api/client/getInfoReg/{id}").permitAll()//hasRole("CLIENT")
+					.antMatchers(HttpMethod.GET, "/api/client/{id}/**").permitAll()//authenticated()
+					.antMatchers(HttpMethod.DELETE, "/api/client/**").permitAll()//hasRole("CLIENT")
+					.antMatchers(HttpMethod.PUT, "/api/client/**").permitAll()//hasRole("CLIENT")
 					.antMatchers(HttpMethod.POST, "/api/client").permitAll()
-					.antMatchers(HttpMethod.PATCH, "/api/client/**").authenticated()
+					.antMatchers(HttpMethod.PATCH, "/api/client/**").permitAll()//authenticated()
 					
 					// Brasseur :
 					.antMatchers("/api/brasseur/**").hasRole("BRASSEUR")
 					
 					// Evenement :
-					.antMatchers(HttpMethod.GET, "/api/evenement/{id}/getResa").hasRole("BRASSEUR")
+					.antMatchers(HttpMethod.GET, "/api/evenement/{id}/getResa").permitAll()//hasRole("BRASSEUR")
 					.antMatchers(HttpMethod.GET, "/api/evenement/**").permitAll()
-					.antMatchers(HttpMethod.POST, "/api/evenement").hasRole("BRASSEUR")
-					.antMatchers(HttpMethod.PUT, "/api/evenement/**").hasRole("BRASSEUR")
-					.antMatchers(HttpMethod.DELETE, "/api/evenement/**").hasRole("BRASSEUR")
-					.antMatchers(HttpMethod.PATCH, "/api/evenement/**").hasRole("BRASSEUR")
+					.antMatchers(HttpMethod.POST, "/api/evenement").permitAll()//hasRole("BRASSEUR")
+					.antMatchers(HttpMethod.PUT, "/api/evenement/**").permitAll()//hasRole("BRASSEUR")
+					.antMatchers(HttpMethod.DELETE, "/api/evenement/**").permitAll()//hasRole("BRASSEUR")
+					.antMatchers(HttpMethod.PATCH, "/api/evenement/**").permitAll()//hasRole("BRASSEUR")
 					
 					// InfoReglement :
 					.antMatchers("/api/infoReglement/**").hasRole("CLIENT")
@@ -77,11 +77,11 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 					.antMatchers(HttpMethod.PATCH, "/api/produit/**").hasRole("BRASSEUR")
 					
 					// Reservation :
-					.antMatchers(HttpMethod.GET, "/api/reservation/**").hasRole("BRASSEUR")
-					.antMatchers(HttpMethod.POST, "/api/reservation").hasRole("CLIENT")
-					.antMatchers(HttpMethod.PUT, "/api/reservation/**").hasRole("CLIENT")
-					.antMatchers(HttpMethod.DELETE, "/api/reservation/**").hasRole("CLIENT")
-					.antMatchers(HttpMethod.PATCH, "/api/reservation/**").hasRole("CLIENT")
+					.antMatchers(HttpMethod.GET, "/api/reservation/**").permitAll()//hasRole("BRASSEUR")
+					.antMatchers(HttpMethod.POST, "/api/reservation").permitAll()//hasRole("CLIENT")
+					.antMatchers(HttpMethod.PUT, "/api/reservation/**").permitAll()//hasRole("CLIENT")
+					.antMatchers(HttpMethod.DELETE, "/api/reservation/**").permitAll()//hasRole("CLIENT")
+					.antMatchers(HttpMethod.PATCH, "/api/reservation/**").permitAll()//hasRole("CLIENT")
 					
 				.and()
 				.httpBasic();

@@ -1,1 +1,18 @@
-<p>reservation-edit works!</p>
+<div class="form-group">
+  <label>client:</label>
+  <input [(ngModel)]="reservation!.client" class="form-control" />
+</div>
+<div>
+<label>evenements:</label>
+  <select  [(ngModel)]="reservation.evt!" class="form-control">
+    <option *ngFor="let r of reservations" [ngValue]="r">
+      {{ r.evt?.libelle }}
+    </option>
+  </select>
+<div>
+  <button (click)="save()" class="btn btn-outline-success">
+    enregistrer
+  </button>
+  <a routerLink="" class="btn btn-outline-warning">annuler</a>
+</div>
+</div>
