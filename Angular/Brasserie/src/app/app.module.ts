@@ -11,15 +11,19 @@ import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 import { RouterModule } from '@angular/router';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 import { AppComponent } from './app.component';
 import { ReservationListComponent } from './components/reservation/reservation-list/reservation-list.component';
 import { ReservationEditComponent } from './components/reservation/reservation-edit/reservation-edit.component';
 import { EvenementEditComponent } from './components/evenement/evenement-edit/evenement-edit.component';
 import { IngredientEditComponent } from './components/ingredient/ingredient-edit/ingredient-edit.component';
-
 import { EvenenementListComponent } from './components/evenement/evenenement-list/evenenement-list.component';
 import { IngredientListComponent } from './components/ingredient/ingredient-list/ingredient-list.component';
+import { ClientListComponent } from './components/client/client-list/client-list.component';
+import { ClientEditComponent } from './components/client/client-edit/client-edit.component';
+import { ClientComponent } from './components/client/client/client.component';
+import { ClientBrasseurEditComponent } from './components/client/client-brasseur-edit/client-brasseur-edit.component';
 
 @NgModule({
   declarations: [
@@ -36,6 +40,10 @@ import { IngredientListComponent } from './components/ingredient/ingredient-list
     IngredientEditComponent,
     EvenenementListComponent,
     IngredientListComponent,
+    ClientListComponent,
+    ClientEditComponent,
+    ClientComponent,
+    ClientBrasseurEditComponent,
   ],
 
   imports: [
@@ -43,6 +51,7 @@ import { IngredientListComponent } from './components/ingredient/ingredient-list
     FormsModule,
     RouterModule.forRoot(routes),
     HttpClientModule,
+    FontAwesomeModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

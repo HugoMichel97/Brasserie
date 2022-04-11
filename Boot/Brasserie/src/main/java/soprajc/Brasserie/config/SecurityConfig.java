@@ -29,59 +29,60 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 				.csrf().ignoringAntMatchers("/api/**")
 				.and()
 				.authorizeHttpRequests()
-					// Achat :
-					.antMatchers(HttpMethod.GET, "/api/achat/**").authenticated()
-					.antMatchers(HttpMethod.POST, "/api/achat").hasRole("CLIENT")
-					.antMatchers(HttpMethod.PUT, "/api/achat/**").hasRole("CLIENT")
-					.antMatchers(HttpMethod.PATCH, "/api/achat/**").hasRole("CLIENT")
-					.antMatchers(HttpMethod.DELETE, "/api/achat/**").hasRole("CLIENT")
-					
-					// Client :
-					.antMatchers(HttpMethod.GET, "/api/client").hasRole("BRASSEUR")
-					.antMatchers(HttpMethod.GET, "/api/client/getInfoReg/{id}").hasRole("CLIENT")
-					.antMatchers(HttpMethod.GET, "/api/client/{id}/**").authenticated()
-					.antMatchers(HttpMethod.DELETE, "/api/client/**").hasRole("CLIENT")
-					.antMatchers(HttpMethod.PUT, "/api/client/**").hasRole("CLIENT")
-					.antMatchers(HttpMethod.POST, "/api/client").permitAll()
-					.antMatchers(HttpMethod.PATCH, "/api/client/**").authenticated()
-					
-					// Brasseur :
-					.antMatchers("/api/brasseur/**").hasRole("BRASSEUR")
-					
-					// Evenement :
-					.antMatchers(HttpMethod.GET, "/api/evenement/{id}/getResa").hasRole("BRASSEUR")
-					.antMatchers(HttpMethod.GET, "/api/evenement/**").permitAll()
-					.antMatchers(HttpMethod.POST, "/api/evenement").hasRole("BRASSEUR")
-					.antMatchers(HttpMethod.PUT, "/api/evenement/**").hasRole("BRASSEUR")
-					.antMatchers(HttpMethod.DELETE, "/api/evenement/**").hasRole("BRASSEUR")
-					.antMatchers(HttpMethod.PATCH, "/api/evenement/**").hasRole("BRASSEUR")
-					
-					// InfoReglement :
-					.antMatchers("/api/infoReglement/**").hasRole("CLIENT")
-					
-					// Ingredient :
-					.antMatchers("/api/ingredient/**").hasRole("BRASSEUR")
-					
-					// Note :
-					.antMatchers(HttpMethod.GET, "/api/note/**").permitAll()
-					.antMatchers(HttpMethod.POST, "/api/note").hasRole("CLIENT")
-					.antMatchers(HttpMethod.PUT, "/api/note/**").hasRole("CLIENT")
-					.antMatchers(HttpMethod.DELETE, "/api/note/**").authenticated()
-					.antMatchers(HttpMethod.PATCH, "/api/note/**").hasRole("CLIENT")
-					
-					// Produit :
-					.antMatchers(HttpMethod.GET, "/api/produit/**").permitAll()
-					.antMatchers(HttpMethod.POST, "/api/produit").hasRole("BRASSEUR")
-					.antMatchers(HttpMethod.PUT, "/api/produit/**").hasRole("BRASSEUR")
-					.antMatchers(HttpMethod.DELETE, "/api/produit/**").hasRole("BRASSEUR")
-					.antMatchers(HttpMethod.PATCH, "/api/produit/**").hasRole("BRASSEUR")
-					
-					// Reservation :
-					.antMatchers(HttpMethod.GET, "/api/reservation/**").hasRole("BRASSEUR")
-					.antMatchers(HttpMethod.POST, "/api/reservation").hasRole("CLIENT")
-					.antMatchers(HttpMethod.PUT, "/api/reservation/**").hasRole("CLIENT")
-					.antMatchers(HttpMethod.DELETE, "/api/reservation/**").hasRole("CLIENT")
-					.antMatchers(HttpMethod.PATCH, "/api/reservation/**").hasRole("CLIENT")
+					.anyRequest().permitAll()
+//					// Achat :
+//					.antMatchers(HttpMethod.GET, "/api/achat/**").authenticated()
+//					.antMatchers(HttpMethod.POST, "/api/achat").hasRole("CLIENT")
+//					.antMatchers(HttpMethod.PUT, "/api/achat/**").hasRole("CLIENT")
+//					.antMatchers(HttpMethod.PATCH, "/api/achat/**").hasRole("CLIENT")
+//					.antMatchers(HttpMethod.DELETE, "/api/achat/**").hasRole("CLIENT")
+//					
+//					// Client :
+//					.antMatchers(HttpMethod.GET, "/api/client").hasRole("BRASSEUR")
+//					.antMatchers(HttpMethod.GET, "/api/client/getInfoReg/{id}").hasRole("CLIENT")
+//					.antMatchers(HttpMethod.GET, "/api/client/{id}/**").authenticated()
+//					.antMatchers(HttpMethod.DELETE, "/api/client/**").hasRole("CLIENT")
+//					.antMatchers(HttpMethod.PUT, "/api/client/**").hasRole("CLIENT")
+//					.antMatchers(HttpMethod.POST, "/api/client").permitAll()
+//					.antMatchers(HttpMethod.PATCH, "/api/client/**").authenticated()
+//					
+//					// Brasseur :
+//					.antMatchers("/api/brasseur/**").hasRole("BRASSEUR")
+//					
+//					// Evenement :
+//					.antMatchers(HttpMethod.GET, "/api/evenement/{id}/getResa").hasRole("BRASSEUR")
+//					.antMatchers(HttpMethod.GET, "/api/evenement/**").permitAll()
+//					.antMatchers(HttpMethod.POST, "/api/evenement").hasRole("BRASSEUR")
+//					.antMatchers(HttpMethod.PUT, "/api/evenement/**").hasRole("BRASSEUR")
+//					.antMatchers(HttpMethod.DELETE, "/api/evenement/**").hasRole("BRASSEUR")
+//					.antMatchers(HttpMethod.PATCH, "/api/evenement/**").hasRole("BRASSEUR")
+//					
+//					// InfoReglement :
+//					.antMatchers("/api/infoReglement/**").hasRole("CLIENT")
+//					
+//					// Ingredient :
+//					.antMatchers("/api/ingredient/**").hasRole("BRASSEUR")
+//					
+//					// Note :
+//					.antMatchers(HttpMethod.GET, "/api/note/**").permitAll()
+//					.antMatchers(HttpMethod.POST, "/api/note").hasRole("CLIENT")
+//					.antMatchers(HttpMethod.PUT, "/api/note/**").hasRole("CLIENT")
+//					.antMatchers(HttpMethod.DELETE, "/api/note/**").authenticated()
+//					.antMatchers(HttpMethod.PATCH, "/api/note/**").hasRole("CLIENT")
+//					
+//					// Produit :
+//					.antMatchers(HttpMethod.GET, "/api/produit/**").permitAll()
+//					.antMatchers(HttpMethod.POST, "/api/produit").hasRole("BRASSEUR")
+//					.antMatchers(HttpMethod.PUT, "/api/produit/**").hasRole("BRASSEUR")
+//					.antMatchers(HttpMethod.DELETE, "/api/produit/**").hasRole("BRASSEUR")
+//					.antMatchers(HttpMethod.PATCH, "/api/produit/**").hasRole("BRASSEUR")
+//					
+//					// Reservation :
+//					.antMatchers(HttpMethod.GET, "/api/reservation/**").hasRole("BRASSEUR")
+//					.antMatchers(HttpMethod.POST, "/api/reservation").hasRole("CLIENT")
+//					.antMatchers(HttpMethod.PUT, "/api/reservation/**").hasRole("CLIENT")
+//					.antMatchers(HttpMethod.DELETE, "/api/reservation/**").hasRole("CLIENT")
+//					.antMatchers(HttpMethod.PATCH, "/api/reservation/**").hasRole("CLIENT")
 					
 				.and()
 				.httpBasic();
