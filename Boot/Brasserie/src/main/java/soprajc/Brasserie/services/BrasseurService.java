@@ -1,6 +1,7 @@
 package soprajc.Brasserie.services;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import soprajc.Brasserie.exception.BrasseurException;
@@ -12,6 +13,8 @@ public class BrasseurService {
 	
 	@Autowired
 	private BrasseurRepository brasseurRepository;
+	@Autowired
+	private PasswordEncoder passwordEncoder;
 	
 	public Brasseur getById(Integer id) {
 		Brasseur brasseur = brasseurRepository.findById(id).orElseThrow(BrasseurException::new);
@@ -23,6 +26,7 @@ public class BrasseurService {
 			Brasseur brasseurEnBase = getById(brasseur.getId());
 			brasseur.setVersion(brasseurEnBase.getVersion());
 		}
+		brasseur.setPassword(passwordEncoder.encode(brasseur.getPassword()));
 		return brasseurRepository.save(brasseur);
 	}
 	

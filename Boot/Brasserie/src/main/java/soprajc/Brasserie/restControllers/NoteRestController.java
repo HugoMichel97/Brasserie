@@ -49,7 +49,7 @@ public class NoteRestController {
 	}
 	
 	@JsonView(JsonViews.Note.class)
-	@GetMapping("/{id_biere}")
+	@GetMapping("/{id_biere}/byBieres")
 	public List<Note> getByBiere(@PathVariable Integer id_biere){
 		Produit p = produitService.getById(id_biere);
 		if (p instanceof Biere) {

@@ -16,6 +16,8 @@ public class ReservationService {
 
 	@Autowired
 	private ReservationRepository reservationRepository;
+	@Autowired
+	private EvenementService evtService;
 	
 	public void create(Reservation r) {
 		if (r.getId() !=null) {
@@ -31,6 +33,7 @@ public class ReservationService {
 		if(r.getStatut().equals(StatutResa.validee)) {
 			Evenement evt = r.getEvt();
 			evt.setNbPlaces(evt.getNbPlaces() - r.getNbParticipants());
+			evtService.save(evt);
 		}
 		reservationRepository.save(r);
 	}

@@ -66,7 +66,7 @@ class BrasserieApplicationTests {
 	private ReservationService resaService;
 	
 	@Test
-	@Disabled
+	//@Disabled
 	@Transactional
 	@Commit
 	void createBDD() {

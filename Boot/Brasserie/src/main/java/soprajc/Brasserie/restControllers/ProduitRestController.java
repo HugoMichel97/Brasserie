@@ -25,6 +25,7 @@ import com.fasterxml.jackson.annotation.JsonView;
 
 import soprajc.Brasserie.exception.ProduitException;
 import soprajc.Brasserie.model.Biere;
+import soprajc.Brasserie.model.Ingredient;
 import soprajc.Brasserie.model.JsonViews;
 import soprajc.Brasserie.model.Produit;
 import soprajc.Brasserie.model.Snack;
@@ -104,10 +105,6 @@ public class ProduitRestController {
 					produit.setPoints((Integer) value);
 				} else {
 					throw new ProduitException("Les snacks ne donnent pas de points de fidélité.");
-				}
-			} else if (key.equals("suggestions")) {
-				if (produit instanceof Biere) {
-					((Biere) produit).setSuggestions((List<Snack>) value); // à tester !!
 				}
 			} else {
 				Field field = ReflectionUtils.findField(Produit.class, key);

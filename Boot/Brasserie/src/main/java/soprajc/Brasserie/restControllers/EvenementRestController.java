@@ -49,13 +49,13 @@ public class EvenementRestController {
 	}
 	
 	@JsonView(JsonViews.Evenement.class)
-	@GetMapping("/{fidelite}")
+	@GetMapping("/byFidelite/{fidelite}")
 	public List<Evenement> getAllByFidelite(@PathVariable int fidelite) {
 		return evenementService.getAllByFidelite(fidelite);
 	}
 
 	@JsonView(JsonViews.Evenement.class)
-	@GetMapping("/{year}/{month}/{day}")
+	@GetMapping("/byDate/{year}/{month}/{day}")
 	public List<Evenement> getAllByDate(@PathVariable int year, @PathVariable int month, @PathVariable int day) {
 		return evenementService.getAllByDate(LocalDate.of(year, month, day));
 	}
@@ -68,8 +68,8 @@ public class EvenementRestController {
 	
 	@JsonView(JsonViews.Reservation.class)
 	@GetMapping("/{id}/getResa")
-	public List<Reservation> getResa(@PathVariable Integer id_evt){
-		return reservationService.getByEvt(evenementService.getById(id_evt));
+	public List<Reservation> getResa(@PathVariable Integer id){
+		return reservationService.getByEvt(evenementService.getById(id));
 	}
 
 	@ResponseStatus(code = HttpStatus.NO_CONTENT)
