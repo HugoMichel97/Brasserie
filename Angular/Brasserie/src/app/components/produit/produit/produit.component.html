@@ -1,0 +1,39 @@
+<p>Voici nos produits :</p>
+
+<table class="table">
+  <tr>
+    <td>Identifiant :</td>
+    <td>Type :</td>
+    <td>Nom :</td>
+    <td>Description :</td>
+    <td>Prix :</td>
+    <td>Stock :</td>
+    <td>Points de fidélité</td>
+  </tr>
+
+  <tr *ngFor="let p of produits">
+    <td>{{ p.id }}</td>
+    <td>{{ getType(p) }}</td>
+    <td>{{ p.nom }}</td>
+    <td>{{ p.description }}</td>
+    <td>{{ p.prix }}</td>
+    <td>{{ p.stock }}</td>
+    <td>{{ p.points }}</td>
+    <td>
+      <a
+        [routerLink]="['/produit', 'edit', p.id]"
+        routerLinkActive="active"
+        class="btn btn-outline-primary"
+        >Modifier</a
+      >
+    </td>
+    <td>
+      <button (click)="delete(p.id!)" class="btn btn-outline-danger">
+        Supprimer
+      </button>
+    </td>
+  </tr>
+</table>
+
+<a routerLink="/produit/add/biere" class="btn btn-link">Ajouter une bière</a>
+<a routerLink="/activite/add/snack" class="btn btn-link">Ajouter un snack</a>

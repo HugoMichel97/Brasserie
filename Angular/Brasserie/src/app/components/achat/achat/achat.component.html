@@ -1,0 +1,30 @@
+<p>Voici les achats !</p>
+
+<table>
+  <tr>
+    <td>Identifiant de l'achat :</td>
+    <td>Identifiant du client :</td>
+    <td>Identifiant du produit :</td>
+    <td>Quantité achetée :</td>
+  </tr>
+  <tr *ngFor="let a of achats">
+    <td>{{ a.id_achat }}</td>
+    <td>{{ a.id_client }}</td>
+    <td>{{ a.id_produit }}</td>
+    <td>{{ a.quantite }}</td>
+    <td>
+      <a
+        [routerLink]="['/achat', 'edit', a.id_achat]"
+        routerLinkActive="active"
+        class="btn btn-outline-primary"
+        >Modifier</a
+      >
+    </td>
+    <td>
+      <button (click)="delete(a.id_achat!)" class="btn btn-outline-danger">
+        Supprimer
+      </button>
+    </td>
+  </tr>
+</table>
+<a routerLink="/achat/add" class="btn btn-link">Ajouter un achat</a>

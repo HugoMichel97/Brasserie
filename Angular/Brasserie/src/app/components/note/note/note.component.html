@@ -1,0 +1,30 @@
+<p>Voici les avis !</p>
+
+<table>
+  <tr>
+    <td>Identifiant :</td>
+    <td>Bière notée :</td>
+    <td>Note attribuée :</td>
+    <td>Commentaire attribué :</td>
+  </tr>
+
+  <tr *ngFor="let n of notes">
+    <td>{{ n.id_note }}</td>
+    <td>{{ n.biere }}</td>
+    <td>{{ n.note }}</td>
+    <td>{{ n.commentaire }}</td>
+    <td>
+      <a
+        [routerLink]="['/note', 'edit', n.id_note]"
+        routerLinkActive="active"
+        class="btn btn-outline-primary"
+        >Modifier</a
+      >
+    </td>
+    <td>
+      <button (click)="delete(n.id_note!)" class="btn btn-outline-danger">
+        Supprimer
+      </button>
+    </td>
+  </tr>
+</table>
