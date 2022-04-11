@@ -12,6 +12,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.util.ReflectionUtils;
 import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PatchMapping;
@@ -38,6 +39,7 @@ import soprajc.Brasserie.services.ReservationService;
 
 @RestController
 @RequestMapping("/api/client")
+@CrossOrigin(origins = "*")
 public class ClientRestController {
 
 	@Autowired 

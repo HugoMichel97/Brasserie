@@ -1,0 +1,19 @@
+<div>
+  <div class="form-group">
+    <label>Nom et prénom :</label>
+    <div class="input-group">
+      <input [(ngModel)]="client.nom" readonly class="form-control" />
+      <input [(ngModel)]="client.prenom" readonly class="form-control" />
+    </div>
+  </div>
+  <div class="form-group">
+    <label>Statut de la commande</label>
+    <input [(ngModel)]="client.statut" class="form-control" />
+  </div>
+  <div>
+    <!-- <button (click)="save()" class="btn btn-outline-success">
+      Enregistrer
+    </button> -->
+    <a routerLink="/brasseur/clients" class="btn btn-outline-danger">Annuler</a>
+  </div>
+</div>

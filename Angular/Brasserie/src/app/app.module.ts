@@ -10,10 +10,32 @@ import { ReservationListComponent } from './components/reservation/reservation-l
 import { ReservationEditComponent } from './components/reservation/reservation-edit/reservation-edit.component';
 import { ProduitListComponent } from './components/produit/produit-list/produit-list.component';
 import { ProduitEditComponent } from './components/produit/produit-edit/produit-edit.component';
+import { ClientListComponent } from './components/client/client-list/client-list.component';
+import { ClientEditComponent } from './components/client/client-edit/client-edit.component';
+import { ClientComponent } from './components/client/client/client.component';
+import { HttpClientModule } from '@angular/common/http';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { ClientBrasseurEditComponent } from './components/client/client-brasseur-edit/client-brasseur-edit.component';
 
 @NgModule({
-  declarations: [AppComponent, ReservationListComponent, ReservationEditComponent, ProduitListComponent, ProduitEditComponent],
-  imports: [BrowserModule, FormsModule, RouterModule.forRoot(routes)],
+  declarations: [
+    AppComponent,
+    ReservationListComponent,
+    ReservationEditComponent,
+    ProduitListComponent,
+    ProduitEditComponent,
+    ClientListComponent,
+    ClientEditComponent,
+    ClientComponent,
+    ClientBrasseurEditComponent,
+  ],
+  imports: [
+    HttpClientModule,
+    BrowserModule,
+    FormsModule,
+    RouterModule.forRoot(routes),
+    FontAwesomeModule,
+  ],
   providers: [],
   bootstrap: [AppComponent],
 })

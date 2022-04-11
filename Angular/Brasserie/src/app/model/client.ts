@@ -8,8 +8,6 @@ export class Client extends Compte {
   public constructor(
     _id?: number | undefined,
     _mail?: String | undefined,
-    _password?: String | undefined,
-    _achats?: Achat[] | undefined,
     private _nom?: String | undefined,
     private _prenom?: String | undefined,
     private _tel?: String | undefined,
@@ -17,7 +15,9 @@ export class Client extends Compte {
     private _naissance?: Date | undefined, // à voir avec moment (?)
     private _statut: StatutCommande = StatutCommande.vide,
     private _reglements?: InfoReglement[] | undefined,
-    private _reservations?: Reservation[] | undefined
+    private _reservations?: Reservation[] | undefined,
+    _achats?: Achat[] | undefined,
+    _password?: String | undefined
   ) {
     super(_id, _mail, _password, _achats);
   }
