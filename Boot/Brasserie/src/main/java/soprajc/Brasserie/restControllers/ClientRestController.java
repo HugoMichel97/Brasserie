@@ -48,8 +48,6 @@ public class ClientRestController {
 	AchatService achatService;
 	@Autowired
 	InfoReglementService infoRegService;
-	@Autowired
-	PasswordEncoder passwordEncoder;
 
 	@JsonView(JsonViews.Client.class)
 	@GetMapping("")
@@ -64,21 +62,21 @@ public class ClientRestController {
 	}
 	
 	@JsonView(JsonViews.Common.class)
-	@GetMapping("/{id}/getInfoReg")
-	public List<InfoReglement> getInfoReg(@PathVariable Integer id_client){
-		return infoRegService.getByClient(clientService.getById(id_client));
+	@GetMapping("/getInfoReg/{id}")
+	public List<InfoReglement> getInfoReg(@PathVariable Integer id){
+		return infoRegService.getByClient(clientService.getById(id));
 	}
 
 	@JsonView(JsonViews.Common.class)
 	@GetMapping("/{id}/getAchat")
-	public List<Achat> getAchats(@PathVariable Integer id_client){
-		return achatService.getByClient(clientService.getById(id_client));
+	public List<Achat> getAchats(@PathVariable Integer id){
+		return achatService.getByClient(clientService.getById(id));
 	}
 	
 	@JsonView(JsonViews.ReservationEvt.class)
 	@GetMapping("/{id}/getResa")
-	public List<Reservation> getResa(@PathVariable Integer id_client){
-		return reservationService.getByClient(clientService.getById(id_client));
+	public List<Reservation> getResa(@PathVariable Integer id){
+		return reservationService.getByClient(clientService.getById(id));
 	}
 
 	@ResponseStatus(code = HttpStatus.NO_CONTENT)
@@ -116,9 +114,7 @@ public class ClientRestController {
 	public Client partialUpdate(@RequestBody Map<String, Object> fields, @PathVariable Integer id) {
 		Client client = clientService.getById(id);
 		fields.forEach((key, value) -> {
-			if(key.equals("password")) {
-				client.setPassword(passwordEncoder.encode((String) value));
-			} else if (key.equals("naissance")) {
+			if (key.equals("naissance")) {
 				List<Integer> dateRecup = (List<Integer>) value;
 				client.setNaissance(LocalDate.of(dateRecup.get(0), dateRecup.get(1), dateRecup.get(2)));
 			} else {

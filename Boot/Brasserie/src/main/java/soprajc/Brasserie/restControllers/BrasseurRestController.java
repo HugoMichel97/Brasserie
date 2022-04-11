@@ -31,19 +31,16 @@ import soprajc.Brasserie.services.BrasseurService;
 @RestController
 @RequestMapping("/api/brasseur")
 public class BrasseurRestController {
-	
+
 	@Autowired
 	private BrasseurService brasseurService;
-	
-	@Autowired
-	private PasswordEncoder passwordEncoder;
-	
+
 	@JsonView(JsonViews.Compte.class)
-	@GetMapping("")
-	public Brasseur getById(Integer id) {
+	@GetMapping("/{id}")
+	public Brasseur getById(@PathVariable Integer id) {
 		return brasseurService.getById(id);
 	}
-	
+
 	@PutMapping("/{id}")
 	@JsonView(JsonViews.Compte.class)
 	public Brasseur update(@PathVariable Integer id, @Valid @RequestBody Brasseur brasseur, BindingResult br) {
@@ -57,19 +54,15 @@ public class BrasseurRestController {
 		}
 		return brasseurService.save(brasseur);
 	}
-	
+
 	@PatchMapping("/{id}")
 	@JsonView(JsonViews.Compte.class)
 	public Brasseur partialUpdate(@RequestBody Map<String, Object> fields, @PathVariable Integer id) {
 		Brasseur brasseur = brasseurService.getById(id);
 		fields.forEach((key, value) -> {
-			if(key.equals("password")) {
-				brasseur.setPassword(passwordEncoder.encode((String) value));
-			} else {
-				Field field = ReflectionUtils.findField(Brasseur.class, key);
-				ReflectionUtils.makeAccessible(field);
-				ReflectionUtils.setField(field, brasseur, value);
-			}
+			Field field = ReflectionUtils.findField(Brasseur.class, key);
+			ReflectionUtils.makeAccessible(field);
+			ReflectionUtils.setField(field, brasseur, value);
 		});
 		return brasseurService.save(brasseur);
 	}

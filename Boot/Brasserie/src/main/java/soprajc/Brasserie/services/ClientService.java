@@ -3,6 +3,7 @@ package soprajc.Brasserie.services;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import soprajc.Brasserie.exception.ClientException;
@@ -15,6 +16,8 @@ public class ClientService {
 	
 	@Autowired
 	private ClientRepository clientRepository;
+	@Autowired
+	private PasswordEncoder passwordEncoder;
 	@Autowired
 	private ReservationService resaService;
 	@Autowired
@@ -89,6 +92,7 @@ public class ClientService {
 			Client clientEnBase = getById(client.getId());
 			client.setVersion(clientEnBase.getVersion());
 		}
+		client.setPassword(passwordEncoder.encode(client.getPassword()));
 		return clientRepository.save(client);
 	}
 }
