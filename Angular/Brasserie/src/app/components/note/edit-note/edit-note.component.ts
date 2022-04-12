@@ -22,7 +22,13 @@ export class EditNoteComponent implements OnInit {
         this.note = new Note();
       } else {
         this.noteService.getById(params['id_note']).subscribe((n) => {
-          this.note = new Note(n.id_note, n.biere, n.note, n.commentaire);
+          this.note = new Note(
+            n.id_note,
+            n.id_client,
+            n.biere,
+            n.note,
+            n.commentaire
+          );
         });
       }
     });

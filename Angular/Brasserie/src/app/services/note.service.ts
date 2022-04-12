@@ -25,6 +25,7 @@ export class NoteService {
   public noteToJson(note: Note): any {
     let n = {
       id_note: note.id_note,
+      id_client: { id: note.id_client?.id },
       biere: { biere: note.biere?.id },
       note: note.note,
       commentaire: note.commentaire,

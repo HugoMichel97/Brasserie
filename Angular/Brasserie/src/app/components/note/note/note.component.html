@@ -3,6 +3,7 @@
 <table>
   <tr>
     <td>Identifiant :</td>
+    <td>Client :</td>
     <td>Bière notée :</td>
     <td>Note attribuée :</td>
     <td>Commentaire attribué :</td>
@@ -10,6 +11,7 @@
 
   <tr *ngFor="let n of notes">
     <td>{{ n.id_note }}</td>
+    <td>{{ n.id_client }}</td>
     <td>{{ n.biere }}</td>
     <td>{{ n.note }}</td>
     <td>{{ n.commentaire }}</td>
