@@ -24,6 +24,7 @@
     "@fortawesome/free-solid-svg-icons": "^6.1.1",
     "bootstrap": "^5.1.3",
     "moment": "^2.29.2",
+    "ng-payment-card": "^0.0.8",
     "rxjs": "~7.5.0",
     "tslib": "^2.3.0",
     "zone.js": "~0.11.4"

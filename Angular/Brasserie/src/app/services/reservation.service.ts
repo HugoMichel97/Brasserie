@@ -23,6 +23,9 @@ export class ReservationService {
     public get(id: number): Observable<Reservation> {
       return this.http.get<Reservation>(ReservationService.URL + '/' + id);
     }
+    public getWithClient(id: number): Observable<Reservation[]> {
+      return this.http.get<Reservation[]>('http://localhost:8080/brasserie/api/client/' +id + '/getResa' );
+    }
     public create(reservation: Reservation): Observable<Reservation> {
       let obj = {
         client: reservation.client,

@@ -21,8 +21,12 @@
 
   <div class="form-group">
     <label>Evenement :</label>
-    <input type="number" [(ngModel)]="evt.libelle" class="form-control" />
+    <input type="text" [(ngModel)]="reservation.evt!.libelle" class="form-control" />
   </div>
+  <!-- <div class="form-group">
+    <label>Nombre de participants:</label>
+    <input type="number" [(ngModel)]="reservation!.nbParticipants" class="form-control" readonly />
+  </div> -->
   <button (click)="save()" class="btn btn-outline-success">
     enregistrer
   </button>

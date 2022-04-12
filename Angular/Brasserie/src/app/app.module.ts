@@ -12,7 +12,7 @@ import { FormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 import { RouterModule } from '@angular/router';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
-
+import { NgPaymentCardModule } from 'ng-payment-card';
 import { AppComponent } from './app.component';
 import { ReservationListComponent } from './components/reservation/reservation-list/reservation-list.component';
 import { ReservationEditComponent } from './components/reservation/reservation-edit/reservation-edit.component';
@@ -26,6 +26,7 @@ import { ClientComponent } from './components/client/client/client.component';
 import { ClientBrasseurEditComponent } from './components/client/client-brasseur-edit/client-brasseur-edit.component';
 import { ReglementComponent } from './components/reglement/reglement.component';
 import { LoginComponent } from './components/login/login.component';
+import { ReservationListClientComponent } from './components/reservation/reservation-list-client/reservation-list-client.component';
 
 @NgModule({
   declarations: [
@@ -48,6 +49,7 @@ import { LoginComponent } from './components/login/login.component';
     ClientBrasseurEditComponent,
     ReglementComponent,
     LoginComponent,
+    ReservationListClientComponent,
   ],
 
   imports: [
@@ -56,6 +58,7 @@ import { LoginComponent } from './components/login/login.component';
     RouterModule.forRoot(routes),
     HttpClientModule,
     FontAwesomeModule,
+    NgPaymentCardModule
   ],
   providers: [],
   bootstrap: [AppComponent],

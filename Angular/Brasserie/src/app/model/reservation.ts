@@ -40,7 +40,7 @@ export class Reservation {
     this._statut = value;
   }
 
-  public get nbParticipants(): number | undefined {
+  public get nbParticipants(): number  {
     return this._nbParticipants;
   }
 
