@@ -11,17 +11,17 @@
 
   <div class="form-group">
     <label>Nom Client:</label>
-    <input type="text" [(ngModel)]="reservation.client!.nom" class="form-control" />
+    <input type="text" [(ngModel)]="client.nom" class="form-control" />
   </div>
 
   <div class="form-group">
     <label>Prenom du client :</label>
-    <input type="text" [(ngModel)]="reservation.client!.prenom" class="form-control" />
+    <input type="text" [(ngModel)]="client.prenom" class="form-control" />
   </div>
 
   <div class="form-group">
     <label>Evenement :</label>
-    <input type="number" [(ngModel)]="reservation.evt!.libelle" class="form-control" />
+    <input type="number" [(ngModel)]="evt.libelle" class="form-control" />
   </div>
   <button (click)="save()" class="btn btn-outline-success">
     enregistrer

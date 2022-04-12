@@ -4,6 +4,8 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ReservationService } from 'src/app/services/reservation.service';
 import { EvenementService } from 'src/app/services/evenements.service';
+import { Client } from 'src/app/model/client';
+
 
 @Component({
   selector: 'app-reservation-edit',
@@ -14,6 +16,9 @@ export class ReservationEditComponent implements OnInit {
 
   reservation: Reservation = new Reservation();
   evenements: Evenement[] = [];
+  client : Client = new Client();
+  evt : Evenement = new Evenement();
+
 
   constructor(
     private aR: ActivatedRoute,
@@ -28,6 +33,8 @@ export class ReservationEditComponent implements OnInit {
       if (params['id']) {
         this.reservationService.get(params['id']).subscribe((result) => {
           this.reservation = result;
+          this.client = result.client!;
+          this.evt = result.evt!
           console.log(result);
         });
       }
