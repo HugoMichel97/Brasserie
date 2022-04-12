@@ -1,10 +1,7 @@
 import { Evenement } from './../model/evenement';
 import { Injectable } from '@angular/core';
-;
 import { Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
-
-
 
 @Injectable({
   providedIn: 'root',
@@ -27,7 +24,10 @@ export class EvenementService {
   }
 
   public create(evenement: Evenement): Observable<any> {
-    return this.http.post(EvenementService.URL, this.evenementToJson(evenement));
+    return this.http.post(
+      EvenementService.URL,
+      this.evenementToJson(evenement)
+    );
   }
 
   public update(evenement: Evenement): Observable<any> {
@@ -47,4 +47,5 @@ export class EvenementService {
       prix: evenement.prix,
     };
     return obj;
-  }}
+  }
+}

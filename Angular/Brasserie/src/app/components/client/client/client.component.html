@@ -3,7 +3,7 @@
     <th>
       Information personnelles
       <button
-        [routerLink]="['/client', 'edit', client.id]"
+        [routerLink]="['/client', 'edit', 'perso', client.id]"
         routerLinkActive="active"
         class="btn btn-outline-warning"
       >
@@ -49,7 +49,7 @@
       <td>
         {{ client.mail }}
         <button
-          [routerLink]="['/client', 'edit', client.id]"
+          [routerLink]="['/client', 'edit', 'mail', client.id]"
           routerLinkActive="active"
           class="btn btn-outline-warning"
         >
@@ -72,7 +72,7 @@
     <th>
       Information de paiement
       <button
-        [routerLink]="['/client', 'edit', 'perso', client.id]"
+        [routerLink]="['/client', 'edit', 'infoReglement', client.id]"
         routerLinkActive="active"
         class="btn btn-outline-success"
       >
@@ -92,11 +92,16 @@
       <td *ngIf="r.mode === modeReg.PayPal">{{ r.identifiant_paypal }}</td>
       <td>
         <button
-          [routerLink]="['/client', 'edit', client.id]"
+          [routerLink]="['/client', 'edit', r.id, 'infoReglement', client.id]"
           routerLinkActive="active"
           class="btn btn-outline-warning"
         >
           <fa-icon [icon]="iconEdit"></fa-icon>
+        </button>
+      </td>
+      <td>
+        <button (click)="deleteReg(r.id!)" class="btn btn-outline-danger">
+          <fa-icon [icon]="iconDelete"></fa-icon>
         </button>
       </td>
     </tr>

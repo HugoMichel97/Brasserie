@@ -32,6 +32,17 @@ export class ClientService {
     return this.http.get<Client>(`${ClientService.URL}/${id}`);
   }
 
+  public delete(id: number): Observable<void> {
+    return this.http.delete<any>(`${ClientService.URL}/${id}`);
+  }
+
+  public update(client: Client): Observable<any> {
+    return this.http.patch(
+      ClientService.URL + '/' + client.id,
+      this.clientToJson(client)
+    );
+  }
+
   public updateStatut(client: Client, value: string): Observable<Client> {
     return this.http.patch<Client>(ClientService.URL + '/' + client.id, {
       statut: value,
@@ -42,5 +53,18 @@ export class ClientService {
     return this.http.patch<Client>(ClientService.URL + '/' + client.id, {
       password: value,
     });
+  }
+
+  private clientToJson(client: Client): any {
+    let obj = {
+      mail: client.mail,
+      nom: client.nom,
+      prenom: client.prenom,
+      tel: client.tel,
+      naissance: client.naissance,
+      fidelite: client.fidelite,
+      statut: client.statut,
+    };
+    return obj;
   }
 }

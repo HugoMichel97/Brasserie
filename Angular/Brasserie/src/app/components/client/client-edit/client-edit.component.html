@@ -1,1 +1,88 @@
-<p>client-edit works!</p>
+<div *ngIf="cathegorie == 'perso'">
+  <div class="form-group">
+    <label>Nom :</label>
+    <input type="text" [(ngModel)]="client.nom" class="form-control" />
+  </div>
+
+  <div class="form-group">
+    <label>Prenom :</label>
+    <input type="text" [(ngModel)]="client.prenom" class="form-control" />
+  </div>
+
+  <div class="form-group">
+    <label>Date de naissance :</label>
+    <input type="date" [(ngModel)]="client.naissance" class="form-control" />
+  </div>
+
+  <div class="form-group">
+    <label>Téléphone :</label>
+    <input type="text" [(ngModel)]="client.tel" class="form-control" />
+  </div>
+
+  <div>
+    <button (click)="save()" class="btn btn-outline-success">
+      Enregistrer
+    </button>
+    <a [routerLink]="['/client', client.id]" class="btn btn-outline-danger"
+      >Annuler</a
+    >
+  </div>
+</div>
+<div *ngIf="cathegorie == 'mail'">
+  <div class="form-group">
+    <label>Mail :</label>
+    <input type="text" [(ngModel)]="client.mail" class="form-control" />
+  </div>
+
+  <div>
+    <button (click)="save()" class="btn btn-outline-success">
+      Enregistrer
+    </button>
+    <a [routerLink]="['/client', client.id]" class="btn btn-outline-danger"
+      >Annuler</a
+    >
+  </div>
+</div>
+<div *ngIf="cathegorie == 'infoReglement'">
+  <div *ngIf="addReg" class="form-group">
+    <label>Mode de règlement :</label>
+    <select [(ngModel)]="reglement.mode" class="form-control">
+      <option *ngFor="let mode of modeReg | keyvalue" [value]="mode.key">
+        {{ mode.value }}
+      </option>
+    </select>
+  </div>
+
+  <div *ngIf="reglement.mode === modeReg.CB" class="form-group">
+    <label>Numero :</label>
+    <input type="text" [(ngModel)]="reglement.num" class="form-control" />
+  </div>
+
+  <div *ngIf="reglement.mode === modeReg.CB" class="form-group">
+    <label>Nom :</label>
+    <input type="text" [(ngModel)]="reglement.nom" class="form-control" />
+  </div>
+
+  <div *ngIf="reglement.mode === modeReg.CB" class="form-group">
+    <label>Date de fin de validité :</label>
+    <input type="text" [(ngModel)]="reglement.dateValid" class="form-control" />
+  </div>
+
+  <div *ngIf="reglement.mode === modeReg.PayPal" class="form-group">
+    <label>Identifiant PayPal :</label>
+    <input
+      type="text"
+      [(ngModel)]="reglement.identifiant_paypal"
+      class="form-control"
+    />
+  </div>
+
+  <div>
+    <button (click)="saveReglement()" class="btn btn-outline-success">
+      Enregistrer
+    </button>
+    <a [routerLink]="['/client', client.id]" class="btn btn-outline-danger"
+      >Annuler</a
+    >
+  </div>
+</div>

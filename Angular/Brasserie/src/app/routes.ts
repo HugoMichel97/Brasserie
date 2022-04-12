@@ -15,6 +15,10 @@ export const routes: Routes = [
   { path: 'client/:id', component: ClientComponent },
   { path: 'client/editPassword/:id', component: PasswordEditComponent },
   { path: 'client/edit/:cathegorie/:id', component: ClientEditComponent },
+  {
+    path: 'client/edit/:idReg/:cathegorie/:id',
+    component: ClientEditComponent,
+  },
   { path: 'produit', component: ProduitComponent },
   { path: 'reservationList', component: ReservationListComponent },
   { path: 'reservation/edit', component: ReservationEditComponent },

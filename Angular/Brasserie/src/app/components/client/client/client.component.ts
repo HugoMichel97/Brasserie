@@ -1,3 +1,4 @@
+import { ReglementService } from './../../../services/reglement.service';
 import { Reglement } from './../../../model/enum/reglement';
 import { InfoReglement } from './../../../model/info-reglement';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -8,6 +9,7 @@ import {
   faCreditCard,
   faPencil,
   faPlus,
+  faTrashCan,
 } from '@fortawesome/free-solid-svg-icons';
 import { faCcPaypal } from '@fortawesome/free-brands-svg-icons';
 
@@ -24,9 +26,11 @@ export class ClientComponent implements OnInit {
   iconPayPal = faCcPaypal;
   iconEdit = faPencil;
   iconAdd = faPlus;
+  iconDelete = faTrashCan;
 
   constructor(
     private clientService: ClientService,
+    private regService: ReglementService,
     private aR: ActivatedRoute,
     private router: Router
   ) {}
@@ -37,22 +41,35 @@ export class ClientComponent implements OnInit {
         this.clientService.get(params['id']).subscribe((result) => {
           this.client = result;
         });
-        this.clientService.getInfoReg(params['id']).subscribe((result) => {
-          for (let ir of result) {
-            this.reglements.push(
-              new InfoReglement(
-                ir.id,
-                this.client,
-                ir.mode,
-                ir.num,
-                ir.nom,
-                ir.dateValid,
-                ir.identifiant_paypal
-              )
-            );
-          }
-        });
       }
+    });
+    this.regList();
+  }
+
+  regList() {
+    this.aR.params.subscribe((params) => {
+      this.clientService.getInfoReg(params['id']).subscribe((result) => {
+        this.reglements = [];
+        for (let ir of result) {
+          this.reglements.push(
+            new InfoReglement(
+              ir.id,
+              this.client,
+              ir.mode,
+              ir.num,
+              ir.nom,
+              ir.dateValid,
+              ir.identifiant_paypal
+            )
+          );
+        }
+      });
+    });
+  }
+
+  deleteReg(id: number) {
+    this.regService.delete(id).subscribe((ok) => {
+      this.regList();
     });
   }
 }
