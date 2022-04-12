@@ -8,7 +8,7 @@ import { ProduitComponent } from './components/produit/produit/produit.component
 import { routes } from './routes';
 
 import { NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import { FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 import { RouterModule } from '@angular/router';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
@@ -23,7 +23,7 @@ import { IngredientListComponent } from './components/ingredient/ingredient-list
 import { ClientListComponent } from './components/client/client-list/client-list.component';
 import { ClientEditComponent } from './components/client/client-edit/client-edit.component';
 import { ClientComponent } from './components/client/client/client.component';
-import { ClientBrasseurEditComponent } from './components/client/client-brasseur-edit/client-brasseur-edit.component';
+// import { ClientBrasseurEditComponent } from './components/client/client-brasseur-edit/client-brasseur-edit.component';
 import { ReglementComponent } from './components/reglement/reglement.component';
 import { LoginComponent } from './components/login/login.component';
 import { ReservationListClientComponent } from './components/reservation/reservation-list-client/reservation-list-client.component';
@@ -49,18 +49,23 @@ import { PasswordEditComponent } from './components/client/password-edit/passwor
     ClientListComponent,
     ClientEditComponent,
     ClientComponent,
-    ClientBrasseurEditComponent,
+    // ClientBrasseurEditComponent,
     ReglementComponent,
     PasswordEditComponent,
+    LoginComponent,
+    HeaderComponent,
+    FooterComponent,
+    ReservationListClientComponent
   ],
 
   imports: [
     BrowserModule,
     FormsModule,
+    ReactiveFormsModule,
     RouterModule.forRoot(routes),
     HttpClientModule,
     FontAwesomeModule,
-    NgPaymentCardModule
+    NgPaymentCardModule,
   ],
   providers: [],
   bootstrap: [AppComponent],
