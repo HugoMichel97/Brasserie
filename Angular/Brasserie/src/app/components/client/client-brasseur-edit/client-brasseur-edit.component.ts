@@ -1,6 +1,6 @@
 import { StatutCommande } from './../../../model/enum/statut-commande';
 import { Achat } from './../../../model/achat';
-import { ClientService } from './../../../service/client.service';
+import { ClientService } from '../../../services/client.service';
 import { Client } from './../../../model/client';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -26,7 +26,6 @@ export class ClientBrasseurEditComponent implements OnInit {
       if (params['id']) {
         this.clientService.get(params['id']).subscribe((result) => {
           this.client = result;
-          console.log(StatutCommande.validee);
         });
         this.clientService.getAchat(params['id']).subscribe((result) => {
           for (let a of result) {

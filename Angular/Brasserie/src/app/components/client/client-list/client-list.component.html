@@ -8,13 +8,32 @@
     <td>{{ c.fidelite }}</td>
     <td>{{ c.statut }}</td>
     <td>
-      <a
+      <button
         [routerLink]="['/brasseur/clients', 'edit', c.id]"
         routerLinkActive="active"
         class="btn btn-outline-warning"
+        [disabled]="disabledBtn(c) ? true : false"
       >
-        <fa-icon [icon]="iconModif"></fa-icon>
-      </a>
+        <fa-icon [icon]="iconPanier"></fa-icon>
+      </button>
+    </td>
+    <td>
+      <button
+        [routerLink]="['/client', c.id]"
+        routerLinkActive="active"
+        class="btn btn-outline-warning"
+      >
+        Test client info
+      </button>
     </td>
   </tr>
 </table>
+<div>
+  <button
+    [routerLink]="['/reservationList']"
+    routerLinkActive="active"
+    class="btn btn-outline-info"
+  >
+    Reservations
+  </button>
+</div>
