@@ -18,7 +18,7 @@
 
   <div class="form-group">
     <label>Heure :</label>
-    <input type="datetime" [(ngModel)]="evenement.heure" class="form-control" />
+    <input type="time" [(ngModel)]="evenement.heure" class="form-control" />
   </div>
 
   <div class="form-group">
@@ -33,17 +33,29 @@
 
   <div class="form-group">
     <label>Points Requis :</label>
-    <input type="number" [(ngModel)]="evenement.ptsRequis" class="form-control" />
+    <input
+      type="number"
+      [(ngModel)]="evenement.ptsRequis"
+      class="form-control"
+    />
   </div>
 
   <div class="form-group">
     <label>description :</label>
-    <input type="text" [(ngModel)]="evenement.description" class="form-control" />
+    <input
+      type="text"
+      [(ngModel)]="evenement.description"
+      class="form-control"
+    />
   </div>
 
   <div class="form-group">
     <label>nombre de places :</label>
-    <input type="number" [(ngModel)]="evenement.nbPlaces" class="form-control" />
+    <input
+      type="number"
+      [(ngModel)]="evenement.nbPlaces"
+      class="form-control"
+    />
   </div>
 
   <div>

@@ -84,9 +84,6 @@ public class EvenementRestController {
 	@PostMapping("")
 	@JsonView(JsonViews.Evenement.class)
 	public Evenement create(@Valid @RequestBody Evenement evenement, BindingResult br) {
-		if (br.hasErrors()) {
-			throw new EvenementException();
-		}
 		return save(evenement, br);
 	}
 

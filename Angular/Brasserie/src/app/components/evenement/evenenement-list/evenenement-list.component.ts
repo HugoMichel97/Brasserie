@@ -5,20 +5,33 @@ import { EvenementService } from 'src/app/services/evenements.service';
 @Component({
   selector: 'app-evenenement-list',
   templateUrl: './evenenement-list.component.html',
-  styleUrls: ['./evenenement-list.component.css']
+  styleUrls: ['./evenenement-list.component.css'],
 })
 export class EvenenementListComponent implements OnInit {
-
-  evenement : Evenement [] = [];
-  constructor(private evenementsService : EvenementService) { }
+  evenement: Evenement[] = [];
+  constructor(private evenementsService: EvenementService) {}
 
   ngOnInit(): void {
+    this.list();
   }
 
   list() {
     this.evenementsService.getAll().subscribe((result) => {
-      this.evenement = result;
-      console.log(this.evenement)
+      this.evenement = [];
+      for (let e of result) {
+        this.evenement.push(
+          new Evenement(
+            e.id,
+            e.date,
+            e.heure,
+            e.libelle,
+            e.prix,
+            e.ptsRequis,
+            e.description,
+            e.nbPlaces
+          )
+        );
+      }
     });
   }
 
@@ -27,5 +40,4 @@ export class EvenenementListComponent implements OnInit {
       this.list();
     });
   }
-
 }
