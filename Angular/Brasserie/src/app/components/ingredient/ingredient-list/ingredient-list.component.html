@@ -1,1 +1,35 @@
-<p>ingredient-list works!</p>
+<p>Voici nos produits :</p>
+
+<table class="table">
+  <tr>
+    <td>Identifiant :</td>
+    <td>nom :</td>
+    <td>heure :</td>
+    <td>stock :</td>
+
+  </tr>
+
+  <tr *ngFor="let p of ingredient">
+    <td>{{ p.id_ingredient }}</td>
+
+    <td>{{ p.nom }}</td>
+    <td>{{ p.stock }}</td>
+
+
+
+    <td>
+      <a
+        [routerLink]="['/ingredient', 'edit', p.id_ingredient]"
+        routerLinkActive="active"
+        class="btn btn-outline-primary"
+        >Modifier</a
+      >
+    </td>
+    <td>
+      <button (click)="delete(p.id_ingredient!)" class="btn btn-outline-danger">
+        Supprimer
+      </button>
+    </td>
+  </tr>
+</table>
+

@@ -1,1 +1,38 @@
-<p>evenenement-list works!</p>
+<table class="table">
+  <tr>
+    <td>Identifiant :</td>
+    <td>date :</td>
+    <td>heure :</td>
+    <td>libelle :</td>
+    <td>Prix :</td>
+    <td>points requis :</td>
+    <td>description</td>
+    <td>nombres de places</td>
+  </tr>
+
+  <tr *ngFor="let p of evenement">
+    <td>{{ p.id }}</td>
+
+    <td>{{ p.date }}</td>
+    <td>{{ p.heure }}</td>
+    <td>{{ p.libelle }}</td>
+    <td>{{ p.prix }}</td>
+    <td>{{ p.ptsRequis }}</td>
+    <td>{{ p.description }}</td>
+    <td>{{ p.nbPlaces }}</td>
+
+    <td>
+      <a
+        [routerLink]="['/evenement', 'edit', p.id]"
+        routerLinkActive="active"
+        class="btn btn-outline-primary"
+        >Modifier</a
+      >
+    </td>
+    <td>
+      <button (click)="delete(p.id!)" class="btn btn-outline-danger">
+        Supprimer
+      </button>
+    </td>
+  </tr>
+</table>

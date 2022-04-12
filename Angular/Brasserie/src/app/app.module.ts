@@ -27,6 +27,8 @@ import { ClientBrasseurEditComponent } from './components/client/client-brasseur
 import { ReglementComponent } from './components/reglement/reglement.component';
 import { LoginComponent } from './components/login/login.component';
 import { ReservationListClientComponent } from './components/reservation/reservation-list-client/reservation-list-client.component';
+import { FooterComponent } from './app/footer/footer/footer.component';
+import { HeaderComponent } from './app/header/header.component';
 
 @NgModule({
   declarations: [
@@ -48,8 +50,6 @@ import { ReservationListClientComponent } from './components/reservation/reserva
     ClientComponent,
     ClientBrasseurEditComponent,
     ReglementComponent,
-    LoginComponent,
-    ReservationListClientComponent,
   ],
 
   imports: [
