@@ -32,7 +32,7 @@ export class IngredientService {
   public update(ingredient: Ingredient): Observable<any> {
     console.log(this.ingredientToJson(ingredient));
     return this.http.put(
-      `${IngredientService.URL}/${ingredient.id}`,
+      `${IngredientService.URL}/${ingredient.id_ingredient}`,
       this.ingredientToJson(ingredient)
     );
   }
