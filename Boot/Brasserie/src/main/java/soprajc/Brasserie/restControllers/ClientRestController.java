@@ -32,6 +32,7 @@ import soprajc.Brasserie.model.Client;
 import soprajc.Brasserie.model.InfoReglement;
 import soprajc.Brasserie.model.JsonViews;
 import soprajc.Brasserie.model.Reservation;
+import soprajc.Brasserie.model.StatutCommande;
 import soprajc.Brasserie.services.AchatService;
 import soprajc.Brasserie.services.ClientService;
 import soprajc.Brasserie.services.InfoReglementService;
@@ -119,6 +120,8 @@ public class ClientRestController {
 			if (key.equals("naissance")) {
 				List<Integer> dateRecup = (List<Integer>) value;
 				client.setNaissance(LocalDate.of(dateRecup.get(0), dateRecup.get(1), dateRecup.get(2)));
+			} else if (key.equals("statut")){
+				client.setStatut(StatutCommande.valueOf((String) value));
 			} else {
 				Field field = ReflectionUtils.findField(Client.class, key);
 				ReflectionUtils.makeAccessible(field);

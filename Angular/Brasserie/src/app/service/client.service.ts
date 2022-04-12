@@ -1,3 +1,4 @@
+import { StatutCommande } from './../model/enum/statut-commande';
 import { Achat } from './../model/achat';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
@@ -16,11 +17,17 @@ export class ClientService {
     return this.http.get<Client[]>(ClientService.URL);
   }
 
+  public getAchat(id: number): Observable<Achat[]> {
+    return this.http.get<Achat[]>(`${ClientService.URL}/${id}/getAchat`);
+  }
+
   public get(id: number): Observable<Client> {
     return this.http.get<Client>(`${ClientService.URL}/${id}`);
   }
 
-  // public updateStatut(client: Client): Observable<Client> {
-  //   return this.http.patch<Client>(ClientService.URL + '/' + client.id, );
-  // }
+  public updateStatut(client: Client, value: string): Observable<Client> {
+    return this.http.patch<Client>(ClientService.URL + '/' + client.id, {
+      statut: value,
+    });
+  }
 }

@@ -1,3 +1,5 @@
+import { StatutCommande } from './../../../model/enum/statut-commande';
+import { Achat } from './../../../model/achat';
 import { ClientService } from './../../../service/client.service';
 import { Client } from './../../../model/client';
 import { Component, OnInit } from '@angular/core';
@@ -10,6 +12,8 @@ import { ActivatedRoute, Router } from '@angular/router';
 })
 export class ClientBrasseurEditComponent implements OnInit {
   client: Client = new Client();
+  statutCommande = StatutCommande;
+  commande: Achat[] = [];
 
   constructor(
     private aR: ActivatedRoute,
@@ -22,18 +26,26 @@ export class ClientBrasseurEditComponent implements OnInit {
       if (params['id']) {
         this.clientService.get(params['id']).subscribe((result) => {
           this.client = result;
+          console.log(StatutCommande.validee);
+        });
+        this.clientService.getAchat(params['id']).subscribe((result) => {
+          for (let a of result) {
+            this.commande.push(new Achat(a.id_achat, a.id_produit, a.quantite));
+          }
         });
       }
     });
   }
 
-  // save() {
-  //   if (this.client.id) {
-  //     this.clientService.updateStatut(this.client).subscribe((result) => {
-  //       this.goList();
-  //     });
-  //   }
-  // }
+  save(value: string) {
+    if (this.client.id) {
+      this.clientService
+        .updateStatut(this.client, value)
+        .subscribe((result) => {
+          this.goList();
+        });
+    }
+  }
 
   goList() {
     this.router.navigateByUrl('/brasseur/clients');

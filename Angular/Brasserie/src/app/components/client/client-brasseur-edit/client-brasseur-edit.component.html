@@ -6,14 +6,39 @@
       <input [(ngModel)]="client.prenom" readonly class="form-control" />
     </div>
   </div>
-  <div class="form-group">
-    <label>Statut de la commande</label>
-    <input [(ngModel)]="client.statut" class="form-control" />
+  <div>
+    <table class="table">
+      <tr>
+        <th>Identifiant de l'achat :</th>
+        <th>Produit :</th>
+        <th>Quantité achetée :</th>
+      </tr>
+      <tr *ngFor="let a of commande">
+        <td>{{ a.id_achat }}</td>
+        <td>{{ a.id_produit?.nom }}</td>
+        <td>{{ a.quantite }}</td>
+      </tr>
+    </table>
+  </div>
+  <div *ngIf="client.statut === statutCommande.validee">
+    <button
+      type="button"
+      class="btn btn-outline-success"
+      (click)="save('prete')"
+    >
+      Commande prête
+    </button>
+  </div>
+  <div *ngIf="client.statut === statutCommande.prete">
+    <button
+      type="button"
+      class="btn btn-outline-success"
+      (click)="save('recuperee')"
+    >
+      Commande récupérée
+    </button>
   </div>
   <div>
-    <!-- <button (click)="save()" class="btn btn-outline-success">
-      Enregistrer
-    </button> -->
-    <a routerLink="/brasseur/clients" class="btn btn-outline-danger">Annuler</a>
+    <a routerLink="/brasseur/clients" class="btn btn-outline-danger">Retour</a>
   </div>
 </div>

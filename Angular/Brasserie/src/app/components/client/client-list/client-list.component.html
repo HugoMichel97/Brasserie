@@ -8,12 +8,6 @@
     <td>{{ c.fidelite }}</td>
     <td>{{ c.statut }}</td>
     <td>
-      <a [routerLink]="[]" routerLinkActive="active" class="btn btn-light">
-        <fa-icon [icon]="iconPanier"></fa-icon>
-      </a>
-      <!-- à relier au getByClient de Achat -->
-    </td>
-    <td>
       <a
         [routerLink]="['/brasseur/clients', 'edit', c.id]"
         routerLinkActive="active"
