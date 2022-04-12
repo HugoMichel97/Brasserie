@@ -12,7 +12,7 @@
   <tr *ngFor="let n of notes">
     <td>{{ n.id_note }}</td>
     <td>{{ n.id_client }}</td>
-    <td>{{ n.biere }}</td>
+    <td>{{ n.biere?.nom }}</td>
     <td>{{ n.note }}</td>
     <td>{{ n.commentaire }}</td>
     <td>
