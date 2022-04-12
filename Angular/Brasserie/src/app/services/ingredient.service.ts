@@ -1,14 +1,12 @@
 import { Injectable } from '@angular/core';
-;
 import { Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { Ingredient } from '../model/ingredient';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class IngredientService {
-
   private static URL: string = 'http://localhost:8080/brasserie/api/ingredient';
 
   constructor(private http: HttpClient) {}
@@ -26,7 +24,10 @@ export class IngredientService {
   }
 
   public create(ingredient: Ingredient): Observable<any> {
-    return this.http.post(IngredientService.URL, this.ingredientToJson(ingredient));
+    return this.http.post(
+      IngredientService.URL,
+      this.ingredientToJson(ingredient)
+    );
   }
 
   public update(ingredient: Ingredient): Observable<any> {
@@ -40,11 +41,9 @@ export class IngredientService {
   private ingredientToJson(ingredient: Ingredient): any {
     let obj = {
       id: ingredient.id_ingredient,
-      meteo: ingredient.nom,
-      date: ingredient.stock,
-      heure: ingredient.bieres,
-
+      nom: ingredient.nom,
+      stock: ingredient.stock,
     };
     return obj;
-  }}
-
+  }
+}
