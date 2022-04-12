@@ -1,3 +1,4 @@
+import { StatutResa } from './../../../model/enum/statut-resa';
 import { Reservation } from './../../../model/reservation';
 import { Component, OnInit } from '@angular/core';
 import { ReservationService } from 'src/app/services/reservation.service';
@@ -10,7 +11,7 @@ import { ReservationService } from 'src/app/services/reservation.service';
 export class ReservationListComponent implements OnInit {
 
   reservations: Reservation[] = [];
-
+  statutResa = StatutResa;
   constructor(private reservationService: ReservationService) {}
 
   ngOnInit(): void {

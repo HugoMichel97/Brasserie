@@ -3,6 +3,9 @@ import { Reservation } from './../../../model/reservation';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ReservationService } from 'src/app/services/reservation.service';
+import { EvenementService } from 'src/app/services/evenements.service';
+import { Client } from 'src/app/model/client';
+
 
 @Component({
   selector: 'app-reservation-edit',
@@ -12,11 +15,15 @@ import { ReservationService } from 'src/app/services/reservation.service';
 export class ReservationEditComponent implements OnInit {
 
   reservation: Reservation = new Reservation();
-  reservations: Reservation[] = [];
+  evenements: Evenement[] = [];
+  client : Client = new Client();
+  evt : Evenement = new Evenement();
+
 
   constructor(
     private aR: ActivatedRoute,
     private reservationService: ReservationService,
+    private evenementService: EvenementService,
     private router: Router
   ) { }
 
@@ -26,15 +33,17 @@ export class ReservationEditComponent implements OnInit {
       if (params['id']) {
         this.reservationService.get(params['id']).subscribe((result) => {
           this.reservation = result;
+          this.client = result.client!;
+          this.evt = result.evt!
           console.log(result);
         });
       }
     });
   }
   list() {
-    this.reservationService.getAll().subscribe((result) => {
-      this.reservations = result;
-      console.log(this.reservations)
+    this.evenementService.getAll().subscribe((result) => {
+      this.evenements = result;
+      console.log(this.evenements)
     });
   }
   save() {
