@@ -29,6 +29,7 @@ import com.fasterxml.jackson.annotation.JsonView;
 import soprajc.Brasserie.exception.ReservationException;
 import soprajc.Brasserie.model.JsonViews;
 import soprajc.Brasserie.model.Reservation;
+import soprajc.Brasserie.model.StatutCommande;
 import soprajc.Brasserie.model.StatutResa;
 import soprajc.Brasserie.services.ClientService;
 import soprajc.Brasserie.services.EvenementService;
@@ -51,7 +52,7 @@ public class ReservationRestController {
 	public List<Reservation> getAll() {
 		return reservationService.getAll();
 	}
-	
+
 	@JsonView(JsonViews.Reservation.class)
 	@GetMapping("/{id}")
 	public Reservation getById(@PathVariable Integer id) {
@@ -99,10 +100,14 @@ public class ReservationRestController {
 	public Reservation partialUpdate(@RequestBody Map<String, Object> fields, @PathVariable Integer id) {
 		Reservation resa = reservationService.getById(id);
 		fields.forEach((key, value) -> {
-			Field field = ReflectionUtils.findField(Reservation.class, key);
-			ReflectionUtils.makeAccessible(field);
-			ReflectionUtils.setField(field, resa, StatutResa.valueOf((String) value));
-		}); // seulement pour le statut, si on veut modifier l'evt on annule puis prend une nouvelle resa
+			if (key.equals("statut")){
+				resa.setStatut(StatutResa.valueOf((String) value));
+			} else {
+				Field field = ReflectionUtils.findField(Reservation.class, key);
+				ReflectionUtils.makeAccessible(field);
+				ReflectionUtils.setField(field, resa, value);
+			}
+		}); // seulement pour le statut et le nb de participants, si on veut modifier l'evt on annule puis prend une nouvelle resa
 		return reservationService.save(resa);
 	}
 }

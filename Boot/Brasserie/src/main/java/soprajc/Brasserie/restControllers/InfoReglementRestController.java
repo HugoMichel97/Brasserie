@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.util.ReflectionUtils;
 import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PatchMapping;
@@ -28,11 +29,14 @@ import soprajc.Brasserie.exception.InfoReglementException;
 import soprajc.Brasserie.model.Client;
 import soprajc.Brasserie.model.InfoReglement;
 import soprajc.Brasserie.model.JsonViews;
+import soprajc.Brasserie.model.Reglement;
+import soprajc.Brasserie.model.StatutCommande;
 import soprajc.Brasserie.services.InfoReglementService;
 
 
 @RestController
 @RequestMapping("/api/infoReglement")
+@CrossOrigin(origins = "*")
 public class InfoReglementRestController {
 	@Autowired 
 	InfoReglementService infoReglementService;
@@ -78,9 +82,13 @@ public class InfoReglementRestController {
 	public InfoReglement partialUpdate(@RequestBody Map<String, Object> fields, @PathVariable Integer id) {
 		InfoReglement infoReg = infoReglementService.getById(id);
 		fields.forEach((key, value) -> {
-			Field field = ReflectionUtils.findField(InfoReglement.class, key);
-			ReflectionUtils.makeAccessible(field);
-			ReflectionUtils.setField(field, infoReg, value);
+			if (key.equals("mode")){
+				infoReg.setMode(Reglement.valueOf((String) value));
+			} else {
+				Field field = ReflectionUtils.findField(InfoReglement.class, key);
+				ReflectionUtils.makeAccessible(field);
+				ReflectionUtils.setField(field, infoReg, value);
+			}
 		});
 		return infoReglementService.save(infoReg);
 	}

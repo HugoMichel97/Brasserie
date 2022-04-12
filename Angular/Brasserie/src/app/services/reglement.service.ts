@@ -20,24 +20,28 @@ export class ReglementService {
     public get(id: number): Observable<InfoReglement> {
       return this.http.get<InfoReglement>('http://localhost:8080/brasserie/api/client/getInfoReg/' + '/' + id);
     }
-    public create(infoReglement: InfoReglement): Observable<InfoReglement> {
-      let obj = {
-    client: infoReglement.client,
-    mode: infoReglement.mode ,
-    num: infoReglement.num,
-    nom: infoReglement.nom,
-    dateValid: infoReglement.dateValid,
-    identifiant_paypal: infoReglement.identifiant_paypal
-      };
+  public create(reglement: InfoReglement): Observable<any> {
+    return this.http.post(
+      ReglementService.URL,
+      this.reglementToJson(reglement)
+    );
+  }
+  public update(reglement: InfoReglement): Observable<any> {
+    return this.http.patch(
+      ReglementService.URL + '/' + reglement.id,
+      this.reglementToJson(reglement)
+    );
+  }
 
-      return this.http.post<InfoReglement>(ReglementService.URL, obj);
-    }
-
-    public update(infoReglement: InfoReglement): Observable<InfoReglement> {
-      console.log(infoReglement);
-      return this.http.put<InfoReglement>(
-        ReglementService.URL + '/' + infoReglement.id,
-        infoReglement
-      );
-    }
+  private reglementToJson(reglement: InfoReglement): any {
+    let obj = {
+      client: reglement.client,
+      mode: reglement.mode,
+      num: reglement.num,
+      nom: reglement.nom,
+      dateValid: reglement.dateValid,
+      identifiant_paypal: reglement.identifiant_paypal,
+    };
+    return obj;
+  }
 }

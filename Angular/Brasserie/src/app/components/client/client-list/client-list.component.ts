@@ -1,9 +1,9 @@
-import { Achat } from './../../../model/achat';
-import { ClientService } from './../../../service/client.service';
+import { ClientService } from '../../../services/client.service';
 import { Client } from './../../../model/client';
 import { Component, OnInit } from '@angular/core';
 import * as moment from 'moment';
 import { faPencil, faShoppingBasket } from '@fortawesome/free-solid-svg-icons';
+import { StatutCommande } from 'src/app/model/enum/statut-commande';
 
 @Component({
   selector: 'app-client-list',
@@ -13,7 +13,6 @@ import { faPencil, faShoppingBasket } from '@fortawesome/free-solid-svg-icons';
 export class ClientListComponent implements OnInit {
   clients: Client[] = [];
   iconPanier = faShoppingBasket;
-  iconModif = faPencil;
 
   constructor(private clientService: ClientService) {}
 
@@ -41,5 +40,11 @@ export class ClientListComponent implements OnInit {
     });
   }
 
-  panier() {}
+  disabledBtn(client: Client): boolean {
+    if (client.statut === StatutCommande.vide) {
+      return true;
+    } else {
+      return false;
+    }
+  }
 }
