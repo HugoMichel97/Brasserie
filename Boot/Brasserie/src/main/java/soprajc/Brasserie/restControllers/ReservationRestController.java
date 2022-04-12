@@ -4,6 +4,7 @@ package soprajc.Brasserie.restControllers;
 import java.lang.reflect.Field;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 
 import javax.validation.Valid;
 
@@ -55,6 +56,12 @@ public class ReservationRestController {
 	@GetMapping("/{id}")
 	public Reservation getById(@PathVariable Integer id) {
 		return reservationService.getById(id);
+	}
+	
+	@JsonView(JsonViews.Reservation.class)
+	@GetMapping("/{id_client}/client")
+	public Optional<Reservation> getByNumeroWithClient(@PathVariable Integer id_client) {
+		return reservationService.getByNumeroWithClient(id_client);
 	}
 
 	@ResponseStatus(code = HttpStatus.NO_CONTENT)
