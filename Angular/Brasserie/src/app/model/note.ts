@@ -3,7 +3,7 @@ import { Client } from './client';
 export class Note {
   public constructor(
     private _id_note?: number | undefined,
-    private _client?: Client | undefined,
+    private _id_client?: Client | undefined,
     private _biere?: Biere | undefined,
     private _note?: number | undefined,
     private _commentaire?: string | undefined
@@ -15,6 +15,14 @@ export class Note {
 
   public set id_note(value: number | undefined) {
     this._id_note = value;
+  }
+
+  public get id_client(): Client | undefined {
+    return this._id_client;
+  }
+
+  public set id_client(value: Client | undefined) {
+    this._id_client = value;
   }
 
   public get biere(): Biere | undefined {

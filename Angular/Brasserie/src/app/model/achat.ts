@@ -3,9 +3,9 @@ import { Produit } from './produit';
 export class Achat {
   public constructor(
     private _id_achat?: number | undefined,
+    private _id_client?: Client | undefined,
     private _id_produit?: Produit | undefined,
-    private _quantite?: number | undefined,
-    private _id_client?: Client | undefined
+    private _quantite?: number | undefined
   ) {}
 
   public get id_achat(): number | undefined {

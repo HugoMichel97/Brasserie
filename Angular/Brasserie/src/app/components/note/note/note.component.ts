@@ -1,3 +1,5 @@
+import { Client } from './../../../model/client';
+import { Biere } from './../../../model/biere';
 import { Note } from './../../../model/note';
 import { NoteService } from './../../../services/note.service';
 import { Component, OnInit } from '@angular/core';
@@ -19,9 +21,16 @@ export class NoteComponent implements OnInit {
     this.noteService.getAll().subscribe((result) => {
       this.notes = [];
       for (let n of result) {
-        this.notes.push(new Note(n.id_note, n.biere, n.note, n.commentaire));
+        // console.log(n.client);
+        this.notes.push(
+          new Note(n.id_note, n.client, n.biere, n.note, n.commentaire)
+        );
       }
     });
+  }
+
+  getBiere(note: Note): Biere | undefined {
+    return note.biere;
   }
 
   delete(id: number) {
