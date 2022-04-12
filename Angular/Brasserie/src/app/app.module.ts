@@ -25,6 +25,7 @@ import { ClientEditComponent } from './components/client/client-edit/client-edit
 import { ClientComponent } from './components/client/client/client.component';
 import { ClientBrasseurEditComponent } from './components/client/client-brasseur-edit/client-brasseur-edit.component';
 import { ReglementComponent } from './components/reglement/reglement.component';
+import { LoginComponent } from './components/login/login.component';
 
 @NgModule({
   declarations: [
@@ -46,6 +47,7 @@ import { ReglementComponent } from './components/reglement/reglement.component';
     ClientComponent,
     ClientBrasseurEditComponent,
     ReglementComponent,
+    LoginComponent,
   ],
 
   imports: [
