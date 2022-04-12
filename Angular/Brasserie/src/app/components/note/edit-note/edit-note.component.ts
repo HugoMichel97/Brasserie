@@ -18,14 +18,15 @@ export class EditNoteComponent implements OnInit {
 
   ngOnInit(): void {
     this.aR.params.subscribe((params) => {
-      if (params['id_note']) {
+      if (params['id_note'] === 'undefined') {
         this.note = new Note();
       } else {
+        console.log(this.noteService.getById(params['id_note']));
         this.noteService.getById(params['id_note']).subscribe((n) => {
           this.note = new Note(
             n.id_note,
-            n.id_client,
-            n.biere,
+            n.client?.nom,
+            n.biere?.nom,
             n.note,
             n.commentaire
           );

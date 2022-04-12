@@ -1,3 +1,4 @@
+import { Client } from './../../../model/client';
 import { Biere } from './../../../model/biere';
 import { Note } from './../../../model/note';
 import { NoteService } from './../../../services/note.service';
@@ -20,8 +21,9 @@ export class NoteComponent implements OnInit {
     this.noteService.getAll().subscribe((result) => {
       this.notes = [];
       for (let n of result) {
+        // console.log(n.client);
         this.notes.push(
-          new Note(n.id_note, n.id_client, n.biere, n.note, n.commentaire)
+          new Note(n.id_note, n.client, n.biere, n.note, n.commentaire)
         );
       }
     });

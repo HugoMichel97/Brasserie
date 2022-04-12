@@ -26,8 +26,8 @@ export class AchatService {
   public achatToJson(achat: Achat): any {
     let a = {
       id_achat: achat.id_achat,
-      id_client: { id: achat.id_client?.id },
-      id_produit: { id: achat.id_produit?.id },
+      id_client: { id_client: achat.id_client?.id },
+      id_produit: { id_produit: achat.id_produit?.id },
       quantite: achat.quantite,
     };
     return a;

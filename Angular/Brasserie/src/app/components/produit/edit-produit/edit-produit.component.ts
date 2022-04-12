@@ -20,6 +20,7 @@ export class EditProduitComponent implements OnInit {
 
   ngOnInit(): void {
     this.aR.params.subscribe((params) => {
+      // console.log(params);
       if (params['type']) {
         if (params['type'] == 'biere') {
           this.produit = new Biere();

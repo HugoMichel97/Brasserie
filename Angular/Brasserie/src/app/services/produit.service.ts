@@ -26,6 +26,7 @@ export class ProduitService {
   private produitToJson(produit: Produit): any {
     let p = {
       id: produit.id,
+      nom: produit.nom,
       description: produit.description,
       prix: produit.prix,
       stock: produit.stock,
@@ -48,6 +49,7 @@ export class ProduitService {
   }
 
   public update(produit: Produit): Observable<any> {
+    console.log(this.produitToJson(produit));
     return this.http.put(
       `${ProduitService.url}/${produit.id}`,
       this.produitToJson(produit)
