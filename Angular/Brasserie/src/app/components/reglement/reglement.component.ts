@@ -1,5 +1,7 @@
+import { Reglement } from './../../model/enum/reglement';
+import { InfoReglement } from './../../model/info-reglement';
 import { Component, OnInit } from '@angular/core';
-
+import { ReglementService } from 'src/app/services/reglement.service';
 @Component({
   selector: 'app-reglement',
   templateUrl: './reglement.component.html',
@@ -7,37 +9,26 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ReglementComponent implements OnInit {
 
-  constructor() { }
+  reglements: InfoReglement[] = [];
+  mode = Reglement;
+  id: number = 2;
+  constructor(private reglementService: ReglementService) {}
 
   ngOnInit(): void {
-    this.loadStripe();
+    this.list(this.id)
   }
-  loadStripe() {
-    if(!window.document.getElementById('stripe-script')) {
-      var s = window.document.createElement("script");
-      s.id = "stripe-script";
-      s.type = "text/javascript";
-      s.src = "https://checkout.stripe.com/checkout.js";
-      window.document.body.appendChild(s);
-    }
+
+  list(id: number) {
+    this.reglementService.get(id).subscribe((result) => {
+      this.reglements.push(result);
+      console.log(this.reglements)
+    });
   }
-  pay(amount: number) {
 
-    var handler = (<any>window).StripeCheckout.configure({
-      key: 'pk_test_aeUUjYYcx4XNfKVW60pmHTtI',
-      locale: 'auto',
-      token: function (token: any) {
-        // You can access the token ID with `token.id`.
-        // Get the token ID to your server-side code for use.
-        console.log(token)
-        alert('Paiement accepte');
-      }
+  delete(id: number) {
+    this.reglementService.delete(id).subscribe((noResult) => {
+      this.list(id);
     });
-
-    handler.open({
-      amount: amount * 100
-    });
-
-}
+  }
 }
 
