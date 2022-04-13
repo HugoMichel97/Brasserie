@@ -27,6 +27,7 @@ import { ClientBrasseurEditComponent } from './components/client/client-brasseur
 import { ReglementComponent } from './components/reglement/reglement.component';
 import { FooterComponent } from './app/footer/footer/footer.component';
 import { HeaderComponent } from './app/header/header.component';
+import { IndexComponent } from './app/index/index.component';
 
 @NgModule({
   declarations: [
@@ -50,6 +51,7 @@ import { HeaderComponent } from './app/header/header.component';
     ReglementComponent,
     FooterComponent,
     HeaderComponent,
+    IndexComponent,
   ],
 
   imports: [
