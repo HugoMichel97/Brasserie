@@ -53,7 +53,7 @@ public class ReservationRestController {
 		return reservationService.getAll();
 	}
 
-	@JsonView(JsonViews.Reservation.class)
+	@JsonView(JsonViews.ReservationEvtClient.class)
 	@GetMapping("/{id}")
 	public Reservation getById(@PathVariable Integer id) {
 		return reservationService.getById(id);

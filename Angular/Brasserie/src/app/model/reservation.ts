@@ -40,8 +40,11 @@ export class Reservation {
     this._statut = value;
   }
 
-  public get nbParticipants(): number  {
+  public get nbParticipants(): number {
     return this._nbParticipants;
   }
 
+  public set nbParticipants(value: number) {
+    this._nbParticipants = value;
+  }
 }

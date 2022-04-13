@@ -1,4 +1,4 @@
-<form (ngSubmit)="save()" [formGroup]="form"></form>
+<form (ngSubmit)="save()"></form>
 <div class="form-group" *ngIf="reservation.statut === statutResa.en_attente">
   <div class="form-group">
     <label>Identifiant :</label>
@@ -9,30 +9,46 @@
       placeholder="Auto-génération"
     />
   </div>
-  <div formGroupName="client">
-  <div class="form-group">
-    <label>Nom Client:</label>
-    <input type="text" formControlName="nom" class="form-control" />
-  </div>
+  <div>
+    <div class="form-group">
+      <label>Nom Client:</label>
+      <input
+        type="text"
+        [(ngModel)]="reservation.client!.nom"
+        class="form-control"
+      />
+    </div>
 
-  <div class="form-group">
-    <label>Prenom du client :</label>
-    <input type="text" formControlName="prenom" class="form-control" />
-  </div>
+    <div class="form-group">
+      <label>Prenom du client :</label>
+      <input
+        type="text"
+        [(ngModel)]="reservation.client!.prenom"
+        class="form-control"
+      />
+    </div>
   </div>
   <div class="form-group">
     <label>Evenement :</label>
-    <input type="text" formControlName="libelle" class="form-control" />
+    <input
+      type="text"
+      [(ngModel)]="reservation.evt!.libelle"
+      class="form-control"
+    />
   </div>
   <div class="form-group">
-    <label>Evenement :</label>
-    <input type="number" formControlName="nbParticipants" class="form-control" />
+    <label>Nombre de participants :</label>
+    <input
+      type="number"
+      [(ngModel)]="reservation.nbParticipants"
+      class="form-control"
+    />
   </div>
 
-<div>
-  <button (click)="save()" class="btn btn-outline-success">
-    Enregistrer
-  </button>
-  <a routerLink="" class="btn btn-outline-warning">Annuler</a>
+  <div>
+    <button (click)="save()" class="btn btn-outline-success">
+      Enregistrer
+    </button>
+    <a routerLink="" class="btn btn-outline-warning">Annuler</a>
+  </div>
 </div>
-

@@ -62,7 +62,7 @@ import { BrasseurEditComponent } from './components/brasseur/brasseur-edit/brass
     LoginComponent,
     HeaderComponent,
     FooterComponent,
-    ReservationListClientComponent
+    ReservationListClientComponent,
     HomeComponent,
     BrasseurComponent,
     BrasseurEditComponent,
