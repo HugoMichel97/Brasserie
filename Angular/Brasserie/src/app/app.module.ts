@@ -12,7 +12,6 @@ import { FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 import { RouterModule } from '@angular/router';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
-import { NgPaymentCardModule } from 'ng-payment-card';
 import { AppComponent } from './app.component';
 import { ReservationListComponent } from './components/reservation/reservation-list/reservation-list.component';
 import { ReservationEditComponent } from './components/reservation/reservation-edit/reservation-edit.component';
@@ -33,6 +32,7 @@ import { PasswordEditComponent } from './components/client/password-edit/passwor
 import { HomeComponent } from './components/home/home.component';
 import { BrasseurComponent } from './components/brasseur/brasseur/brasseur.component';
 import { BrasseurEditComponent } from './components/brasseur/brasseur-edit/brasseur-edit.component';
+import { ReglementEditComponent } from './components/reglement-edit/reglement-edit.component';
 
 @NgModule({
   declarations: [
@@ -66,6 +66,7 @@ import { BrasseurEditComponent } from './components/brasseur/brasseur-edit/brass
     HomeComponent,
     BrasseurComponent,
     BrasseurEditComponent,
+    ReglementEditComponent,
   ],
 
   imports: [
@@ -75,7 +76,6 @@ import { BrasseurEditComponent } from './components/brasseur/brasseur-edit/brass
     RouterModule.forRoot(routes),
     HttpClientModule,
     FontAwesomeModule,
-    NgxPaymentCardModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

@@ -18,7 +18,7 @@ export class ReglementService {
     }
 
     public get(id: number): Observable<InfoReglement> {
-      return this.http.get<InfoReglement>('http://localhost:8080/brasserie/api/client/getInfoReg/' + '/' + id);
+      return this.http.get<InfoReglement>('http://localhost:8080/brasserie/api/client/getInfoReg/'+ id);
     }
   public create(reglement: InfoReglement): Observable<any> {
     return this.http.post(

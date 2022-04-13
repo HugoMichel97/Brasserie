@@ -1,3 +1,4 @@
+import { ReglementEditComponent } from './components/reglement-edit/reglement-edit.component';
 import { BrasseurComponent } from './components/brasseur/brasseur/brasseur.component';
 import { BrasseurEditComponent } from './components/brasseur/brasseur-edit/brasseur-edit.component';
 import { HomeComponent } from './components/home/home.component';
@@ -30,6 +31,7 @@ export const routes: Routes = [
     path: 'client/edit/:idReg/:cathegorie/:id',
     component: ClientEditComponent,
   },
+  { path: 'reglement/edit', component: ReglementEditComponent},
   { path: 'brasseur', component: BrasseurComponent },
   { path: 'brasseur/editPassword/:id', component: PasswordEditComponent },
   { path: 'brasseur/edit/:cathegorie/:id', component: BrasseurEditComponent },

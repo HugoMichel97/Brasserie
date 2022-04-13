@@ -6,8 +6,6 @@ import { ReservationService } from 'src/app/services/reservation.service';
 import { EvenementService } from 'src/app/services/evenements.service';
 import { Client } from 'src/app/model/client';
 import { StatutResa } from 'src/app/model/enum/statut-resa';
-import { FormGroup } from '@angular/forms';
-
 @Component({
   selector: 'app-reservation-edit',
   templateUrl: './reservation-edit.component.html',
@@ -20,7 +18,6 @@ export class ReservationEditComponent implements OnInit {
   evt: Evenement = new Evenement();
   libelle: string | undefined;
   statutResa = StatutResa;
-  form!: FormGroup;
 
   constructor(
     private aR: ActivatedRoute,

@@ -11,7 +11,7 @@ export class ReglementComponent implements OnInit {
 
   reglements: InfoReglement[] = [];
   mode = Reglement;
-  id: number = 2;
+  id: number = 4;
   constructor(private reglementService: ReglementService) {}
 
   ngOnInit(): void {
@@ -20,8 +20,8 @@ export class ReglementComponent implements OnInit {
 
   list(id: number) {
     this.reglementService.get(id).subscribe((result) => {
-      this.reglements.push(result);
-      console.log(this.reglements)
+      this.reglements.push(result) ;
+      console.log(result)
     });
   }
 
