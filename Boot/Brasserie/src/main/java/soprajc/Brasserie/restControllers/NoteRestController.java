@@ -6,7 +6,6 @@ import java.util.Map;
 
 import javax.validation.Valid;
 
-import org.hibernate.validator.constraints.Length;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.util.ReflectionUtils;
@@ -28,9 +27,11 @@ import com.fasterxml.jackson.annotation.JsonView;
 import soprajc.Brasserie.exception.NoteException;
 import soprajc.Brasserie.exception.ReservationException;
 import soprajc.Brasserie.model.Biere;
+import soprajc.Brasserie.model.Client;
 import soprajc.Brasserie.model.JsonViews;
 import soprajc.Brasserie.model.Note;
 import soprajc.Brasserie.model.Produit;
+import soprajc.Brasserie.services.ClientService;
 import soprajc.Brasserie.services.NoteService;
 import soprajc.Brasserie.services.ProduitService;
 
@@ -43,6 +44,9 @@ public class NoteRestController {
 	NoteService noteService;
 	@Autowired
 	ProduitService produitService;
+	
+	@Autowired
+	ClientService clientService;
 
 	@JsonView(JsonViews.Note.class)
 	@GetMapping("")
@@ -59,6 +63,13 @@ public class NoteRestController {
 		} else {
 			throw new NoteException("Pas d'évaluation pour les snacks");
 		}
+	}
+	
+	@JsonView(JsonViews.Note.class)
+	@GetMapping("/{id_client}/byClient")
+	public List<Note> getByClient(@PathVariable Integer id_client) {
+		Client c = clientService.getById(id_client);
+		return noteService.getByClient(c);
 	}
 
 	@JsonView(JsonViews.Common.class)
@@ -83,6 +94,7 @@ public class NoteRestController {
 	public Note getById(@PathVariable Integer id) {
 		return noteService.getById(id);
 	}
+	
 
 	@ResponseStatus(code = HttpStatus.NO_CONTENT)
 	@DeleteMapping("/{id}")

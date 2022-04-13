@@ -91,4 +91,7 @@ public class ProduitService {
 		}
 		return produitRepository.save(produit);
 	}
+	public int averageBiere(Integer id) {
+		return produitRepository.averageBiere(id);
+	}
 }

@@ -116,4 +116,9 @@ public class ProduitRestController {
 		});
 		return produitService.save(produit);
 	}
+	
+	@GetMapping("/moyenne/{id}")
+	public int averageBiere(@PathVariable Integer id) {
+		return produitService.averageBiere(id);
+	}
 }
