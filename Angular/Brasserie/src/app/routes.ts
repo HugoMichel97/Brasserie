@@ -1,3 +1,4 @@
+
 import { ProduitComponent } from './components/produit/produit/produit.component';
 import { EvenementEditComponent } from './components/evenement/evenement-edit/evenement-edit.component';
 import { ClientBrasseurEditComponent } from './components/client/client-brasseur-edit/client-brasseur-edit.component';
@@ -14,4 +15,6 @@ export const routes: Routes = [
   {path: 'reservationList', component: ReservationListComponent},
   {path: 'reservation/edit', component: ReservationEditComponent},
   {path: 'reservation/edit/:id', component: ReservationEditComponent},
+
+  {path : 'evenenement', component:EvenementEditComponent }
 ];

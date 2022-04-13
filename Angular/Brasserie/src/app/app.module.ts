@@ -28,6 +28,9 @@ import { ReglementComponent } from './components/reglement/reglement.component';
 import { FooterComponent } from './app/footer/footer/footer.component';
 import { HeaderComponent } from './app/header/header.component';
 import { IndexComponent } from './app/index/index.component';
+import { AdminComponent } from './app/admin/admin.component';
+
+
 
 @NgModule({
   declarations: [
@@ -52,6 +55,9 @@ import { IndexComponent } from './app/index/index.component';
     FooterComponent,
     HeaderComponent,
     IndexComponent,
+    AdminComponent,
+
+
   ],
 
   imports: [
