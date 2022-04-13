@@ -26,6 +26,7 @@
     "bootstrap": "^5.1.3",
     "moment": "^2.29.2",
     "ng-payment-card": "^0.0.8",
+    "ngx-payment-card": "^2.0.0",
     "rxjs": "~7.5.0",
     "tslib": "^2.3.0",
     "zone.js": "~0.11.4"

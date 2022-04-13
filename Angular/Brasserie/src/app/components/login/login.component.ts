@@ -30,10 +30,12 @@ export class LoginComponent implements OnInit {
         );
         localStorage.setItem('role', value);
         this.err = false;
+        this.router.navigateByUrl('')
       },
       error: (error: any) => {
         console.log(error);
         this.err = true;
+
       },
     });
   }

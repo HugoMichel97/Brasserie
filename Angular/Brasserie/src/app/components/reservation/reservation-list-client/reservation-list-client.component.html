@@ -30,10 +30,10 @@
               />
               <div class="ms-3">
                 <p class="fw-bold mb-1">
-                  {{ o.client?.nom}}
+                  {{ o.client?.nom }}
                   {{ o.client?.prenom }}
                 </p>
-                <p class="text-muted mb-0">{{ o.client?.fidelite}}</p>
+                <p class="text-muted mb-0">{{ o.client?.fidelite }}</p>
               </div>
             </div>
           </td>
@@ -41,19 +41,23 @@
             <p class="fw-normal mb-1">{{ o.evt?.libelle }}</p>
           </td>
           <td *ngIf="o.statut === statutResa.validee">
-            <span style="color:darkolivegreen;font-weight:bold">{{o.statut}}</span>
+            <span style="color: darkolivegreen; font-weight: bold">{{
+              o.statut
+            }}</span>
           </td>
           <td *ngIf="o.statut === statutResa.en_attente">
-            <span style="color:lightsalmon;font-weight:bold">{{o.statut}}</span>
+            <span style="color: lightsalmon; font-weight: bold">{{
+              o.statut
+            }}</span>
           </td>
           <td>
-            {{o.nbParticipants}}
+            {{ o.nbParticipants }}
           </td>
           <td>
             <button
-              class="btn btn-outline-warning"
               [routerLink]="['/reservation', 'edit', o.id]"
               routerLinkActive="active"
+              class="btn btn-outline-warning"
             >
               <i class="fa-solid fa-pencil"></i>
             </button>
@@ -76,5 +80,3 @@
     </div>
   </body>
 </html>
-
-

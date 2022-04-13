@@ -1,49 +1,74 @@
-<div class="container">
-  <div class="page-header text-center">
-      <h1>Paiement CB</h1>
-  </div>
-  <div class="container">
-      <div class="row">
-          <div class="col-xs-12 col-md-6 col-md-offset-4">
-              <div class="panel panel-default">
-                  <div class="panel-heading">
-                      <div class="row">
-                          <h3 class="text-center">Payment Details</h3>
-                          <div class="inlineimage"> <img class="img-responsive images" src="https://cdn0.iconfinder.com/data/icons/credit-card-debit-card-payment-PNG/128/Mastercard-Curved.png"> <img class="img-responsive images" src="https://cdn0.iconfinder.com/data/icons/credit-card-debit-card-payment-PNG/128/Discover-Curved.png"> <img class="img-responsive images" src="https://cdn0.iconfinder.com/data/icons/credit-card-debit-card-payment-PNG/128/Paypal-Curved.png"> <img class="img-responsive images" src="https://cdn0.iconfinder.com/data/icons/credit-card-debit-card-payment-PNG/128/American-Express-Curved.png"> </div>
-                      </div>
-                  </div>
-                  <div class="panel-body">
-                      <form role="form">
-                          <div class="row">
-                              <div class="col-xs-12">
-                                  <div class="form-group"> <label>Numero de la carte</label>
-                                      <div class="input-group"> <input type="tel" class="form-control" placeholder="Valid Card Number" /> <span class="input-group-addon"><span class="fa fa-credit-card"></span></span> </div>
-                                  </div>
-                              </div>
-                          </div>
-                          <div class="row">
-                              <div class="col-xs-7 col-md-7">
-                                  <div class="form-group"> <label><span class="hidden-xs">EXPIRATION</span><span class="visible-xs-inline">EXP</span> DATE</label> <input type="tel" class="form-control" placeholder="MM / YY" /> </div>
-                              </div>
-                              <div class="col-xs-5 col-md-5 pull-right">
-                                  <div class="form-group"> <label>CVV</label> <input type="tel" class="form-control" placeholder="CVC" /> </div>
-                              </div>
-                          </div>
-                          <div class="row">
-                              <div class="col-xs-12">
-                                  <div class="form-group"> <label>Nom sur la carte</label> <input type="text" class="form-control" placeholder="Card Owner Name" /> </div>
-                              </div>
-                          </div>
-                      </form>
-                  </div>
-                  <div class="panel-footer">
-                      <div class="row">
-                          <div class="col-xs-12"> <button class="btn btn-success btn-lg btn-block">Confirmer paiement</button> </div>
-                      </div>
-                  </div>
-              </div>
-          </div>
-      </div>
-  </div>
-</div>
+<!DOCTYPE html>
+<html>
+  <head>
+    <script
+      src="https://kit.fontawesome.com/c524826284.js"
+      crossorigin="anonymous"
+    ></script>
+  </head>
 
+  <body>
+    <table class="table align-middle mb-0 bg-white">
+      <thead class="bg-light">
+        <tr>
+          <th>Client</th>
+          <th>Mode de paiement</th>
+          <th>Numero de carte</th>
+          <th>Nom sur la carte</th>
+          <th>Date de validité</th>
+          <th>Identifiant Paypal</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let o of reglements">
+          <td>
+            <div class="d-flex align-items-center">
+              <img
+                src="https://mdbootstrap.com/img/new/avatars/8.jpg"
+                alt=""
+                style="width: 45px; height: 45px"
+                class="rounded-circle"
+              />
+              <div class="ms-3">
+                <p class="fw-bold mb-1">
+                  {{ o.client?.nom }}
+                  {{ o.client?.prenom }}
+                </p>
+                <p class="text-muted mb-0">{{ o.client?.mail }}</p>
+              </div>
+            </div>
+          </td>
+          <td>
+            <p class="fw-normal mb-1">{{ o.mode }}</p>
+          </td>
+          <td >
+            <p class="fw-normal mb-1">{{ o.num }}</p>
+          </td>
+          <td >
+            <p class="fw-normal mb-1">{{ o.nom }}</p>
+          </td>
+
+          <td >
+            <p class="fw-normal mb-1">{{ o.dateValid }}</p>
+          </td>
+          <td >
+            <p class="fw-normal mb-1">{{ o.identifiant_paypal }}</p>
+          </td>
+          <td>
+            <button
+              [routerLink]="['', 'edit', o.id]"
+              routerLinkActive="active"
+              class="btn btn-outline-primary"
+            >
+            <i class="fa-solid fa-credit-card"></i>
+            </button>
+            &ngsp;
+            <button class="btn btn-outline-danger" (click)="delete(o.id!)">
+              <i class="fa-solid fa-trash-can"></i>
+            </button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </body>
+</html>
