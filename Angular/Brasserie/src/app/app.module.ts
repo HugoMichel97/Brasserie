@@ -75,7 +75,7 @@ import { BrasseurEditComponent } from './components/brasseur/brasseur-edit/brass
     RouterModule.forRoot(routes),
     HttpClientModule,
     FontAwesomeModule,
-    NgPaymentCardModule,
+    NgxPaymentCardModule,
   ],
   providers: [],
   bootstrap: [AppComponent],
