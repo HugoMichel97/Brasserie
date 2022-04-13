@@ -3,6 +3,10 @@ import { BrasseurComponent } from './components/brasseur/brasseur/brasseur.compo
 import { BrasseurEditComponent } from './components/brasseur/brasseur-edit/brasseur-edit.component';
 import { HomeComponent } from './components/home/home.component';
 import { ReglementComponent } from './components/reglement/reglement.component';
+import { LoginComponent } from './components/login/login.component';
+import { BrasseurComponent } from './components/brasseur/brasseur/brasseur.component';
+import { BrasseurEditComponent } from './components/brasseur/brasseur-edit/brasseur-edit.component';
+import { HomeComponent } from './components/home/home.component';
 import { ClientEditComponent } from './components/client/client-edit/client-edit.component';
 import { PasswordEditComponent } from './components/client/password-edit/password-edit.component';
 import { ClientComponent } from './components/client/client/client.component';
@@ -38,10 +42,10 @@ export const routes: Routes = [
     component: ClientEditComponent,
   },
   { path: 'reglement/edit', component: ReglementEditComponent},
-  { path: 'brasseur', component: BrasseurComponent },
   { path: 'brasseur/editPassword/:id', component: PasswordEditComponent },
   { path: 'brasseur/edit/:cathegorie/:id', component: BrasseurEditComponent },
   { path: 'login', component: LoginComponent },
+  { path: 'brasseur/:id', component: BrasseurComponent },
   { path: 'produit', component: ProduitComponent },
   {path: 'reservationListClient', component: ReservationListClientComponent },
   {path: 'reglement', component: ReglementComponent},

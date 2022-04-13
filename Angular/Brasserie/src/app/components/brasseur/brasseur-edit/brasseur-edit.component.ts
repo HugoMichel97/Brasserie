@@ -39,6 +39,12 @@ export class BrasseurEditComponent implements OnInit {
     });
   }
 
+  savePassword(value: string) {
+    this.brasseurService.updatePassword(this.brasseur, value).subscribe(() => {
+      this.goBrasseur();
+    });
+  }
+
   goBrasseur() {
     this.router.navigateByUrl('/brasseur');
   }

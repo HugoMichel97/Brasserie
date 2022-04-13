@@ -67,6 +67,12 @@ public class ClientService {
 			throw new ClientException("Id inconnu.");
 		});
 	}
+	
+	public Client getByMail(String mail) {
+		return clientRepository.findByMail(mail).orElseThrow(() -> {
+			throw new ClientException("Mail inconnu.");
+		});
+	}
 
 	public void delete(Client c) {
 		Client clientEnBase = getById(c.getId());

@@ -29,11 +29,11 @@ export class LoginComponent implements OnInit {
           'Basic ' + btoa(this.mail + ':' + this.password)
         );
         localStorage.setItem('role', value);
+        this.router.navigateByUrl('/home');
         this.err = false;
         this.router.navigateByUrl('')
       },
       error: (error: any) => {
-        console.log(error);
         this.err = true;
 
       },

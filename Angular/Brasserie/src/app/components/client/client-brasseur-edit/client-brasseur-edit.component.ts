@@ -21,20 +21,22 @@
 //     private router: Router
 //   ) {}
 
-//   ngOnInit(): void {
-//     this.aR.params.subscribe((params) => {
-//       if (params['id']) {
-//         this.clientService.get(params['id']).subscribe((result) => {
-//           this.client = result;
-//         });
-//         this.clientService.getAchat(params['id']).subscribe((result) => {
-//           for (let a of result) {
-//             this.commande.push(new Achat(a.id_achat, a.id_produit, a.quantite));
-//           }
-//         });
-//       }
-//     });
-//   }
+  ngOnInit(): void {
+    this.aR.params.subscribe((params) => {
+      if (params['id']) {
+        this.clientService.get(params['id']).subscribe((result) => {
+          this.client = result;
+        });
+        this.clientService.getAchat(params['id']).subscribe((result) => {
+          for (let a of result) {
+            this.commande.push(
+              new Achat(a.id_achat, this.client, a.id_produit, a.quantite)
+            );
+          }
+        });
+      }
+    });
+  }
 
 //   save(value: string) {
 //     if (this.client.id) {

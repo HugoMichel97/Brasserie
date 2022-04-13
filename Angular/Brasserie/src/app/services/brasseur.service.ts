@@ -15,24 +15,31 @@ export class BrasseurService {
     return this.http.get<Brasseur>(`${BrasseurService.URL}/${id}`);
   }
 
+  public getByMail(mail: string): Observable<Brasseur> {
+    return this.http.get<Brasseur>(`${BrasseurService.URL}/mail/${mail}`);
+  }
+
   public update(brasseur: Brasseur): Observable<any> {
+    console.log(this.brasseurToJson(brasseur));
+
     return this.http.patch(
       BrasseurService.URL + '/' + brasseur.id,
       this.brasseurToJson(brasseur)
     );
   }
 
-  // public updatePassword(
-  //   brasseur: Brasseur,
-  //   value: string
-  // ): Observable<Brasseur> {
-  //   return this.http.patch<Brasseur>(BrasseurService.URL + '/' + brasseur.id, {
-  //     password: value,
-  //   });
-  // }
+  public updatePassword(
+    brasseur: Brasseur,
+    value: string
+  ): Observable<Brasseur> {
+    return this.http.patch<Brasseur>(BrasseurService.URL + '/' + brasseur.id, {
+      password: value,
+    });
+  }
 
   private brasseurToJson(brasseur: Brasseur): any {
     let obj = {
+      id: brasseur.id,
       mail: brasseur.mail,
       depenses: brasseur.depenses,
       recettes: brasseur.recettes,

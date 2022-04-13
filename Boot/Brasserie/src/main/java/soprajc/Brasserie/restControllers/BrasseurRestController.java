@@ -42,6 +42,12 @@ public class BrasseurRestController {
 	public Brasseur getById(@PathVariable Integer id) {
 		return brasseurService.getById(id);
 	}
+	
+	@JsonView(JsonViews.Compte.class)
+	@GetMapping("/mail/{mail}")
+	public Brasseur getByMail(@PathVariable String mail) {
+		return brasseurService.getByMail(mail);
+	}
 
 	@PutMapping("/{id}")
 	@JsonView(JsonViews.Compte.class)

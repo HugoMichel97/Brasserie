@@ -4,22 +4,21 @@ import { Observable } from 'rxjs';
 import { InfoReglement } from '../model/info-reglement';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class ReglementService {
+  private static URL: string =
+    'http://localhost:8080/brasserie/api/infoReglement';
 
-  private static URL: string = 'http://localhost:8080/brasserie/api/infoReglement';
+  constructor(private http: HttpClient) {}
 
-    constructor(private http: HttpClient) {}
+  public delete(id: number): Observable<void> {
+    return this.http.delete<void>(ReglementService.URL + '/' + id);
+  }
 
-
-    public delete(id: number): Observable<void> {
-      return this.http.delete<void>(ReglementService.URL + '/' + id);
-    }
-
-    public get(id: number): Observable<InfoReglement> {
-      return this.http.get<InfoReglement>('http://localhost:8080/brasserie/api/client/getInfoReg/'+ id);
-    }
+  public get(id: number): Observable<InfoReglement> {
+    return this.http.get<InfoReglement>(ReglementService.URL + '/' + id);
+  }
   public create(reglement: InfoReglement): Observable<any> {
     return this.http.post(
       ReglementService.URL,

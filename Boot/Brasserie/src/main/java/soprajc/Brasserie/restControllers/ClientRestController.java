@@ -64,6 +64,12 @@ public class ClientRestController {
 		return clientService.getById(id);
 	}
 	
+	@JsonView(JsonViews.Compte.class)
+	@GetMapping("/mail/{mail}")
+	public Client getByMail(@PathVariable String mail) {
+		return clientService.getByMail(mail);
+	}
+	
 	@JsonView(JsonViews.Common.class)
 	@GetMapping("/getInfoReg/{id}")
 	public List<InfoReglement> getInfoReg(@PathVariable Integer id){

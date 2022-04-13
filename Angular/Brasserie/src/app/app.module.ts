@@ -1,4 +1,5 @@
-import { HttpClientModule } from '@angular/common/http';
+import { Interceptor } from './model/interceptor';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { EditAchatComponent } from './components/achat/edit-achat/edit-achat.component';
 import { AchatComponent } from './components/achat/achat/achat.component';
 import { EditNoteComponent } from './components/note/edit-note/edit-note.component';
@@ -32,6 +33,7 @@ import { ReservationListClientComponent } from './components/reservation/reserva
 import { FooterComponent } from './app/footer/footer/footer.component';
 import { HeaderComponent } from './app/header/header.component';
 import { PasswordEditComponent } from './components/client/password-edit/password-edit.component';
+=========
 import { IndexComponent } from './app/index/index.component';
 import { AdminComponent } from './app/admin/admin.component';
 import { HomeComponent } from './components/home/home.component';
@@ -67,6 +69,9 @@ import { CarteCreditComponent } from './components/carte-credit/carte-credit.com
     // ClientBrasseurEditComponent,
     ReglementComponent,
     PasswordEditComponent,
+=========
+    FooterComponent,
+    HeaderComponent,
     IndexComponent,
     AdminComponent,
     HomeComponent,
@@ -86,8 +91,11 @@ import { CarteCreditComponent } from './components/carte-credit/carte-credit.com
     RouterModule.forRoot(routes),
     HttpClientModule,
     FontAwesomeModule,
+    NgPaymentCardModule
   ],
-  providers: [],
+  providers: [
+    { provide: HTTP_INTERCEPTORS, useClass: Interceptor, multi: true },
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
