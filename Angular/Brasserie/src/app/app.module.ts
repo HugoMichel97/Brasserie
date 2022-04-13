@@ -33,6 +33,7 @@ import { HomeComponent } from './components/home/home.component';
 import { BrasseurComponent } from './components/brasseur/brasseur/brasseur.component';
 import { BrasseurEditComponent } from './components/brasseur/brasseur-edit/brasseur-edit.component';
 import { ReglementEditComponent } from './components/reglement-edit/reglement-edit.component';
+import { CarteCreditComponent } from './components/carte-credit/carte-credit.component';
 
 @NgModule({
   declarations: [
@@ -67,6 +68,7 @@ import { ReglementEditComponent } from './components/reglement-edit/reglement-ed
     BrasseurComponent,
     BrasseurEditComponent,
     ReglementEditComponent,
+    CarteCreditComponent,
   ],
 
   imports: [

@@ -17,6 +17,7 @@ export class ReglementEditComponent implements OnInit {
 
 
 
+
   constructor(
     private aR: ActivatedRoute,
     private reglementService: ReglementService,
@@ -27,6 +28,7 @@ export class ReglementEditComponent implements OnInit {
       if (params['id']) {
         this.reglementService.get(params['id']).subscribe((result) => {
           this.reglement = result;
+
         });
       }
     });
