@@ -1,0 +1,72 @@
+<table class="table">
+  <tr>
+    <th>Informations de connexion</th>
+  </tr>
+  <table>
+    <tr>
+      <td>
+        {{ brasseur.mail }}
+        <button
+          [routerLink]="['/brasseur', 'edit', 'mail', brasseur.id]"
+          routerLinkActive="active"
+          class="btn btn-outline-warning"
+        >
+          <fa-icon [icon]="iconEdit"></fa-icon>
+        </button>
+      </td>
+      <td>
+        <a
+          [routerLink]="['/brasseur', 'edit', 'mdp', brasseur.id]"
+          routerLinkActive="active"
+          class="btn btn-link"
+          >Modifier mon mot de passe</a
+        >
+      </td>
+    </tr>
+  </table>
+</table>
+<table class="table">
+  <tr>
+    <th>Caisse</th>
+    <!-- Nom à changer !! -->
+  </tr>
+  <table>
+    <tr>
+      <th>Dépenses</th>
+      <th>Recettes</th>
+      <th>Trésorerie</th>
+    </tr>
+    <tr>
+      <td>
+        {{ brasseur.depenses }}
+        <button
+          [routerLink]="['/brasseur', 'edit', 'depenses', brasseur.id]"
+          routerLinkActive="active"
+          class="btn btn-outline-warning"
+        >
+          <fa-icon [icon]="iconEdit"></fa-icon>
+        </button>
+      </td>
+      <td>
+        {{ brasseur.recettes }}
+        <button
+          [routerLink]="['/brasseur', 'edit', 'recettes', brasseur.id]"
+          routerLinkActive="active"
+          class="btn btn-outline-warning"
+        >
+          <fa-icon [icon]="iconEdit"></fa-icon>
+        </button>
+      </td>
+      <td>
+        {{ brasseur.tresorerie }}
+        <button
+          [routerLink]="['/brasseur', 'edit', 'tresorerie', brasseur.id]"
+          routerLinkActive="active"
+          class="btn btn-outline-warning"
+        >
+          <fa-icon [icon]="iconEdit"></fa-icon>
+        </button>
+      </td>
+    </tr>
+  </table>
+</table>
