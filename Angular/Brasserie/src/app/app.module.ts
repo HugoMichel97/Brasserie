@@ -30,6 +30,10 @@ import { ReservationListClientComponent } from './components/reservation/reserva
 import { FooterComponent } from './app/footer/footer/footer.component';
 import { HeaderComponent } from './app/header/header.component';
 import { PasswordEditComponent } from './components/client/password-edit/password-edit.component';
+import { IndexComponent } from './app/index/index.component';
+import { AdminComponent } from './app/admin/admin.component';
+
+
 
 @NgModule({
   declarations: [
@@ -52,6 +56,12 @@ import { PasswordEditComponent } from './components/client/password-edit/passwor
     ClientBrasseurEditComponent,
     ReglementComponent,
     PasswordEditComponent,
+    FooterComponent,
+    HeaderComponent,
+    IndexComponent,
+    AdminComponent,
+
+
   ],
 
   imports: [

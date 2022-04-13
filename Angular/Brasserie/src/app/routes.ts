@@ -34,4 +34,7 @@ export const routes: Routes = [
   { path: 'note', component: NoteComponent },
   { path: 'note/edit', component: EditNoteComponent },
   { path: 'note/edit/:id_note', component: EditNoteComponent },
+  {path: 'reservationList', component: ReservationListComponent},
+  {path: 'reservation/edit', component: ReservationEditComponent},
+  {path: 'reservation/edit/:id', component: ReservationEditComponent},
 ];
