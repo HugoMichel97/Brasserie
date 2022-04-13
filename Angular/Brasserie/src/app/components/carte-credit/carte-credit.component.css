@@ -1,14 +1,13 @@
 
-body {
+.fontPage{
   width: 100vw;
   height: 100vh;
-  background-image: url('/src/assets/css/images/graph-paper.svg');
   background-repeat: repeat;
   padding: 20px;
   box-sizing: border-box;
   margin: 0;
 }
-body {
+.fontPage{
   display: flex;
   justify-content: center;
   align-items: center;
@@ -16,6 +15,7 @@ body {
 
 .card-container {
   background: #010c15;
+
   border-radius: 20px;
   width: 100%;
   max-width: 600px;
@@ -27,6 +27,7 @@ body {
 
 .card {
   position: relative;
+  background: #354d5f;
   padding-top: 60%;
   overflow: hidden;
 }
