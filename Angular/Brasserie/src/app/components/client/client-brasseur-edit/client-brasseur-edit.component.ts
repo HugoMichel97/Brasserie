@@ -29,7 +29,9 @@ export class ClientBrasseurEditComponent implements OnInit {
         });
         this.clientService.getAchat(params['id']).subscribe((result) => {
           for (let a of result) {
-            this.commande.push(new Achat(a.id_achat, a.id_produit, a.quantite));
+            this.commande.push(
+              new Achat(a.id_achat, this.client, a.id_produit, a.quantite)
+            );
           }
         });
       }

@@ -30,10 +30,17 @@ import { ReservationListClientComponent } from './components/reservation/reserva
 import { FooterComponent } from './app/footer/footer/footer.component';
 import { HeaderComponent } from './app/header/header.component';
 import { PasswordEditComponent } from './components/client/password-edit/password-edit.component';
+import { HomeComponent } from './components/home/home.component';
+import { BrasseurComponent } from './components/brasseur/brasseur/brasseur.component';
+import { BrasseurEditComponent } from './components/brasseur/brasseur-edit/brasseur-edit.component';
 
 @NgModule({
   declarations: [
     AppComponent,
+    LoginComponent,
+    ReservationListClientComponent,
+    FooterComponent,
+    HeaderComponent,
     ReservationListComponent,
     ReservationEditComponent,
     ProduitComponent,
@@ -52,6 +59,9 @@ import { PasswordEditComponent } from './components/client/password-edit/passwor
     ClientBrasseurEditComponent,
     ReglementComponent,
     PasswordEditComponent,
+    HomeComponent,
+    BrasseurComponent,
+    BrasseurEditComponent,
   ],
 
   imports: [
@@ -60,7 +70,7 @@ import { PasswordEditComponent } from './components/client/password-edit/passwor
     RouterModule.forRoot(routes),
     HttpClientModule,
     FontAwesomeModule,
-    NgPaymentCardModule
+    NgPaymentCardModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

@@ -72,4 +72,8 @@ export class ClientComponent implements OnInit {
       this.regList();
     });
   }
+
+  delete(id: number) {
+    this.clientService.delete(id).subscribe((ok) => {});
+  }
 }
