@@ -1,4 +1,4 @@
-import { ClientService } from './../../../service/client.service';
+import { ClientService } from './../../../services/client.service';
 import { ProduitService } from './../../../services/produit.service';
 import { ProduitComponent } from './../../produit/produit/produit.component';
 import { Client } from './../../../model/client';

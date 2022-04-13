@@ -5,13 +5,10 @@ import { ClientService } from './../../services/client.service';
 import { AuthentificationService } from './../../services/authentification.service';
 import { Component, OnInit } from '@angular/core';
 import {
-  faArrowLeft,
   faArrowRightFromBracket,
   faArrowRightToBracket,
-  faArrowsLeftRightToLine,
   faBeer,
   faCalendarDay,
-  faCookieBite,
   faHome,
   faHouseUser,
   faPeopleGroup,
