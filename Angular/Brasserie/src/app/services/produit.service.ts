@@ -19,8 +19,12 @@ export class ProduitService {
     return this.http.get<any>(`${ProduitService.url}/${id}`);
   }
 
-  public getAllBeers(): Observable<any> {
+  public getAllBeers(): Observable<any[]> {
     return this.http.get<any[]>(ProduitService.url + '/biere');
+  }
+
+  public getAllSnacks(): Observable<any[]> {
+    return this.http.get<any[]>(ProduitService.url + '/snack');
   }
 
   public delete(id: number): Observable<void> {

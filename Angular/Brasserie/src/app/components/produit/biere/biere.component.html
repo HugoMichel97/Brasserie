@@ -2,12 +2,16 @@
 
 <div class="content">
   <div class="left">
-    <p class="f"><strong>Trier par :</strong></p>
-    <button (click)="triAlpha()" class="btn btn-success">Nom</button>
+    <p class="title"><strong>Trier par :</strong></p>
+    <button (click)="triAlpha()" class="btn btn-success">Nom (↑)</button>
     <br />
-    <button (click)="triPrix()" class="btn btn-success">Prix</button>
+    <button (click)="triAlphaR()" class="btn btn-success">Nom (↓)</button>
     <br />
-    <button (click)="triAvis()" class="btn btn-success">Avis</button>
+    <button (click)="triPrix()" class="btn btn-success">Prix (↑)</button>
+    <br />
+    <button (click)="triPrixR()" class="btn btn-success">Prix (↓)</button>
+
+    <!-- <button (click)="triAvis()" class="btn btn-success">Avis</button> -->
   </div>
 
   <div class="center">
@@ -26,10 +30,64 @@
           <br />
           <span class="cpt">parmi {{ cpt }} avis</span>
         </p>
+        <div *ngIf="b?.nom == 'Maltador'">
+          <img
+            class="baignoire2"
+            src="../../../../assets/img/biere1.png"
+            alt="une baignoire de bière"
+          />
+        </div>
+
+        <div *ngIf="b?.nom == 'Mirador'">
+          <img
+            class="baignoire2"
+            src="../../../../assets/img/biere2.png"
+            alt="une baignoire de bière"
+          />
+        </div>
+
+        <div *ngIf="b?.nom == 'Testador'">
+          <img
+            class="baignoire2"
+            src="../../../../assets/img/biere3.png"
+            alt="une baignoire de bière"
+          />
+        </div>
+
+        <div *ngIf="b?.nom == 'Abidabière'">
+          <img
+            class="baignoire2"
+            src="../../../../assets/img/biere4.png"
+            alt="une baignoire de bière"
+          />
+        </div>
+
         <button class="ajout" (click)="ajoutPanier(b)" class="btn btn-success">
           Ajouter au panier
         </button>
       </li>
     </ul>
+  </div>
+
+  <div class="right">
+    <p class="title"><strong>La bière du moment : </strong></p>
+    <div class="biereMois">
+      <h2 class="nom">La Petite Baignoire dans la prairie</h2>
+      <h3 class="prix">5 €</h3>
+      <p>
+        <strong
+          >Bière bio blonde façon saison, houblonnée, aux saveurs légèrement
+          florales et épicées, fin de bouche sèche persistante.</strong
+        >
+      </p>
+      <p>
+        <i>Bouteille 33 cl et en futs de 30L (uniquement en boutique)</i>
+      </p>
+      <img
+        class="baignoire"
+        src="../../../../assets/img/baignoire2.png"
+        alt="une baignoire de bière"
+      />
+    </div>
   </div>
 </div>

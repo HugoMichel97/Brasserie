@@ -1,1 +1,50 @@
-<p>snack works!</p>
+<h3 class="intro">Voici notre catalogue de snacks</h3>
+
+<div class="content">
+  <div class="left">
+    <p class="title"><strong>Trier par :</strong></p>
+    <button (click)="triAlpha()" class="btn btn-success">Nom (↑)</button>
+    <br />
+    <button (click)="triAlphaR()" class="btn btn-success">Nom (↓)</button>
+    <br />
+    <button (click)="triPrix()" class="btn btn-success">Prix (↑)</button>
+    <br />
+    <button (click)="triPrixR()" class="btn btn-success">Prix (↓)</button>
+  </div>
+
+  <div class="center">
+    <ul class="snacks columns-4">
+      <li *ngFor="let s of tableau" class="snack">
+        <h2 class="nom">{{ s.nom }}</h2>
+        <h3 class="prix">{{ s.prix }} €</h3>
+        <p>
+          <strong>{{ s.description }}</strong>
+        </p>
+        <p></p>
+      </li>
+    </ul>
+  </div>
+
+  <div class="right">
+    <p class="title"><strong>Le snack de saison : </strong></p>
+    <div class="snackMois">
+      <h2 class="nom">Le sorbet Coco-Citron</h2>
+      <h3 class="prix">7 €</h3>
+      <p>
+        <strong
+          >Retrouvez toute la fraîcheur du citron, couplée à la douceur
+          inattendue de la coco. Le tout dans un sorbet réalisé par un maitre
+          glacier avec des produits issus de nos terroirs.</strong
+        >
+      </p>
+      <p>
+        <i>Disponible à la boule ou au bac de 1L (uniquement en boutique)</i>
+      </p>
+      <img
+        class="baignoire"
+        src="../../../../assets/img/sorbet.png"
+        alt="une baignoire de bière"
+      />
+    </div>
+  </div>
+</div>
