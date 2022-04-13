@@ -1,3 +1,4 @@
+import { Biere } from './../model/biere';
 import { Achat } from './../model/achat';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
@@ -26,10 +27,19 @@ export class AchatService {
   public achatToJson(achat: Achat): any {
     let a = {
       id_achat: achat.id_achat,
-      id_client: { id_client: achat.id_client?.id },
-      id_produit: { id_produit: achat.id_produit?.id },
+      id_client: { id: achat.id_client?.id },
+      id_produit: { id: achat.id_produit?.id },
       quantite: achat.quantite,
     };
+    if (achat.id_produit instanceof Biere) {
+      Object.assign(a, {
+        id_produit: { type: 'biere', id: achat.id_produit?.id },
+      });
+    } else {
+      Object.assign(a, {
+        id_produit: { type: 'snack', id: achat.id_produit?.id },
+      });
+    }
     return a;
   }
 
@@ -37,7 +47,12 @@ export class AchatService {
     return this.http.post(AchatService.url, this.achatToJson(achat));
   }
 
+  public createCatalogue(achat: Achat): Observable<any> {
+    return this.http.post(AchatService.url, achat);
+  }
+
   public update(achat: Achat): Observable<any> {
+    console.log(this.achatToJson(achat));
     return this.http.put(
       `${AchatService.url}/${achat.id_achat}`,
       this.achatToJson(achat)

@@ -18,6 +18,7 @@ import com.fasterxml.jackson.annotation.JsonView;
 @DiscriminatorValue("Biere")
 public class Biere extends Produit {
 
+	@JsonView(JsonViews.Produit.class)
 	@OneToMany(mappedBy = "biere")
 	private List<Note> notes;
 

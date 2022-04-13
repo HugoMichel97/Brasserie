@@ -1,0 +1,35 @@
+<h3 class="intro">Voici notre catalogue de bières</h3>
+
+<div class="content">
+  <div class="left">
+    <p class="f"><strong>Trier par :</strong></p>
+    <button (click)="triAlpha()" class="btn btn-success">Nom</button>
+    <br />
+    <button (click)="triPrix()" class="btn btn-success">Prix</button>
+    <br />
+    <button (click)="triAvis()" class="btn btn-success">Avis</button>
+  </div>
+
+  <div class="center">
+    <ul class="bieres columns-4">
+      <li *ngFor="let b of tableau" class="biere">
+        <h2 class="nom">{{ b.nom }}</h2>
+        <h3 class="prix">{{ b.prix }} €</h3>
+        <p>
+          <strong>{{ b.description }}</strong>
+        </p>
+        <p>
+          <i>Bouteille 33 cl</i>
+        </p>
+        <p>
+          Note : {{ moy }} / 5
+          <br />
+          <span class="cpt">parmi {{ cpt }} avis</span>
+        </p>
+        <button class="ajout" (click)="ajoutPanier(b)" class="btn btn-success">
+          Ajouter au panier
+        </button>
+      </li>
+    </ul>
+  </div>
+</div>

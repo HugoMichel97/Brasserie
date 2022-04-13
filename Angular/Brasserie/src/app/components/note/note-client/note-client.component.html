@@ -1,0 +1,39 @@
+<h3 class="intro">Historique de vos avis</h3>
+
+<table class="table table-hover">
+  <thead>
+    <tr>
+      <!-- <td>Identifiant :</td> -->
+      <td>Nom du client :</td>
+      <td>Bière notée :</td>
+      <td>Note attribuée :</td>
+      <td>Commentaire attribué :</td>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let n of notes">
+      <!-- <td>{{ n.id_note }}</td> -->
+      <td>{{ n.id_client?.nom }}</td>
+      <td>{{ n.biere?.nom }}</td>
+      <td>{{ n.note }}</td>
+      <td>{{ n.commentaire }}</td>
+      <!-- <td>
+      <a
+        [routerLink]="['/note', 'edit', n.id_note]"
+        routerLinkActive="active"
+        class="btn btn-outline-primary"
+        >Modifier</a
+      >
+    </td>
+    <td>
+      <button (click)="delete(n.id_note!)" class="btn btn-outline-danger">
+        Supprimer
+      </button>
+    </td> -->
+    </tr>
+  </tbody>
+</table>
+
+<p class="ajoutNote">Vous avez apprécié (ou pas) un autre de nos produits ?</p>
+
+<a routerLink="/note/add" class="btn btn-info">Notez le !</a>

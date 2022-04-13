@@ -12,6 +12,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 })
 export class EditProduitComponent implements OnInit {
   produit: Produit = new Biere();
+  operation: string = '';
   constructor(
     private aR: ActivatedRoute,
     private produitService: ProduitService,
@@ -24,8 +25,10 @@ export class EditProduitComponent implements OnInit {
       if (params['type']) {
         if (params['type'] == 'biere') {
           this.produit = new Biere();
+          this.operation = 'biere';
         } else {
           this.produit = new Snack();
+          this.operation = 'snack';
         }
       } else {
         this.produitService.getById(params['id']).subscribe((p) => {
@@ -38,6 +41,7 @@ export class EditProduitComponent implements OnInit {
               p.stock,
               p.points
             );
+            this.operation = 'biere';
           } else {
             this.produit = new Snack(
               p.id,
@@ -47,6 +51,7 @@ export class EditProduitComponent implements OnInit {
               p.stock,
               p.points
             );
+            this.operation = 'snack';
           }
         });
       }

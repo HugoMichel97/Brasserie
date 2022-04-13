@@ -13,12 +13,25 @@
 
   <div class="form-group">
     <label>Client concerné :</label>
-    <input type="text" [(ngModel)]="achat.id_client" class="form-control" />
+    <select [(ngModel)]="achat.id_client" class="form-control">
+      <option
+        *ngFor="let c of clients"
+        [ngValue]="c"
+        [selected]="c.nom == achat.id_client?.nom"
+      >
+        <!-- à gérer demain-->
+        {{ c.id }} - {{ c.prenom }} {{ c.nom }}
+      </option>
+    </select>
   </div>
 
   <div class="form-group">
     <label>Produit concerné :</label>
-    <input type="text" [(ngModel)]="achat.id_produit" class="form-control" />
+    <select [(ngModel)]="achat.id_produit" class="form-control">
+      <option *ngFor="let p of produits" [ngValue]="p">
+        {{ p.id }} - {{ p.nom }}
+      </option>
+    </select>
   </div>
 
   <div class="form-group">

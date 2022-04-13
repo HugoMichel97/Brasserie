@@ -7,6 +7,12 @@ import { ClientEditComponent } from './components/client/client-edit/client-edit
 import { PasswordEditComponent } from './components/client/password-edit/password-edit.component';
 import { ClientComponent } from './components/client/client/client.component';
 import { EditProduitComponent } from './components/produit/edit-produit/edit-produit.component';
+import { NoteClientComponent } from './components/note/note-client/note-client.component';
+import { SnackComponent } from './components/produit/snack/snack.component';
+import { BiereComponent } from './components/produit/biere/biere.component';
+import { Component } from '@angular/core';
+import { EditAchatComponent } from './components/achat/edit-achat/edit-achat.component';
+import { AchatComponent } from './components/achat/achat/achat.component';
 import { NoteComponent } from './components/note/note/note.component';
 import { EditNoteComponent } from './components/note/edit-note/edit-note.component';
 import { ProduitComponent } from './components/produit/produit/produit.component';
@@ -52,4 +58,14 @@ export const routes: Routes = [
   {path: 'reservationList', component: ReservationListComponent},
   {path: 'reservation/edit', component: ReservationEditComponent},
   {path: 'reservation/edit/:id', component: ReservationEditComponent},
+  { path: 'achat', component: AchatComponent },
+  { path: 'achat/edit', component: EditAchatComponent },
+  { path: 'achat/edit/:id_achat', component: EditAchatComponent },
+  { path: 'biere', component: BiereComponent },
+  { path: 'snack', component: SnackComponent },
+  { path: 'note/client', component: NoteClientComponent },
+  { path: 'note/add', component: EditNoteComponent },
+  { path: 'reservationList', component: ReservationListComponent },
+  { path: 'reservation/edit', component: ReservationEditComponent },
+  { path: 'reservation/edit/:id', component: ReservationEditComponent },
 ];

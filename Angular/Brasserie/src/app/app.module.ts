@@ -24,6 +24,9 @@ import { ClientEditComponent } from './components/client/client-edit/client-edit
 import { ClientComponent } from './components/client/client/client.component';
 // import { ClientBrasseurEditComponent } from './components/client/client-brasseur-edit/client-brasseur-edit.component';
 import { ReglementComponent } from './components/reglement/reglement.component';
+import { BiereComponent } from './components/produit/biere/biere.component';
+import { SnackComponent } from './components/produit/snack/snack.component';
+import { NoteClientComponent } from './components/note/note-client/note-client.component';
 import { LoginComponent } from './components/login/login.component';
 import { ReservationListClientComponent } from './components/reservation/reservation-list-client/reservation-list-client.component';
 import { FooterComponent } from './app/footer/footer/footer.component';
@@ -71,6 +74,9 @@ import { CarteCreditComponent } from './components/carte-credit/carte-credit.com
     BrasseurEditComponent,
     ReglementEditComponent,
     CarteCreditComponent,
+    BiereComponent,
+    SnackComponent,
+    NoteClientComponent,
   ],
 
   imports: [
