@@ -33,6 +33,7 @@ import { PasswordEditComponent } from './components/client/password-edit/passwor
 import { HomeComponent } from './components/home/home.component';
 import { BrasseurComponent } from './components/brasseur/brasseur/brasseur.component';
 import { BrasseurEditComponent } from './components/brasseur/brasseur-edit/brasseur-edit.component';
+import { IndexComponent } from './app/index/index.component';
 
 @NgModule({
   declarations: [
@@ -62,6 +63,9 @@ import { BrasseurEditComponent } from './components/brasseur/brasseur-edit/brass
     HomeComponent,
     BrasseurComponent,
     BrasseurEditComponent,
+    FooterComponent,
+    HeaderComponent,
+    IndexComponent,
   ],
 
   imports: [
