@@ -15,6 +15,10 @@ export class BrasseurService {
     return this.http.get<Brasseur>(`${BrasseurService.URL}/${id}`);
   }
 
+  public getByMail(mail: string): Observable<Brasseur> {
+    return this.http.get<Brasseur>(`${BrasseurService.URL}/mail/${mail}`);
+  }
+
   public update(brasseur: Brasseur): Observable<any> {
     console.log(this.brasseurToJson(brasseur));
 

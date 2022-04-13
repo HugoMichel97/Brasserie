@@ -20,6 +20,6 @@ export class AuthentificationService {
   }
 
   isAutenticated(): boolean {
-    return localStorage.getItem('login') ? true : false; // ?
+    return localStorage.getItem('login') ? true : false;
   }
 }

@@ -1,4 +1,5 @@
-import { HttpClientModule } from '@angular/common/http';
+import { Interceptor } from './model/interceptor';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { EditAchatComponent } from './components/achat/edit-achat/edit-achat.component';
 import { AchatComponent } from './components/achat/achat/achat.component';
 import { EditNoteComponent } from './components/note/edit-note/edit-note.component';
@@ -76,7 +77,9 @@ import { IndexComponent } from './app/index/index.component';
     FontAwesomeModule,
     NgPaymentCardModule,
   ],
-  providers: [],
+  providers: [
+    { provide: HTTP_INTERCEPTORS, useClass: Interceptor, multi: true },
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

@@ -21,6 +21,11 @@ public class BrasseurService {
 		return brasseur;
 	}
 	
+	public Brasseur getByMail(String mail) {
+		Brasseur brasseur = brasseurRepository.findByMail(mail).orElseThrow(BrasseurException::new);
+		return brasseur;
+	}
+	
 	public Brasseur save(Brasseur brasseur) {
 		if (brasseur.getId() != null) {
 			Brasseur brasseurEnBase = getById(brasseur.getId());

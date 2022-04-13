@@ -1,3 +1,4 @@
+import { ActivatedRoute } from '@angular/router';
 import { faPencil } from '@fortawesome/free-solid-svg-icons';
 import { BrasseurService } from './../../../services/brasseur.service';
 import { Brasseur } from './../../../model/brasseur';
@@ -12,11 +13,18 @@ export class BrasseurComponent implements OnInit {
   brasseur: Brasseur = new Brasseur();
   iconEdit = faPencil;
 
-  constructor(private brasseurService: BrasseurService) {}
+  constructor(
+    private brasseurService: BrasseurService,
+    private aR: ActivatedRoute
+  ) {}
 
   ngOnInit(): void {
-    this.brasseurService.get(1).subscribe((result) => {
-      this.brasseur = result;
+    this.aR.params.subscribe((params) => {
+      if (params['id']) {
+        this.brasseurService.get(params['id']).subscribe((result) => {
+          this.brasseur = result;
+        });
+      }
     });
   }
 }

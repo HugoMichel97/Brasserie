@@ -1,57 +1,112 @@
-
 <html>
-	<head>
-		<title>Aminagomo la bière qu'il vous faut</title>
-
-		<meta charset="utf-8" />
-		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+  <head>
     <link rel="stylesheet" href="/assets/css/main.css" />
-	</head>
-	<body class="homepage is-preload">
-		<div id="page-wrapper">
-
-			<!-- Header -->
+  </head>
+  <body class="homepage is-preload">
+    <div id="page-wrapper">
+      <!-- Header -->
       <div>
-        <marquee behavior="scroll" scrollamount="8">Evenements à venir :
-          Vendredi 25 avril 2022, fête de la bière !  Rdv au parc des Expositions à partir de 18H
+        <marquee behavior="scroll" scrollamount="8"
+          >Evenements à venir : Vendredi 25 avril 2022, fête de la bière ! Rdv
+          au parc des Expositions à partir de 18H
         </marquee>
+        <!-- à automatiser ? -->
       </div>
 
-				<section id="header">
-					<div class="container">
+      <section id="header">
+        <div class="container">
+          <!-- Logo -->
+          <h1 id="logo">
+            <a routerLink="/home" routerLinkActive="active">
+              <img src="../../../assets/images/logo.png" alt="logo" /> &nbsp;
+              Brasserie Aminagomo</a
+            >
+          </h1>
+          <p>Composez la bière qui vous ressemble</p>
 
-						<!-- Logo -->
-							<h1 id="logo"><a href="index.html">Aminagomo Brasserie</a></h1>
-							<p>Composez la bière qui vous ressemble</p>
+          <!-- Nav -->
 
-
-						<!-- Nav -->
-
-							<nav id="nav">
-								<ul>
-									<li><a class="icon solid fa-home" href="index.html"><span>Accueil</span></a></li>
-									<li>
-										<a href="#" class="icon fa-chart-bar"><span>Nos bières</span></a>
-										<ul>
-											<li><a href="#">Lorem ipsum dolor</a></li>
-											<li><a href="#">Magna phasellus</a></li>
-											<li><a href="#">Etiam dolore nisl</a></li>
-											<li>
-												<a href="#">Phasellus consequat</a>
-												<ul>
-													<li><a href="#">Magna phasellus</a></li>
-													<li><a href="#">Etiam dolore nisl</a></li>
-													<li><a href="#">Phasellus consequat</a></li>
-												</ul>
-											</li>
-											<li><a href="#">Veroeros feugiat</a></li>
-										</ul>
-									</li>
-									<li><a class="icon solid fa-heart" href="left-sidebar.html"><span>Snacking</span></a></li>
-									<li><a class="icon solid fa-retweet" href="right-sidebar.html"><span>Qui sommes nous</span></a></li>
-									<li><a class="icon solid fa-sitemap" href="no-sidebar.html"><span>Se connecter</span></a></li>
-								</ul>
-							</nav>
-
-					</div>
-				</section>
+          <nav id="nav">
+            <ul>
+              <li>
+                <a routerLink="/home" routerLinkActive="active"
+                  ><fa-icon [icon]="iconAccueil"></fa-icon> &nbsp;
+                  <span>Accueil</span></a
+                >
+              </li>
+              <li>
+                <a routerLink="/produit" routerLinkActive="active"
+                  ><fa-icon [icon]="iconBieres"></fa-icon> &nbsp;
+                  <span>Nos bières</span></a
+                >
+                <!-- <ul>
+                  <li><a href="#">Lorem ipsum dolor</a></li>
+                  <li><a href="#">Magna phasellus</a></li>
+                  <li><a href="#">Etiam dolore nisl</a></li>
+                  <li>
+                    <a href="#">Phasellus consequat</a>
+                    <ul>
+                      <li><a href="#">Magna phasellus</a></li>
+                      <li><a href="#">Etiam dolore nisl</a></li>
+                      <li><a href="#">Phasellus consequat</a></li>
+                    </ul>
+                  </li>
+                  <li><a href="#">Veroeros feugiat</a></li>
+                </ul> -->
+              </li>
+              <li>
+                <a routerLink="/evenement" routerLinkActive="active"
+                  ><fa-icon [icon]="iconEvt"></fa-icon> &nbsp;<span
+                    >Evenements</span
+                  ></a
+                >
+              </li>
+              <li>
+                <a routerLink="/brasseur" routerLinkActive="active"
+                  ><fa-icon [icon]="iconTeam"></fa-icon> &nbsp;<span
+                    >Qui sommes nous</span
+                  ></a
+                >
+              </li>
+              <li *ngIf="!isAutenticated()">
+                <a routerLink="/loggin" routerLinkActive="active"
+                  ><fa-icon [icon]="iconLog"></fa-icon> &nbsp;<span
+                    >Se connecter</span
+                  ></a
+                >
+              </li>
+              <li *ngIf="isAutenticated() && role === 'client'">
+                <a
+                  [routerLink]="['/client', client?.id]"
+                  routerLinkActive="active"
+                  ><fa-icon [icon]="iconCompte"></fa-icon> &nbsp;<span
+                    >Mon compte</span
+                  ></a
+                >
+              </li>
+              <li *ngIf="isAutenticated() && role === 'brasseur'">
+                <a
+                  [routerLink]="['/brasseur', brasseur?.id]"
+                  routerLinkActive="active"
+                  ><fa-icon [icon]="iconCompte"></fa-icon> &nbsp;<span
+                    >Mon compte</span
+                  ></a
+                >
+              </li>
+              <li *ngIf="isAutenticated()">
+                <a
+                  routerLink="/home"
+                  routerLinkActive="active"
+                  (click)="logout()"
+                  ><fa-icon [icon]="iconLogout"></fa-icon> &nbsp;<span
+                    >Se déconnecter</span
+                  ></a
+                >
+              </li>
+            </ul>
+          </nav>
+        </div>
+      </section>
+    </div>
+  </body>
+</html>

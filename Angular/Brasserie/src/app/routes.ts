@@ -1,3 +1,4 @@
+import { LoginComponent } from './components/login/login.component';
 import { BrasseurComponent } from './components/brasseur/brasseur/brasseur.component';
 import { BrasseurEditComponent } from './components/brasseur/brasseur-edit/brasseur-edit.component';
 import { HomeComponent } from './components/home/home.component';
@@ -27,7 +28,7 @@ export const routes: Routes = [
     path: 'client/edit/:idReg/:cathegorie/:id',
     component: ClientEditComponent,
   },
-  { path: 'brasseur', component: BrasseurComponent },
+  { path: 'brasseur/:id', component: BrasseurComponent },
   { path: 'brasseur/editPassword/:id', component: PasswordEditComponent },
   { path: 'brasseur/edit/:cathegorie/:id', component: BrasseurEditComponent },
   { path: 'produit', component: ProduitComponent },
@@ -41,4 +42,5 @@ export const routes: Routes = [
   { path: 'note', component: NoteComponent },
   { path: 'note/edit', component: EditNoteComponent },
   { path: 'note/edit/:id_note', component: EditNoteComponent },
+  { path: 'loggin', component: LoginComponent },
 ];

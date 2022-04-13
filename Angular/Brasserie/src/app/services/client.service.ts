@@ -32,6 +32,10 @@ export class ClientService {
     return this.http.get<Client>(`${ClientService.URL}/${id}`);
   }
 
+  public getByMail(mail: string): Observable<Client> {
+    return this.http.get<Client>(`${ClientService.URL}/mail/${mail}`);
+  }
+
   public delete(id: number): Observable<void> {
     return this.http.delete<any>(`${ClientService.URL}/${id}`);
   }
