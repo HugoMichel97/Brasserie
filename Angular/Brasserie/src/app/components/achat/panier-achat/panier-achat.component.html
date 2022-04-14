@@ -2,12 +2,10 @@
 
 <table>
   <tr>
-    <td>Nom du client :</td>
     <td>Nom du produit :</td>
     <td>Quantité achetée :</td>
   </tr>
   <tr *ngFor="let a of achats">
-    <td>{{ a.id_client?.nom }}</td>
     <td>{{ a.id_produit?.nom }}</td>
     <td>{{ a.quantite }}</td>
 

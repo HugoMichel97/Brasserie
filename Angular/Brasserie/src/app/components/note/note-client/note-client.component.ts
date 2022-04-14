@@ -17,14 +17,16 @@ export class NoteClientComponent implements OnInit {
   }
 
   list() {
-    this.noteService.getByClient(3).subscribe((result) => {
-      this.notes = [];
-      for (let n of result) {
-        this.notes.push(
-          new Note(n.id_note, n.client, n.biere, n.note, n.commentaire)
-        );
-      }
-    });
+    this.noteService
+      .getByClient(Number(localStorage.getItem('id')))
+      .subscribe((result) => {
+        this.notes = [];
+        for (let n of result) {
+          this.notes.push(
+            new Note(n.id_note, n.client, n.biere, n.note, n.commentaire)
+          );
+        }
+      });
   }
 
   getBiere(note: Note): Biere | undefined {
