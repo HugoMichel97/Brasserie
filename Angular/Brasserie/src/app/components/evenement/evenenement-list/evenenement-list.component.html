@@ -1,4 +1,4 @@
-<table class="table align-middle mb-0 bg-white">
+<!-- <table class="table align-middle mb-0 bg-white">
   <thead class="bg-dark">
     <tr>
       <th>Date&nbsp;:</th>
@@ -41,4 +41,81 @@
       </td>
     </tr>
   </tbody>
-</table>
+</table> -->
+
+<div class="font-page">
+  <br />
+  <tr *ngFor="let o of evenement">
+    <section class="articles">
+      <div class="article">
+        <div class="left">
+          <div id="carousel">
+            <div class="images" *ngIf="o.libelle === libelles.degustation">
+              <img src="../../../../assets/images/bieres.jpg" alt="" />
+              <img src="../../../../assets/images/biere2.jpg" alt="" />
+              <img src="../../../../assets/images/biere3.jpg" alt="" />
+            </div>
+
+
+            <div class="images" *ngIf="o.libelle === libelles.inauguration">
+              <img src="../../../../assets/images/fete.jpg" alt="" />
+              <img src="../../../../assets/images/fete2.jpg" alt="" />
+              <img src="../../../../assets/images/fete3.png" alt="" />
+            </div>
+          </div>
+        </div>
+        <div class="right">
+          <p class="name">
+            <i class="fa-solid fa-calendar-days"></i> {{ o.date }}
+          </p>
+          <h1>Détail de l'evenement:</h1>
+          <td>
+            <tr>
+              <h4>
+                <i class="fa-solid fa-person"></i> Nombre de participants:
+                {{ o.nbPlaces }}
+              </h4>
+            </tr>
+            <tr>
+              <h4>
+                <i class="fa-solid fa-beer-mug-empty"></i> Libelle de
+                l'evenement: {{ o.libelle }}
+              </h4>
+            </tr>
+            <tr>
+              <h4>
+                <i class="fa-solid fa-circle-info"></i> Description de
+                l'évenement: {{ o.description }}
+              </h4>
+            </tr>
+            <tr>
+              <h4><i class="fa-solid fa-clock"></i> Heure: {{ o.heure }}</h4>
+            </tr>
+            <tr>
+              <h4><i class="fa-solid fa-euro-sign"></i> Prix: {{ o.prix }} €</h4>
+              <td *ngIf="isAutenticated() && role === 'brasseur'">
+                <button
+                  [routerLink]="['/evenement', 'edit', o.id]"
+                  routerLinkActive="active"
+                  class="btn btn-warning"
+                >
+                  <fa-icon [icon]="iconEdit"></fa-icon>
+                </button>
+                &nbsp;
+                <button (click)="delete(o.id!)" class="btn btn-danger">
+                  <fa-icon [icon]="iconDelete"></fa-icon>
+                </button>
+              </td>
+              <td *ngIf="!(isAutenticated() && role === 'brasseur')">
+                <button (click)="createResa(o)" class="btn btn-info">
+                  <fa-icon [icon]="iconResa"></fa-icon>
+                </button>
+              </td>
+            </tr>
+          </td>
+        </div>
+      </div>
+    </section>
+  </tr>
+  <br />
+</div>
