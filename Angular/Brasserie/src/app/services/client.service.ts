@@ -47,7 +47,7 @@ export class ClientService {
   public update(client: Client): Observable<any> {
     return this.http.patch(
       ClientService.URL + '/' + client.id,
-      this.clientToJson(client)
+      this.clientToJsonUpdate(client)
     );
   }
 
@@ -61,6 +61,20 @@ export class ClientService {
     return this.http.patch<Client>(ClientService.URL + '/' + client.id, {
       password: value,
     });
+  }
+
+  private clientToJsonUpdate(client: Client): any {
+    let obj = {
+      id: client.id,
+      mail: client.mail,
+      nom: client.nom,
+      prenom: client.prenom,
+      tel: client.tel,
+      naissance: client.naissance,
+      fidelite: client.fidelite,
+      statut: client.statut,
+    };
+    return obj;
   }
 
   private clientToJson(client: Client): any {

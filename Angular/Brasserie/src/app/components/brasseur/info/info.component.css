@@ -1,1 +1,9 @@
+#carte {
+  display: flex;
+  justify-content: center;
+}
 
+#info {
+  margin-left: 15%;
+  margin-right: 15%;
+}

@@ -1,4 +1,4 @@
-<form (ngSubmit)="create()" [formGroup]="form">
+<form (ngSubmit)="create()" [formGroup]="form" id="createForm">
   <div>
     <label>Nom :</label>
     <input type="text" class="form-control" formControlName="nom" />
@@ -78,13 +78,9 @@
     </div>
   </div>
   <div>
-    <button
-      type="submit"
-      class="btn btn-outline-success"
-      [disabled]="form.invalid"
-    >
-      Connexion
+    <button type="submit" class="btn btn-success" [disabled]="form.invalid">
+      S'incrire
     </button>
-    <a routerLink="/home" class="btn btn-outline-warning">Retour</a>
+    <a routerLink="/login" class="btn btn-warning">Retour</a>
   </div>
 </form>
