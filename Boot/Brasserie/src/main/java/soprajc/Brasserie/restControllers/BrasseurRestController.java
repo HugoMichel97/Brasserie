@@ -40,7 +40,7 @@ public class BrasseurRestController {
 	public Brasseur getById(@PathVariable Integer id) {
 		return brasseurService.getById(id);
 	}
-	
+
 	@JsonView(JsonViews.Compte.class)
 	@GetMapping("/mail/{mail}")
 	public Brasseur getByMail(@PathVariable String mail) {
@@ -66,9 +66,13 @@ public class BrasseurRestController {
 	public Brasseur partialUpdate(@RequestBody Map<String, Object> fields, @PathVariable Integer id) {
 		Brasseur brasseur = brasseurService.getById(id);
 		fields.forEach((key, value) -> {
-			Field field = ReflectionUtils.findField(Brasseur.class, key);
-			ReflectionUtils.makeAccessible(field);
-			ReflectionUtils.setField(field, brasseur, value);
+			if (key.equals("password")) {
+				brasseur.setPassword(passwordEncoder.encode((String) value));
+			} else {
+				Field field = ReflectionUtils.findField(Brasseur.class, key);
+				ReflectionUtils.makeAccessible(field);
+				ReflectionUtils.setField(field, brasseur, value);
+			}
 		});
 		return brasseurService.save(brasseur);
 	}

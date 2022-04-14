@@ -36,13 +36,23 @@ export const routes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'create', component: CreateCompteComponent },
 
+  { path: 'produit', component: ProduitComponent },
+  { path: 'produit/edit', component: EditProduitComponent },
+  { path: 'produit/edit/:id', component: EditProduitComponent },
+  { path: 'produit/add/:type', component: EditProduitComponent },
   { path: 'biere', component: BiereComponent },
   { path: 'snack', component: SnackComponent },
 
   { path: 'evenement', component: EvenenementListComponent },
 
-  { path: 'reservation/client', component: ReservationClientComponent },
+  { path: 'reservation/client/:id', component: ReservationClientComponent },
+  { path: 'reservation/brasseur', component: ReservationListComponent },
 
+  { path: 'brasseur/info/:id', component: BrasseurComponent },
+  { path: 'brasseur/edit/:cathegorie/:id', component: BrasseurEditComponent },
+
+  { path: 'brasseur/clients', component: ClientListComponent },
+  { path: 'brasseur/clients/edit/:id', component: ClientBrasseurEditComponent },
   { path: 'brasseur/clients', component: ClientListComponent },
   { path: 'brasseur/clients/edit/:id', component: ClientBrasseurEditComponent },
   { path: 'client/:id', component: ClientComponent },
@@ -51,27 +61,10 @@ export const routes: Routes = [
     path: 'client/edit/:idReg/:cathegorie/:id',
     component: ClientEditComponent,
   },
-  { path: 'reglement/edit', component: ReglementEditComponent },
   { path: 'client/editPassword/:id', component: PasswordEditComponent },
 
-  { path: 'brasseur/info/:id', component: BrasseurComponent },
-  { path: 'brasseur/editPassword/:id', component: PasswordEditComponent },
-  { path: 'brasseur/edit/:cathegorie/:id', component: BrasseurEditComponent },
-  { path: 'brasseur/clients', component: ClientListComponent },
-  { path: 'brasseur/clients/edit/:id', component: ClientBrasseurEditComponent },
-
-  { path: 'reservationListClient', component: ReservationListClientComponent },
-
-  // à ranger
   { path: 'reglement/edit', component: ReglementEditComponent },
   { path: 'reglement', component: ReglementComponent },
-
-  { path: 'produit', component: ProduitComponent },
-  { path: 'reservationListClient', component: ReservationListClientComponent },
-  { path: 'reglement', component: ReglementComponent },
-  { path: 'produit/edit', component: EditProduitComponent },
-  { path: 'produit/edit/:id', component: EditProduitComponent },
-  { path: 'produit/add/:type', component: EditProduitComponent },
 
   { path: 'reservationList', component: ReservationListComponent },
   { path: 'reservation/edit/:id', component: ReservationEditComponent },
@@ -85,9 +78,6 @@ export const routes: Routes = [
   { path: 'note/client', component: NoteClientComponent },
   { path: 'note/add', component: EditNoteComponent },
 
-  { path: 'reservationList', component: ReservationListComponent },
-  { path: 'reservation/edit', component: ReservationEditComponent },
-  { path: 'reservation/edit/:id', component: ReservationEditComponent },
   { path: 'achat', component: AchatComponent },
   { path: 'achat/edit', component: EditAchatComponent },
   { path: 'achat/edit/:id_achat', component: EditAchatComponent },

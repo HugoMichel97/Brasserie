@@ -79,7 +79,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 					.antMatchers(HttpMethod.PATCH, "/api/produit/**").hasRole("BRASSEUR")
 					
 					// Reservation :
-					.antMatchers(HttpMethod.GET, "/api/reservation/**").hasRole("BRASSEUR")
+					.antMatchers(HttpMethod.GET, "/api/reservation/**").authenticated()
 					.antMatchers(HttpMethod.POST, "/api/reservation").hasRole("CLIENT")
 					.antMatchers(HttpMethod.PUT, "/api/reservation/**").hasRole("CLIENT")
 					.antMatchers(HttpMethod.DELETE, "/api/reservation/**").hasRole("CLIENT")

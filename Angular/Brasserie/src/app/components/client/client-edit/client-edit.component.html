@@ -78,11 +78,9 @@
   </div>
 
   <div>
-    <button (click)="saveReglement()" class="btn btn-outline-success">
+    <button (click)="saveReglement()" class="btn btn-success">
       Enregistrer
     </button>
-    <a [routerLink]="['/client', client.id]" class="btn btn-outline-danger"
-      >Annuler</a
-    >
+    <a [routerLink]="['/client', client.id]" class="btn btn-danger">Annuler</a>
   </div>
 </div>

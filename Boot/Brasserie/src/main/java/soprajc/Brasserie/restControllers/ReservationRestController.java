@@ -80,7 +80,7 @@ public class ReservationRestController {
 		if (br.hasErrors()) {
 			throw new ReservationException();
 		}
-		return save(reservation, br);
+		return reservationService.create(reservation);
 	}
 
 	@PutMapping("/{id}")

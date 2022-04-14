@@ -14,6 +14,7 @@ export class ReservationClientComponent implements OnInit {
   statutResa = StatutResa;
   libelles = Libelle;
   private id: number | undefined;
+
   constructor(private reservationService: ReservationService) {}
 
   ngOnInit(): void {
@@ -24,8 +25,6 @@ export class ReservationClientComponent implements OnInit {
   list(id: number) {
     this.reservationService.getWithClient(id).subscribe((result) => {
       this.reservations = result;
-
-      console.log(this.reservations);
     });
   }
 

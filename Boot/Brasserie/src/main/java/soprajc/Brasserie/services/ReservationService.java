@@ -24,11 +24,11 @@ public class ReservationService {
 	@Autowired
 	private ClientService clientService;
 	
-	public void create(Reservation r) {
+	public Reservation create(Reservation r) {
 		if (r.getId() !=null) {
 			throw new ReservationException("le numero ne doit pas etre defini");
 		}
-		reservationRepository.save(r);
+		return reservationRepository.save(r);
 	}
 	public void update(Reservation r) {
 		if (r.getId() == null) {

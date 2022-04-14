@@ -34,18 +34,26 @@ export class BrasseurEditComponent implements OnInit {
   }
 
   save() {
-    this.brasseurService.update(this.brasseur).subscribe(() => {
-      this.goBrasseur();
-    });
+    if (this.cathegorie === 'mail') {
+      this.brasseurService.update(this.brasseur).subscribe(() => {
+        localStorage.clear();
+        this.router.navigateByUrl('/login');
+      });
+    } else {
+      this.brasseurService.update(this.brasseur).subscribe(() => {
+        this.goBrasseur();
+      });
+    }
   }
 
   savePassword(value: string) {
     this.brasseurService.updatePassword(this.brasseur, value).subscribe(() => {
-      this.goBrasseur();
+      localStorage.clear();
+      this.router.navigateByUrl('/login');
     });
   }
 
   goBrasseur() {
-    this.router.navigateByUrl('/brasseur');
+    this.router.navigateByUrl('/brasseur/info/' + this.brasseur.id);
   }
 }

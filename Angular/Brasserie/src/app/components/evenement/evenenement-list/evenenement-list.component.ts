@@ -83,9 +83,12 @@ export class EvenenementListComponent implements OnInit {
   }
 
   createResa(evt: Evenement) {
-    let resa = new Reservation();
-    resa.client = this.client;
-    resa.evt = evt;
+    let resa = {
+      client: { id: this.client.id },
+      evt: { id: evt.id },
+    };
+    console.log(resa);
+
     this.resaService.create(resa).subscribe(() => {
       this.router.navigateByUrl('/reservation/client/' + this.client.id);
     });

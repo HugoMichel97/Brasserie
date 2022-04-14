@@ -26,7 +26,9 @@ export class ReglementService {
     );
   }
   public update(reglement: InfoReglement): Observable<any> {
-    return this.http.patch(
+    console.log(this.reglementToJson(reglement));
+
+    return this.http.put(
       ReglementService.URL + '/' + reglement.id,
       this.reglementToJson(reglement)
     );
@@ -34,6 +36,7 @@ export class ReglementService {
 
   private reglementToJson(reglement: InfoReglement): any {
     let obj = {
+      id: reglement.id,
       client: reglement.client,
       mode: reglement.mode,
       num: reglement.num,

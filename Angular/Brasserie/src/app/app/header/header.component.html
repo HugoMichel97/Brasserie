@@ -81,9 +81,9 @@
                 >
               </li>
               <li *ngIf="isAutenticated() && role == 'brasseur'">
-                <a routerLink="/reservationListClient" routerLinkActive="active"
+                <a routerLink="/reservation/brasseur" routerLinkActive="active"
                   ><fa-icon [icon]="iconResa"></fa-icon> &nbsp;<span
-                    >Evenements</span
+                    >Reservations</span
                   ></a
                 >
               </li>
@@ -134,7 +134,10 @@
                 </a>
               </li>
               <li *ngIf="isAutenticated() && role == 'client'">
-                <a routerLink="/reservation/client" routerLinkActive="active">
+                <a
+                  [routerLink]="['/reservation/client/', id]"
+                  routerLinkActive="active"
+                >
                   <fa-icon [icon]="iconResa"></fa-icon> &nbsp;
                   <span>Reservations</span>
                 </a>

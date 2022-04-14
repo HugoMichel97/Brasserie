@@ -103,7 +103,7 @@ public class ClientRestController {
 		if (br.hasErrors()) {
 			throw new ClientException(""+br.getAllErrors()+"");
 		}
-		return save(client, br);
+		return clientService.create(client);
 	}
 
 	@PutMapping("/{id}")
@@ -129,6 +129,8 @@ public class ClientRestController {
 				client.setNaissance(LocalDate.parse((String) value));
 			} else if (key.equals("statut")){
 				client.setStatut(StatutCommande.valueOf((String) value));
+			}else if (key.equals("password")) {
+				client.setPassword(passwordEncoder.encode((String) value));
 			} else {
 				Field field = ReflectionUtils.findField(Client.class, key);
 				ReflectionUtils.makeAccessible(field);

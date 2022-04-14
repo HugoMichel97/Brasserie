@@ -27,14 +27,15 @@ public class ClientService {
 	@Autowired
 	private NoteService noteService;
 	
-	public void create(Client c) {
+	public Client create(Client c) {
 		if (c.getId() != null) {
 			throw new ClientException("L'id ne doit pas �tre defini.");
 		}
 		if (c.getMail() == null || c.getMail().isEmpty()) {
 			throw new ClientException("Le mail doit etre defini.");
 		}
-		clientRepository.save(c);
+		c.setPassword(passwordEncoder.encode(c.getPassword()));
+		return clientRepository.save(c);
 	}
 
 	public void update(Client c) {
@@ -98,7 +99,6 @@ public class ClientService {
 			Client clientEnBase = getById(client.getId());
 			client.setVersion(clientEnBase.getVersion());
 		}
-		client.setPassword(passwordEncoder.encode(client.getPassword()));
 		return clientRepository.save(client);
 	}
 }

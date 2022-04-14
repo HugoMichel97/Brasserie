@@ -34,12 +34,9 @@ export class PasswordEditComponent implements OnInit {
       this.clientService
         .updatePassword(this.client, value)
         .subscribe((result) => {
-          this.goList();
+          localStorage.clear();
+          this.router.navigateByUrl('/login');
         });
     }
-  }
-
-  goList() {
-    this.router.navigateByUrl('/client');
   }
 }

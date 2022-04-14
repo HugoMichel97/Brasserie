@@ -28,7 +28,7 @@ export class ReservationService {
       'http://localhost:8080/brasserie/api/client/' + id + '/getResa'
     );
   }
-  public create(reservation: Reservation): Observable<any> {
+  public create(reservation: any): Observable<any> {
     return this.http.post(
       ReservationService.URL,
       this.reservationToJson(reservation)
@@ -36,7 +36,6 @@ export class ReservationService {
   }
 
   public update(reservation: Reservation): Observable<Reservation> {
-    console.log(reservation);
     return this.http.put<Reservation>(
       ReservationService.URL + '/' + reservation.id,
       reservation

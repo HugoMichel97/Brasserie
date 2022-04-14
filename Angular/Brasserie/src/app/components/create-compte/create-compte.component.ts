@@ -101,7 +101,7 @@ export class CreateCompteComponent implements OnInit {
     };
 
     this.clientService.create(client).subscribe(() => {
-      this.router.navigateByUrl('/index');
+      this.router.navigateByUrl('/login');
     });
   }
 }

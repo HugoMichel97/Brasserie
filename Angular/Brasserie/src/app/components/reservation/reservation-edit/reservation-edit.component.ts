@@ -13,7 +13,6 @@ import { StatutResa } from 'src/app/model/enum/statut-resa';
 })
 export class ReservationEditComponent implements OnInit {
   reservation: Reservation = new Reservation();
-  evenements: Evenement[] = [];
   client: Client = new Client();
   evt: Evenement = new Evenement();
   libelle: string | undefined;
@@ -22,7 +21,6 @@ export class ReservationEditComponent implements OnInit {
   constructor(
     private aR: ActivatedRoute,
     private reservationService: ReservationService,
-    private evenementService: EvenementService,
     private router: Router
   ) {}
   ngOnInit(): void {
@@ -30,17 +28,12 @@ export class ReservationEditComponent implements OnInit {
       if (params['id']) {
         this.reservationService.get(params['id']).subscribe((result) => {
           this.reservation = result;
+          console.log(this.reservation.client?.nom);
         });
       }
     });
   }
 
-  list() {
-    this.evenementService.getAll().subscribe((result) => {
-      this.evenements = result;
-      console.log(this.evenements);
-    });
-  }
   save() {
     if (this.reservation.id) {
       this.reservationService.update(this.reservation).subscribe((result) => {
@@ -54,6 +47,8 @@ export class ReservationEditComponent implements OnInit {
   }
 
   goList() {
-    this.router.navigateByUrl('/reservationList');
+    this.router.navigateByUrl(
+      'reservation/client/' + localStorage.getItem('id')
+    );
   }
 }

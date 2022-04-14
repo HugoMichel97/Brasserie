@@ -19,6 +19,10 @@ export class EvenementService {
     return this.http.get<any>(`${EvenementService.URL}/${id}`);
   }
 
+  public getResa(id: number): Observable<any> {
+    return this.http.get<any>(`${EvenementService.URL}/${id}/getResa`);
+  }
+
   public delete(id: number): Observable<void> {
     return this.http.delete<any>(`${EvenementService.URL}/${id}`);
   }

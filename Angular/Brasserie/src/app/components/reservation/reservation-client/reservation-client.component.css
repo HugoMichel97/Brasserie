@@ -1,17 +1,16 @@
+@import url("https://fonts.googleapis.com/css2?family=Noto+Sans+JP&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Crimson+Text:wght@600&display=swap");
 
-@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Crimson+Text:wght@600&display=swap');
-
-.articles{
+.articles {
   margin-top: 30px;
   margin-left: 30px;
 }
-.articles .article{
+.articles .article {
   display: flex;
-  flex-wrap:wrap;
+  flex-wrap: wrap;
   margin-bottom: 30px;
 }
-.articles .article .left img{
+.articles .article .left img {
   height: 300px;
   width: 500px;
 }
@@ -19,27 +18,31 @@
   margin-left: 40px;
   max-width: 50%;
 }
-.articles .article .right p.name{
+.articles .article .right p.name {
   color: #c94f4f;
 }
-.articles .article .right p.description{
+.articles .article .right p.description {
   color: #2d2d2d;
 }
-.articles .article .right h1{
+.articles .article .right h1 {
   color: #af8888;
 }
 
-
-@media screen and (max-width: 640px){
-  body{
+@media screen and (max-width: 640px) {
+  body {
     margin: 10px 20px;
   }
-  .articles .article .left img{
+  .articles .article .left img {
     height: 100%;
-    width:100%;
+    width: 100%;
   }
-  .articles .article .right{
+  .articles .article .right {
     margin: 0px;
     max-width: 100%;
   }
+}
+
+#att {
+  color: salmon;
+  font-weight: bold;
 }

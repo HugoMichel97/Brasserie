@@ -51,9 +51,16 @@ export class ClientEditComponent implements OnInit {
   }
 
   save() {
-    this.clientService.update(this.client).subscribe(() => {
-      this.goClient();
-    });
+    if (this.cathegorie === 'mail') {
+      this.clientService.update(this.client).subscribe(() => {
+        localStorage.clear();
+        this.router.navigateByUrl('/login');
+      });
+    } else {
+      this.clientService.update(this.client).subscribe(() => {
+        this.goClient();
+      });
+    }
   }
 
   saveReglement() {
