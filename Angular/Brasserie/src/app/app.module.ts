@@ -12,6 +12,7 @@ import { HeaderComponent } from './app/header/header.component';
 import { IndexComponent } from './app/index/index.component';
 import { AchatComponent } from './components/achat/achat/achat.component';
 import { EditAchatComponent } from './components/achat/edit-achat/edit-achat.component';
+import { PanierAchatComponent } from './components/achat/panier-achat/panier-achat.component';
 import { BrasseurEditComponent } from './components/brasseur/brasseur-edit/brasseur-edit.component';
 import { BrasseurComponent } from './components/brasseur/brasseur/brasseur.component';
 import { InfoComponent } from './components/brasseur/info/info.component';
@@ -84,6 +85,7 @@ import { routes } from './routes';
     InfoComponent,
     CreateCompteComponent,
     ReservationClientComponent,
+    PanierAchatComponent,
   ],
 
   imports: [

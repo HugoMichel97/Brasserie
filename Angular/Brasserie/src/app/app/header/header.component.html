@@ -128,7 +128,7 @@
             </ul>
             <ul>
               <li *ngIf="isAutenticated() && role == 'client'">
-                <a routerLink="" routerLinkActive="active">
+                <a [routerLink]="['/panier/', id]" routerLinkActive="active">
                   <fa-icon [icon]="iconPanier"></fa-icon> &nbsp;
                   <span>Panier</span>
                 </a>
@@ -140,6 +140,15 @@
                 >
                   <fa-icon [icon]="iconResa"></fa-icon> &nbsp;
                   <span>Reservations</span>
+                </a>
+              </li>
+              <li *ngIf="isAutenticated() && role == 'client'">
+                <a
+                  [routerLink]="['/note/client/', id]"
+                  routerLinkActive="active"
+                >
+                  <!-- <fa-icon [icon]="iconResa"></fa-icon>&nbsp; -->
+                  <span>Vos avis</span>
                 </a>
               </li>
             </ul>

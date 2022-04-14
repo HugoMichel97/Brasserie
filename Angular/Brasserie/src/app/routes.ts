@@ -1,3 +1,4 @@
+import { PanierAchatComponent } from './components/achat/panier-achat/panier-achat.component';
 import { ReservationClientComponent } from './components/reservation/reservation-client/reservation-client.component';
 import { IndexComponent } from './app/index/index.component';
 import { ClientBrasseurEditComponent } from './components/client/client-brasseur-edit/client-brasseur-edit.component';
@@ -42,6 +43,7 @@ export const routes: Routes = [
   { path: 'produit/add/:type', component: EditProduitComponent },
   { path: 'biere', component: BiereComponent },
   { path: 'snack', component: SnackComponent },
+  { path: 'panier/:id', component: PanierAchatComponent },
 
   { path: 'evenement', component: EvenenementListComponent },
 
@@ -75,7 +77,7 @@ export const routes: Routes = [
   { path: 'note', component: NoteComponent },
   { path: 'note/edit', component: EditNoteComponent },
   { path: 'note/edit/:id_note', component: EditNoteComponent },
-  { path: 'note/client', component: NoteClientComponent },
+  { path: 'note/client/:id', component: NoteClientComponent },
   { path: 'note/add', component: EditNoteComponent },
 
   { path: 'achat', component: AchatComponent },

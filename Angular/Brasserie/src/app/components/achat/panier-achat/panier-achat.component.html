@@ -1,0 +1,32 @@
+<h3>Votre panier</h3>
+
+<table>
+  <tr>
+    <td>Nom du produit :</td>
+    <td>Quantité achetée :</td>
+  </tr>
+  <tr *ngFor="let a of achats">
+    <td>{{ a.id_produit?.nom }}</td>
+    <td>{{ a.quantite }}</td>
+
+    <td>
+      <button (click)="delete(a.id_achat!)" class="btn btn-outline-danger">
+        Supprimer
+      </button>
+    </td>
+  </tr>
+</table>
+
+<div class="total">
+  <h4>Total du panier :</h4>
+  Vous avez actuellement {{ totalQuantite }} produit(s) dans votre panier pour
+  un montant de {{ totalPrix }} €.
+  <br />
+  <!-- Ajouter le path pour aller vers le component de paiement-->
+  <a routerLink="/" class="btn btn-info">Procéder au paiement</a>
+</div>
+
+<p class="">Vous souhaitez poursuivre vos achats ?</p>
+
+<a routerLink="/biere" class="btn btn-info">Consultez le catalogue de bières</a>
+<a routerLink="/snack" class="btn btn-info">Consultez le catalogue de snacks</a>
