@@ -1,6 +1,9 @@
+import { AchatService } from './../../../services/achat.service';
 import { Snack } from './../../../model/snack';
 import { Component, OnInit } from '@angular/core';
 import { ProduitService } from 'src/app/services/produit.service';
+import { Achat } from 'src/app/model/achat';
+import { Client } from 'src/app/model/client';
 
 @Component({
   selector: 'app-snack',
@@ -9,7 +12,12 @@ import { ProduitService } from 'src/app/services/produit.service';
 })
 export class SnackComponent implements OnInit {
   snacks: Snack[] = [];
-  constructor(private produitService: ProduitService) {}
+  client: Client = new Client(Number(localStorage.getItem('id')));
+  quantite: number = 0;
+  constructor(
+    private produitService: ProduitService,
+    private achatService: AchatService
+  ) {}
 
   ngOnInit(): void {
     this.list();
@@ -24,6 +32,14 @@ export class SnackComponent implements OnInit {
         );
       }
     });
+  }
+
+  ajoutPanier(snack: Snack) {
+    this.achatService.createCatalogue(
+      new Achat(undefined, this.client, snack, 1)
+    );
+    snack.stock! -= this.quantite;
+    //console.log(new Achat(undefined, this.client, snack, 1));
   }
 
   triPrix() {

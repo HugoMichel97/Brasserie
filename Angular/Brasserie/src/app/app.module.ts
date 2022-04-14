@@ -28,6 +28,7 @@ import { ReglementComponent } from './components/reglement/reglement.component';
 import { BiereComponent } from './components/produit/biere/biere.component';
 import { SnackComponent } from './components/produit/snack/snack.component';
 import { NoteClientComponent } from './components/note/note-client/note-client.component';
+import { PanierAchatComponent } from './components/achat/panier-achat/panier-achat.component';
 
 @NgModule({
   declarations: [
@@ -52,6 +53,7 @@ import { NoteClientComponent } from './components/note/note-client/note-client.c
     BiereComponent,
     SnackComponent,
     NoteClientComponent,
+    PanierAchatComponent,
   ],
 
   imports: [

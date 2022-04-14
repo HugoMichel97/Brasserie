@@ -9,6 +9,8 @@ import { Observable } from 'rxjs';
 })
 export class AchatService {
   private static url: string = 'http://localhost:8080/brasserie/api/achat';
+  private static urlClient: string =
+    'http://localhost:8080/brasserie/api/client';
 
   constructor(private http: HttpClient) {}
 
@@ -18,6 +20,12 @@ export class AchatService {
 
   public getById(id: number): Observable<any> {
     return this.http.get<any>(`${AchatService.url}/${id}`);
+  }
+
+  public getByClient(id: number): Observable<any[]> {
+    return this.http.get<any[]>(
+      AchatService.urlClient + '/' + id + '/getAchat'
+    );
   }
 
   public delete(id: number): Observable<void> {

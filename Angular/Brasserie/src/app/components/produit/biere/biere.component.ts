@@ -19,7 +19,9 @@ export class BiereComponent implements OnInit {
   cpt: number = 0;
   somme: number = 0;
   moy: number = 0;
-  client: Client = new Client();
+  quantite: number = 0;
+
+  client: Client = new Client(Number(localStorage.getItem('id')));
   constructor(
     private produitService: ProduitService,
     private noteService: NoteService,
@@ -77,10 +79,10 @@ export class BiereComponent implements OnInit {
 
   ajoutPanier(biere: Biere) {
     this.achatService.createCatalogue(
-      // ajouter le client connecté dans le constructeur
-      new Achat(undefined, this.client, biere, 1)
+      new Achat(undefined, this.client, biere, this.quantite)
     );
-    console.log(new Achat(undefined, this.client, biere, 1));
+    biere.stock! -= this.quantite;
+    //console.log(new Achat(undefined, this.client, biere, 1));
   }
 
   triPrix() {

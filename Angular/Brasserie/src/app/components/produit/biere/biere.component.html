@@ -61,8 +61,19 @@
             alt="une baignoire de bière"
           />
         </div>
+        <span>Quantité :</span>
+        <input
+          [(ngModel)]="quantite"
+          type="number"
+          placeholder="Saisissez la quantité voulue"
+        />
 
-        <button class="ajout" (click)="ajoutPanier(b)" class="btn btn-success">
+        <button
+          class="ajout"
+          (click)="ajoutPanier(b)"
+          class="btn btn-success"
+          *ngIf="b.stock! > quantite"
+        >
           Ajouter au panier
         </button>
       </li>

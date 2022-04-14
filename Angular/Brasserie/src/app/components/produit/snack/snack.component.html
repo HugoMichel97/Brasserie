@@ -20,7 +20,20 @@
         <p>
           <strong>{{ s.description }}</strong>
         </p>
-        <p></p>
+        <span>Quantité :</span>
+        <input
+          [(ngModel)]="quantite"
+          type="number"
+          placeholder="Saisissez la quantité voulue"
+        />
+        <button
+          class="ajout"
+          (click)="ajoutPanier(s)"
+          class="btn btn-success"
+          *ngIf="s.stock! > quantite"
+        >
+          Ajouter au panier
+        </button>
       </li>
     </ul>
   </div>
