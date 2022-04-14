@@ -28,11 +28,13 @@ public class Reservation {
 
 	@ManyToOne
 	@JoinColumn(name="client_fk", foreignKey = @ForeignKey(name="reservation_client_fk"))
+	@NotNull
 	@JsonView(JsonViews.Reservation.class)
 	private Client client;
 
 	@ManyToOne
 	@JoinColumn(name="evt_fk", foreignKey = @ForeignKey(name="reservation_evt_fk"))
+	@NotNull
 	@JsonView({JsonViews.ReservationEvt.class, JsonViews.ReservationEvtClient.class})
 	private Evenement evt;
 	

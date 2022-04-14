@@ -10,7 +10,7 @@
 }
 
 .prix {
-  color: orange;
+  color: black;
 }
 
 .center li {
@@ -21,7 +21,7 @@
   text-align: center;
   padding: 10px;
   margin: 10px;
-  height: 350px;
+  height: 550px;
 }
 
 .snacks {
@@ -91,4 +91,19 @@ ul {
 .rupture {
   font-style: strong;
   color: red;
+}
+
+.ajout {
+  margin-top: 15px;
+}
+
+.quant {
+  margin-bottom: 20px;
+}
+
+.quant2 {
+  font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
+    "Lucida Sans", Arial, sans-serif;
+  font-weight: bold;
+  color: black;
 }

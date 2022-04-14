@@ -23,7 +23,7 @@
         <div *ngIf="s?.nom == 'cacahuètes salées'">
           <img
             class="baignoire2"
-            src="../../../../assets/img/cacahuetesale.png"
+            src="../../../../assets/img/cacahuetesale.jpg"
             alt="une baignoire de bière"
           />
         </div>
@@ -84,12 +84,15 @@
           />
         </div>
 
-        <span>Quantité :</span>
+        <span class="quant2">Quantité </span>
+        <br />
         <input
+          class="quant"
           [(ngModel)]="quantite"
           type="number"
           placeholder="Saisissez la quantité voulue"
         />
+
         <button
           class="ajout"
           (click)="ajoutPanier(s)"
