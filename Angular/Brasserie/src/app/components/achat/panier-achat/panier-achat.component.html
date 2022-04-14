@@ -1,20 +1,25 @@
-<h3>Votre panier</h3>
+<h3 class="intro">Votre panier</h3>
 
-<table>
-  <tr>
-    <td>Nom du produit :</td>
-    <td>Quantité achetée :</td>
-  </tr>
-  <tr *ngFor="let a of achats">
-    <td>{{ a.id_produit?.nom }}</td>
-    <td>{{ a.quantite }}</td>
+<table class="table table-hover">
+  <thead>
+    <tr>
+      <td>Nom du produit :</td>
+      <td>Quantité achetée :</td>
+      <td>Actions</td>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let a of achats">
+      <td>{{ a.id_produit?.nom }}</td>
+      <td>{{ a.quantite }}</td>
 
-    <td>
-      <button (click)="delete(a.id_achat!)" class="btn btn-outline-danger">
-        Supprimer
-      </button>
-    </td>
-  </tr>
+      <td>
+        <button (click)="delete(a.id_achat!)" class="btn btn-danger">
+          Supprimer
+        </button>
+      </td>
+    </tr>
+  </tbody>
 </table>
 
 <div class="total">
@@ -22,10 +27,15 @@
   Vous avez actuellement {{ totalQuantite }} produit(s) dans votre panier pour
   un montant de {{ totalPrix }} €.
   <br />
-  <a routerLink="/payer/achat" class="btn btn-info">Procéder au paiement</a>
+  <a routerLink="/payer/achat" class="btn btn-warning">Procéder au paiement</a>
 </div>
+<br />
+<span class="">Vous souhaitez poursuivre vos achats ?</span>
+<br />
+<a routerLink="/biere" class="btn btn-warning"
+  >Consultez le catalogue de bières</a
+>
 
-<p class="">Vous souhaitez poursuivre vos achats ?</p>
-
-<a routerLink="/biere" class="btn btn-info">Consultez le catalogue de bières</a>
-<a routerLink="/snack" class="btn btn-info">Consultez le catalogue de snacks</a>
+<a routerLink="/snack" class="btn btn-warning placement"
+  >Consultez le catalogue de snacks</a
+>

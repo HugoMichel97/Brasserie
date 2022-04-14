@@ -14,7 +14,7 @@
 }
 
 .center li {
-  background-color: thistle;
+  background-color: bisque;
   display: inline;
   width: 30%;
   border-radius: 12px;
@@ -22,6 +22,7 @@
   padding: 10px;
   margin: 10px;
   height: 550px;
+  overflow-y: scroll;
 }
 
 .snacks {
@@ -66,14 +67,14 @@ ul {
 }
 
 .snackMois {
-  background-color: lightgreen;
+  background-color: lightsalmon;
   display: inline;
   width: 90%;
   border-radius: 12px;
   text-align: center;
   padding: 10px;
   margin: 10px;
-  height: 580px;
+  height: 780px;
 }
 
 .baignoire2 {
@@ -84,7 +85,7 @@ ul {
 
 .baignoire {
   width: 80%;
-  height: 37%;
+  height: 27%;
   margin-bottom: 10%;
 }
 

@@ -31,7 +31,6 @@ import { PasswordEditComponent } from './components/client/password-edit/passwor
 import { CreateCompteComponent } from './components/create-compte/create-compte.component';
 import { LoginComponent } from './components/login/login.component';
 import { ReglementEditComponent } from './components/reglement-edit/reglement-edit.component';
-import { ReservationListClientComponent } from './components/reservation/reservation-list-client/reservation-list-client.component';
 
 export const routes: Routes = [
   { path: 'index', component: IndexComponent },
