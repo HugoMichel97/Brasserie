@@ -20,6 +20,70 @@
         <p>
           <strong>{{ s.description }}</strong>
         </p>
+        <div *ngIf="s?.nom == 'cacahuètes salées'">
+          <img
+            class="baignoire2"
+            src="../../../../assets/img/cacahuetesale.png"
+            alt="une baignoire de bière"
+          />
+        </div>
+
+        <div *ngIf="s?.nom == 'chips'">
+          <img
+            class="baignoire2"
+            src="../../../../assets/img/chips.jpeg"
+            alt="une baignoire de bière"
+          />
+        </div>
+
+        <div *ngIf="s?.nom == 'cornichons'">
+          <img
+            class="baignoire2"
+            src="../../../../assets/img/cornichon.jpg"
+            alt="une baignoire de bière"
+          />
+        </div>
+
+        <div *ngIf="s?.nom == 'gateau apéritif'">
+          <img
+            class="baignoire2"
+            src="../../../../assets/img/gateauaperitif.jpg"
+            alt="une baignoire de bière"
+          />
+        </div>
+
+        <div *ngIf="s?.nom == 'sandwich jambon beurre'">
+          <img
+            class="baignoire2"
+            src="../../../../assets/img/jambonbeurre.jpg"
+            alt="une baignoire de bière"
+          />
+        </div>
+
+        <div *ngIf="s?.nom == 'pistaches'">
+          <img
+            class="baignoire2"
+            src="../../../../assets/img/pistache.jpg"
+            alt="une baignoire de bière"
+          />
+        </div>
+
+        <div *ngIf="s?.nom == 'sandwich poulet'">
+          <img
+            class="baignoire2"
+            src="../../../../assets/img/poulet.jpeg"
+            alt="une baignoire de bière"
+          />
+        </div>
+
+        <div *ngIf="s?.nom == 'sandwich thon crudité'">
+          <img
+            class="baignoire2"
+            src="../../../../assets/img/thoncrudite.jpg"
+            alt="une baignoire de bière"
+          />
+        </div>
+
         <span>Quantité :</span>
         <input
           [(ngModel)]="quantite"
@@ -34,6 +98,9 @@
         >
           Ajouter au panier
         </button>
+        <span class="rupture" *ngIf="s.stock! < quantite">
+          Rupture de stock</span
+        >
       </li>
     </ul>
   </div>

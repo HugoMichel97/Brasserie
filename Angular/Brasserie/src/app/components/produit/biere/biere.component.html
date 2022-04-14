@@ -46,7 +46,7 @@
           />
         </div>
 
-        <div *ngIf="b?.nom == 'Testador'">
+        <div *ngIf="b?.nom == 'Beerster'">
           <img
             class="baignoire2"
             src="../../../../assets/img/biere3.png"
@@ -54,13 +54,54 @@
           />
         </div>
 
-        <div *ngIf="b?.nom == 'Abidabière'">
+        <div *ngIf="b?.nom == 'Beerzilla'">
           <img
             class="baignoire2"
             src="../../../../assets/img/biere4.png"
             alt="une baignoire de bière"
           />
         </div>
+
+        <div *ngIf="b?.nom == 'Tonfite'">
+          <img
+            class="baignoire2"
+            src="../../../../assets/img/biere5.png"
+            alt="une baignoire de bière"
+          />
+        </div>
+
+        <div *ngIf="b?.nom == 'Succulente'">
+          <img
+            class="baignoire2"
+            src="../../../../assets/img/biere6.png"
+            alt="une baignoire de bière"
+          />
+        </div>
+
+        <div *ngIf="b?.nom == 'Insolente'">
+          <img
+            class="baignoire2"
+            src="../../../../assets/img/biere7.png"
+            alt="une baignoire de bière"
+          />
+        </div>
+
+        <div *ngIf="b?.nom == 'Beermood'">
+          <img
+            class="baignoire2"
+            src="../../../../assets/img/biere8.png"
+            alt="une baignoire de bière"
+          />
+        </div>
+
+        <div *ngIf="b?.nom == 'Beerhit'">
+          <img
+            class="baignoire2"
+            src="../../../../assets/img/biere9.png"
+            alt="une baignoire de bière"
+          />
+        </div>
+
         <span>Quantité :</span>
         <input
           [(ngModel)]="quantite"
@@ -76,6 +117,9 @@
         >
           Ajouter au panier
         </button>
+        <span class="rupture" *ngIf="b.stock! < quantite">
+          Rupture de stock</span
+        >
       </li>
     </ul>
   </div>
