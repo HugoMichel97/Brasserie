@@ -1,0 +1,42 @@
+
+<div class="font-page">
+  <br>
+  <tr *ngFor="let o of reservations">
+  <section class="articles">
+
+     <div class="article">
+      <div class="left" >
+        <tr *ngIf="o.evt?.libelle === libelles.degustation" ><img src="../../../../assets/images/bieres.jpg" alt=""></tr>
+        <tr *ngIf="o.evt?.libelle === libelles.inauguration" ><img src="../../../../assets/images/fete.jpg" alt=""></tr>
+
+      </div>
+      <div class="right">
+        <p class="name"><i class="fa-solid fa-calendar-days"></i>  {{o.evt?.date}}</p>
+        <h1>Détail de votre reservation:</h1>
+        <td>
+        <tr><h4><i class="fa-solid fa-person"></i> Nombre de participants:  {{o.nbParticipants}}</h4></tr>
+        <tr><h4><i class="fa-solid fa-beer-mug-empty"></i> Libelle de l'evenement:  {{o.evt?.libelle}}</h4></tr>
+        <tr><h4><i class="fa-solid fa-circle-info"></i> Description de l'évenement:  {{o.evt?.description}}</h4></tr>
+        <tr><h4><i class="fa-solid fa-clock"></i> Heure:  {{o.evt?.heure}}</h4></tr>
+        <tr *ngIf="o.statut === statutResa.validee">
+          <td><span style="color: darkolivegreen; font-weight: bold"><h4><i class="fa-solid fa-circle-check"></i> Statut de votre reservation:  <span style="font-style: italic ;">{{o.statut}}</span></h4></span></td>
+        </tr>
+        <tr *ngIf="o.statut === statutResa.en_attente">
+          <td><span style="color: salmon; font-weight: bold"><h4><i class="fa-solid fa-circle-check"></i> Statut de votre reservation:  <span style="font-style: italic;">{{o.statut}}</span></h4></span></td>
+          <td><button
+            class="btn btn-outline-warning"
+            [routerLink]="['/reservation', 'edit', o.id]"
+            routerLinkActive="active"
+          >
+            <i class="fa-solid fa-pencil"></i>
+          </button>
+        </td>
+        </tr>
+        </td>
+      </div>
+    </div>
+  </section>
+</tr>
+  <br>
+
+
