@@ -87,3 +87,8 @@ ul {
   height: 37%;
   margin-bottom: 10%;
 }
+
+.rupture {
+  font-style: strong;
+  color: red;
+}
