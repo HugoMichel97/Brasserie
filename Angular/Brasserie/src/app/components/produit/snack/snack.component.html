@@ -20,6 +20,14 @@
         <p>
           <strong>{{ s.description }}</strong>
         </p>
+
+        <div *ngIf="s?.nom == 'Moelleux au citron'">
+          <img
+            class="baignoire2"
+            src="../../../../assets/img/moelleux.jpg"
+            alt="une baignoire de bière"
+          />
+        </div>
         <div *ngIf="s?.nom == 'cacahuètes salées'">
           <img
             class="baignoire2"
