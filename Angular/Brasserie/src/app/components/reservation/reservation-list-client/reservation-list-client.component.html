@@ -1,82 +1,70 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <script
-      src="https://kit.fontawesome.com/c524826284.js"
-      crossorigin="anonymous"
-    ></script>
-  </head>
-
-  <body>
-    <table class="table align-middle mb-0 bg-white">
-      <thead class="bg-light">
-        <tr>
-          <th>Client</th>
-          <th>Libelle evenement</th>
-          <th>Statut reservation</th>
-          <th>Places reservées</th>
-          <th>Actions</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr *ngFor="let o of reservations">
-          <td>
-            <div class="d-flex align-items-center">
-              <img
-                src="https://mdbootstrap.com/img/new/avatars/8.jpg"
-                alt=""
-                style="width: 45px; height: 45px"
-                class="rounded-circle"
-              />
-              <div class="ms-3">
-                <p class="fw-bold mb-1">
-                  {{ o.client?.nom }}
-                  {{ o.client?.prenom }}
-                </p>
-                <p class="text-muted mb-0">{{ o.client?.fidelite }}</p>
-              </div>
-            </div>
-          </td>
-          <td>
-            <p class="fw-normal mb-1">{{ o.evt?.libelle }}</p>
-          </td>
-          <td *ngIf="o.statut === statutResa.validee">
-            <span style="color: darkolivegreen; font-weight: bold">{{
-              o.statut
-            }}</span>
-          </td>
-          <td *ngIf="o.statut === statutResa.en_attente">
-            <span style="color: lightsalmon; font-weight: bold">{{
-              o.statut
-            }}</span>
-          </td>
-          <td>
-            {{ o.nbParticipants }}
-          </td>
-          <td>
-            <button
-              [routerLink]="['/reservation', 'edit', o.id]"
-              routerLinkActive="active"
-              class="btn btn-outline-warning"
-            >
-              <i class="fa-solid fa-pencil"></i>
-            </button>
-            &ngsp;
-            <button class="btn btn-outline-danger" (click)="delete(o.id!)">
-              <i class="fa-solid fa-trash-can"></i>
-            </button>
-          </td>
-        </tr>
-      </tbody>
-    </table>
-    <div class="format_align_center">
-      <button
-        routerLink="/reservation/edit"
-        routerLinkActive="active"
-        class="btn btn-outline-primary float-right"
-      >
-        <i class="fa-solid fa-plus"></i> Ajouter une reservation
-      </button>
-    </div>
-  </body>
-</html>
+<table class="table align-middle mb-0 bg-white">
+  <thead class="bg-light">
+    <tr>
+      <th>Client</th>
+      <th>Libelle evenement</th>
+      <th>Statut reservation</th>
+      <th>Places reservées</th>
+      <th>Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let o of reservations">
+      <td>
+        <div class="d-flex align-items-center">
+          <img
+            src="https://mdbootstrap.com/img/new/avatars/8.jpg"
+            alt=""
+            style="width: 45px; height: 45px"
+            class="rounded-circle"
+          />
+          <div class="ms-3">
+            <p class="fw-bold mb-1">
+              {{ o.client?.nom }}
+              {{ o.client?.prenom }}
+            </p>
+            <p class="text-muted mb-0">{{ o.client?.fidelite }}</p>
+          </div>
+        </div>
+      </td>
+      <td>
+        <p class="fw-normal mb-1">{{ o.evt?.libelle }}</p>
+      </td>
+      <td *ngIf="o.statut === statutResa.validee">
+        <span style="color: darkolivegreen; font-weight: bold">{{
+          o.statut
+        }}</span>
+      </td>
+      <td *ngIf="o.statut === statutResa.en_attente">
+        <span style="color: lightsalmon; font-weight: bold">{{
+          o.statut
+        }}</span>
+      </td>
+      <td>
+        {{ o.nbParticipants }}
+      </td>
+      <td>
+        <button
+          [routerLink]="['/reservation', 'edit', o.id]"
+          routerLinkActive="active"
+          class="btn btn-outline-warning"
+        >
+          <i class="fa-solid fa-pencil"></i>
+        </button>
+        &ngsp;
+        <button class="btn btn-outline-danger" (click)="delete(o.id!)">
+          <i class="fa-solid fa-trash-can"></i>
+        </button>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<div class="format_align_center">
+  <button
+    routerLink="/reservation/edit"
+    routerLinkActive="active"
+    class="btn btn-outline-primary float-right"
+  >
+    <i class="fa-solid fa-plus"></i> Ajouter une reservation
+  </button>
+</div>

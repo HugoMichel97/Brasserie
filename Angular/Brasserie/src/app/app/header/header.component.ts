@@ -9,9 +9,12 @@ import {
   faArrowRightToBracket,
   faBeer,
   faCalendarDay,
+  faCalendarDays,
+  faCookieBite,
   faHome,
   faHouseUser,
   faPeopleGroup,
+  faShoppingBasket,
 } from '@fortawesome/free-solid-svg-icons';
 import { Compte } from 'src/app/model/compte';
 
@@ -21,37 +24,20 @@ import { Compte } from 'src/app/model/compte';
   styleUrls: ['./header.component.css'],
 })
 export class HeaderComponent implements OnInit {
-  client: Client | undefined;
-  brasseur: Brasseur | undefined;
   iconAccueil = faHome;
   iconBieres = faBeer;
-  iconEvt = faCalendarDay;
+  iconSnack = faCookieBite;
+  iconEvt = faCalendarDays;
   iconTeam = faPeopleGroup;
   iconLog = faArrowRightToBracket;
   iconLogout = faArrowRightFromBracket;
   iconCompte = faHouseUser;
+  iconPanier = faShoppingBasket;
+  iconResa = faCalendarDay;
 
-  public constructor(
-    private authService: AuthentificationService,
-    private clientService: ClientService,
-    private brasseurService: BrasseurService
-  ) {}
+  public constructor(private authService: AuthentificationService) {}
 
-  ngOnInit(): void {
-    if (localStorage.getItem('role') == 'client') {
-      this.clientService
-        .getByMail(localStorage.getItem('login')!)
-        .subscribe((result) => {
-          this.client = new Client(result.id, result.mail);
-        });
-    } else if (localStorage.getItem('role') == 'brasseur') {
-      this.brasseurService
-        .getByMail(localStorage.getItem('login')!)
-        .subscribe((result) => {
-          this.brasseur = new Brasseur(result.id, result.mail);
-        });
-    }
-  }
+  ngOnInit(): void {}
 
   get login() {
     return localStorage.getItem('login');
@@ -59,6 +45,10 @@ export class HeaderComponent implements OnInit {
 
   get role() {
     return localStorage.getItem('role');
+  }
+
+  get id() {
+    return localStorage.getItem('id');
   }
 
   isAutenticated() {

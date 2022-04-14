@@ -17,40 +17,33 @@
         <div class="container">
           <!-- Logo -->
           <h1 id="logo">
-            <a routerLink="/home" routerLinkActive="active">
+            <a routerLink="/index" routerLinkActive="active">
               <img src="../../../assets/images/logo.png" alt="logo" /> &nbsp;
               Brasserie Aminagomo</a
             >
           </h1>
           <p>Composez la bière qui vous ressemble</p>
 
-          <!-- Logo -->
-          <h1 id="logo"><a href="index.html">Aminagomo Brasserie</a></h1>
-          <p>Composez la bière qui vous ressemble</p>
-
-          <img
-            class="fit-picture"
-            src="assets/banniere4.PNG"
-            alt="Grapefruit slice atop a pile of other slices"
-          />
           <!-- Nav -->
           <nav id="nav">
             <ul>
               <li>
-                <a routerLink="/home" routerLinkActive="active"
+                <a routerLink="/index" routerLinkActive="active"
                   ><fa-icon [icon]="iconAccueil"></fa-icon> &nbsp;
                   <span>Accueil</span></a
                 >
               </li>
               <li>
-                <a routerLink="/produit" routerLinkActive="active"
+                <a routerLink="/biere" routerLinkActive="active"
                   ><fa-icon [icon]="iconBieres"></fa-icon> &nbsp;
                   <span>Nos bières</span></a
                 >
               </li>
               <li>
-                <a class="icon solid fa-heart" href="left-sidebar.html"
-                  ><span>Snacking</span></a
+                <a routerLink="/snack" routerLinkActive="active"
+                  ><fa-icon [icon]="iconSnack"></fa-icon>&nbsp;<span
+                    >Snacking</span
+                  ></a
                 >
               </li>
               <li>
@@ -60,24 +53,29 @@
                   ></a
                 >
               </li>
-              <li>
-                <a routerLink="/brasseur" routerLinkActive="active"
+              <li *ngIf="!isAutenticated() || role == 'client'">
+                <a routerLink="/infoBrasseur" routerLinkActive="active"
                   ><fa-icon [icon]="iconTeam"></fa-icon> &nbsp;<span
                     >Qui sommes nous</span
                   ></a
                 >
               </li>
+              <li *ngIf="isAutenticated() && role == 'brasseur'">
+                <a routerLink="/brasseur/clients" routerLinkActive="active"
+                  ><fa-icon [icon]="iconTeam"></fa-icon> &nbsp;<span
+                    >Clientèle</span
+                  ></a
+                >
+              </li>
               <li *ngIf="!isAutenticated()">
-                <a routerLink="/loggin" routerLinkActive="active"
+                <a routerLink="/login" routerLinkActive="active"
                   ><fa-icon [icon]="iconLog"></fa-icon> &nbsp;<span
                     >Se connecter</span
                   ></a
                 >
               </li>
               <li *ngIf="isAutenticated() && role === 'client'">
-                <a
-                  [routerLink]="['/client', client?.id]"
-                  routerLinkActive="active"
+                <a [routerLink]="['/client', id]" routerLinkActive="active"
                   ><fa-icon [icon]="iconCompte"></fa-icon> &nbsp;<span
                     >Mon compte</span
                   ></a
@@ -85,20 +83,37 @@
               </li>
               <li *ngIf="isAutenticated() && role === 'brasseur'">
                 <a
-                  [routerLink]="['/brasseur', brasseur?.id]"
+                  [routerLink]="['/brasseur/info/', id]"
                   routerLinkActive="active"
-                  >Mon compte<fa-icon [icon]="iconCompte"></fa-icon> &nbsp;</a
+                  ><fa-icon [icon]="iconCompte"></fa-icon> &nbsp;Mon compte</a
                 >
               </li>
               <li *ngIf="isAutenticated()">
                 <a
-                  routerLink="/home"
+                  routerLink="/index"
                   routerLinkActive="active"
                   (click)="logout()"
                   ><fa-icon [icon]="iconLogout"></fa-icon> &nbsp;<span
                     >Se déconnecter</span
                   ></a
                 >
+              </li>
+            </ul>
+            <ul>
+              <li *ngIf="isAutenticated() && role == 'client'">
+                <a routerLink="" routerLinkActive="active">
+                  <fa-icon [icon]="iconPanier"></fa-icon> &nbsp;
+                  <span>Panier</span>
+                </a>
+              </li>
+              <li *ngIf="isAutenticated() && role == 'client'">
+                <a
+                  routerLink="/reservationListClient"
+                  routerLinkActive="active"
+                >
+                  <fa-icon [icon]="iconResa"></fa-icon> &nbsp;
+                  <span>Reservations</span>
+                </a>
               </li>
             </ul>
           </nav>

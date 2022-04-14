@@ -51,6 +51,8 @@ public class ClientRestController {
 	AchatService achatService;
 	@Autowired
 	InfoReglementService infoRegService;
+	@Autowired
+	PasswordEncoder passwordEncoder;
 
 	@JsonView(JsonViews.Client.class)
 	@GetMapping("")
@@ -99,7 +101,7 @@ public class ClientRestController {
 	@JsonView(JsonViews.Client.class)
 	public Client create(@Valid @RequestBody Client client, BindingResult br) {
 		if (br.hasErrors()) {
-			throw new ClientException();
+			throw new ClientException(""+br.getAllErrors()+"");
 		}
 		return save(client, br);
 	}
@@ -124,7 +126,7 @@ public class ClientRestController {
 		Client client = clientService.getById(id);
 		fields.forEach((key, value) -> {
 			if (key.equals("naissance")) {
-				client.setNaissance(LocalDate.parse((CharSequence) value));
+				client.setNaissance(LocalDate.parse((String) value));
 			} else if (key.equals("statut")){
 				client.setStatut(StatutCommande.valueOf((String) value));
 			} else {

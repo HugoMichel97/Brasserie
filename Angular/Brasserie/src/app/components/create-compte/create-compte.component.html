@@ -1,0 +1,41 @@
+<div class="form-control">
+  <div>
+    <label>Nom :</label>
+    <input type="text" class="form-control" [(ngModel)]="client.nom" />
+  </div>
+  <div>
+    <label>Prénom :</label>
+    <input type="text" class="form-control" [(ngModel)]="client.prenom" />
+  </div>
+  <div>
+    <label>Date de naissance :</label>
+    <input type="date" class="form-control" [(ngModel)]="client.naissance" />
+  </div>
+  <div>
+    <label>Numero de téléphone :</label>
+    <input type="text" class="form-control" [(ngModel)]="client.tel" />
+  </div>
+  <div>
+    <label>Mail :</label>
+    <input type="mail" class="form-control" [(ngModel)]="client.mail" />
+  </div>
+  <div>
+    <label>Mot de passe :</label>
+    <input type="password" class="form-control" [(ngModel)]="client.password" />
+  </div>
+  <div>
+    <label>Confirmer le mot de passe :</label>
+    <input type="password" class="form-control" [(ngModel)]="confirmPassword" />
+  </div>
+  <div>
+    <button (click)="create()" class="btn btn-success">Créer le compte</button>
+    &nbsp;
+    <button
+      routerLink="/login"
+      routerLinkActive="active"
+      class="btn btn-danger"
+    >
+      Retour
+    </button>
+  </div>
+</div>

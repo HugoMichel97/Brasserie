@@ -1,3 +1,6 @@
+import { CreateCompteComponent } from './components/create-compte/create-compte.component';
+import { InfoComponent } from './components/brasseur/info/info.component';
+import { IndexComponent } from './app/index/index.component';
 import { ClientBrasseurEditComponent } from './components/client/client-brasseur-edit/client-brasseur-edit.component';
 import { ReglementEditComponent } from './components/reglement-edit/reglement-edit.component';
 import { BrasseurComponent } from './components/brasseur/brasseur/brasseur.component';
@@ -24,48 +27,59 @@ import { ReservationEditComponent } from './components/reservation/reservation-e
 import { Routes } from '@angular/router';
 import { ReservationListComponent } from './components/reservation/reservation-list/reservation-list.component';
 import { ReservationListClientComponent } from './components/reservation/reservation-list-client/reservation-list-client.component';
+import { EvenenementListComponent } from './components/evenement/evenenement-list/evenenement-list.component';
 
 export const routes: Routes = [
-  { path: 'home', component: HomeComponent },
-  { path: '', redirectTo: 'home', pathMatch: 'full' },
-  { path: 'brasseur/clients', component: ClientListComponent },
-  { path: 'brasseur/clients/edit/:id', component: ClientBrasseurEditComponent },
+  { path: 'index', component: IndexComponent },
+  { path: '', redirectTo: 'index', pathMatch: 'full' },
+  { path: 'infoBrasseur', component: InfoComponent },
+  { path: 'login', component: LoginComponent },
+  { path: 'create', component: CreateCompteComponent },
+
+  { path: 'biere', component: BiereComponent },
+  { path: 'snack', component: SnackComponent },
+
+  { path: 'evenement', component: EvenenementListComponent },
+  { path: 'reservation/client/:id', component: ReservationListClientComponent },
+
   { path: 'client/:id', component: ClientComponent },
-  { path: 'client/editPassword/:id', component: PasswordEditComponent },
   { path: 'client/edit/:cathegorie/:id', component: ClientEditComponent },
   {
     path: 'client/edit/:idReg/:cathegorie/:id',
     component: ClientEditComponent,
   },
-  { path: 'reglement/edit', component: ReglementEditComponent },
+  { path: 'client/editPassword/:id', component: PasswordEditComponent },
+
+  { path: 'brasseur/info/:id', component: BrasseurComponent },
   { path: 'brasseur/editPassword/:id', component: PasswordEditComponent },
   { path: 'brasseur/edit/:cathegorie/:id', component: BrasseurEditComponent },
-  { path: 'login', component: LoginComponent },
-  { path: 'brasseur/:id', component: BrasseurComponent },
-  { path: 'produit', component: ProduitComponent },
+  { path: 'brasseur/clients', component: ClientListComponent },
+  { path: 'brasseur/clients/edit/:id', component: ClientBrasseurEditComponent },
+
   { path: 'reservationListClient', component: ReservationListClientComponent },
+
+  // à ranger
+  { path: 'reglement/edit', component: ReglementEditComponent },
   { path: 'reglement', component: ReglementComponent },
+
+  { path: 'produit', component: ProduitComponent },
+  { path: 'produit/edit', component: EditProduitComponent },
+  { path: 'produit/edit/:id', component: EditProduitComponent },
+  { path: 'produit/add/:type', component: EditProduitComponent },
+
   { path: 'reservationList', component: ReservationListComponent },
   { path: 'reservation/edit/:id', component: ReservationEditComponent },
   { path: 'reservation/edit', component: ReservationEditComponent },
-  { path: 'produit/edit', component: EditProduitComponent },
-  { path: 'produit/edit/:id', component: EditProduitComponent },
+
   { path: 'evenement', component: EvenementEditComponent },
-  { path: 'produit/add/:type', component: EditProduitComponent },
+
   { path: 'note', component: NoteComponent },
   { path: 'note/edit', component: EditNoteComponent },
   { path: 'note/edit/:id_note', component: EditNoteComponent },
-  { path: 'reservationList', component: ReservationListComponent },
-  { path: 'reservation/edit', component: ReservationEditComponent },
-  { path: 'reservation/edit/:id', component: ReservationEditComponent },
+  { path: 'note/client', component: NoteClientComponent },
+  { path: 'note/add', component: EditNoteComponent },
+
   { path: 'achat', component: AchatComponent },
   { path: 'achat/edit', component: EditAchatComponent },
   { path: 'achat/edit/:id_achat', component: EditAchatComponent },
-  { path: 'biere', component: BiereComponent },
-  { path: 'snack', component: SnackComponent },
-  { path: 'note/client', component: NoteClientComponent },
-  { path: 'note/add', component: EditNoteComponent },
-  { path: 'reservationList', component: ReservationListComponent },
-  { path: 'reservation/edit', component: ReservationEditComponent },
-  { path: 'reservation/edit/:id', component: ReservationEditComponent },
 ];
