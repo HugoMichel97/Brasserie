@@ -1,5 +1,7 @@
 package soprajc.Brasserie.services;
 
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 
@@ -19,6 +21,8 @@ public class ReservationService {
 	private ReservationRepository reservationRepository;
 	@Autowired
 	private EvenementService evtService;
+	@Autowired
+	private ClientService clientService;
 	
 	public void create(Reservation r) {
 		if (r.getId() !=null) {

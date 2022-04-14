@@ -6,7 +6,7 @@ export class Reservation {
     private _id?: number | undefined,
     private _client?: Client | undefined,
     private _evt?: Evenement | undefined,
-    private _statut?: StatutResa | undefined,
+    private _statut: StatutResa = StatutResa.en_attente,
     private _nbParticipants: number = 1
   ) {}
   public get id(): number | undefined {
@@ -32,11 +32,11 @@ export class Reservation {
   public set evt(value: Evenement | undefined) {
     this._evt = value;
   }
-  public get statut(): StatutResa | undefined {
+  public get statut(): StatutResa {
     return this._statut;
   }
 
-  public set statut(value: StatutResa | undefined) {
+  public set statut(value: StatutResa) {
     this._statut = value;
   }
 

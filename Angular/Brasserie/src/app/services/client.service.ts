@@ -40,10 +40,14 @@ export class ClientService {
     return this.http.delete<any>(`${ClientService.URL}/${id}`);
   }
 
+  public create(client: any): Observable<any> {
+    return this.http.post(ClientService.URL, this.clientToJson(client));
+  }
+
   public update(client: Client): Observable<any> {
     return this.http.patch(
       ClientService.URL + '/' + client.id,
-      this.clientToJson(client)
+      this.clientToJsonUpdate(client)
     );
   }
 
@@ -59,9 +63,24 @@ export class ClientService {
     });
   }
 
+  private clientToJsonUpdate(client: Client): any {
+    let obj = {
+      id: client.id,
+      mail: client.mail,
+      nom: client.nom,
+      prenom: client.prenom,
+      tel: client.tel,
+      naissance: client.naissance,
+      fidelite: client.fidelite,
+      statut: client.statut,
+    };
+    return obj;
+  }
+
   private clientToJson(client: Client): any {
     let obj = {
       mail: client.mail,
+      password: client.password,
       nom: client.nom,
       prenom: client.prenom,
       tel: client.tel,

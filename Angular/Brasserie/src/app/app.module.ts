@@ -40,6 +40,8 @@ import { ReservationListClientComponent } from './components/reservation/reserva
 import { ReservationListComponent } from './components/reservation/reservation-list/reservation-list.component';
 import { Interceptor } from './model/interceptor';
 import { routes } from './routes';
+import { InfoComponent } from './components/brasseur/info/info.component';
+import { CreateCompteComponent } from './components/create-compte/create-compte.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -77,6 +79,8 @@ import { routes } from './routes';
     SnackComponent,
     NoteClientComponent,
     EditAchatComponent,
+    InfoComponent,
+    CreateCompteComponent,
   ],
 
   imports: [

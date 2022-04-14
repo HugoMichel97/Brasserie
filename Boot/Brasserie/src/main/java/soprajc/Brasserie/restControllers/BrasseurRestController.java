@@ -1,9 +1,6 @@
 package soprajc.Brasserie.restControllers;
 
 import java.lang.reflect.Field;
-import java.time.LocalDate;
-import java.time.LocalTime;
-import java.util.List;
 import java.util.Map;
 
 import javax.validation.Valid;
@@ -24,7 +21,6 @@ import org.springframework.web.bind.annotation.RestController;
 import com.fasterxml.jackson.annotation.JsonView;
 
 import soprajc.Brasserie.exception.BrasseurException;
-import soprajc.Brasserie.model.Achat;
 import soprajc.Brasserie.model.Brasseur;
 import soprajc.Brasserie.model.JsonViews;
 import soprajc.Brasserie.services.BrasseurService;
@@ -35,7 +31,9 @@ import soprajc.Brasserie.services.BrasseurService;
 public class BrasseurRestController {
 
 	@Autowired
-	private BrasseurService brasseurService;
+	BrasseurService brasseurService;
+	@Autowired
+	PasswordEncoder passwordEncoder;
 
 	@JsonView(JsonViews.Compte.class)
 	@GetMapping("/{id}")
