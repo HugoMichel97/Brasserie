@@ -1,4 +1,4 @@
 export enum Reglement {
-  PayPal,
-  CB,
+  PayPal = 'PayPal',
+  CB = 'CB',
 }

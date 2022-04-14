@@ -1,6 +1,7 @@
 package soprajc.Brasserie.model;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
@@ -50,7 +51,7 @@ public class Client extends Compte {
 	private List<InfoReglement> reglements;
 	
 	@OneToMany(mappedBy = "client")
-	private List<Reservation> reservations;
+	private List<Reservation> reservations = new ArrayList<Reservation>();
 	
 	// constructors
 	public Client() {}

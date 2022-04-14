@@ -3,40 +3,37 @@ import { Reservation } from './../../../model/reservation';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ReservationService } from 'src/app/services/reservation.service';
-
+import { EvenementService } from 'src/app/services/evenements.service';
+import { Client } from 'src/app/model/client';
+import { StatutResa } from 'src/app/model/enum/statut-resa';
 @Component({
   selector: 'app-reservation-edit',
   templateUrl: './reservation-edit.component.html',
-  styleUrls: ['./reservation-edit.component.css']
+  styleUrls: ['./reservation-edit.component.css'],
 })
 export class ReservationEditComponent implements OnInit {
-
   reservation: Reservation = new Reservation();
-  reservations: Reservation[] = [];
+  client: Client = new Client();
+  evt: Evenement = new Evenement();
+  libelle: string | undefined;
+  statutResa = StatutResa;
 
   constructor(
     private aR: ActivatedRoute,
     private reservationService: ReservationService,
     private router: Router
-  ) { }
-
+  ) {}
   ngOnInit(): void {
-    this.list();
     this.aR.params.subscribe((params) => {
       if (params['id']) {
         this.reservationService.get(params['id']).subscribe((result) => {
           this.reservation = result;
-          console.log(result);
+          console.log(this.reservation.client?.nom);
         });
       }
     });
   }
-  list() {
-    this.reservationService.getAll().subscribe((result) => {
-      this.reservations = result;
-      console.log(this.reservations)
-    });
-  }
+
   save() {
     if (this.reservation.id) {
       this.reservationService.update(this.reservation).subscribe((result) => {
@@ -50,6 +47,8 @@ export class ReservationEditComponent implements OnInit {
   }
 
   goList() {
-    this.router.navigateByUrl('/reservationList');
+    this.router.navigateByUrl(
+      'reservation/client/' + localStorage.getItem('id')
+    );
   }
 }

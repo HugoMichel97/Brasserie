@@ -1,0 +1,151 @@
+<html>
+  <head>
+    <link rel="stylesheet" href="/assets/css/main.css" />
+  </head>
+  <body class="homepage is-preload">
+    <div id="page-wrapper">
+      <!-- Header -->
+      <div>
+        <marquee behavior="scroll" scrollamount="8"
+          >Evenements à venir : Vendredi 25 avril 2022, fête de la bière ! Rdv
+          au parc des Expositions à partir de 18H
+        </marquee>
+        <!-- à automatiser ? -->
+      </div>
+
+      <section id="header">
+        <div class="container">
+          <!-- Logo -->
+          <h1 id="logo">
+            <a routerLink="/index" routerLinkActive="active">
+              <img src="../../../assets/images/logo.png" alt="logo" /> &nbsp;
+              Brasserie Aminagomo</a
+            >
+          </h1>
+          <p>Composez la bière qui vous ressemble</p>
+
+          <!-- Nav -->
+          <nav id="nav">
+            <ul>
+              <li>
+                <a routerLink="/index" routerLinkActive="active"
+                  ><fa-icon [icon]="iconAccueil"></fa-icon> &nbsp;
+                  <span>Accueil</span></a
+                >
+              </li>
+              <li
+                *ngIf="
+                  !isAutenticated() || (isAutenticated() && role == 'client')
+                "
+              >
+                <a routerLink="/biere" routerLinkActive="active"
+                  ><fa-icon [icon]="iconBieres"></fa-icon> &nbsp;
+                  <span>Nos bières</span></a
+                >
+              </li>
+              <li *ngIf="isAutenticated() && role == 'brasseur'">
+                <a routerLink="/biere" routerLinkActive="active"
+                  ><fa-icon [icon]="iconBieres"></fa-icon> &nbsp;
+                  <span>Nos bières</span></a
+                >
+              </li>
+              <li
+                *ngIf="
+                  !isAutenticated() || (isAutenticated() && role == 'client')
+                "
+              >
+                <a routerLink="/snack" routerLinkActive="active"
+                  ><fa-icon [icon]="iconSnack"></fa-icon>&nbsp;<span
+                    >Snacking</span
+                  ></a
+                >
+              </li>
+              <li *ngIf="isAutenticated() && role == 'brasseur'">
+                <a routerLink="/biere" routerLinkActive="active"
+                  ><fa-icon [icon]="iconBieres"></fa-icon> &nbsp;
+                  <span>Nos bières</span></a
+                >
+              </li>
+              <li>
+                <a routerLink="/evenement" routerLinkActive="active"
+                  ><fa-icon [icon]="iconEvt"></fa-icon> &nbsp;<span
+                    >Evenements</span
+                  ></a
+                >
+              </li>
+              <li *ngIf="!isAutenticated() || role == 'client'">
+                <a routerLink="/infoBrasseur" routerLinkActive="active"
+                  ><fa-icon [icon]="iconTeam"></fa-icon> &nbsp;<span
+                    >Qui sommes nous</span
+                  ></a
+                >
+              </li>
+              <li *ngIf="isAutenticated() && role == 'brasseur'">
+                <a routerLink="/reservation/brasseur" routerLinkActive="active"
+                  ><fa-icon [icon]="iconResa"></fa-icon> &nbsp;<span
+                    >Reservations</span
+                  ></a
+                >
+              </li>
+              <li *ngIf="isAutenticated() && role == 'brasseur'">
+                <a routerLink="/brasseur/clients" routerLinkActive="active"
+                  ><fa-icon [icon]="iconTeam"></fa-icon> &nbsp;<span
+                    >Clientèle</span
+                  ></a
+                >
+              </li>
+              <li *ngIf="!isAutenticated()">
+                <a routerLink="/login" routerLinkActive="active"
+                  ><fa-icon [icon]="iconLog"></fa-icon> &nbsp;<span
+                    >Se connecter</span
+                  ></a
+                >
+              </li>
+              <li *ngIf="isAutenticated() && role === 'client'">
+                <a [routerLink]="['/client', id]" routerLinkActive="active"
+                  ><fa-icon [icon]="iconCompte"></fa-icon> &nbsp;<span
+                    >Mon compte</span
+                  ></a
+                >
+              </li>
+              <li *ngIf="isAutenticated() && role === 'brasseur'">
+                <a
+                  [routerLink]="['/brasseur/info/', id]"
+                  routerLinkActive="active"
+                  ><fa-icon [icon]="iconCompte"></fa-icon> &nbsp;Mon compte</a
+                >
+              </li>
+              <li *ngIf="isAutenticated()">
+                <a
+                  routerLink="/index"
+                  routerLinkActive="active"
+                  (click)="logout()"
+                  ><fa-icon [icon]="iconLogout"></fa-icon> &nbsp;<span
+                    >Se déconnecter</span
+                  ></a
+                >
+              </li>
+            </ul>
+            <ul>
+              <li *ngIf="isAutenticated() && role == 'client'">
+                <a routerLink="" routerLinkActive="active">
+                  <fa-icon [icon]="iconPanier"></fa-icon> &nbsp;
+                  <span>Panier</span>
+                </a>
+              </li>
+              <li *ngIf="isAutenticated() && role == 'client'">
+                <a
+                  [routerLink]="['/reservation/client/', id]"
+                  routerLinkActive="active"
+                >
+                  <fa-icon [icon]="iconResa"></fa-icon> &nbsp;
+                  <span>Reservations</span>
+                </a>
+              </li>
+            </ul>
+          </nav>
+        </div>
+      </section>
+    </div>
+  </body>
+</html>

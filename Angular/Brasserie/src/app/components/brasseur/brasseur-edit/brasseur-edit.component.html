@@ -1,0 +1,84 @@
+<div *ngIf="cathegorie == 'mail'">
+  <div class="form-group">
+    <label>Mail :</label>
+    <input type="text" [(ngModel)]="brasseur.mail" class="form-control" />
+  </div>
+
+  <div>
+    <button (click)="save()" class="btn btn-outline-success">
+      Enregistrer
+    </button>
+    <a [routerLink]="['/brasseur', brasseur.id]" class="btn btn-outline-danger"
+      >Annuler</a
+    >
+  </div>
+</div>
+
+<div *ngIf="cathegorie == 'mdp'">
+  <div class="form-group">
+    Nouveau mot de passe : <input type="password" [(ngModel)]="newPassword" />
+    <br />
+    Confirmer le mot de passe :
+    <input type="password" [(ngModel)]="confirmPassword" />
+    <br />
+    <button
+      class="btn btn-success"
+      [disabled]="newPassword === confirmPassword ? false : true"
+      (click)="savePassword(newPassword!)"
+    >
+      Valider</button
+    ><a [routerLink]="['/brasseur', brasseur.id]" class="btn btn-outline-danger"
+      >Annuler</a
+    >
+  </div>
+</div>
+
+<div *ngIf="cathegorie == 'depenses'">
+  <div class="form-group">
+    <label>Depenses :</label>
+    <input type="number" [(ngModel)]="brasseur.depenses" class="form-control" />
+  </div>
+
+  <div>
+    <button (click)="save()" class="btn btn-outline-success">
+      Enregistrer
+    </button>
+    <a [routerLink]="['/brasseur', brasseur.id]" class="btn btn-outline-danger"
+      >Annuler</a
+    >
+  </div>
+</div>
+
+<div *ngIf="cathegorie == 'recettes'">
+  <div class="form-group">
+    <label>Recettes :</label>
+    <input type="number" [(ngModel)]="brasseur.recettes" class="form-control" />
+  </div>
+
+  <div>
+    <button (click)="save()" class="btn btn-outline-success">
+      Enregistrer
+    </button>
+    <a [routerLink]="['/brasseur', brasseur.id]" class="btn btn-outline-danger"
+      >Annuler</a
+    >
+  </div>
+</div>
+
+<div *ngIf="cathegorie == 'tresorerie'">
+  <div class="form-group">
+    <label>Tresorerie :</label>
+    <input
+      type="number"
+      [(ngModel)]="brasseur.tresorerie"
+      class="form-control"
+    />
+  </div>
+
+  <div>
+    <button (click)="save()" class="btn btn-success">Enregistrer</button>
+    <a [routerLink]="['/brasseur/info/', brasseur.id]" class="btn btn-danger"
+      >Annuler</a
+    >
+  </div>
+</div>

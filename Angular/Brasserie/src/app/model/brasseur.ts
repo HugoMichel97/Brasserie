@@ -32,7 +32,7 @@ export class Brasseur extends Compte {
     return this._tresorerie;
   }
 
-  public set tresoreri(value: number | undefined) {
+  public set tresorerie(value: number | undefined) {
     this._tresorerie = value;
   }
 }

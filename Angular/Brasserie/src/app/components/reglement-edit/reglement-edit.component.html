@@ -1,0 +1,80 @@
+
+<div class="form-group">
+  <div class="form-group">
+    <label>Identifiant :</label>
+    <input
+      [(ngModel)]="reglement.id"
+      readonly
+      class="form-control"
+      placeholder="Auto-génération"
+    />
+  </div>
+  <div>
+    <div class="form-group">
+      <label>Nom Client:</label>
+      <input
+        type="text"
+        [(ngModel)]="reglement.client!.nom"
+        class="form-control"
+        readonly
+      />
+    </div>
+
+    <div class="form-group">
+      <label>Prenom du client :</label>
+      <input
+        type="text"
+        [(ngModel)]="reglement.client!.prenom"
+        class="form-control"
+        readonly
+      />
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label>Mode de paiement :</label>
+    <select [(ngModel)]="reglement.mode"class=" form-control" name="modePaiement">
+      <option *ngFor="let moyen of moyens | keyvalue" [value]="moyen.key">{{moyen.value}}</option>
+    </select>
+  </div>
+  <div class="form-group">
+    <label>Numero de la CB :</label>
+    <input
+      type="text"
+      [(ngModel)]="reglement.num"
+      class="form-control"
+    />
+  </div>
+  <div class="form-group">
+    <label>Nom sur la CB :</label>
+    <input
+      type="text"
+      [(ngModel)]="reglement.nom"
+      class="form-control"
+    />
+  </div>
+  <div class="form-group">
+    <label>Date de validite:</label>
+    <input
+      type="text"
+      [(ngModel)]="reglement.dateValid"
+      class="form-control"
+    />
+  </div>
+  <div class="form-group">
+    <label>Identifiant Paypal:</label>
+    <input
+      type="text"
+      [(ngModel)]="reglement.identifiant_paypal"
+      class="form-control"
+    />
+  </div>
+
+  <div>
+    <button (click)="save()" class="btn btn-outline-success">
+      Enregistrer
+    </button>
+    <a routerLink="" class="btn btn-outline-warning">Annuler</a>
+  </div>
+</div>
+

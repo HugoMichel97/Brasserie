@@ -1,1 +1,119 @@
-<p>client works!</p>
+<table class="table">
+  <tr>
+    <th>
+      Information personnelles
+      <button
+        [routerLink]="['/client', 'edit', 'perso', client.id]"
+        routerLinkActive="active"
+        class="btn btn-warning"
+      >
+        <fa-icon [icon]="iconEdit"></fa-icon>
+      </button>
+    </th>
+  </tr>
+  <table>
+    <tr>
+      {{
+        client.nom
+      }}
+      {{
+        client.prenom
+      }}
+    </tr>
+    <tr>
+      Date de naissance :
+      {{
+        client.naissance
+      }}
+    </tr>
+    <tr>
+      Téléphone :
+      {{
+        client.tel
+      }}
+    </tr>
+    <tr>
+      Points de fidélité :
+      {{
+        client.fidelite
+      }}
+    </tr>
+  </table>
+</table>
+<table class="table">
+  <tr>
+    <th>Informations de connexion</th>
+  </tr>
+  <table>
+    <tr>
+      <td>
+        {{ client.mail }}
+        <button
+          [routerLink]="['/client', 'edit', 'mail', client.id]"
+          routerLinkActive="active"
+          class="btn btn-warning"
+        >
+          <fa-icon [icon]="iconEdit"></fa-icon>
+        </button>
+      </td>
+      <td>
+        <a
+          [routerLink]="['/client/editPassword', client.id]"
+          routerLinkActive="active"
+          class="btn btn-link"
+          >Modifier mon mot de passe</a
+        >
+      </td>
+    </tr>
+  </table>
+</table>
+<table class="table">
+  <tr>
+    <th>
+      Information de paiement
+      <button
+        [routerLink]="['/client', 'edit', 'infoReglement', client.id]"
+        routerLinkActive="active"
+        class="btn btn-success"
+      >
+        <fa-icon [icon]="iconAdd"></fa-icon>
+      </button>
+    </th>
+  </tr>
+  <table>
+    <tr *ngFor="let r of reglements">
+      <td *ngIf="r.mode === modeReg.CB"><fa-icon [icon]="iconCB"></fa-icon></td>
+      <td *ngIf="r.mode === modeReg.CB">{{ r.num }}</td>
+      <td *ngIf="r.mode === modeReg.CB">{{ r.nom }}</td>
+      <td *ngIf="r.mode === modeReg.CB">{{ r.dateValid }}</td>
+      <td *ngIf="r.mode === modeReg.PayPal">
+        <fa-icon [icon]="iconPayPal"></fa-icon>
+      </td>
+      <td *ngIf="r.mode === modeReg.PayPal">{{ r.identifiant_paypal }}</td>
+      <td>
+        <button
+          [routerLink]="['/client', 'edit', r.id, 'infoReglement', client.id]"
+          routerLinkActive="active"
+          class="btn btn-warning"
+        >
+          <fa-icon [icon]="iconEdit"></fa-icon>
+        </button>
+      </td>
+      <td>
+        <button (click)="deleteReg(r.id!)" class="btn btn-danger">
+          <fa-icon [icon]="iconDelete"></fa-icon>
+        </button>
+      </td>
+    </tr>
+  </table>
+</table>
+<div>
+  <button
+    (click)="delete(client.id!)"
+    routerLink="/idex"
+    routerLinkActive="active"
+    class="btn btn-danger"
+  >
+    Supprimer
+  </button>
+</div>

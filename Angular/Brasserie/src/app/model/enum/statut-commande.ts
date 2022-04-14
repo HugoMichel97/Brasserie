@@ -1,7 +1,7 @@
 export enum StatutCommande {
-  vide,
-  en_attente,
-  validee,
-  prete,
-  recuperee,
+  vide = 'vide',
+  en_attente = 'en_attente',
+  validee = 'validee',
+  prete = 'prete',
+  recuperee = 'recuperee',
 }
