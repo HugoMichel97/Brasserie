@@ -40,7 +40,7 @@ export class ClientService {
     return this.http.delete<any>(`${ClientService.URL}/${id}`);
   }
 
-  public create(client: Client): Observable<any> {
+  public create(client: any): Observable<any> {
     return this.http.post(ClientService.URL, this.clientToJson(client));
   }
 

@@ -61,6 +61,13 @@
                 >
               </li>
               <li *ngIf="isAutenticated() && role == 'brasseur'">
+                <a routerLink="/reservationListClient" routerLinkActive="active"
+                  ><fa-icon [icon]="iconResa"></fa-icon> &nbsp;<span
+                    >Evenements</span
+                  ></a
+                >
+              </li>
+              <li *ngIf="isAutenticated() && role == 'brasseur'">
                 <a routerLink="/brasseur/clients" routerLinkActive="active"
                   ><fa-icon [icon]="iconTeam"></fa-icon> &nbsp;<span
                     >Clientèle</span

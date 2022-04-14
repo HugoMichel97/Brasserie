@@ -40,7 +40,6 @@ export const routes: Routes = [
   { path: 'snack', component: SnackComponent },
 
   { path: 'evenement', component: EvenenementListComponent },
-  { path: 'reservation/client/:id', component: ReservationListClientComponent },
 
   { path: 'client/:id', component: ClientComponent },
   { path: 'client/edit/:cathegorie/:id', component: ClientEditComponent },
@@ -57,6 +56,7 @@ export const routes: Routes = [
   { path: 'brasseur/clients/edit/:id', component: ClientBrasseurEditComponent },
 
   { path: 'reservationListClient', component: ReservationListClientComponent },
+  { path: 'reservation/client/:id', component: ReservationListClientComponent },
 
   // à ranger
   { path: 'reglement/edit', component: ReglementEditComponent },
