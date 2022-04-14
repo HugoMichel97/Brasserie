@@ -20,8 +20,6 @@ export class BrasseurService {
   }
 
   public update(brasseur: Brasseur): Observable<any> {
-    console.log(this.brasseurToJson(brasseur));
-
     return this.http.patch(
       BrasseurService.URL + '/' + brasseur.id,
       this.brasseurToJson(brasseur)

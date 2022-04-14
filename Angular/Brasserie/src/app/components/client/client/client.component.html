@@ -5,7 +5,7 @@
       <button
         [routerLink]="['/client', 'edit', 'perso', client.id]"
         routerLinkActive="active"
-        class="btn btn-outline-warning"
+        class="btn btn-warning"
       >
         <fa-icon [icon]="iconEdit"></fa-icon>
       </button>
@@ -51,7 +51,7 @@
         <button
           [routerLink]="['/client', 'edit', 'mail', client.id]"
           routerLinkActive="active"
-          class="btn btn-outline-warning"
+          class="btn btn-warning"
         >
           <fa-icon [icon]="iconEdit"></fa-icon>
         </button>
@@ -74,7 +74,7 @@
       <button
         [routerLink]="['/client', 'edit', 'infoReglement', client.id]"
         routerLinkActive="active"
-        class="btn btn-outline-success"
+        class="btn btn-success"
       >
         <fa-icon [icon]="iconAdd"></fa-icon>
       </button>
@@ -94,13 +94,13 @@
         <button
           [routerLink]="['/client', 'edit', r.id, 'infoReglement', client.id]"
           routerLinkActive="active"
-          class="btn btn-outline-warning"
+          class="btn btn-warning"
         >
           <fa-icon [icon]="iconEdit"></fa-icon>
         </button>
       </td>
       <td>
-        <button (click)="deleteReg(r.id!)" class="btn btn-outline-danger">
+        <button (click)="deleteReg(r.id!)" class="btn btn-danger">
           <fa-icon [icon]="iconDelete"></fa-icon>
         </button>
       </td>
@@ -110,7 +110,7 @@
 <div>
   <button
     (click)="delete(client.id!)"
-    routerLink="/home"
+    routerLink="/idex"
     routerLinkActive="active"
     class="btn btn-danger"
   >

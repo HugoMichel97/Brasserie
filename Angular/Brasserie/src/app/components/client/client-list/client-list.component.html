@@ -1,6 +1,16 @@
-<table class="table">
+<table class="table align-middle mb-0 bg-white">
+  <thead class="bg-dark">
+    <tr>
+      <th>Nom</th>
+      <th>Prenom</th>
+      <th>Date de naissance</th>
+      <th>mail</th>
+      <th>Points de fidélité</th>
+      <th>Statu de la commande</th>
+      <th></th>
+    </tr>
+  </thead>
   <tr *ngFor="let c of clients">
-    <td>{{ c.id }}</td>
     <td>{{ c.nom }}</td>
     <td>{{ c.prenom }}</td>
     <td>{{ c.naissance | date: "dd/MM/yyyy" }}</td>
@@ -11,29 +21,11 @@
       <button
         [routerLink]="['/brasseur/clients', 'edit', c.id]"
         routerLinkActive="active"
-        class="btn btn-outline-warning"
+        class="btn btn-warning"
         [disabled]="disabledBtn(c) ? true : false"
       >
         <fa-icon [icon]="iconPanier"></fa-icon>
       </button>
     </td>
-    <td>
-      <button
-        [routerLink]="['/client', c.id]"
-        routerLinkActive="active"
-        class="btn btn-outline-warning"
-      >
-        Test client info
-      </button>
-    </td>
   </tr>
 </table>
-<div>
-  <button
-    [routerLink]="['/reservationList']"
-    routerLinkActive="active"
-    class="btn btn-outline-info"
-  >
-    Reservations
-  </button>
-</div>

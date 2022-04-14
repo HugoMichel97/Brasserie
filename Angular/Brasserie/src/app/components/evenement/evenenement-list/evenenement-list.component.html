@@ -1,38 +1,44 @@
-<table class="table">
-  <tr>
-    <td>Identifiant :</td>
-    <td>date :</td>
-    <td>heure :</td>
-    <td>libelle :</td>
-    <td>Prix :</td>
-    <td>points requis :</td>
-    <td>description</td>
-    <td>nombres de places</td>
-  </tr>
+<table class="table align-middle mb-0 bg-white">
+  <thead class="bg-dark">
+    <tr>
+      <th>Date&nbsp;:</th>
+      <th>Heure&nbsp;:</th>
+      <th>Libelle&nbsp;:</th>
+      <th>Prix&nbsp;:</th>
+      <th>Points requis&nbsp;:</th>
+      <th>Description&nbsp;:</th>
+      <th>Nombres de places&nbsp;:</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let p of evenement">
+      <td>{{ p.date }}</td>
+      <td>{{ p.heure }}</td>
+      <td>{{ p.libelle }}</td>
+      <td>{{ p.prix }}</td>
+      <td>{{ p.ptsRequis }}</td>
+      <td>{{ p.description }}</td>
+      <td>{{ p.nbPlaces }}</td>
 
-  <tr *ngFor="let p of evenement">
-    <td>{{ p.id }}</td>
-
-    <td>{{ p.date }}</td>
-    <td>{{ p.heure }}</td>
-    <td>{{ p.libelle }}</td>
-    <td>{{ p.prix }}</td>
-    <td>{{ p.ptsRequis }}</td>
-    <td>{{ p.description }}</td>
-    <td>{{ p.nbPlaces }}</td>
-
-    <td>
-      <a
-        [routerLink]="['/evenement', 'edit', p.id]"
-        routerLinkActive="active"
-        class="btn btn-outline-primary"
-        >Modifier</a
-      >
-    </td>
-    <td>
-      <button (click)="delete(p.id!)" class="btn btn-outline-danger">
-        Supprimer
-      </button>
-    </td>
-  </tr>
+      <td *ngIf="isAutenticated() && role === 'brasseur'">
+        <button
+          [routerLink]="['/evenement', 'edit', p.id]"
+          routerLinkActive="active"
+          class="btn btn-warning"
+        >
+          <fa-icon [icon]="iconEdit"></fa-icon>
+        </button>
+        &nbsp;
+        <button (click)="delete(p.id!)" class="btn btn-danger">
+          <fa-icon [icon]="iconDelete"></fa-icon>
+        </button>
+      </td>
+      <td *ngIf="!(isAutenticated() && role === 'brasseur')">
+        <button (click)="createResa(p)" class="btn btn-info">
+          <fa-icon [icon]="iconResa"></fa-icon>
+        </button>
+      </td>
+    </tr>
+  </tbody>
 </table>

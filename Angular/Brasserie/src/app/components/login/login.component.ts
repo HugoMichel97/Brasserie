@@ -1,3 +1,5 @@
+import { BrasseurService } from './../../services/brasseur.service';
+import { ClientService } from './../../services/client.service';
 import { Router } from '@angular/router';
 import { AuthentificationService } from './../../services/authentification.service';
 import { Component, OnInit } from '@angular/core';
@@ -14,6 +16,8 @@ export class LoginComponent implements OnInit {
 
   constructor(
     private authService: AuthentificationService,
+    private clientService: ClientService,
+    private brasseurService: BrasseurService,
     private router: Router
   ) {}
 
@@ -29,13 +33,21 @@ export class LoginComponent implements OnInit {
           'Basic ' + btoa(this.mail + ':' + this.password)
         );
         localStorage.setItem('role', value);
-        this.router.navigateByUrl('/home');
+        if (value == 'client') {
+          this.clientService.getByMail(this.mail).subscribe((result) => {
+            localStorage.setItem('id', `${result.id}`);
+          });
+        } else if (value == 'brasseur') {
+          this.brasseurService.getByMail(this.mail).subscribe((result) => {
+            localStorage.setItem('id', `${result.id}`);
+          });
+        }
+        this.router.navigateByUrl('/index');
         this.err = false;
-        this.router.navigateByUrl('')
+        this.router.navigateByUrl('');
       },
       error: (error: any) => {
         this.err = true;
-
       },
     });
   }

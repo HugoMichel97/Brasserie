@@ -37,6 +37,8 @@ export class ClientComponent implements OnInit {
 
   ngOnInit(): void {
     this.aR.params.subscribe((params) => {
+      console.log(params['id']);
+
       if (params['id']) {
         this.clientService.get(params['id']).subscribe((result) => {
           this.client = result;

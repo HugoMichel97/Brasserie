@@ -2,6 +2,8 @@
 package soprajc.Brasserie.restControllers;
 
 import java.lang.reflect.Field;
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
@@ -27,9 +29,9 @@ import org.springframework.web.bind.annotation.RestController;
 import com.fasterxml.jackson.annotation.JsonView;
 
 import soprajc.Brasserie.exception.ReservationException;
+import soprajc.Brasserie.model.Client;
 import soprajc.Brasserie.model.JsonViews;
 import soprajc.Brasserie.model.Reservation;
-import soprajc.Brasserie.model.StatutCommande;
 import soprajc.Brasserie.model.StatutResa;
 import soprajc.Brasserie.services.ClientService;
 import soprajc.Brasserie.services.EvenementService;

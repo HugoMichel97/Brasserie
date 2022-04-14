@@ -1,16 +1,24 @@
-<div>
+<div class="form-group" id="loginForm">
   <div *ngIf="err" class="alert alert-danger">Erreur d'authentification</div>
   <div>
-    <label>login:</label>
-    <input class="form-control" [(ngModel)]="mail" />
-  </div>
-  <div>
-    <label>password:</label>
-    <input type="password" class="form-control" [(ngModel)]="password" />
-  </div>
-  <div>
-    <button (click)="check()" class="btn btn-outline-success">
-      connection
-    </button>
+    <div>
+      <label>Mail :</label>
+      <input type="email" class="form-control" [(ngModel)]="mail" />
+    </div>
+    <div>
+      <label>Mot de passe :</label>
+      <input type="password" class="form-control" [(ngModel)]="password" />
+    </div>
+    <div>
+      <button (click)="check()" class="btn btn-success">Connexion</button>
+      &nbsp;
+      <button
+        routerLink="/create"
+        routerLinkActive="active"
+        class="btn btn-success"
+      >
+        Créer un compte
+      </button>
+    </div>
   </div>
 </div>
