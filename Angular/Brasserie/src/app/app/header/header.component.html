@@ -22,7 +22,7 @@
               Brasserie Aminagomo</a
             >
           </h1>
-          <p>Composez la bière qui vous ressemble</p>
+          <p>Achetez la bière qui vous ressemble</p>
 
           <!-- Nav -->
           <nav id="nav">
@@ -44,9 +44,9 @@
                 >
               </li>
               <li *ngIf="isAutenticated() && role == 'brasseur'">
-                <a routerLink="/biere" routerLinkActive="active"
+                <a routerLink="/produit" routerLinkActive="active"
                   ><fa-icon [icon]="iconBieres"></fa-icon> &nbsp;
-                  <span>Nos bières</span></a
+                  <span>Produits</span></a
                 >
               </li>
               <li
@@ -61,9 +61,9 @@
                 >
               </li>
               <li *ngIf="isAutenticated() && role == 'brasseur'">
-                <a routerLink="/biere" routerLinkActive="active"
-                  ><fa-icon [icon]="iconBieres"></fa-icon> &nbsp;
-                  <span>Nos bières</span></a
+                <a routerLink="/ingredient" routerLinkActive="active"
+                  ><fa-icon [icon]="iconIngr"></fa-icon> &nbsp;
+                  <span>Ingrédients</span></a
                 >
               </li>
               <li>
@@ -147,7 +147,7 @@
                   [routerLink]="['/note/client/', id]"
                   routerLinkActive="active"
                 >
-                  <!-- <fa-icon [icon]="iconResa"></fa-icon>&nbsp; -->
+                  <fa-icon [icon]="iconAvis"></fa-icon>&nbsp;
                   <span>Vos avis</span>
                 </a>
               </li>

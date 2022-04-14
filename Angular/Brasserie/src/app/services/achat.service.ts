@@ -55,7 +55,7 @@ export class AchatService {
     return this.http.post(AchatService.url, this.achatToJson(achat));
   }
 
-  public createCatalogue(achat: Achat): Observable<any> {
+  public createCatalogue(achat: any): Observable<any> {
     return this.http.post(AchatService.url, achat);
   }
 

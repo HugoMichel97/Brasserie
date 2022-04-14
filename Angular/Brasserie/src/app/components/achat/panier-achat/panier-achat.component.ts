@@ -26,14 +26,9 @@ export class PanierAchatComponent implements OnInit {
           new Achat(a.id_achat, a.id_client, a.id_produit, a.quantite)
         );
         this.totalQuantite += a.quantite;
-        if (this.achats.length > 1) {
-          for (let p of a.id_produit) {
-            this.totalPrix += p.prix;
-          }
-        } else {
-          this.totalPrix = a.id_produit.prix;
-        }
+        this.totalPrix += a.id_produit.prix;
       }
+      console.log(this.achats);
     });
   }
 

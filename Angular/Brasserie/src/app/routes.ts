@@ -1,3 +1,6 @@
+import { PaimentComponent } from './components/reglement/paiment/paiment.component';
+import { IngredientEditComponent } from './components/ingredient/ingredient-edit/ingredient-edit.component';
+import { IngredientListComponent } from './components/ingredient/ingredient-list/ingredient-list.component';
 import { PanierAchatComponent } from './components/achat/panier-achat/panier-achat.component';
 import { ReservationClientComponent } from './components/reservation/reservation-client/reservation-client.component';
 import { IndexComponent } from './app/index/index.component';
@@ -36,6 +39,12 @@ export const routes: Routes = [
   { path: 'infoBrasseur', component: InfoComponent },
   { path: 'login', component: LoginComponent },
   { path: 'create', component: CreateCompteComponent },
+  { path: 'payer/:type', component: PaimentComponent },
+  { path: 'payer/:type/:id', component: PaimentComponent },
+
+  { path: 'ingredient', component: IngredientListComponent },
+  { path: 'ingredient/edit/:id', component: IngredientEditComponent },
+  { path: 'ingredient/edit', component: IngredientEditComponent },
 
   { path: 'produit', component: ProduitComponent },
   { path: 'produit/edit', component: EditProduitComponent },
@@ -49,6 +58,8 @@ export const routes: Routes = [
 
   { path: 'reservation/client/:id', component: ReservationClientComponent },
   { path: 'reservation/brasseur', component: ReservationListComponent },
+  { path: 'reservationList', component: ReservationListComponent },
+  { path: 'reservation/edit/:id', component: ReservationEditComponent },
 
   { path: 'brasseur/info/:id', component: BrasseurComponent },
   { path: 'brasseur/edit/:cathegorie/:id', component: BrasseurEditComponent },
@@ -67,10 +78,6 @@ export const routes: Routes = [
 
   { path: 'reglement/edit', component: ReglementEditComponent },
   { path: 'reglement', component: ReglementComponent },
-
-  { path: 'reservationList', component: ReservationListComponent },
-  { path: 'reservation/edit/:id', component: ReservationEditComponent },
-  { path: 'reservation/edit', component: ReservationEditComponent },
 
   { path: 'evenement', component: EvenementEditComponent },
 

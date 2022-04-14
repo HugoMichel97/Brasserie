@@ -1,3 +1,5 @@
+import { Router } from '@angular/router';
+import { AuthentificationService } from './../../../services/authentification.service';
 import { AchatService } from './../../../services/achat.service';
 import { Snack } from './../../../model/snack';
 import { Component, OnInit } from '@angular/core';
@@ -16,7 +18,9 @@ export class SnackComponent implements OnInit {
   quantite: number = 0;
   constructor(
     private produitService: ProduitService,
-    private achatService: AchatService
+    private achatService: AchatService,
+    private authService: AuthentificationService,
+    private router: Router
   ) {}
 
   ngOnInit(): void {
@@ -35,10 +39,24 @@ export class SnackComponent implements OnInit {
   }
 
   ajoutPanier(snack: Snack) {
-    this.achatService.createCatalogue(
-      new Achat(undefined, this.client, snack, 1)
-    );
-    snack.stock! -= this.quantite;
+    if (this.authService.isAutenticated()) {
+      this.achatService
+        .createCatalogue({
+          id_client: {
+            id: this.client.id,
+          },
+          id_produit: {
+            type: 'snack',
+            id: snack.id,
+          },
+          quantite: this.quantite,
+        })
+        .subscribe(() => {});
+      snack.stock! -= this.quantite;
+    } else {
+      this.router.navigateByUrl('/login');
+    }
+
     //console.log(new Achat(undefined, this.client, snack, 1));
   }
 

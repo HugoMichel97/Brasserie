@@ -1,3 +1,5 @@
+import { AuthentificationService } from './../../../services/authentification.service';
+import { Router, RouterModule } from '@angular/router';
 import { Client } from './../../../model/client';
 import { AchatService } from './../../../services/achat.service';
 import { NoteService } from './../../../services/note.service';
@@ -24,7 +26,9 @@ export class BiereComponent implements OnInit {
   constructor(
     private produitService: ProduitService,
     private noteService: NoteService,
-    private achatService: AchatService
+    private achatService: AchatService,
+    private router: Router,
+    private authService: AuthentificationService
   ) {}
 
   ngOnInit(): void {
@@ -77,10 +81,23 @@ export class BiereComponent implements OnInit {
   // }
 
   ajoutPanier(biere: Biere) {
-    this.achatService.createCatalogue(
-      new Achat(undefined, this.client, biere, this.quantite)
-    );
-    biere.stock! -= this.quantite;
+    if (this.authService.isAutenticated()) {
+      this.achatService
+        .createCatalogue({
+          id_client: {
+            id: this.client.id,
+          },
+          id_produit: {
+            type: 'biere',
+            id: biere.id,
+          },
+          quantite: this.quantite,
+        })
+        .subscribe(() => {});
+      biere.stock! -= this.quantite;
+    } else {
+      this.router.navigateByUrl('/login');
+    }
     //console.log(new Achat(undefined, this.client, biere, 1));
   }
 

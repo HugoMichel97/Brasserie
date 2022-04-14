@@ -1,3 +1,5 @@
+import { faCreditCard } from '@fortawesome/free-solid-svg-icons';
+import { Router } from '@angular/router';
 import { Libelle } from './../../../model/enum/libelle';
 import { Component, OnInit } from '@angular/core';
 import { StatutResa } from 'src/app/model/enum/statut-resa';
@@ -14,8 +16,12 @@ export class ReservationClientComponent implements OnInit {
   statutResa = StatutResa;
   libelles = Libelle;
   private id: number | undefined;
+  iconCard = faCreditCard;
 
-  constructor(private reservationService: ReservationService) {}
+  constructor(
+    private reservationService: ReservationService,
+    private router: Router
+  ) {}
 
   ngOnInit(): void {
     this.id = Number(localStorage.getItem('id'));
@@ -30,7 +36,7 @@ export class ReservationClientComponent implements OnInit {
 
   delete(id: number) {
     this.reservationService.delete(id).subscribe((noResult) => {
-      this.list(id);
+      this.list(this.id!);
     });
   }
 }

@@ -15,6 +15,8 @@ import {
   faHouseUser,
   faPeopleGroup,
   faShoppingBasket,
+  faThumbsUp,
+  faWheatAwn,
 } from '@fortawesome/free-solid-svg-icons';
 import { Compte } from 'src/app/model/compte';
 
@@ -34,6 +36,8 @@ export class HeaderComponent implements OnInit {
   iconCompte = faHouseUser;
   iconPanier = faShoppingBasket;
   iconResa = faCalendarDay;
+  iconIngr = faWheatAwn;
+  iconAvis = faThumbsUp;
 
   public constructor(private authService: AuthentificationService) {}
 

@@ -6,7 +6,6 @@
     <td>nom :</td>
     <td>heure :</td>
     <td>stock :</td>
-
   </tr>
 
   <tr *ngFor="let p of ingredient">
@@ -14,8 +13,6 @@
 
     <td>{{ p.nom }}</td>
     <td>{{ p.stock }}</td>
-
-
 
     <td>
       <a
@@ -32,4 +29,12 @@
     </td>
   </tr>
 </table>
-
+<div>
+  <button
+    [routerLink]="['/ingredient', 'edit']"
+    routerLinkActive="active"
+    class="btn btn-success"
+  >
+    Ajouter
+  </button>
+</div>

@@ -76,6 +76,9 @@ export class ClientComponent implements OnInit {
   }
 
   delete(id: number) {
-    this.clientService.delete(id).subscribe((ok) => {});
+    this.clientService.delete(id).subscribe(() => {
+      localStorage.clear();
+      this.router.navigateByUrl('/index');
+    });
   }
 }

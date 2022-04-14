@@ -1,0 +1,43 @@
+<div class="form-group">
+  <label>Mode de règlement :</label>
+  <select [(ngModel)]="reglement.mode" class="form-control">
+    <option *ngFor="let mode of modeReg | keyvalue" [value]="mode.key">
+      {{ mode.value }}
+    </option>
+  </select>
+</div>
+
+<div *ngIf="reglement.mode === modeReg.CB" class="form-group">
+  <label>Numero :</label>
+  <input type="text" class="form-control" />
+</div>
+
+<div *ngIf="reglement.mode === modeReg.CB" class="form-group">
+  <label>Nom :</label>
+  <input type="text" class="form-control" />
+</div>
+
+<div *ngIf="reglement.mode === modeReg.CB" class="form-group">
+  <label>Date de fin de validité :</label>
+  <input type="text" class="form-control" />
+</div>
+
+<div *ngIf="reglement.mode === modeReg.CB" class="form-group">
+  <label>CVC :</label>
+  <input type="text" class="form-control" />
+</div>
+
+<div *ngIf="reglement.mode === modeReg.PayPal" class="form-group">
+  <label>Identifiant PayPal :</label>
+  <input type="text" class="form-control" />
+</div>
+
+<div *ngIf="reglement.mode === modeReg.PayPal" class="form-group">
+  <label>Mot de passe :</label>
+  <input type="password" class="form-control" />
+</div>
+
+<div>
+  <button (click)="valid()" class="btn btn-sucess">Confirmer</button>
+  <button [routerLink]="['/index']" class="btn btn-danger">Annuler</button>
+</div>
