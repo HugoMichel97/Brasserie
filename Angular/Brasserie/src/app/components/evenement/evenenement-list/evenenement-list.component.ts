@@ -14,6 +14,7 @@ import { Component, OnInit } from '@angular/core';
 import { Evenement } from 'src/app/model/evenement';
 import { EvenementService } from 'src/app/services/evenements.service';
 import { Reservation } from 'src/app/model/reservation';
+import { Libelle } from 'src/app/model/enum/libelle';
 
 @Component({
   selector: 'app-evenenement-list',
@@ -24,6 +25,7 @@ export class EvenenementListComponent implements OnInit {
   evenement: Evenement[] = [];
   client: Client = new Client();
   brasseur: Brasseur = new Brasseur();
+  libelles = Libelle;
   iconEdit = faPencil;
   iconDelete = faTrashCan;
   iconResa = faCalendarDay;
