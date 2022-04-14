@@ -7,18 +7,17 @@ import { ReservationService } from 'src/app/services/reservation.service';
 @Component({
   selector: 'app-reservation-client',
   templateUrl: './reservation-client.component.html',
-  styleUrls: ['./reservation-client.component.css']
+  styleUrls: ['./reservation-client.component.css'],
 })
 export class ReservationClientComponent implements OnInit {
-
-
   reservations: Reservation[] = [];
   statutResa = StatutResa;
   libelles = Libelle;
-  private id: number = 3;
+  private id: number | undefined;
   constructor(private reservationService: ReservationService) {}
 
   ngOnInit(): void {
+    this.id = Number(localStorage.getItem('id'));
     this.list(this.id);
   }
 

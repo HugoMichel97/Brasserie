@@ -1,15 +1,8 @@
+import { ReservationClientComponent } from './components/reservation/reservation-client/reservation-client.component';
 import { IndexComponent } from './app/index/index.component';
 import { ClientBrasseurEditComponent } from './components/client/client-brasseur-edit/client-brasseur-edit.component';
-import { InfoComponent } from './components/brasseur/info/info.component';
-import { CreateCompteComponent } from './components/create-compte/create-compte.component';
-import { ReglementEditComponent } from './components/reglement-edit/reglement-edit.component';
-import { BrasseurComponent } from './components/brasseur/brasseur/brasseur.component';
-import { BrasseurEditComponent } from './components/brasseur/brasseur-edit/brasseur-edit.component';
-import { HomeComponent } from './components/home/home.component';
 import { ReglementComponent } from './components/reglement/reglement.component';
-import { LoginComponent } from './components/login/login.component';
 import { ClientEditComponent } from './components/client/client-edit/client-edit.component';
-import { PasswordEditComponent } from './components/client/password-edit/password-edit.component';
 import { ClientComponent } from './components/client/client/client.component';
 import { EditProduitComponent } from './components/produit/edit-produit/edit-produit.component';
 import { NoteClientComponent } from './components/note/note-client/note-client.component';
@@ -26,8 +19,15 @@ import { ClientListComponent } from './components/client/client-list/client-list
 import { ReservationEditComponent } from './components/reservation/reservation-edit/reservation-edit.component';
 import { Routes } from '@angular/router';
 import { ReservationListComponent } from './components/reservation/reservation-list/reservation-list.component';
-import { ReservationListClientComponent } from './components/reservation/reservation-list-client/reservation-list-client.component';
 import { EvenenementListComponent } from './components/evenement/evenenement-list/evenenement-list.component';
+import { BrasseurEditComponent } from './components/brasseur/brasseur-edit/brasseur-edit.component';
+import { BrasseurComponent } from './components/brasseur/brasseur/brasseur.component';
+import { InfoComponent } from './components/brasseur/info/info.component';
+import { PasswordEditComponent } from './components/client/password-edit/password-edit.component';
+import { CreateCompteComponent } from './components/create-compte/create-compte.component';
+import { LoginComponent } from './components/login/login.component';
+import { ReglementEditComponent } from './components/reglement-edit/reglement-edit.component';
+import { ReservationListClientComponent } from './components/reservation/reservation-list-client/reservation-list-client.component';
 
 export const routes: Routes = [
   { path: 'index', component: IndexComponent },
@@ -41,8 +41,8 @@ export const routes: Routes = [
 
   { path: 'evenement', component: EvenenementListComponent },
 
-  { path: 'home', component: HomeComponent },
-  { path: '', redirectTo: 'home', pathMatch: 'full' },
+  { path: 'reservation/client', component: ReservationClientComponent },
+
   { path: 'brasseur/clients', component: ClientListComponent },
   { path: 'brasseur/clients/edit/:id', component: ClientBrasseurEditComponent },
   { path: 'client/:id', component: ClientComponent },
@@ -61,7 +61,6 @@ export const routes: Routes = [
   { path: 'brasseur/clients/edit/:id', component: ClientBrasseurEditComponent },
 
   { path: 'reservationListClient', component: ReservationListClientComponent },
-  { path: 'reservation/client/:id', component: ReservationListClientComponent },
 
   // à ranger
   { path: 'reglement/edit', component: ReglementEditComponent },
