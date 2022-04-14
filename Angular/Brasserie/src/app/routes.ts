@@ -1,7 +1,7 @@
-import { CreateCompteComponent } from './components/create-compte/create-compte.component';
-import { InfoComponent } from './components/brasseur/info/info.component';
 import { IndexComponent } from './app/index/index.component';
 import { ClientBrasseurEditComponent } from './components/client/client-brasseur-edit/client-brasseur-edit.component';
+import { InfoComponent } from './components/brasseur/info/info.component';
+import { CreateCompteComponent } from './components/create-compte/create-compte.component';
 import { ReglementEditComponent } from './components/reglement-edit/reglement-edit.component';
 import { BrasseurComponent } from './components/brasseur/brasseur/brasseur.component';
 import { BrasseurEditComponent } from './components/brasseur/brasseur-edit/brasseur-edit.component';
@@ -41,12 +41,17 @@ export const routes: Routes = [
 
   { path: 'evenement', component: EvenenementListComponent },
 
+  { path: 'home', component: HomeComponent },
+  { path: '', redirectTo: 'home', pathMatch: 'full' },
+  { path: 'brasseur/clients', component: ClientListComponent },
+  { path: 'brasseur/clients/edit/:id', component: ClientBrasseurEditComponent },
   { path: 'client/:id', component: ClientComponent },
   { path: 'client/edit/:cathegorie/:id', component: ClientEditComponent },
   {
     path: 'client/edit/:idReg/:cathegorie/:id',
     component: ClientEditComponent,
   },
+  { path: 'reglement/edit', component: ReglementEditComponent },
   { path: 'client/editPassword/:id', component: PasswordEditComponent },
 
   { path: 'brasseur/info/:id', component: BrasseurComponent },
@@ -63,6 +68,8 @@ export const routes: Routes = [
   { path: 'reglement', component: ReglementComponent },
 
   { path: 'produit', component: ProduitComponent },
+  { path: 'reservationListClient', component: ReservationListClientComponent },
+  { path: 'reglement', component: ReglementComponent },
   { path: 'produit/edit', component: EditProduitComponent },
   { path: 'produit/edit/:id', component: EditProduitComponent },
   { path: 'produit/add/:type', component: EditProduitComponent },
@@ -79,6 +86,9 @@ export const routes: Routes = [
   { path: 'note/client', component: NoteClientComponent },
   { path: 'note/add', component: EditNoteComponent },
 
+  { path: 'reservationList', component: ReservationListComponent },
+  { path: 'reservation/edit', component: ReservationEditComponent },
+  { path: 'reservation/edit/:id', component: ReservationEditComponent },
   { path: 'achat', component: AchatComponent },
   { path: 'achat/edit', component: EditAchatComponent },
   { path: 'achat/edit/:id_achat', component: EditAchatComponent },

@@ -34,14 +34,9 @@ import { EditProduitComponent } from './components/produit/edit-produit/edit-pro
 import { ProduitComponent } from './components/produit/produit/produit.component';
 import { SnackComponent } from './components/produit/snack/snack.component';
 import { ReglementEditComponent } from './components/reglement-edit/reglement-edit.component';
-import { ReglementComponent } from './components/reglement/reglement.component';
-import { ReservationEditComponent } from './components/reservation/reservation-edit/reservation-edit.component';
-import { ReservationListClientComponent } from './components/reservation/reservation-list-client/reservation-list-client.component';
-import { ReservationListComponent } from './components/reservation/reservation-list/reservation-list.component';
-import { Interceptor } from './model/interceptor';
-import { routes } from './routes';
 import { InfoComponent } from './components/brasseur/info/info.component';
 import { CreateCompteComponent } from './components/create-compte/create-compte.component';
+import { ReservationClientComponent } from './components/reservation/reservation-client/reservation-client.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -78,9 +73,9 @@ import { CreateCompteComponent } from './components/create-compte/create-compte.
     BiereComponent,
     SnackComponent,
     NoteClientComponent,
-    EditAchatComponent,
     InfoComponent,
     CreateCompteComponent,
+    ReservationClientComponent,
   ],
 
   imports: [
