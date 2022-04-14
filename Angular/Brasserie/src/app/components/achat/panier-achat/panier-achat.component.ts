@@ -12,7 +12,6 @@ export class PanierAchatComponent implements OnInit {
   id: number = Number(localStorage.getItem('id'));
   totalPrix: number = 0;
   totalQuantite: number = 0;
-  //client: Client = new Client(Number(localStorage.getItem('id')));
   constructor(private achatService: AchatService) {}
 
   ngOnInit(): void {
@@ -27,8 +26,12 @@ export class PanierAchatComponent implements OnInit {
           new Achat(a.id_achat, a.id_client, a.id_produit, a.quantite)
         );
         this.totalQuantite += a.quantite;
-        for (let p of a.id_produit) {
-          this.totalPrix += p.prix;
+        if (this.achats.length > 1) {
+          for (let p of a.id_produit) {
+            this.totalPrix += p.prix;
+          }
+        } else {
+          this.totalPrix = a.id_produit.prix;
         }
       }
     });

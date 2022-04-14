@@ -1,4 +1,4 @@
-import { ClientService } from './../../../service/client.service';
+import { ClientService } from './../../../services/client.service';
 import { ProduitService } from './../../../services/produit.service';
 import { Client } from './../../../model/client';
 import { Biere } from './../../../model/biere';
@@ -15,7 +15,7 @@ import { Component, OnInit } from '@angular/core';
 export class EditNoteComponent implements OnInit {
   note: Note = new Note();
   bieres: Biere[] = [];
-  clients: Client[] = [];
+  clients: Client = new Client();
   constructor(
     private aR: ActivatedRoute,
     private noteService: NoteService,
@@ -25,9 +25,11 @@ export class EditNoteComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.clientService.getAll().subscribe((result) => {
-      this.clients = result;
-    });
+    this.clientService
+      .get(Number(localStorage.getItem('id')))
+      .subscribe((result) => {
+        this.clients = result;
+      });
 
     this.produitService.getAllBeers().subscribe((result) => {
       this.bieres = result;

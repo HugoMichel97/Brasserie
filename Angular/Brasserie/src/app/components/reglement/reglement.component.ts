@@ -1,5 +1,7 @@
+import { Reglement } from './../../model/enum/reglement';
+import { InfoReglement } from './../../model/info-reglement';
 import { Component, OnInit } from '@angular/core';
-
+import { ReglementService } from 'src/app/services/reglement.service';
 @Component({
   selector: 'app-reglement',
   templateUrl: './reglement.component.html',
@@ -7,9 +9,26 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ReglementComponent implements OnInit {
 
-  constructor() { }
+  reglements: InfoReglement[] = [];
+  mode = Reglement;
+  id: number = 4;
+  constructor(private reglementService: ReglementService) {}
 
   ngOnInit(): void {
+    this.list(this.id)
   }
 
+  list(id: number) {
+    this.reglementService.get(id).subscribe((result) => {
+      this.reglements.push(result) ;
+      console.log(result)
+    });
+  }
+
+  delete(id: number) {
+    this.reglementService.delete(id).subscribe((noResult) => {
+      this.list(id);
+    });
+  }
 }
+

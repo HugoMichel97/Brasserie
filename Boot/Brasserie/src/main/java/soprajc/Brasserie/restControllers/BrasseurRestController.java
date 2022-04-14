@@ -1,9 +1,6 @@
 package soprajc.Brasserie.restControllers;
 
 import java.lang.reflect.Field;
-import java.time.LocalDate;
-import java.time.LocalTime;
-import java.util.List;
 import java.util.Map;
 
 import javax.validation.Valid;
@@ -24,7 +21,6 @@ import org.springframework.web.bind.annotation.RestController;
 import com.fasterxml.jackson.annotation.JsonView;
 
 import soprajc.Brasserie.exception.BrasseurException;
-import soprajc.Brasserie.model.Achat;
 import soprajc.Brasserie.model.Brasseur;
 import soprajc.Brasserie.model.JsonViews;
 import soprajc.Brasserie.services.BrasseurService;
@@ -35,12 +31,20 @@ import soprajc.Brasserie.services.BrasseurService;
 public class BrasseurRestController {
 
 	@Autowired
-	private BrasseurService brasseurService;
+	BrasseurService brasseurService;
+	@Autowired
+	PasswordEncoder passwordEncoder;
 
 	@JsonView(JsonViews.Compte.class)
 	@GetMapping("/{id}")
 	public Brasseur getById(@PathVariable Integer id) {
 		return brasseurService.getById(id);
+	}
+
+	@JsonView(JsonViews.Compte.class)
+	@GetMapping("/mail/{mail}")
+	public Brasseur getByMail(@PathVariable String mail) {
+		return brasseurService.getByMail(mail);
 	}
 
 	@PutMapping("/{id}")
@@ -62,9 +66,13 @@ public class BrasseurRestController {
 	public Brasseur partialUpdate(@RequestBody Map<String, Object> fields, @PathVariable Integer id) {
 		Brasseur brasseur = brasseurService.getById(id);
 		fields.forEach((key, value) -> {
-			Field field = ReflectionUtils.findField(Brasseur.class, key);
-			ReflectionUtils.makeAccessible(field);
-			ReflectionUtils.setField(field, brasseur, value);
+			if (key.equals("password")) {
+				brasseur.setPassword(passwordEncoder.encode((String) value));
+			} else {
+				Field field = ReflectionUtils.findField(Brasseur.class, key);
+				ReflectionUtils.makeAccessible(field);
+				ReflectionUtils.setField(field, brasseur, value);
+			}
 		});
 		return brasseurService.save(brasseur);
 	}

@@ -2,6 +2,7 @@ package soprajc.Brasserie.model;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
@@ -56,7 +57,7 @@ public class Evenement {
 	private int nbPlaces = 1;
 
 	@OneToMany(mappedBy = "evt")
-	private List<Reservation> reservations;
+	private List<Reservation> reservations = new ArrayList<Reservation>();
 
 	@Version
 	private int version;

@@ -12,6 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.util.ReflectionUtils;
 import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PatchMapping;
@@ -35,6 +36,7 @@ import soprajc.Brasserie.services.ReservationService;
 
 @RestController
 @RequestMapping("/api/evenement")
+@CrossOrigin(origins = "*")
 public class EvenementRestController {
 	
 	@Autowired 
@@ -82,9 +84,6 @@ public class EvenementRestController {
 	@PostMapping("")
 	@JsonView(JsonViews.Evenement.class)
 	public Evenement create(@Valid @RequestBody Evenement evenement, BindingResult br) {
-		if (br.hasErrors()) {
-			throw new EvenementException();
-		}
 		return save(evenement, br);
 	}
 

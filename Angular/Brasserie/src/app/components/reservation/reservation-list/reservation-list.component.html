@@ -14,7 +14,8 @@
           <th>ID</th>
           <th>Client</th>
           <th>Libelle evenement</th>
-          <th>Actions</th>
+          <th>Statut reservation</th>
+          <th>Places reservées</th>
         </tr>
       </thead>
       <tbody>
@@ -32,41 +33,31 @@
               />
               <div class="ms-3">
                 <p class="fw-bold mb-1">
-                  {{ o.client!.nom}}
+                  {{ o.client!.nom }}
                   {{ o.client!.prenom }}
                 </p>
-                <p class="text-muted mb-0">{{ o.client!.fidelite}}</p>
+                <p class="text-muted mb-0">{{ o.client!.fidelite }}</p>
               </div>
             </div>
           </td>
           <td>
             <p class="fw-normal mb-1">{{ o.evt?.libelle }}</p>
           </td>
+          <td *ngIf="o.statut === statutResa.validee">
+            <span style="color: darkolivegreen; font-weight: bold">{{
+              o.statut
+            }}</span>
+          </td>
+          <td *ngIf="o.statut === statutResa.en_attente">
+            <span style="color: lightsalmon; font-weight: bold">{{
+              o.statut
+            }}</span>
+          </td>
           <td>
-            <button
-              class="btn btn-outline-warning"
-              [routerLink]="['/reservation', 'edit', o.id]"
-              routerLinkActive="active"
-            >
-              <i class="fa-solid fa-pencil"></i>
-            </button>
-            &ngsp;
-            <button class="btn btn-outline-danger" (click)="delete(o.id!)">
-              <i class="fa-solid fa-trash-can"></i>
-            </button>
+            {{ o.nbParticipants }}
           </td>
         </tr>
       </tbody>
     </table>
-    <div class="format_align_center">
-      <button
-        routerLink="/reservation/edit"
-        routerLinkActive="active"
-        class="btn btn-outline-primary float-right"
-      >
-        <i class="fa-solid fa-plus"></i> Ajouter une reservation
-      </button>
-    </div>
   </body>
 </html>
-

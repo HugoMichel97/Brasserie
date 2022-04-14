@@ -8,11 +8,7 @@
 
   <div class="form-group">
     <label>Client :</label>
-    <select [(ngModel)]="note.id_client" class="form-control">
-      <option *ngFor="let c of clients" [ngValue]="c">
-        {{ c.id }} - {{ c.prenom }} {{ c.nom }}
-      </option>
-    </select>
+    {{ clients.id }} - {{ clients.prenom }} {{ clients.nom }}
   </div>
 
   <div class="form-group">
@@ -50,6 +46,10 @@
     <button (click)="save()" class="btn btn-outline-success">
       Enregistrer
     </button>
-    <a routerLink="/note/client" class="btn btn-outline-warning">Annuler</a>
+    <a
+      [routerLink]="['/note/client', clients.id]"
+      class="btn btn-outline-warning"
+      >Annuler</a
+    >
   </div>
 </div>

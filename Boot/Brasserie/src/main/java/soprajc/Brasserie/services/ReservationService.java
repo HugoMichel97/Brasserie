@@ -1,6 +1,9 @@
 package soprajc.Brasserie.services;
 
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -18,12 +21,14 @@ public class ReservationService {
 	private ReservationRepository reservationRepository;
 	@Autowired
 	private EvenementService evtService;
+	@Autowired
+	private ClientService clientService;
 	
-	public void create(Reservation r) {
+	public Reservation create(Reservation r) {
 		if (r.getId() !=null) {
 			throw new ReservationException("le numero ne doit pas etre defini");
 		}
-		reservationRepository.save(r);
+		return reservationRepository.save(r);
 	}
 	public void update(Reservation r) {
 		if (r.getId() == null) {
@@ -55,10 +60,10 @@ public class ReservationService {
 		});
 	}
 	
-	public Reservation getByNumeroWithClient(Integer numero) {
-		return reservationRepository.findByIdWithClient(numero).orElseThrow(() -> {
+	public Optional<Reservation> getByNumeroWithClient(Integer numero) {
+		return Optional.ofNullable(reservationRepository.findByIdWithClient(numero).orElseThrow(() -> {
 			throw new ReservationException("l'Id est inconnu");
-		});
+		}));
 	}
 	public void delete(Reservation r) {
 		Reservation reservationEnBase = getById(r.getId());

@@ -1,0 +1,86 @@
+<form (ngSubmit)="create()" [formGroup]="form" id="createForm">
+  <div>
+    <label>Nom :</label>
+    <input type="text" class="form-control" formControlName="nom" />
+  </div>
+  <div>
+    <label>Prénom :</label>
+    <input type="text" class="form-control" formControlName="prenom" />
+  </div>
+  <div>
+    <label>Date de naissance :</label>
+    <input type="date" class="form-control" formControlName="naissance" />
+  </div>
+  <div class="form-group">
+    <label>Numero de téléphone :</label>
+    <input
+      class="form-control"
+      placeholder="XXXXXXXXXX"
+      formControlName="telephone"
+    />
+    <div *ngIf="form.get('telephone')?.dirty && form.get('telephone')?.invalid">
+      Rormat incorrect : XXXXXXXXXX
+    </div>
+  </div>
+  <div formGroupName="emailPasswordGroup">
+    <div class="form-group">
+      <label>Mail :</label>
+      <input
+        type="email"
+        class="form-control"
+        placeholder="email@example"
+        formControlName="email"
+      />
+      <div
+        *ngIf="
+          form.get('emailPasswordGroup.email')?.dirty &&
+          form.get('emailPasswordGroup.email')?.invalid
+        "
+      >
+        Email Incorrect
+      </div>
+      <div *ngIf="form.get('emailPasswordGroup.email')?.hasError('emailExist')">
+        Email deja utilisé
+      </div>
+      <div
+        *ngIf="
+          form.get('emailPasswordGroup')?.hasError('mailAndPasswordEquals')
+        "
+      >
+        Le mail et le mot de passe sont identiques
+      </div>
+    </div>
+    <div formGroupName="passwordGroup">
+      <div class="form-group">
+        <label>Mot de passe :</label>
+        <input
+          type="password"
+          class="form-control"
+          formControlName="password"
+        />
+        <div
+          *ngIf="
+            form.get('emailPasswordGroup.passwordGroup.password')?.dirty &&
+            form.get('emailPasswordGroup.passwordGroup.password')?.invalid
+          "
+        >
+          Le mot de passe doit faire en 5 et 25 caracteres avec majuscule,
+          minuscule, chiffre et caractere special(*_!@-)
+        </div>
+      </div>
+      <div class="form-group">
+        <label>Confirmer le mot de passe:</label>
+        <input type="password" class="form-control" formControlName="confirm" />
+      </div>
+      <div *ngIf="form.get('emailPasswordGroup.passwordGroup')?.invalid">
+        Les mots de passes ne correspondent pas
+      </div>
+    </div>
+  </div>
+  <div>
+    <button type="submit" class="btn btn-success" [disabled]="form.invalid">
+      S'incrire
+    </button>
+    <a routerLink="/login" class="btn btn-warning">Retour</a>
+  </div>
+</form>

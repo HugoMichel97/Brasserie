@@ -1,5 +1,4 @@
 import { Client } from './../../../model/client';
-import { ClientService } from './../../../service/client.service';
 import { AchatService } from './../../../services/achat.service';
 import { NoteService } from './../../../services/note.service';
 import { Component, OnInit } from '@angular/core';

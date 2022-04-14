@@ -2,8 +2,11 @@
 package soprajc.Brasserie.restControllers;
 
 import java.lang.reflect.Field;
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 
 import javax.validation.Valid;
 
@@ -26,6 +29,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.fasterxml.jackson.annotation.JsonView;
 
 import soprajc.Brasserie.exception.ReservationException;
+import soprajc.Brasserie.model.Client;
 import soprajc.Brasserie.model.JsonViews;
 import soprajc.Brasserie.model.Reservation;
 import soprajc.Brasserie.model.StatutResa;
@@ -50,11 +54,17 @@ public class ReservationRestController {
 	public List<Reservation> getAll() {
 		return reservationService.getAll();
 	}
-	
-	@JsonView(JsonViews.Reservation.class)
+
+	@JsonView(JsonViews.ReservationEvtClient.class)
 	@GetMapping("/{id}")
 	public Reservation getById(@PathVariable Integer id) {
 		return reservationService.getById(id);
+	}
+	
+	@JsonView(JsonViews.Reservation.class)
+	@GetMapping("/{id_client}/client")
+	public Optional<Reservation> getByNumeroWithClient(@PathVariable Integer id_client) {
+		return reservationService.getByNumeroWithClient(id_client);
 	}
 
 	@ResponseStatus(code = HttpStatus.NO_CONTENT)
@@ -70,7 +80,7 @@ public class ReservationRestController {
 		if (br.hasErrors()) {
 			throw new ReservationException();
 		}
-		return save(reservation, br);
+		return reservationService.create(reservation);
 	}
 
 	@PutMapping("/{id}")
@@ -92,10 +102,14 @@ public class ReservationRestController {
 	public Reservation partialUpdate(@RequestBody Map<String, Object> fields, @PathVariable Integer id) {
 		Reservation resa = reservationService.getById(id);
 		fields.forEach((key, value) -> {
-			Field field = ReflectionUtils.findField(Reservation.class, key);
-			ReflectionUtils.makeAccessible(field);
-			ReflectionUtils.setField(field, resa, StatutResa.valueOf((String) value));
-		}); // seulement pour le statut, si on veut modifier l'evt on annule puis prend une nouvelle resa
+			if (key.equals("statut")){
+				resa.setStatut(StatutResa.valueOf((String) value));
+			} else {
+				Field field = ReflectionUtils.findField(Reservation.class, key);
+				ReflectionUtils.makeAccessible(field);
+				ReflectionUtils.setField(field, resa, value);
+			}
+		}); // seulement pour le statut et le nb de participants, si on veut modifier l'evt on annule puis prend une nouvelle resa
 		return reservationService.save(resa);
 	}
 }
