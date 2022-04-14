@@ -76,8 +76,10 @@ export class BiereComponent implements OnInit {
 
   ajoutPanier(biere: Biere) {
     this.achatService.createCatalogue(
+      // ajouter le client connecté dans le constructeur
       new Achat(undefined, this.client, biere, 1)
     );
+    console.log(new Achat(undefined, this.client, biere, 1));
   }
 
   triPrix() {
@@ -86,9 +88,21 @@ export class BiereComponent implements OnInit {
     });
   }
 
+  triPrixR() {
+    this.bieres = this.bieres.sort((a, b) => {
+      return a.prix! < b.prix! ? 1 : -1;
+    });
+  }
+
   triAlpha() {
     this.bieres = this.bieres.sort((a, b) => {
       return a.nom!.localeCompare(b.nom!);
+    });
+  }
+
+  triAlphaR() {
+    this.bieres = this.bieres.sort((a, b) => {
+      return b.nom!.localeCompare(a.nom!);
     });
   }
 
